@@ -1,0 +1,14 @@
+{
+  "name": "link-shortener",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Valera <Koniushok@users.noreply.github.com>",
+  "private": true,
+  "dependencies": {
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1"
+  },
+  "scripts": {
+    "build": "webpack --mode production"
+  }
+}
