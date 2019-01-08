@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 
-const App = () => {
-  return <p>App</p>;
-};
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return <p>val</p>;
+  }
+}
 
 export default App;
