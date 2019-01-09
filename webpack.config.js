@@ -13,11 +13,22 @@ const PATH = {
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
-  filename: "./index.html"
+  filename: "index.html"
 });
 
 const common = merge([
   {
+    module: {
+      rules: [
+        {
+          test: /\.(jpg|png|svg)$/,
+          loader: "file-loader",
+          options: {
+            name: "images/[name].[ext]"
+          }
+        }
+      ]
+    },
     entry: PATH.sourc + "/index.js",
     output: { path: PATH.build, filename: "[name].js" },
     plugins: [htmlPlugin],

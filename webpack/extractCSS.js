@@ -1,8 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const cssPlugin = new MiniCssExtractPlugin({
-  filename: "style/[name].css",
-  chunkFilename: "[id].css"
+  filename: "[name].[hash].css",
+  chunkFilename: "[id].[hash].css"
 });
 
 module.exports = function() {
