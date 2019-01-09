@@ -1,8 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const merge = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const css = require("./webpack/css.js");
+const extractCSS = require("./webpack/extractCSS.js");
+const devserver = require("./webpack/devserver.js");
+const mailRules = require("./webpack/mainRules.js");
 const PATH = {
   sourc: path.resolve(__dirname, "src"),
   build: path.resolve(__dirname, "build")
@@ -13,71 +16,29 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: "./index.html"
 });
 
-const cssPlugin = new MiniCssExtractPlugin({
-  filename: "style/[name].css",
-  chunkFilename: "[id].css"
-});
-const css = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
-  }
-};
-const extractCSS = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "../"
-            }
-          },
-          "css-loader"
-        ]
-      }
-    ]
+const common = merge([
+  {
+    entry: PATH.sourc + "/index.js",
+    output: { path: PATH.build, filename: "[name].js" },
+    plugins: [htmlPlugin],
+    resolve: {
+      extensions: [".js", ".json", ".jsx"]
+    }
   },
-  plugins: [cssPlugin]
-};
-
-const common = {
-  entry: PATH.sourc + "/index.js",
-  output: { path: PATH.build, filename: "[name].js" },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
-  },
-  plugins: [htmlPlugin],
-  devServer: {
-    port: 3000
-  },
-  resolve: {
-    extensions: [".js", ".json", ".jsx"]
-  }
-};
+  mailRules()
+]);
 
 module.exports = (env, argv) => {
+  let config = {};
   if (argv.mode === "development") {
     console.log("development");
-    return merge([common, css]);
+    config = merge([common, css(), devserver()]);
   }
 
   if (argv.mode === "production") {
     console.log("production");
-    return merge([common, extractCSS]);
+    config = merge([common, extractCSS()]);
   }
+  //console.log(config);
+  return config;
 };
