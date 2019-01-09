@@ -6,6 +6,7 @@ const css = require("./webpack/css.js");
 const extractCSS = require("./webpack/extractCSS.js");
 const devserver = require("./webpack/devserver.js");
 const mailRules = require("./webpack/mainRules.js");
+const image = require("./webpack/image.js");
 const PATH = {
   sourc: path.resolve(__dirname, "src"),
   build: path.resolve(__dirname, "build")
@@ -13,22 +14,12 @@ const PATH = {
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
-  filename: "index.html"
+  filename: "index.html",
+  favicon: "./public/favicon.ico"
 });
 
 const common = merge([
   {
-    module: {
-      rules: [
-        {
-          test: /\.(jpg|png|svg)$/,
-          loader: "file-loader",
-          options: {
-            name: "images/[name].[ext]"
-          }
-        }
-      ]
-    },
     entry: PATH.sourc + "/index.js",
     output: { path: PATH.build, filename: "[name].js" },
     plugins: [htmlPlugin],
@@ -36,7 +27,8 @@ const common = merge([
       extensions: [".js", ".json", ".jsx"]
     }
   },
-  mailRules()
+  mailRules(),
+  image()
 ]);
 
 module.exports = (env, argv) => {
