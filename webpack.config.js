@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const merge = require("webpack-merge");
+const HMR = require("./webpack/HMR");
 
 const css = require("./webpack/css.js");
 const extractCSS = require("./webpack/extractCSS.js");
