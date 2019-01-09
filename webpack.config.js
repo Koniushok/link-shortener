@@ -36,7 +36,7 @@ module.exports = (env, argv) => {
   let config = {};
   if (argv.mode === "development") {
     console.log("development");
-    config = merge([common, css(), devserver()]);
+    config = merge([common, css(), devserver(), HMR()]);
   }
 
   if (argv.mode === "production") {
