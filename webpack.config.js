@@ -2,7 +2,6 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const merge = require("webpack-merge");
-
 const development = require("./webpack/development.js");
 const mailRules = require("./webpack/mainRules.js");
 const imageRules = require("./webpack/imageRules.js");
@@ -18,7 +17,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 const copyPlugin = new CopyWebpackPlugin([
   {
-    from: "./node_modules/normalize.css/normalize.css",
+    from: path.join(PATH.sourc, "static/normalize.css"),
     to: path.join(PATH.build, "static/style/normalize.css")
   }
 ]);

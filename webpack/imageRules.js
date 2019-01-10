@@ -3,11 +3,23 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.(jpg|png|svg)$/,
-          loader: "file-loader",
-          options: {
-            name: "images/[name].[ext]"
-          }
+          test: /\.(gif|png|jpe?g|svg)$/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "images/[name].[ext]"
+              }
+            },
+            {
+              loader: "image-webpack-loader",
+              options: {
+                webp: {
+                  quality: 75
+                }
+              }
+            }
+          ]
         }
       ]
     }
