@@ -1,13 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const merge = require("webpack-merge");
-const HMR = require("./webpack/HMR");
 
-const css = require("./webpack/css.js");
-const extractCSS = require("./webpack/extractCSS.js");
-const devserver = require("./webpack/devserver.js");
+const development = require("./webpack/development.js");
 const mailRules = require("./webpack/mainRules.js");
-const image = require("./webpack/image.js");
+const imageRules = require("./webpack/imageRules.js");
 const PATH = {
   sourc: path.resolve(__dirname, "src"),
   build: path.resolve(__dirname, "build")
@@ -18,31 +16,33 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: "index.html",
   favicon: "./public/favicon.ico"
 });
-
+const copyPlugin = new CopyWebpackPlugin([
+  {
+    from: "./node_modules/normalize.css/normalize.css",
+    to: path.join(PATH.build, "static/style/normalize.css")
+  }
+]);
 const common = merge([
   {
     entry: PATH.sourc + "/index.js",
     output: { path: PATH.build, filename: "[name].js" },
-    plugins: [htmlPlugin],
+    plugins: [htmlPlugin, copyPlugin],
     resolve: {
       extensions: [".js", ".json", ".jsx"]
     }
   },
   mailRules(),
-  image()
+  imageRules()
 ]);
 
 module.exports = (env, argv) => {
   let config = {};
   if (argv.mode === "development") {
-    console.log("development");
-    config = merge([common, css(), devserver(), HMR()]);
+    config = merge([common, development()]);
   }
 
   if (argv.mode === "production") {
-    console.log("production");
-    config = merge([common, extractCSS()]);
+    config = merge([common]);
   }
-  //console.log(config);
   return config;
 };
