@@ -4,7 +4,11 @@
   "rules": {
     "prettier/prettier": "error",
     "strict": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "linebreak-style": 0
+  },
+  "globals": {
+    "document": false
   },
   "plugins": ["prettier", "import", "jsx-a11y", "react"]
 }
