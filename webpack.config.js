@@ -5,6 +5,7 @@ const merge = require("webpack-merge");
 const development = require("./webpack/development.js");
 const mailRules = require("./webpack/mainRules.js");
 const imageRules = require("./webpack/imageRules.js");
+
 const PATH = {
   sourc: path.resolve(__dirname, "src"),
   build: path.resolve(__dirname, "build")
@@ -23,7 +24,7 @@ const copyPlugin = new CopyWebpackPlugin([
 ]);
 const common = merge([
   {
-    entry: PATH.sourc + "/index.js",
+    entry: path.join(PATH.sourc, "/index.js"),
     output: { path: PATH.build, filename: "[name].js" },
     plugins: [htmlPlugin, copyPlugin],
     resolve: {
