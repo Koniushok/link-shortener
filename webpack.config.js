@@ -7,7 +7,7 @@ const mailRules = require("./webpack/mainRules.js");
 const imageRules = require("./webpack/imageRules.js");
 
 const PATH = {
-  sourc: path.resolve(__dirname, "src"),
+  source: path.resolve(__dirname, "src"),
   build: path.resolve(__dirname, "build")
 };
 
@@ -18,13 +18,13 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 const copyPlugin = new CopyWebpackPlugin([
   {
-    from: path.join(PATH.sourc, "static/normalize.css"),
+    from: path.join(PATH.source, "static/normalize.css"),
     to: path.join(PATH.build, "static/style/normalize.css")
   }
 ]);
 const common = merge([
   {
-    entry: path.join(PATH.sourc, "/index.js"),
+    entry: path.join(PATH.source, "/index.js"),
     output: { path: PATH.build, filename: "[name].js" },
     plugins: [htmlPlugin, copyPlugin],
     resolve: {
