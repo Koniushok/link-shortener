@@ -1,4 +1,5 @@
 const FlowWebpackPlugin = require("flow-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
 module.exports = () => ({
   devServer: {
@@ -14,6 +15,6 @@ module.exports = () => ({
       }
     ]
   },
-  plugins: [new FlowWebpackPlugin()],
+  plugins: [new FriendlyErrorsWebpackPlugin(), new FlowWebpackPlugin()],
   devtool: "source-map"
 });

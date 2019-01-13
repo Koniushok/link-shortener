@@ -18,8 +18,8 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 const copyPlugin = new CopyWebpackPlugin([
   {
-    from: path.join(PATH.source, "static/normalize.css"),
-    to: path.join(PATH.build, "static/style/normalize.css")
+    from: path.join(PATH.source, "static"),
+    to: path.join(PATH.build, "static")
   }
 ]);
 const common = merge([
@@ -40,7 +40,6 @@ module.exports = (env, argv) => {
   if (argv.mode === "development") {
     config = merge([common, development()]);
   }
-
   if (argv.mode === "production") {
     config = merge([common]);
   }
