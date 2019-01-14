@@ -6,6 +6,7 @@ import Home from "../pages/home";
 import NotFound from "../pages/notFound";
 import Authorization from "../pages/authorization";
 import Registration from "../pages/registration";
+import Logout from "../pages/logout";
 
 const Main = () => (
   <Switch>
