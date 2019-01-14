@@ -25,7 +25,13 @@ const copyPlugin = new CopyWebpackPlugin([
 const common = merge([
   {
     entry: path.join(PATH.source, "/index.js"),
-    output: { path: PATH.build, filename: "[name].js" },
+    output: {
+      path: PATH.build,
+      filename: "[name].js"
+    },
+    devServer: {
+      historyApiFallback: true,
+    },
     plugins: [htmlPlugin, copyPlugin],
     resolve: {
       extensions: [".js", ".json", ".jsx"]
