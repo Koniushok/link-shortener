@@ -1,9 +1,15 @@
+// @flow
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import type { typeRoute } from "react-router-dom";
 
 const auth = false;
 
-const ProtectedRoute = ({ component: Component, render, ...rest }) => (
+const ProtectedRoute: typeRoute = ({
+  component: Component,
+  render,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={props => {

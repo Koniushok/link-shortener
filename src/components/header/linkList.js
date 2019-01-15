@@ -1,4 +1,12 @@
-export const guestLinks = [
+// @flow
+type Link = {
+  id: number,
+  url: string,
+  title: string,
+  exact?: boolean
+};
+
+export const guestLinks: Array<Link> = [
   {
     id: 0,
     url: "/",
@@ -17,7 +25,7 @@ export const guestLinks = [
   }
 ];
 
-export const userLinks = [
+export const userLinks: Array<Link> = [
   {
     id: 0,
     url: "/",
