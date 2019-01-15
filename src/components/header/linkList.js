@@ -2,11 +2,12 @@ export const guestLinks = [
   {
     id: 0,
     url: "/",
-    title: "Home"
+    title: "Home",
+    exact: true
   },
   {
     id: 1,
-    url: "/login/1",
+    url: "/login",
     title: "Sing In"
   },
   {

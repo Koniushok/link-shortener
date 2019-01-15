@@ -1,16 +1,16 @@
 // @flow
-import React from "react";
-import { Link } from "react-router-dom";
-import { guestLinks as links } from "./linkList";
+import React, { Fragment } from "react";
+import { guestLinks as linksList } from "./linkList";
+import NavLink from "../styled-components/navLink";
 
 const NavBar = () => (
-  <div>
-    {links.map(link => (
-      <Link to={link.url} key={link.id}>
+  <Fragment>
+    {linksList.map(link => (
+      <NavLink to={link.url} exact={link.exact} key={link.id}>
         {link.title}
-      </Link>
+      </NavLink>
     ))}
-  </div>
+  </Fragment>
 );
 
 export default NavBar;
