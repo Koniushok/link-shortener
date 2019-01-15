@@ -1,6 +1,7 @@
-.idea/
-.vscode/
 node_modules/
 build
+dist/
 yarn-debug.log*
 yarn-error.log*
+/yarn.lock
+.vscode/*
