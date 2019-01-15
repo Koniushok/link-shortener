@@ -83,12 +83,12 @@ declare module "react-router-dom" {
     url: string
   };
 
-  declare export type ContextRouter = {|
+  declare export type ContextRouter = {
     history: RouterHistory,
     location: Location,
     match: Match,
     staticContext?: StaticRouterContext
-  |};
+  };
 
   declare type ContextRouterVoid = {
     history: RouterHistory | void,
@@ -160,7 +160,7 @@ declare module "react-router-dom" {
     location?: LocationShape,
     sensitive?: boolean
   |}>;
-
+  
   declare export type RouteProps = {
     component?: React$ComponentType<*>,
     render?: (router: ContextRouter) => React$Node,

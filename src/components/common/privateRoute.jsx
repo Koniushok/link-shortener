@@ -5,7 +5,7 @@ import type { RouteProps } from "react-router-dom";
 
 const auth = false;
 
-const PrivateRoute = ( props: RouteProps ) => {
+const PrivateRoute = (props: RouteProps) => {
   if (auth) return <Route {...props} />;
   return null;
 };

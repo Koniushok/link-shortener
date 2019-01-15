@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AppDiv = styled.div`
+export const AppWrapper = styled.div`
   display: flex;
   font-family: Arial, sans-serif;
   flex-direction: column;
@@ -8,18 +8,18 @@ export const AppDiv = styled.div`
   min-height: 100vh;
 `;
 
-export const MainDiv = styled.div`
+export const MainWrapper = styled.main`
   flex: auto;
 `;
 
-export const HeaderDiv = styled.div`
+export const HeaderWrapper = styled.header`
   display: flex;
   background: #24292e;
   flex-direction: row;
   justify-content: flex-end;
 `;
 
-export const FooterDiv = styled.div`
+export const FooterWrapper = styled.footer`
   background: #24292e;
   min-height: 70px;
 `;

@@ -1,18 +1,19 @@
 // @flow
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import type { typeRoute } from "react-router-dom";
+import type { Node } from "react";
+import type { RouteProps, ContextRouter } from "react-router-dom";
 
 const auth = false;
 
-const ProtectedRoute: typeRoute = ({
+const ProtectedRoute = ({
   component: Component,
   render,
   ...rest
-}) => (
+}: RouteProps) => (
   <Route
     {...rest}
-    render={props => {
+    render={(props: ContextRouter): Node => {
       if (!auth)
         return (
           <Redirect
@@ -22,7 +23,9 @@ const ProtectedRoute: typeRoute = ({
             }}
           />
         );
-      return Component ? <Component {...props} /> : render(props);
+      if (Component) return <Component {...props} />;
+      if (render) return render(props);
+      return <div />;
     }}
   />
 );

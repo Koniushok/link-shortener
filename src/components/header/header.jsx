@@ -1,13 +1,15 @@
 // @flow
 import React, { Fragment } from "react";
-import { HeaderDiv } from "../styled-components/wrappers";
+import { HeaderWrapper } from "../styled-components/wrappers";
 import NavLink from "../styled-components/navLink";
 
 const auth = false;
 
 const Header = () => (
-  <HeaderDiv>
-    <NavLink to="/" exact>Home</NavLink>
+  <HeaderWrapper>
+    <NavLink to="/" exact>
+      {"Home"}
+    </NavLink>
     {auth ? (
       <Fragment>
         <NavLink to="/signup">Sign Up</NavLink>
@@ -16,7 +18,7 @@ const Header = () => (
     ) : (
       <NavLink to="/logout">Logout</NavLink>
     )}
-  </HeaderDiv>
+  </HeaderWrapper>
 );
 
 export default Header;

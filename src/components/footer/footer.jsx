@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import { FooterDiv } from "../styled-components/divs";
+import { FooterWrapper } from "../styled-components/wrappers";
 
-const Footer = () => <FooterDiv>Footer</FooterDiv>;
+const Footer = () => <FooterWrapper>Footer</FooterWrapper>;
 
 export default Footer;

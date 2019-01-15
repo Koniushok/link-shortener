@@ -1,6 +1,7 @@
+// @flow
 import { Component } from "react";
 
-class Logout extends Component {
+class Logout extends Component<{}> {
   componentDidMount() {
     console.log("Logout");
   }
