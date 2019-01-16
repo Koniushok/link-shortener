@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Joi from "joi-browser";
+import { Button } from "../styled-components/buttons";
+import { Input, Lable, LableError } from "../styled-components/formComponenta";
 
 class Form extends Component {
   state = {
@@ -32,7 +34,7 @@ class Form extends Component {
   };
 
   renderButton(label) {
-    return <button>{label}</button>;
+    return <Button>{label}</Button>;
   }
 
   renderAlert(error, message) {
@@ -45,8 +47,8 @@ class Form extends Component {
   renderInput(inputObj) {
     return (
       <Fragment>
-        <label htmlFor={inputObj.id}>{inputObj.label}</label>
-        <input
+        <Lable htmlFor={inputObj.id}>{inputObj.label}</Lable>
+        <Input
           name={inputObj.name}
           type={inputObj.type}
           id={inputObj.id}
@@ -54,7 +56,7 @@ class Form extends Component {
           value={this.state.data[inputObj.name]}
         />
         {this.state.errors[inputObj.name] && (
-          <p>{this.state.errors[inputObj.name]}</p>
+          <LableError>{this.state.errors[inputObj.name]}</LableError>
         )}
       </Fragment>
     );
