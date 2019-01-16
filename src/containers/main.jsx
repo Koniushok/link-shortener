@@ -18,7 +18,6 @@ const Main = () => (
       <Route path="/login" component={Authorization} />
       <Route path="/signup" component={Registration} />
       <Route path="/logout" component={Logout} />
-      <Route path="/not-found" component={NotFound} />
       <Redirect to="/not-found" />
     </Switch>
   </MainWrapper>

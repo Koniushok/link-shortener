@@ -1,6 +1,8 @@
 // @flow
-import React from "react";
+import React, { Fragment } from "react";
 import { hot } from "react-hot-loader/root";
+import { Switch, Route } from "react-router-dom";
+import NotFound from "./containers/notFound";
 import Footer from "./containers/footer";
 import Header from "./containers/header";
 import Main from "./containers/main";
@@ -16,9 +18,18 @@ export const AppWrapper = styled.div`
 
 const App = () => (
   <AppWrapper>
-    <Header />
-    <Main />
-    <Footer />
+    <Switch>
+      <Route path="/not-found" component={NotFound} />
+      <Route
+        render={mach => (
+          <Fragment>
+            <Header />
+            <Main {...mach }/>
+            <Footer />
+          </Fragment>
+        )}
+      />
+    </Switch>
   </AppWrapper>
 );
 
