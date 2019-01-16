@@ -1,8 +1,8 @@
 // @flow
 import React, { Component, Fragment } from "react";
 import Joi from "joi-browser";
-import { Button } from "../styled-components/buttons";
-import { Input, Lable, LableError } from "../styled-components/formComponenta";
+import { Button } from "../buttons";
+import { Input, Lable, LableError } from "./formComponenta";
 
 type State = {
   data: {},
