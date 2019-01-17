@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  display: inline-block;
+const Button = styled.button`
+  display: block;
   padding: 9px 15px;
   font-size: 20px;
   font-weight: 600;
@@ -9,6 +9,8 @@ export const Button = styled.button`
   color: #fff;
   background: #6c757d;
   border: solid 3px #6c757d;
+  margin: ${props => props.left && "0 0 0 auto"};
+  margin: ${props => props.center && "0 auto"};
   :focus {
     border: 3px solid #a9a9a9;
     outline: #a9a9a9;
@@ -18,3 +20,5 @@ export const Button = styled.button`
     border: 3px solid #ffffff9c;
   }
 `;
+
+export default Button;
