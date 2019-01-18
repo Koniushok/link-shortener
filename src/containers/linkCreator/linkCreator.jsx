@@ -103,11 +103,7 @@ class LinkCreator extends Component<{}, State> {
         />
         <TagsWrapper>
           {linkData.tags.map(tag => (
-            <Tag
-              text={tag}
-              key={tag}
-              handleDelete={() => this.deleteTag(tag)}
-            />
+            <Tag tag={tag} key={tag} handleDelete={this.deleteTag} />
           ))}
         </TagsWrapper>
         <InputLabel

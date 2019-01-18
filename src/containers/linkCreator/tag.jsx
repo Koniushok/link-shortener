@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { PureComponent } from "react";
 import styled from "styled-components";
 import { XCircle } from "styled-icons/boxicons-regular/XCircle";
 
@@ -27,15 +27,25 @@ const ButtonDelete = styled(XCircle)`
 `;
 
 type Props = {
-  text: string,
-  handleDelete: () => void
+  tag: string,
+  handleDelete: (tag: string) => void
 };
 
-const Tag = ({ text, handleDelete }: Props) => (
-  <TagWrapper>
-    <span>{text}</span>
-    <ButtonDelete onClick={handleDelete} />
-  </TagWrapper>
-);
+class Tag extends PureComponent<Props> {
+  handleClick = () => {
+    const { handleDelete, tag } = this.props;
+    handleDelete(tag);
+  };
+
+  render() {
+    const { tag } = this.props;
+    return (
+      <TagWrapper>
+        <span>{tag}</span>
+        <ButtonDelete onClick={this.handleClick} />
+      </TagWrapper>
+    );
+  }
+}
 
 export default Tag;
