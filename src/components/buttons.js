@@ -1,6 +1,13 @@
+// @flow
+import { type ComponentType } from "react";
 import styled from "styled-components";
 
-const Button = styled.button`
+type Props = {
+  left?: boolean,
+  center?: boolean
+};
+
+const Button = (styled.button`
   display: block;
   padding: 9px 15px;
   font-size: 20px;
@@ -19,6 +26,6 @@ const Button = styled.button`
     cursor: pointer;
     border: 3px solid #ffffff9c;
   }
-`;
+`: ComponentType<Props>);
 
 export default Button;

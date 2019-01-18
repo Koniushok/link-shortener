@@ -1,9 +1,9 @@
+// @flow
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./home";
-import NotFound from "./notFound";
-import Authorization from "./authorization"
+import Authorization from "./authorization";
 import Registration from "./registration";
 import Logout from "./logout";
 
