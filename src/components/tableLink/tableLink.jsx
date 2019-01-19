@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+// @flow
+import React from "react";
 import styled from "styled-components";
 import TableItem from "./tableItem";
+import Link from "./fakeLinkList";
 
-const Div = styled.div`
-  overflow: auto;
-  width: 1000px;
-`;
 const Table = styled.table`
   position: relative;
   width: 100%;
@@ -19,32 +17,25 @@ const Table = styled.table`
     border-bottom: 2px solid #dee2e6;
   }
 `;
-class TableLink extends Component {
-  render() {
-    return (
-      <Div>
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ShortLink</th>
-              <th>url</th>
-              <th>Description</th>
-              <th>Passage</th>
-              <th>Tags</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Link.map((link, index) => {
-              return (
-                <TableItem link={link} index={index} key={link.shortLink} />
-              );
-            })}
-          </tbody>
-        </Table>
-      </Div>
-    );
-  }
-}
+
+const TableLink = () => (
+  <Table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ShortLink</th>
+        <th>url</th>
+        <th>Description</th>
+        <th>Passage</th>
+        <th>Tags</th>
+      </tr>
+    </thead>
+    <tbody>
+      {Link.map((link, index) => (
+        <TableItem link={link} index={index} key={link.shortLink} />
+      ))}
+    </tbody>
+  </Table>
+);
 
 export default TableLink;

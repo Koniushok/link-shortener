@@ -1,7 +1,16 @@
+// @flow
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Delete } from "styled-icons/material/Delete";
 import { Edit } from "styled-icons/fa-solid/Edit";
+
+type Link = {
+  url: string,
+  shortLink: string,
+  passage: number,
+  tags: Array<string>,
+  description: string
+};
 
 const TableRow = styled.tr`
   & td {
@@ -20,6 +29,7 @@ const TableRow = styled.tr`
       0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   }
 `;
+
 const ControlWrapper = styled.td`
   display: inline-flex;
   position: absolute;
@@ -38,16 +48,23 @@ const ControlWrapper = styled.td`
   }
 `;
 
-const ButtonControl = () => {
-  return (
-    <ControlWrapper>
-      <Delete />
-      <Edit />
-    </ControlWrapper>
-  );
+const ButtonControl = () => (
+  <ControlWrapper>
+    <Delete />
+    <Edit />
+  </ControlWrapper>
+);
+
+type Props = {
+  link: Link,
+  index: number
 };
 
-class TableItem extends Component {
+type State = {
+  hover: boolean
+};
+
+class TableItem extends Component<Props, State> {
   state = {
     hover: false
   };
@@ -59,6 +76,7 @@ class TableItem extends Component {
   handelMouseLeave = () => {
     this.setState({ hover: false });
   };
+
   render() {
     const { url, shortLink, passage, tags, description } = this.props.link;
     return (
