@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from "react";
-import _ from "lodash";
 import Tags from "../../components/tags";
 import InputLabel from "../../components/inputLabel";
 import Button from "../../components/buttons";
@@ -30,18 +29,18 @@ class LinkCreator extends Component<any, State> {
       tags: []
     },
     error: {
-      link: "1",
-      description: "2",
-      tag: "3"
+      link: "",
+      description: "",
+      tag: ""
     }
   };
 
   addTag = (linkData: LinkData) => {
     const { tag, tags } = linkData;
-    if (_.endsWith(_.trimStart(tag), " ")) {
-      const newTag = _.camelCase(tag);
-      if (_.indexOf(tags, newTag) === -1) tags.push(newTag);
-      return _.assign(linkData, { tags, tag: " " });
+    if (tag[tag.length - 1] === " ") {
+      const newTag = tag.replace(/\s/g, "");
+      if (tags.indexOf(newTag) === -1) tags.push(newTag);
+      return Object.assign(linkData, { tags, tag: " " });
     }
     return linkData;
   };
@@ -49,7 +48,8 @@ class LinkCreator extends Component<any, State> {
   deleteTag = (tag: string) => {
     const state = { ...this.state };
     const { linkData } = state;
-    _.remove(linkData.tags, n => n === tag);
+    const index = linkData.tags.indexOf(tag);
+    if (index !== -1) linkData.tags.splice(index, 1);
     this.setState({ linkData });
   };
 
