@@ -77,7 +77,7 @@ class Registration extends Component<any, State> {
           value={userData.password}
           onChange={this.handleChange}
         />
-        <Button left>Sign up</Button>
+        <Button alignRight>Sign up</Button>
       </Form>
     );
   }

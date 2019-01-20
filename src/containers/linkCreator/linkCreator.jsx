@@ -89,7 +89,7 @@ class LinkCreator extends Component<{}, State> {
           value={linkData.description}
           onChange={this.handleChange}
         />
-        <Button left>Shorten</Button>
+        <Button alignRight>Shorten</Button>
       </Form>
     );
   }

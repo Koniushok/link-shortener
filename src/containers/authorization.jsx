@@ -54,7 +54,7 @@ class Authorization extends Component<any, State> {
           value={loginData.password}
           onChange={this.handleChange}
         />
-        <Button left>Log in</Button>
+        <Button alignRight>Log in</Button>
       </Form>
     );
   }

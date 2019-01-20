@@ -3,8 +3,9 @@ import { type ComponentType } from "react";
 import styled from "styled-components";
 
 type Props = {
-  left?: boolean,
-  center?: boolean
+  alignRight?: boolean,
+  alignLeft?: boolean,
+  alignCenter?: boolean
 };
 
 const Button = (styled.button`
@@ -16,7 +17,8 @@ const Button = (styled.button`
   color: #fff;
   background: #6c757d;
   border: solid 3px #6c757d;
-  margin: ${props => props.left && "0 0 0 auto"};
+  margin: ${props => props.alignRight && "0 0 0 auto"};
+  margin: ${props => props.alignLeft && "0 auto 0 0"};
   margin: ${props => props.center && "0 auto"};
   :focus {
     border: 3px solid #a9a9a9;
