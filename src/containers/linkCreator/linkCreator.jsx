@@ -21,7 +21,7 @@ type State = {
     tag: string
   }
 };
-class LinkCreator extends Component<{}, State> {
+class LinkCreator extends Component<any, State> {
   state = {
     linkData: {
       link: "",
