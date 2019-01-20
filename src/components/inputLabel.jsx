@@ -1,7 +1,7 @@
 // @flow
 import React, { type ElementProps } from "react";
 import styled from "styled-components";
-import Input from "./inputs";
+import Input from "./input";
 
 type Props = ElementProps<typeof Input> & {
   name: string,
