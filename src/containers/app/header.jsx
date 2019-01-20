@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 // @flow
 import React, { Fragment } from "react";
 import styled from "styled-components";
@@ -35,7 +36,7 @@ const auth = true;
 const Header = () => (
   <HeaderWrapper>
     <NavLink to="/" exact>
-      {"Home"}
+      Home
     </NavLink>
     {auth ? (
       <Fragment>

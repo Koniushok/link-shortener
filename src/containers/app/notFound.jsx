@@ -3,13 +3,17 @@ import React from "react";
 import styled from "styled-components";
 
 const NotFoundWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
   flex: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   h1 {
-    font-size: 9vw;
+    font-size: 11vw;
     font-weight: 400;
     margin: 0;
     margin-bottom: 10px;

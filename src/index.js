@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
-import App from "./app";
+import App from "./containers/app";
 
 const root = document.getElementById("root");
 
