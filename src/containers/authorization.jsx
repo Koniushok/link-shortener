@@ -1,17 +1,9 @@
 // @flow
 import React, { Component } from "react";
-import styled from "styled-components";
 import InputLabel from "../components/inputLabel";
 import Button from "../components/buttons";
+import Form from "../components/form";
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  & > * {
-    margin-bottom: 20px;
-  }
-`;
 type State = {
   loginData: {
     login: string,

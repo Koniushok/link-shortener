@@ -1,21 +1,10 @@
 // @flow
 import React, { Component } from "react";
-import styled from "styled-components";
 import _ from "lodash";
 import Tags from "../../components/tags";
 import InputLabel from "../../components/inputLabel";
 import Button from "../../components/buttons";
-
-const Form = styled.form`
-  margin: 100px auto;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  & > * {
-    margin-bottom: 20px;
-  }
-`;
+import Form from "../../components/form";
 
 type LinkData = {
   link: string,
