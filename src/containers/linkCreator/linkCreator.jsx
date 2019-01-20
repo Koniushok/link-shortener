@@ -79,7 +79,6 @@ class LinkCreator extends Component<{}, State> {
     return (
       <Form autoComplete="off">
         <InputLabel
-          id="linkID"
           label="Link"
           error={error.link}
           name="link"
@@ -87,7 +86,6 @@ class LinkCreator extends Component<{}, State> {
           onChange={this.handleChange}
         />
         <InputLabel
-          id="tagID"
           label="Tag"
           name="tag"
           error={error.tag}
@@ -96,7 +94,6 @@ class LinkCreator extends Component<{}, State> {
         />
         <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
         <InputLabel
-          id="descriptionID"
           label="Description"
           name="description"
           error={error.description}

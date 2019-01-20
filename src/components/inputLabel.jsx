@@ -3,20 +3,21 @@ import React, { type ElementProps } from "react";
 import styled from "styled-components";
 import Input from "./inputs";
 
-type lableObject = ElementProps<typeof Input> & {
-  id: string,
+type Props = ElementProps<typeof Input> & {
+  name: string,
   label: string,
   error?: string
 };
 
-const Lable = styled.label`
+const Label = styled.label`
   display: inline-block;
   font-size: 20px;
   font-weight: 400;
   color: #212529;
+  margin-bottom: 3px;
 `;
 
-const LableError = styled.div`
+const LabelError = styled.div`
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
@@ -25,11 +26,11 @@ const LableError = styled.div`
   border-bottom-right-radius: 5px;
 `;
 
-const InputLabel = ({ id, label, error = "", ...rest }: lableObject) => (
+const InputLabel = ({ name, label, error = "", ...rest }: Props) => (
   <div>
-    <Lable htmlFor={id}>{label}</Lable>
-    <Input id={id} {...rest} autocomplete="off" />
-    {error && <LableError>{error}</LableError>}
+    <Label htmlFor={name}>{label}</Label>
+    <Input id={name} name={name} {...rest} autocomplete="off" />
+    {error && <LabelError>{error}</LabelError>}
   </div>
 );
 
