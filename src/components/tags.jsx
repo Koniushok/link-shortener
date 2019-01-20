@@ -3,6 +3,15 @@ import React, { PureComponent } from "react";
 import styled from "styled-components";
 import { XCircle } from "styled-icons/boxicons-regular/XCircle";
 
+const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+  & > * {
+    margin: 0 5px 5px 0;
+  }
+`;
+
 const TagWrapper = styled.div`
   padding: 5px 10px;
   border-radius: 30px;
@@ -28,13 +37,16 @@ const ButtonDelete = styled(XCircle)`
 
 type Props = {
   tag: string,
-  handleDelete: (tag: string) => void
+  handleDelete?: (tag: string) => void
 };
 
-class Tag extends PureComponent<Props> {
+export class Tag extends PureComponent<Props> {
+  static defaultProps = {
+    handleDelete: undefined
+  };
+
   handleClick = () => {
-    const { handleDelete, tag } = this.props;
-    handleDelete(tag);
+    if (this.props.handleDelete) this.props.handleDelete(this.props.tag);
   };
 
   render() {
@@ -42,10 +54,25 @@ class Tag extends PureComponent<Props> {
     return (
       <TagWrapper>
         <span>{tag}</span>
-        <ButtonDelete onClick={this.handleClick} />
+        {this.props.handleDelete && <ButtonDelete onClick={this.handleClick} />}
       </TagWrapper>
     );
   }
 }
+type TagsProps = {
+  tagList: Array<string>,
+  handleDelete?: (tag: string) => void
+};
 
-export default Tag;
+const Tags = ({ tagList, handleDelete }: TagsProps) => (
+  <TagsContainer>
+    {tagList.map(tag => (
+      <Tag key={tag} tag={tag} handleDelete={handleDelete} />
+    ))}
+  </TagsContainer>
+);
+
+Tags.defaultProps = {
+  handleDelete: undefined
+};
+export default Tags;

@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import _ from "lodash";
-import Tag from "./tag";
+import Tags from "../../components/tags";
 import InputLabel from "../../components/inputLabel";
 import Button from "../../components/buttons";
 
@@ -16,14 +16,7 @@ const Form = styled.form`
     margin-bottom: 20px;
   }
 `;
-const TagsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 0px;
-  & > * {
-    margin: 0 5px 5px 0;
-  }
-`;
+
 type LinkData = {
   link: string,
   description: string,
@@ -101,11 +94,7 @@ class LinkCreator extends Component<{}, State> {
           value={linkData.tag}
           onChange={this.handleChange}
         />
-        <TagsWrapper>
-          {linkData.tags.map(tag => (
-            <Tag tag={tag} key={tag} handleDelete={this.deleteTag} />
-          ))}
-        </TagsWrapper>
+        <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
         <InputLabel
           id="descriptionID"
           label="Description"
