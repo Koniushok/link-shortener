@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import InputLabel from "../components/inputLabel";
-import Button from "../components/buttons";
+import Button from "../components/button";
 import Form from "../components/form";
 
 type State = {
