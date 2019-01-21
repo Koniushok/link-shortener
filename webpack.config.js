@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const merge = require("webpack-merge");
 const development = require("./webpack/development.js");
-const mailRules = require("./webpack/mainRules.js");
+const mainRules = require("./webpack/mainRules.js");
 const imageRules = require("./webpack/imageRules.js");
 
 const PATH = {
@@ -25,13 +25,20 @@ const copyPlugin = new CopyWebpackPlugin([
 const common = merge([
   {
     entry: path.join(PATH.source, "/index.js"),
-    output: { path: PATH.build, filename: "[name].js" },
+    output: {
+      path: PATH.build,
+      filename: "[name].js",
+      publicPath: "/"
+    },
+    devServer: {
+      historyApiFallback: true
+    },
     plugins: [htmlPlugin, copyPlugin],
     resolve: {
       extensions: [".js", ".json", ".jsx"]
     }
   },
-  mailRules(),
+  mainRules(),
   imageRules()
 ]);
 

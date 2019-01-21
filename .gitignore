@@ -1,7 +1,8 @@
 node_modules/
 build
+flow-typed
 dist/
 yarn-debug.log*
 yarn-error.log*
 /yarn.lock
-.vscode/*
+.vscode
