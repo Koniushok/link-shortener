@@ -1,5 +1,15 @@
+// @flow
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
-import App from "./app";
+import App from "./containers/app";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const root = document.getElementById("root");
+
+if (root !== null)
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    root
+  );
