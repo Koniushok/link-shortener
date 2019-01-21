@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Home from "../home";
 import Authorization from "../authorization";
 import Registration from "../registration";
-import Logout from "../logout";
 import NotFound from "./notFound";
 import Header from "./header";
 
@@ -41,7 +40,6 @@ const App = () => (
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Authorization} />
           <Route path="/signup" component={Registration} />
-          <Route path="/logout" component={Logout} />
           <Redirect to="/not-found" />
         </Switch>
       </Main>

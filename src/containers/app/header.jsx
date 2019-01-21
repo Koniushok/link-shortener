@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 // @flow
 import React, { Fragment } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 
-const NavLink = styled(Link).attrs({
-  activeClassName: "selected"
-})`
+const linkStyle = css`
+  cursor: pointer;
   text-decoration: none;
   font-size: 20px;
   margin: 5px;
@@ -25,13 +24,26 @@ const NavLink = styled(Link).attrs({
   }
 `;
 
+const NavLink = styled(Link).attrs({
+  activeClassName: "selected"
+})`
+  ${linkStyle}
+`;
+
+const ButtonLink = styled.button`
+  border: none;
+  outline: none;
+  ${linkStyle}
+`;
+
 export const HeaderWrapper = styled.header`
   display: flex;
   background: #24292e;
   flex-direction: row;
   justify-content: flex-end;
 `;
-const auth = true;
+
+const auth = false;
 
 const Header = () => (
   <HeaderWrapper>
@@ -44,7 +56,7 @@ const Header = () => (
         <NavLink to="/login">Sing In</NavLink>
       </Fragment>
     ) : (
-      <NavLink to="/logout">Logout</NavLink>
+      <ButtonLink to="/logout">Logout</ButtonLink>
     )}
   </HeaderWrapper>
 );
