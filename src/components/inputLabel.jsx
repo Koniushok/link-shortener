@@ -1,9 +1,42 @@
 // @flow
-import React, { type ElementProps } from "react";
+import React from "react";
 import styled from "styled-components";
 import Input from "./input";
 
-type Props = ElementProps<typeof Input> & {
+type Props = {
+  accept?: string,
+  alt?: string,
+  autoComplete?: string,
+  autoFocus?: boolean,
+  capture?: boolean | string,
+  checked?: boolean,
+  crossOrigin?: string,
+  disabled?: boolean,
+  form?: string,
+  formAction?: string,
+  formEncType?: string,
+  formMethod?: string,
+  formNoValidate?: boolean,
+  formTarget?: string,
+  height?: number | string,
+  list?: string,
+  max?: number | string,
+  maxLength?: number,
+  min?: number | string,
+  minLength?: number,
+  multiple?: boolean,
+  pattern?: string,
+  placeholder?: string,
+  readOnly?: boolean,
+  required?: boolean,
+  size?: number,
+  src?: string,
+  step?: number | string,
+  type?: string,
+  value?: string | string[] | number,
+  width?: number | string,
+  handleChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void
+} & {
   name: string,
   label: string,
   error?: string
