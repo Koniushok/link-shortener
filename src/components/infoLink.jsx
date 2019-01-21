@@ -51,7 +51,7 @@ const InfoLink = ({ link }: { link: Link }) => (
       <tr>
         <th>tags</th>
         <td>
-          <Tags tag="valera" tagList={link.tags} />
+          <Tags tag="valera" tagList={link.tags} handleDelete={null} />
         </td>
       </tr>
     </tbody>

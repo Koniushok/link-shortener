@@ -37,14 +37,10 @@ const ButtonDelete = styled(XCircle)`
 
 type Props = {
   tag: string,
-  handleDelete?: (tag: string) => void
+  handleDelete: ?(tag: string) => void
 };
 
 export class Tag extends PureComponent<Props> {
-  static defaultProps = {
-    handleDelete: undefined
-  };
-
   handleClick = () => {
     if (this.props.handleDelete) this.props.handleDelete(this.props.tag);
   };
@@ -61,7 +57,7 @@ export class Tag extends PureComponent<Props> {
 }
 type TagsProps = {
   tagList: Array<string>,
-  handleDelete?: (tag: string) => void
+  handleDelete: ?(tag: string) => void
 };
 
 const Tags = ({ tagList, handleDelete }: TagsProps) => (
@@ -72,7 +68,4 @@ const Tags = ({ tagList, handleDelete }: TagsProps) => (
   </TagsContainer>
 );
 
-Tags.defaultProps = {
-  handleDelete: undefined
-};
 export default Tags;
