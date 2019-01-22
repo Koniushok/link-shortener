@@ -1,6 +1,8 @@
 import { LINKS } from "../constants/actionTypes";
 
-const linksReducer = (state = null, action) => {
+const initialState = { data: null, error: "", loading: false };
+
+const linksReducer = (state = initialState, action) => {
   switch (action.type) {
     case LINKS.REQUESTED:
       return { data: null, error: "", loading: true };
