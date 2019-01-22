@@ -5,11 +5,11 @@ import { getLinks } from "../api";
 
 export function* LinksLoad() {
   try {
-    yield put(links.requestLinks);
+    yield put(links.requestLinks());
     const data = yield call(getLinks);
-    yield put(links.requestSuccess, data);
+    yield put(links.requestSuccess(data));
   } catch (error) {
-    yield put(links.requestError, error);
+    yield put(links.requestError(error));
   }
 }
 
