@@ -50,7 +50,7 @@ class LinkCreator extends Component<any, State> {
     const { linkData } = state;
     const index = linkData.tags.indexOf(tag);
     if (index !== -1) linkData.tags.splice(index, 1);
-    this.setState({ linkData });
+    this.setState({ linkData: { ...linkData } });
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -81,7 +81,7 @@ class LinkCreator extends Component<any, State> {
           value={linkData.tag}
           onChange={this.handleChange}
         />
-        {linkData.tags.length > 1 && (
+        {linkData.tags.length > 0 && (
           <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
         )}
         <InputLabel
