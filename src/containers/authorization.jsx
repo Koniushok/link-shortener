@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import InputLabel from "../components/inputLabel";
+import InputLabel from "../components/input";
 import Button from "../components/button";
 import Form from "../components/form";
 

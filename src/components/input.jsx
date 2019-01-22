@@ -1,40 +1,25 @@
 // @flow
 import React from "react";
 import styled from "styled-components";
-import Input from "./input";
+
+const Input = styled.input`
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 19px;
+  padding: 9px 13px;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  :focus {
+    outline: 1px solid #00d3ffa1;
+    border: 1px solid #00d3ffa1;
+    box-shadow: 0 0 5px #00d3ffa1;
+  }
+`;
 
 type Props = {
-  accept?: string,
-  alt?: string,
-  autoComplete?: string,
-  autoFocus?: boolean,
-  capture?: boolean | string,
-  checked?: boolean,
-  crossOrigin?: string,
-  disabled?: boolean,
-  form?: string,
-  formAction?: string,
-  formEncType?: string,
-  formMethod?: string,
-  formNoValidate?: boolean,
-  formTarget?: string,
-  height?: number | string,
-  list?: string,
-  max?: number | string,
-  maxLength?: number,
-  min?: number | string,
-  minLength?: number,
-  multiple?: boolean,
-  pattern?: string,
-  placeholder?: string,
-  readOnly?: boolean,
-  required?: boolean,
-  size?: number,
-  src?: string,
-  step?: number | string,
   type?: string,
-  value?: string | string[] | number,
-  width?: number | string,
   handleChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void
 } & {
   name: string,
