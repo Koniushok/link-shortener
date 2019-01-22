@@ -59,7 +59,7 @@ class LinkCreator extends Component<any, State> {
       let { linkData } = prevState;
       linkData[input.name] = input.value;
       if (input.name === "tag") linkData = this.addTag(linkData);
-      return { linkData };
+      return { linkData: { ...linkData } };
     });
   };
 
@@ -81,7 +81,9 @@ class LinkCreator extends Component<any, State> {
           value={linkData.tag}
           onChange={this.handleChange}
         />
-        <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
+        {linkData.tags.length > 1 && (
+          <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
+        )}
         <InputLabel
           label="Description"
           name="description"

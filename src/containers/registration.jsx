@@ -40,7 +40,7 @@ class Registration extends Component<any, State> {
     this.setState(prevState => {
       const { userData } = prevState;
       userData[input.name] = input.value;
-      return { userData };
+      return { userData: { ...userData } };
     });
   };
 

@@ -17,8 +17,8 @@ type State = {
 class Authorization extends Component<any, State> {
   state = {
     loginData: {
-      login: "1",
-      password: "2"
+      login: "",
+      password: ""
     },
     error: {
       login: "",
@@ -31,7 +31,7 @@ class Authorization extends Component<any, State> {
     this.setState(prevState => {
       const { loginData } = prevState;
       loginData[input.name] = input.value;
-      return { loginData };
+      return { loginData: { ...loginData } };
     });
   };
 
