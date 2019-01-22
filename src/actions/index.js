@@ -1,8 +1,8 @@
 import { LINKS, FETCH_PROFILE } from "../constants/actionTypes";
 
 export const links = {
-  loadLinks: () => ({ type: LINKS.LOAD }),
-  requestLinks: () => ({ type: LINKS.REQUESTED }),
+  load: () => ({ type: LINKS.LOAD }),
+  request: () => ({ type: LINKS.REQUESTED }),
   requestSuccess: data => ({
     type: LINKS.REQUESTED_SUCCEEDED,
     data

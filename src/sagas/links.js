@@ -5,7 +5,7 @@ import { getLinks } from "../api";
 
 export function* LinksLoad() {
   try {
-    yield put(links.requestLinks());
+    yield put(links.request());
     const data = yield call(getLinks);
     yield put(links.requestSuccess(data));
   } catch (error) {

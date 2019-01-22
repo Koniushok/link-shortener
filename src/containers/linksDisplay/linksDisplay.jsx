@@ -44,7 +44,7 @@ const mapStateToProps = ({ links }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadLinks: () => dispatch(linksActions.loadLinks())
+  loadLinks: () => dispatch(linksActions.load())
 });
 
 export default connect(
