@@ -1,3 +1,4 @@
+// @flow
 import linksList from "./fakeLinkList";
 
 export const getLinks = async () => linksList;

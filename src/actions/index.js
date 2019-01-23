@@ -8,13 +8,15 @@ type Link = {
   tags: Array<string>,
   description: string
 };
-type Load = { type: LINKS.LOAD };
-type Request = { type: LINKS.REQUESTED };
+
+type Load = { type: typeof LINKS.LOAD };
+type Request = { type: typeof LINKS.REQUESTED };
 type RequestSuccess = {
-  type: LINKS.REQUESTED_SUCCEEDED,
+  type: typeof LINKS.REQUESTED_SUCCEEDED,
   data: Array<Link>
 };
-type RequestError = { type: LINKS.LOAD, error: string };
+type RequestError = { type: typeof LINKS.REQUESTED_FAILED, error: string };
+
 export const links = {
   load: (): Load => ({ type: LINKS.LOAD }),
   request: (): Request => ({ type: LINKS.REQUESTED }),
@@ -28,7 +30,8 @@ export const links = {
   })
 };
 
-type FetchProfile = { type: LINKS.REQUESTED };
+type FetchProfile = { type: typeof FETCH_PROFILE };
 export const fetchProfile = (): FetchProfile => ({ type: FETCH_PROFILE });
 
-export type Actions = Link | Load | Request | RequestSuccess | FetchProfile;
+export type LinksActions = RequestError | Load | Request | RequestSuccess;
+export type Actions = LinksActions | FetchProfile;

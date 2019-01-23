@@ -1,8 +1,25 @@
+// @flow
 import { LINKS } from "../constants/actionTypes";
+import { type LinksActions } from "../actions";
 
-const initialState = { data: null, error: "", loading: false };
+type Link = {
+  url: string,
+  shortLink: string,
+  passage: number,
+  tags: Array<string>,
+  description: string
+};
+export type State = {
+  +data: ?Array<Link>,
+  +error: string,
+  +loading: boolean
+};
+const initialState: State = { data: null, error: "", loading: false };
 
-const linksReducer = (state = initialState, action) => {
+const linksReducer = (
+  state: State = initialState,
+  action: LinksActions
+): State => {
   switch (action.type) {
     case LINKS.REQUESTED:
       return { data: null, error: "", loading: true };
