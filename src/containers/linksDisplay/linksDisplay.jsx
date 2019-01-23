@@ -16,14 +16,24 @@ type Props = {
   error: string,
   linksList: ?Array<Link>,
   loading: boolean,
-  loadLinks: () => void
+  loadAllLinks: () => void,
+  loadMyLinks: () => void,
+  typeLoad: "my" | "all"
 };
-
 class LinksDisplay extends Component<Props> {
   constructor(props) {
     super(props);
-    this.props.loadLinks();
+    this.loadLinks();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.typeLoad !== this.props.typeLoad) this.props.loadAllLinks();
+  }
+
+  loadLinks = () => {
+    if (this.props.typeLoad === "all") this.props.loadAllLinks();
+    else this.props.loadMyLinks();
+  };
 
   render() {
     const { linksList, error, loading } = this.props;
@@ -44,7 +54,8 @@ const mapStateToProps = ({ links }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadLinks: () => dispatch(linksActions.load())
+  loadAllLinks: () => dispatch(linksActions.loadAll()),
+  loadMyLinks: () => dispatch(linksActions.loadMy())
 });
 
 export default connect(
