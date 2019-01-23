@@ -8,8 +8,8 @@ type Link = {
   tags: Array<string>,
   description: string
 };
-
-type Load = { type: typeof LINKS.LOAD };
+type LoadMy = { type: typeof LINKS.LOAD_MY };
+type LoadAll = { type: typeof LINKS.LOAD_ALL };
 type Request = { type: typeof LINKS.REQUESTED };
 type RequestSuccess = {
   type: typeof LINKS.REQUESTED_SUCCEEDED,
@@ -18,7 +18,8 @@ type RequestSuccess = {
 type RequestError = { type: typeof LINKS.REQUESTED_FAILED, error: string };
 
 export const links = {
-  load: (): Load => ({ type: LINKS.LOAD }),
+  loadMy: (): LoadMy => ({ type: LINKS.LOAD_MY }),
+  loadAll: (): LoadAll => ({ type: LINKS.LOAD_ALL }),
   request: (): Request => ({ type: LINKS.REQUESTED }),
   requestSuccess: (data: Array<Link>): RequestSuccess => ({
     type: LINKS.REQUESTED_SUCCEEDED,
@@ -33,5 +34,10 @@ export const links = {
 type FetchProfile = { type: typeof FETCH_PROFILE };
 export const fetchProfile = (): FetchProfile => ({ type: FETCH_PROFILE });
 
-export type LinksActions = RequestError | Load | Request | RequestSuccess;
+export type LinksActions =
+  | RequestError
+  | LoadAll
+  | Request
+  | RequestSuccess
+  | LoadMy;
 export type Actions = LinksActions | FetchProfile;

@@ -1,14 +1,24 @@
 // @flow
-import { put, call, takeEvery } from "redux-saga/effects";
+import { put, call, takeEvery, all } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import { links } from "../actions";
 import { LINKS } from "../constants/actionTypes";
-import { getLinks } from "../api";
+import { getAllLinks, getMyLinks } from "../api";
 
-export function* linksLoad(): Saga<void> {
+export function* linksLoadAll(): Saga<void> {
   try {
     yield put(links.request());
-    const data = yield call(getLinks);
+    const data = yield call(getAllLinks);
+    yield put(links.requestSuccess(data));
+  } catch (error) {
+    yield put(links.requestError(error));
+  }
+}
+
+export function* linksLoadMy(): Saga<void> {
+  try {
+    yield put(links.request());
+    const data = yield call(getMyLinks);
     yield put(links.requestSuccess(data));
   } catch (error) {
     yield put(links.requestError(error));
@@ -16,5 +26,8 @@ export function* linksLoad(): Saga<void> {
 }
 
 export default function* watchLinksLoad(): any {
-  yield takeEvery(LINKS.LOAD, linksLoad);
+  yield all([
+    takeEvery(LINKS.LOAD_ALL, linksLoadAll),
+    takeEvery(LINKS.LOAD_MY, linksLoadMy)
+  ]);
 }
