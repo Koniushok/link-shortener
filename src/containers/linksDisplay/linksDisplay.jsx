@@ -27,7 +27,7 @@ class LinksDisplay extends Component<Props> {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.typeLoad !== this.props.typeLoad) this.props.loadAllLinks();
+    if (prevProps.typeLoad !== this.props.typeLoad) this.loadLinks();
   }
 
   loadLinks = () => {
