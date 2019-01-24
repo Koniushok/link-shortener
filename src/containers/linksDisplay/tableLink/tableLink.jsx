@@ -26,7 +26,7 @@ const Table = styled.table`
 `;
 
 type Props = {
-  linksList: Array<Link>
+  linksList: ?Array<Link>
 };
 
 const TableLink = (props: Props) => (
@@ -42,9 +42,10 @@ const TableLink = (props: Props) => (
       </tr>
     </thead>
     <tbody>
-      {props.linksList.map((link, index) => (
-        <TableItem link={link} index={index} key={link.shortLink} />
-      ))}
+      {props.linksList &&
+        props.linksList.map((link, index) => (
+          <TableItem link={link} index={index} key={link.shortLink} />
+        ))}
     </tbody>
   </Table>
 );
