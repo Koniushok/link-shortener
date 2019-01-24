@@ -5,20 +5,12 @@ import { links } from "../actions";
 import { LINKS } from "../constants/actionTypes";
 import { getAllLinks, getMyLinks } from "../api";
 
-export function* linksLoadAll(): Saga<void> {
+export function* linksLoad(type: "all" | "my"): Saga<void> {
   try {
     yield put(links.request());
-    const data = yield call(getAllLinks);
-    yield put(links.requestSuccess(data));
-  } catch (error) {
-    yield put(links.requestError(error));
-  }
-}
-
-export function* linksLoadMy(): Saga<void> {
-  try {
-    yield put(links.request());
-    const data = yield call(getMyLinks);
+    let data;
+    if (type === "all") data = yield call(getAllLinks);
+    else data = yield call(getMyLinks);
     yield put(links.requestSuccess(data));
   } catch (error) {
     yield put(links.requestError(error));
@@ -27,7 +19,7 @@ export function* linksLoadMy(): Saga<void> {
 
 export default function* watchLinksLoad(): any {
   yield all([
-    takeEvery(LINKS.LOAD_ALL, linksLoadAll),
-    takeEvery(LINKS.LOAD_MY, linksLoadMy)
+    takeEvery(LINKS.LOAD_ALL, linksLoad, "all"),
+    takeEvery(LINKS.LOAD_MY, linksLoad, "my")
   ]);
 }
