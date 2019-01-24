@@ -3,6 +3,7 @@
 import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import { NavLink as Link } from "react-router-dom";
+import { MAIN_YELLOW } from "../../constants/color";
 
 const linkStyle = css`
   cursor: pointer;
@@ -16,11 +17,11 @@ const linkStyle = css`
   display: block;
   font-weight: bold;
   &.selected {
-    color: #ffd707;
+    color: ${MAIN_YELLOW};
   }
   :hover {
     background: "#eebd0";
-    color: #ffd707;
+    color: ${MAIN_YELLOW};
   }
 `;
 

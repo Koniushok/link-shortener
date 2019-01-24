@@ -6,6 +6,7 @@ import { LoaderAlt } from "styled-icons/boxicons-regular/LoaderAlt";
 import { Table } from "styled-icons/icomoon/Table";
 import { List } from "styled-icons/boxicons-regular/List";
 import { NavLink as RouterLink } from "react-router-dom";
+import { MAIN_YELLOW } from "../../constants/color";
 
 const ControlPanel = styled.div`
   display: flex;
@@ -42,13 +43,13 @@ const typeButton = css`
   padding: 0 5px;
   cursor: pointer;
   :hover {
-    background: #ffd600;
+    background: ${MAIN_YELLOW};
     color: black;
   }
 `;
 
 const EnabledTypeButton = css`
-  background: #ffd600;
+  background: ${MAIN_YELLOW};
   color: black;
 `;
 
@@ -70,7 +71,7 @@ export const NavLink = styled(RouterLink).attrs({
   activeClassName: "selected"
 })`
   &.selected {
-    border-bottom: solid 3px #ffeb00;
+    border-bottom: solid 3px ${MAIN_YELLOW};
   }
   cursor: pointer;
   text-decoration: none;
