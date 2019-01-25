@@ -13,9 +13,9 @@ type LoadAll = { type: typeof LINKS.LOAD_ALL };
 type Request = { type: typeof LINKS.REQUESTED };
 type RequestSuccess = {
   type: typeof LINKS.REQUESTED_SUCCEEDED,
-  data: Array<Link>
+  payload: Array<Link>
 };
-type RequestError = { type: typeof LINKS.REQUESTED_FAILED, error: string };
+type RequestError = { type: typeof LINKS.REQUESTED_FAILED, payload: string };
 
 export const links = {
   loadMy: (): LoadMy => ({ type: LINKS.LOAD_MY }),
@@ -23,11 +23,11 @@ export const links = {
   request: (): Request => ({ type: LINKS.REQUESTED }),
   requestSuccess: (data: Array<Link>): RequestSuccess => ({
     type: LINKS.REQUESTED_SUCCEEDED,
-    data
+    payload: data
   }),
   requestError: (error: string): RequestError => ({
     type: LINKS.REQUESTED_FAILED,
-    error
+    payload: error
   })
 };
 

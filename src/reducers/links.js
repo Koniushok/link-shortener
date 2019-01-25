@@ -24,9 +24,9 @@ const linksReducer = (
     case LINKS.REQUESTED:
       return { data: null, error: "", loading: true };
     case LINKS.REQUESTED_FAILED:
-      return { data: null, error: action.error, loading: false };
+      return { data: null, error: action.payload, loading: false };
     case LINKS.REQUESTED_SUCCEEDED:
-      return { data: action.data, error: "", loading: false };
+      return { data: action.payload, error: "", loading: false };
     default:
       return state;
   }
