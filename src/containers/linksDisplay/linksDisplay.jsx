@@ -1,8 +1,6 @@
 // @flow
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { links as linksActions } from "../../actions/index";
 import TableLink from "./tableLink";
 import TableList from "./tableList";
 import Alert from "../../components/alert";
@@ -97,18 +95,4 @@ class LinksDisplay extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ links }) => ({
-  linksList: links.data,
-  error: links.error,
-  loading: links.loading
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadAllLinks: () => dispatch(linksActions.loadAll()),
-  loadMyLinks: () => dispatch(linksActions.loadMy())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LinksDisplay);
+export default LinksDisplay;
