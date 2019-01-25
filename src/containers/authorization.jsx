@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import InputLabel from "../components/inputLabel";
+import Input from "../components/input";
 import Button from "../components/button";
 import Form from "../components/form";
 
@@ -17,8 +17,8 @@ type State = {
 class Authorization extends Component<any, State> {
   state = {
     loginData: {
-      login: "1",
-      password: "2"
+      login: "",
+      password: ""
     },
     error: {
       login: "",
@@ -31,7 +31,7 @@ class Authorization extends Component<any, State> {
     this.setState(prevState => {
       const { loginData } = prevState;
       loginData[input.name] = input.value;
-      return { loginData };
+      return { loginData: { ...loginData } };
     });
   };
 
@@ -39,14 +39,14 @@ class Authorization extends Component<any, State> {
     const { loginData, error } = this.state;
     return (
       <Form autoComplete="off">
-        <InputLabel
+        <Input
           label="Login"
           error={error.login}
           name="login"
           value={loginData.login}
           onChange={this.handleChange}
         />
-        <InputLabel
+        <Input
           type="password"
           label="Password"
           name="password"

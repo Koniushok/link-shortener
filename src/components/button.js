@@ -8,6 +8,22 @@ type Props = {
   alignCenter?: boolean
 };
 
+function getButtonMargin({
+  alignRight,
+  alignLeft,
+  alignCenter
+}: Props): string {
+  switch (true) {
+    case alignRight:
+      return "0 0 0 auto";
+    case alignLeft:
+      return "0 auto 0 0";
+    case alignCenter:
+      return "0 auto";
+    default:
+      return "0";
+  }
+}
 const Button = (styled.button`
   display: block;
   padding: 9px 15px;
@@ -17,9 +33,7 @@ const Button = (styled.button`
   color: #fff;
   background: #6c757d;
   border: solid 3px #6c757d;
-  margin: ${props => props.alignRight && "0 0 0 auto"};
-  margin: ${props => props.alignLeft && "0 auto 0 0"};
-  margin: ${props => props.center && "0 auto"};
+  margin: ${props => getButtonMargin(props)};
   :focus {
     border: 3px solid #a9a9a9;
     outline: #a9a9a9;

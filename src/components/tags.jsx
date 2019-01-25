@@ -42,7 +42,9 @@ type Props = {
 
 export class Tag extends PureComponent<Props> {
   handleClick = () => {
-    if (this.props.handleDelete) this.props.handleDelete(this.props.tag);
+    if (this.props.handleDelete) {
+      this.props.handleDelete(this.props.tag);
+    }
   };
 
   render() {

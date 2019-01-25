@@ -2,14 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import Tags from "./tags";
-
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
+import { type Link } from "../types";
 
 const Table = styled.table`
   width: 100%;
@@ -47,6 +40,10 @@ const InfoLink = ({ link }: { link: Link }) => (
       <tr>
         <th>passage</th>
         <td>{link.passage}</td>
+      </tr>
+      <tr>
+        <th>description</th>
+        <td>{link.description}</td>
       </tr>
       <tr>
         <th>tags</th>

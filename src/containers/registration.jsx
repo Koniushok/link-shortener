@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import InputLabel from "../components/inputLabel";
+import Input from "../components/input";
 import Button from "../components/button";
 import Form from "../components/form";
 
@@ -40,7 +40,7 @@ class Registration extends Component<any, State> {
     this.setState(prevState => {
       const { userData } = prevState;
       userData[input.name] = input.value;
-      return { userData };
+      return { userData: { ...userData } };
     });
   };
 
@@ -48,28 +48,28 @@ class Registration extends Component<any, State> {
     const { userData, error } = this.state;
     return (
       <Form autoComplete="off">
-        <InputLabel
+        <Input
           label="Login"
           error={error.login}
           name="login"
           value={userData.login}
           onChange={this.handleChange}
         />
-        <InputLabel
+        <Input
           label="Name"
           name="name"
           error={error.name}
           value={userData.name}
           onChange={this.handleChange}
         />
-        <InputLabel
+        <Input
           label="Surname"
           name="surname"
           error={error.surname}
           value={userData.surname}
           onChange={this.handleChange}
         />
-        <InputLabel
+        <Input
           type="password"
           label="Password"
           name="password"

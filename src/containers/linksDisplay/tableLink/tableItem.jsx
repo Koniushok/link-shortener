@@ -3,14 +3,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Delete } from "styled-icons/material/Delete";
 import { Edit } from "styled-icons/fa-solid/Edit";
-
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
+import { type Link } from "../../../types";
 
 const TableRow = styled.tr`
   & td {

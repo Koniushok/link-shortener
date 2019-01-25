@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import TableItem from "./tableItem";
-import Link from "./fakeLinkList";
+import { type Link } from "../../../types";
 
 const Table = styled.table`
   position: relative;
@@ -18,7 +18,11 @@ const Table = styled.table`
   }
 `;
 
-const TableLink = () => (
+type Props = {
+  linksList: ?Array<Link>
+};
+
+const TableLink = (props: Props) => (
   <Table>
     <thead>
       <tr>
@@ -31,9 +35,10 @@ const TableLink = () => (
       </tr>
     </thead>
     <tbody>
-      {Link.map((link, index) => (
-        <TableItem link={link} index={index} key={link.shortLink} />
-      ))}
+      {props.linksList &&
+        props.linksList.map((link, index) => (
+          <TableItem link={link} index={index} key={link.shortLink} />
+        ))}
     </tbody>
   </Table>
 );
