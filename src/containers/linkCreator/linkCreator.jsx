@@ -82,7 +82,7 @@ class LinkCreator extends Component<any, State> {
           value={linkData.tag}
           onChange={this.handleChange}
         />
-        {linkData.tags.length > 0 && (
+        {!!linkData.tags.length && (
           <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
         )}
         <InputLabel
