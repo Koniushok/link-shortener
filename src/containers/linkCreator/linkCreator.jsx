@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import Tags from "../../components/tags";
-import InputLabel from "../../components/input";
+import Input from "../../components/input";
 import Button from "../../components/button";
 import Form from "../../components/form";
 
@@ -68,14 +68,14 @@ class LinkCreator extends Component<any, State> {
     const { linkData, error } = this.state;
     return (
       <Form autoComplete="off">
-        <InputLabel
+        <Input
           label="Link"
           error={error.link}
           name="link"
           value={linkData.link}
           onChange={this.handleChange}
         />
-        <InputLabel
+        <Input
           label="Tag"
           name="tag"
           error={error.tag}
@@ -85,7 +85,7 @@ class LinkCreator extends Component<any, State> {
         {!!linkData.tags.length && (
           <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
         )}
-        <InputLabel
+        <Input
           label="Description"
           name="description"
           error={error.description}
