@@ -11,17 +11,11 @@ import ControlPanel, {
   TableTypeButton,
   ListTypeButton
 } from "./controlPanel";
+import { type Link } from "../../types";
 
 const DisplayWrapper = styled.div`
   width: 100%;
 `;
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
 
 type Props = {
   error: string,

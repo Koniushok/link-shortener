@@ -2,14 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import TableItem from "./tableItem";
-
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
+import { type Link } from "../../../types";
 
 const Table = styled.table`
   position: relative;

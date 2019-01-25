@@ -1,14 +1,8 @@
 // @flow
 import { LINKS } from "../constants/actionTypes";
 import { type LinksActions } from "../actions";
+import { type Link } from "../types";
 
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
 export type State = {
   +data: ?Array<Link>,
   +error: string,

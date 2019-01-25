@@ -1,13 +1,7 @@
 // @flow
 import { LINKS, FETCH_PROFILE } from "../constants/actionTypes";
+import { type Link } from "../types";
 
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
 type LoadMy = { type: typeof LINKS.LOAD_MY };
 type LoadAll = { type: typeof LINKS.LOAD_ALL };
 type Request = { type: typeof LINKS.REQUESTED };

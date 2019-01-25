@@ -1,11 +1,5 @@
 // @flow
-type Link = {
-  url: string,
-  shortLink: string,
-  passage: number,
-  tags: Array<string>,
-  description: string
-};
+import { type Link } from "../types";
 
 const Links: Array<Link> = [
   {
