@@ -1,19 +1,24 @@
 // @flow
 import { put, call, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
-import { links, type LinksActions } from "../actions";
+import {
+  request,
+  requestError,
+  requestSuccess,
+  type LinksActions
+} from "../actions/links";
 import { LINKS } from "../constants/actionTypes";
 import { getAllLinks, getMyLinks } from "../api";
 
 export function* linksLoad(action: LinksActions): Saga<void> {
   try {
-    yield put(links.request());
+    yield put(request());
     let data;
     if (action.type === LINKS.LOAD_ALL) data = yield call(getAllLinks);
     else data = yield call(getMyLinks);
-    yield put(links.requestSuccess(data));
+    yield put(requestSuccess(data));
   } catch (error) {
-    yield put(links.requestError(error.message));
+    yield put(requestError(error.message));
   }
 }
 

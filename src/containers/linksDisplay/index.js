@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import { links as linksActions } from "../../actions/index";
+import { loadAll, loadMy } from "../../actions/links";
 import LinksDisplay from "./linksDisplay";
 
 const mapStateToProps = ({ links }) => ({
@@ -10,8 +10,8 @@ const mapStateToProps = ({ links }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadAllLinks: () => dispatch(linksActions.loadAll()),
-  loadMyLinks: () => dispatch(linksActions.loadMy())
+  loadAllLinks: () => dispatch(loadAll()),
+  loadMyLinks: () => dispatch(loadMy())
 });
 
 export default connect(

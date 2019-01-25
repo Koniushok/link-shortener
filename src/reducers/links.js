@@ -1,6 +1,6 @@
 // @flow
 import { LINKS } from "../constants/actionTypes";
-import { type LinksActions } from "../actions";
+import { type LinksActions } from "../actions/links";
 import { type Link } from "../types";
 
 export type State = {
