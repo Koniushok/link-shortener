@@ -14,8 +14,11 @@ export function* linksLoad(action: LinksActions): Saga<void> {
   try {
     yield put(request());
     let data;
-    if (action.type === LINKS.LOAD_ALL) data = yield call(getAllLinks);
-    else data = yield call(getMyLinks);
+    if (action.type === LINKS.LOAD_ALL) {
+      data = yield call(getAllLinks);
+    } else {
+      data = yield call(getMyLinks);
+    }
     yield put(requestSuccess(data));
   } catch (error) {
     yield put(requestError(error.message));

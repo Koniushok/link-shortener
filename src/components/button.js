@@ -8,11 +8,21 @@ type Props = {
   alignCenter?: boolean
 };
 
-function getButtonMargin(props: Props): string {
-  if (props.alignRight) return "0 0 0 auto";
-  if (props.alignLeft) return "0 auto 0 0";
-  if (props.alignCenter) return "0 auto";
-  return "0";
+function getButtonMargin({
+  alignRight,
+  alignLeft,
+  alignCenter
+}: Props): string {
+  switch (true) {
+    case alignRight:
+      return "0 0 0 auto";
+    case alignLeft:
+      return "0 auto 0 0";
+    case alignCenter:
+      return "0 auto";
+    default:
+      return "0";
+  }
 }
 const Button = (styled.button`
   display: block;

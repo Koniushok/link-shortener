@@ -6,14 +6,24 @@ import styled from "styled-components";
 type AlertType = "error" | "success";
 
 function getBackground(type: AlertType): string {
-  if (type === "error") return "#f8d7da";
-  if (type === "success") return "#d4edda";
-  return "#fff";
+  switch (type) {
+    case "error":
+      return "#f8d7da";
+    case "success":
+      return "#d4edda";
+    default:
+      return "#fff";
+  }
 }
 function getFontColor(type: AlertType): string {
-  if (type === "error") return "#721c24";
-  if (type === "success") return "#155724";
-  return "#ccc";
+  switch (type) {
+    case "error":
+      return "#721c24";
+    case "success":
+      return "#155724";
+    default:
+      return "#ccc";
+  }
 }
 const AlertWrapper: ComponentType<{ type: AlertType }> = styled.div`
   position: relative;

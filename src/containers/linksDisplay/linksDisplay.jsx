@@ -39,7 +39,9 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props) {
-    if (prevProps.typeLoad !== this.props.typeLoad) this.loadLinks();
+    if (prevProps.typeLoad !== this.props.typeLoad) {
+      this.loadLinks();
+    }
   }
 
   typeDisplayTable = () => {
@@ -51,8 +53,16 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   loadLinks = () => {
-    if (this.props.typeLoad === "all") this.props.loadAllLinks();
-    else this.props.loadMyLinks();
+    switch (this.props.typeLoad) {
+      case "all":
+        this.props.loadAllLinks();
+        break;
+      case "my":
+        this.props.loadMyLinks();
+        break;
+      default:
+        break;
+    }
   };
 
   render() {

@@ -39,7 +39,9 @@ class LinkCreator extends Component<any, State> {
     const { tag, tags } = linkData;
     if (tag[tag.length - 1] === " ") {
       const newTag = tag.replace(/\s/g, "");
-      if (tags.indexOf(newTag) === -1) tags.push(newTag);
+      if (tags.indexOf(newTag) === -1) {
+        tags.push(newTag);
+      }
       return Object.assign(linkData, { tags, tag: " " });
     }
     return linkData;
@@ -49,7 +51,9 @@ class LinkCreator extends Component<any, State> {
     this.setState(prevState => {
       const linkData = { ...prevState.linkData };
       const index = linkData.tags.indexOf(tag);
-      if (index !== -1) linkData.tags.splice(index, 1);
+      if (index !== -1) {
+        linkData.tags.splice(index, 1);
+      }
       return { linkData };
     });
   };
@@ -59,7 +63,9 @@ class LinkCreator extends Component<any, State> {
     this.setState(prevState => {
       let linkData = { ...prevState.linkData };
       linkData[input.name] = input.value;
-      if (input.name === "tag") linkData = this.addTag(linkData);
+      if (input.name === "tag") {
+        linkData = this.addTag(linkData);
+      }
       return { linkData };
     });
   };
