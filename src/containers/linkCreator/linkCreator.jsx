@@ -46,20 +46,21 @@ class LinkCreator extends Component<any, State> {
   };
 
   deleteTag = (tag: string) => {
-    const state = { ...this.state };
-    const { linkData } = state;
-    const index = linkData.tags.indexOf(tag);
-    if (index !== -1) linkData.tags.splice(index, 1);
-    this.setState({ linkData: { ...linkData } });
+    this.setState(prevState => {
+      const linkData = { ...prevState.linkData };
+      const index = linkData.tags.indexOf(tag);
+      if (index !== -1) linkData.tags.splice(index, 1);
+      return { linkData };
+    });
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
     this.setState(prevState => {
-      let { linkData } = prevState;
+      let linkData = { ...prevState.linkData };
       linkData[input.name] = input.value;
       if (input.name === "tag") linkData = this.addTag(linkData);
-      return { linkData: { ...linkData } };
+      return { linkData };
     });
   };
 
