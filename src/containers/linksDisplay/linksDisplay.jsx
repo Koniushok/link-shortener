@@ -35,7 +35,7 @@ type State = {
   typeDisplay: "table" | "list"
 };
 class LinksDisplay extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.loadLinks();
   }
@@ -44,7 +44,7 @@ class LinksDisplay extends Component<Props, State> {
     typeDisplay: "table"
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.typeLoad !== this.props.typeLoad) this.loadLinks();
   }
 
