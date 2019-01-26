@@ -2,18 +2,21 @@
 import { USER } from "../constants/actionTypes";
 import { type Profile } from "../types";
 
-type Login = {
+export type Login = {
   type: typeof USER.LOGIN,
   payload: { password: string, loginName: string }
 };
-type Logout = { type: typeof USER.LOGOUT };
-type LogoutSuccess = { type: typeof USER.LOGOUT_SUCCEEDED };
-type Request = { type: typeof USER.REQUESTED };
-type RequestSuccess = {
+export type Logout = { type: typeof USER.LOGOUT };
+export type LogoutSuccess = { type: typeof USER.LOGOUT_SUCCEEDED };
+export type Request = { type: typeof USER.REQUESTED };
+export type RequestSuccess = {
   type: typeof USER.REQUESTED_SUCCEEDED,
   payload: Profile
 };
-type RequestError = { type: typeof USER.REQUESTED_FAILED, payload: string };
+export type RequestError = {
+  type: typeof USER.REQUESTED_FAILED,
+  payload: string
+};
 export const login = (password: string, loginName: string): Login => ({
   type: USER.LOGIN,
   payload: { password, loginName }
