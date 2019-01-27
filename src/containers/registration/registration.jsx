@@ -1,9 +1,10 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Form from "../../components/form";
+import Alert from "../../components/alert";
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -64,41 +65,45 @@ class Registration extends Component<Props, State> {
     const { userData, errors } = this.state;
     const { result, error, loading } = this.props;
     return (
-      <FormWrapper>
-        <h1>SING UP</h1>
-        <Form autoComplete="off">
-          <Input
-            label="Login"
-            error={errors.login}
-            name="login"
-            value={userData.login}
-            onChange={this.handleChange}
-          />
-          <Input
-            label="Name"
-            name="name"
-            error={errors.name}
-            value={userData.name}
-            onChange={this.handleChange}
-          />
-          <Input
-            label="Surname"
-            name="surname"
-            error={errors.surname}
-            value={userData.surname}
-            onChange={this.handleChange}
-          />
-          <Input
-            type="password"
-            label="Password"
-            name="password"
-            error={errors.password}
-            value={userData.password}
-            onChange={this.handleChange}
-          />
-          <Button alignRight>Sign up</Button>
-        </Form>
-      </FormWrapper>
+      <Fragment>
+        <Alert type="error">{error}</Alert>
+        <Alert type="success">{result}</Alert>
+        <FormWrapper>
+          <h1>SING UP</h1>
+          <Form autoComplete="off">
+            <Input
+              label="Login"
+              error={errors.login}
+              name="login"
+              value={userData.login}
+              onChange={this.handleChange}
+            />
+            <Input
+              label="Name"
+              name="name"
+              error={errors.name}
+              value={userData.name}
+              onChange={this.handleChange}
+            />
+            <Input
+              label="Surname"
+              name="surname"
+              error={errors.surname}
+              value={userData.surname}
+              onChange={this.handleChange}
+            />
+            <Input
+              type="password"
+              label="Password"
+              name="password"
+              error={errors.password}
+              value={userData.password}
+              onChange={this.handleChange}
+            />
+            <Button alignRight>Sign up</Button>
+          </Form>
+        </FormWrapper>
+      </Fragment>
     );
   }
 }
