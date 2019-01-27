@@ -78,7 +78,18 @@ class Authorization extends Component<Props, State> {
 
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.setState({ errors: this.validate() });
+    const errors = this.validate();
+    this.setState({ errors });
+    const notErrors = {
+      loginName: "",
+      password: ""
+    };
+    if (JSON.stringify(errors) === JSON.stringify(notErrors)) {
+      this.props.loginRequest(
+        this.state.loginData.password,
+        this.state.loginData.loginName
+      );
+    }
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -92,7 +103,7 @@ class Authorization extends Component<Props, State> {
 
   render() {
     const { loginData, errors } = this.state;
-    const { error } = this.props;
+    const { error, loading } = this.props;
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
@@ -114,7 +125,9 @@ class Authorization extends Component<Props, State> {
               value={loginData.password}
               onChange={this.handleChange}
             />
-            <Button alignRight>Log in</Button>
+            <Button alignRight disabled={loading}>
+              Log in
+            </Button>
           </Form>
         </LoginWrapper>
       </Fragment>
