@@ -28,7 +28,14 @@ type State = {
     password: string
   }
 };
-class Authorization extends Component<any, State> {
+type Props = {
+  error: string,
+  loading: boolean,
+  auth: boolean,
+  location: Location,
+  loginRequest: (password: string, loginName: string) => void
+};
+class Authorization extends Component<Props, State> {
   state = {
     loginData: {
       loginName: "",
