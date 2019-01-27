@@ -1,6 +1,7 @@
 // @flow
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import { Redirect, type Location } from "react-router-dom";
 import Joi from "joi-browser";
 import Input from "../../components/input";
 import Button from "../../components/button";
@@ -103,7 +104,12 @@ class Authorization extends Component<Props, State> {
 
   render() {
     const { loginData, errors } = this.state;
-    const { error, loading } = this.props;
+    const { error, loading, auth, location } = this.props;
+    if (auth) {
+      return (
+        <Redirect to={location.state ? location.state.from.pathname : "/"} />
+      );
+    }
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
