@@ -23,7 +23,7 @@ type State = {
     loginName: string,
     password: string
   },
-  error: {
+  errors: {
     loginName: string,
     password: string
   }
@@ -41,7 +41,7 @@ class Authorization extends Component<Props, State> {
       loginName: "",
       password: ""
     },
-    error: {
+    errors: {
       loginName: "",
       password: ""
     }
@@ -78,7 +78,7 @@ class Authorization extends Component<Props, State> {
 
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.setState({ error: this.validate() });
+    this.setState({ errors: this.validate() });
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -91,16 +91,17 @@ class Authorization extends Component<Props, State> {
   };
 
   render() {
-    const { loginData, error } = this.state;
+    const { loginData, errors } = this.state;
+    const { error } = this.props;
     return (
       <Fragment>
-        <Alert type="error">Error</Alert>
+        {error && <Alert type="error">{error}</Alert>}
         <LoginWrapper>
           <h1>SIGN IN</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>
             <Input
               label="Login"
-              error={error.loginName}
+              error={errors.loginName}
               name="loginName"
               value={loginData.loginName}
               onChange={this.handleChange}
@@ -109,7 +110,7 @@ class Authorization extends Component<Props, State> {
               type="password"
               label="Password"
               name="password"
-              error={error.password}
+              error={errors.password}
               value={loginData.password}
               onChange={this.handleChange}
             />
