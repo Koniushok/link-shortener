@@ -23,15 +23,19 @@ type State = {
     surname: string,
     password: string
   },
-  error: {
+  errors: {
     login: string,
     name: string,
     surname: string,
     password: string
   }
 };
-
-class Registration extends Component<any, State> {
+type Props = {
+  result: string,
+  error: string,
+  loading: boolean
+};
+class Registration extends Component<Props, State> {
   state = {
     userData: {
       login: "",
@@ -39,7 +43,7 @@ class Registration extends Component<any, State> {
       surname: "",
       password: ""
     },
-    error: {
+    errors: {
       login: "",
       name: "",
       surname: "",
@@ -57,14 +61,15 @@ class Registration extends Component<any, State> {
   };
 
   render() {
-    const { userData, error } = this.state;
+    const { userData, errors } = this.state;
+    const { result, error, loading } = this.props;
     return (
       <FormWrapper>
         <h1>SING UP</h1>
         <Form autoComplete="off">
           <Input
             label="Login"
-            error={error.login}
+            error={errors.login}
             name="login"
             value={userData.login}
             onChange={this.handleChange}
@@ -72,14 +77,14 @@ class Registration extends Component<any, State> {
           <Input
             label="Name"
             name="name"
-            error={error.name}
+            error={errors.name}
             value={userData.name}
             onChange={this.handleChange}
           />
           <Input
             label="Surname"
             name="surname"
-            error={error.surname}
+            error={errors.surname}
             value={userData.surname}
             onChange={this.handleChange}
           />
@@ -87,7 +92,7 @@ class Registration extends Component<any, State> {
             type="password"
             label="Password"
             name="password"
-            error={error.password}
+            error={errors.password}
             value={userData.password}
             onChange={this.handleChange}
           />
