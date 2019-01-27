@@ -69,6 +69,11 @@ class Authorization extends Component<any, State> {
     return errors;
   };
 
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    this.setState({ error: this.validate() });
+  };
+
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
     this.setState(prevState => {
@@ -85,7 +90,7 @@ class Authorization extends Component<any, State> {
         <Alert type="error">Error</Alert>
         <LoginWrapper>
           <h1>SIGN IN</h1>
-          <Form autoComplete="off">
+          <Form autoComplete="off" onSubmit={this.handleSubmit}>
             <Input
               label="Login"
               error={error.loginName}
