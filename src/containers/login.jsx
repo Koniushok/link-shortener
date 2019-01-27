@@ -1,9 +1,10 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import Input from "../components/input";
 import Button from "../components/button";
 import Form from "../components/form";
+import Alert from "../components/alert";
 
 const LoginWrapper = styled.section`
   flex: auto;
@@ -50,27 +51,30 @@ class Authorization extends Component<any, State> {
   render() {
     const { loginData, error } = this.state;
     return (
-      <LoginWrapper>
-        <h1>SIGN IN</h1>
-        <Form autoComplete="off">
-          <Input
-            label="Login"
-            error={error.loginName}
-            name="loginName"
-            value={loginData.loginName}
-            onChange={this.handleChange}
-          />
-          <Input
-            type="password"
-            label="Password"
-            name="password"
-            error={error.password}
-            value={loginData.password}
-            onChange={this.handleChange}
-          />
-          <Button alignRight>Log in</Button>
-        </Form>
-      </LoginWrapper>
+      <Fragment>
+        <Alert type="error">Error</Alert>
+        <LoginWrapper>
+          <h1>SIGN IN</h1>
+          <Form autoComplete="off">
+            <Input
+              label="Login"
+              error={error.loginName}
+              name="loginName"
+              value={loginData.loginName}
+              onChange={this.handleChange}
+            />
+            <Input
+              type="password"
+              label="Password"
+              name="password"
+              error={error.password}
+              value={loginData.password}
+              onChange={this.handleChange}
+            />
+            <Button alignRight>Log in</Button>
+          </Form>
+        </LoginWrapper>
+      </Fragment>
     );
   }
 }
