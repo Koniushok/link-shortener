@@ -1,6 +1,7 @@
 // @flow
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import Joi from "joi-browser";
 import Input from "../components/input";
 import Button from "../components/button";
 import Form from "../components/form";
@@ -37,6 +38,35 @@ class Authorization extends Component<any, State> {
       loginName: "",
       password: ""
     }
+  };
+
+  schema = {
+    loginName: Joi.string()
+      .required()
+      .min(6)
+      .label("Login"),
+    password: Joi.string()
+      .required()
+      .min(8)
+      .label("Password")
+  };
+
+  validate = (): { loginName: string, password: string } => {
+    const errors = {
+      loginName: "",
+      password: ""
+    };
+    const { error } = Joi.validate(this.state.loginData, this.schema, {
+      abortEarly: false
+    });
+    if (!error) {
+      return errors;
+    }
+
+    error.details.forEach(item => {
+      errors[item.path[0]] = item.message;
+    });
+    return errors;
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
