@@ -1,10 +1,12 @@
 // @flow
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import Joi from "joi-browser";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Form from "../../components/form";
 import Alert from "../../components/alert";
+import { type RegistryProfile } from "../../types";
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -16,39 +18,86 @@ const FormWrapper = styled.section`
     max-width: 300px;
   }
 `;
-
+type UserErrors = {
+  loginName: string,
+  name: string,
+  surname: string,
+  password: string
+};
 type State = {
-  userData: {
-    login: string,
-    name: string,
-    surname: string,
-    password: string
-  },
-  errors: {
-    login: string,
-    name: string,
-    surname: string,
-    password: string
-  }
+  userData: RegistryProfile,
+  errors: UserErrors
 };
 type Props = {
   result: string,
   error: string,
-  loading: boolean
+  loading: boolean,
+  createProfile: (profile: RegistryProfile) => void
 };
 class Registration extends Component<Props, State> {
   state = {
     userData: {
-      login: "",
+      loginName: "",
       name: "",
       surname: "",
       password: ""
     },
     errors: {
-      login: "",
+      loginName: "",
       name: "",
       surname: "",
       password: ""
+    }
+  };
+
+  schema = {
+    loginName: Joi.string()
+      .required()
+      .min(6)
+      .label("LoginName"),
+    name: Joi.string()
+      .required()
+      .label("Name"),
+    surname: Joi.string()
+      .required()
+      .label("Surname"),
+    password: Joi.string()
+      .required()
+      .min(8)
+      .label("Password")
+  };
+
+  validate = (): UserErrors => {
+    const errors = {
+      loginName: "",
+      name: "",
+      surname: "",
+      password: ""
+    };
+    const { error } = Joi.validate(this.state.userData, this.schema, {
+      abortEarly: false
+    });
+    if (!error) {
+      return errors;
+    }
+    error.details.forEach(item => {
+      errors[item.path[0]] = item.message;
+    });
+    return errors;
+  };
+
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const errors = this.validate();
+    this.setState({ errors });
+    const notErrors = {
+      loginName: "",
+      name: "",
+      surname: "",
+      password: ""
+    };
+    if (JSON.stringify(errors) === JSON.stringify(notErrors)) {
+      this.props.createProfile(this.state.userData);
     }
   };
 
@@ -66,16 +115,16 @@ class Registration extends Component<Props, State> {
     const { result, error, loading } = this.props;
     return (
       <Fragment>
-        <Alert type="error">{error}</Alert>
-        <Alert type="success">{result}</Alert>
+        {error && <Alert type="error">{error}</Alert>}
+        {result && <Alert type="success">{result}</Alert>}
         <FormWrapper>
           <h1>SING UP</h1>
-          <Form autoComplete="off">
+          <Form autoComplete="off" onSubmit={this.handleSubmit}>
             <Input
               label="Login"
-              error={errors.login}
-              name="login"
-              value={userData.login}
+              error={errors.loginName}
+              name="loginName"
+              value={userData.loginName}
               onChange={this.handleChange}
             />
             <Input
@@ -100,7 +149,9 @@ class Registration extends Component<Props, State> {
               value={userData.password}
               onChange={this.handleChange}
             />
-            <Button alignRight>Sign up</Button>
+            <Button alignRight disabled={loading}>
+              Sign up
+            </Button>
           </Form>
         </FormWrapper>
       </Fragment>
