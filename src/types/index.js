@@ -6,3 +6,9 @@ export type Link = {
   tags: Array<string>,
   description: string
 };
+
+export type Profile = {
+  loginName: string,
+  name: string,
+  surname: string
+};
