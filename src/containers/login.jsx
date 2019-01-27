@@ -6,22 +6,22 @@ import Form from "../components/form";
 
 type State = {
   loginData: {
-    login: string,
+    loginName: string,
     password: string
   },
   error: {
-    login: string,
+    loginName: string,
     password: string
   }
 };
 class Authorization extends Component<any, State> {
   state = {
     loginData: {
-      login: "",
+      loginName: "",
       password: ""
     },
     error: {
-      login: "",
+      loginName: "",
       password: ""
     }
   };
@@ -41,9 +41,9 @@ class Authorization extends Component<any, State> {
       <Form autoComplete="off">
         <Input
           label="Login"
-          error={error.login}
-          name="login"
-          value={loginData.login}
+          error={error.loginName}
+          name="loginName"
+          value={loginData.loginName}
           onChange={this.handleChange}
         />
         <Input
