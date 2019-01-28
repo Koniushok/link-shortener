@@ -1,5 +1,9 @@
 // @flow
-import { LINKS } from "../constants/actionTypes";
+import {
+  LINKS_LOAD_FAILED,
+  LINKS_LOAD_REQUESTED,
+  LINKS_LOAD_SUCCEEDED
+} from "../constants/actionTypes";
 import { type LinksActions } from "../actions/links";
 import { type Link } from "../types";
 
@@ -15,12 +19,16 @@ const linksReducer = (
   action: LinksActions
 ): State => {
   switch (action.type) {
-    case LINKS.REQUESTED:
-      return { data: null, error: "", loading: true };
-    case LINKS.REQUESTED_FAILED:
-      return { data: state.data, error: action.payload, loading: false };
-    case LINKS.REQUESTED_SUCCEEDED:
-      return { data: action.payload, error: state.error, loading: false };
+    case LINKS_LOAD_REQUESTED:
+      return { ...state, data: null, error: "", loading: true };
+    case LINKS_LOAD_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+    case LINKS_LOAD_SUCCEEDED:
+      return { ...state, data: action.payload, loading: false };
     default:
       return state;
   }
