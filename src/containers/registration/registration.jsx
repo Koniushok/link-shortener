@@ -90,13 +90,7 @@ class Registration extends Component<Props, State> {
     e.preventDefault();
     const errors = this.validate();
     this.setState({ errors });
-    const notErrors = {
-      loginName: "",
-      name: "",
-      surname: "",
-      password: ""
-    };
-    if (JSON.stringify(errors) === JSON.stringify(notErrors)) {
+    if (Object.values(errors).every(error => !error)) {
       this.props.createProfile(this.state.userData);
     }
   };
@@ -104,9 +98,9 @@ class Registration extends Component<Props, State> {
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
     this.setState(prevState => {
-      const { userData } = prevState;
+      const userData = { ...prevState.userData };
       userData[input.name] = input.value;
-      return { userData: { ...userData } };
+      return { userData };
     });
   };
 
