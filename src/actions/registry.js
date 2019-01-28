@@ -1,33 +1,40 @@
 // @flow
-import { REGISTRY } from "../constants/actionTypes";
+import {
+  REGISTRY,
+  REGISTRY_FAILED,
+  REGISTRY_REQUESTED,
+  REGISTRY_SUCCEEDED
+} from "../constants/actionTypes";
 import { type RegistryProfile } from "../types";
 
-export type CreateProfile = {
-  type: typeof REGISTRY.CREATE_PROFILE,
+export type Registry = {
+  type: typeof REGISTRY,
   payload: RegistryProfile
 };
-type Request = { type: typeof REGISTRY.REQUESTED };
-type RequestSuccess = {
-  type: typeof REGISTRY.REQUESTED_SUCCEEDED,
+type RegistryRequest = { type: typeof REGISTRY_REQUESTED };
+type RegistrySuccess = {
+  type: typeof REGISTRY_SUCCEEDED,
   payload: string
 };
-type RequestError = { type: typeof REGISTRY.REQUESTED_FAILED, payload: string };
+type RegistryError = { type: typeof REGISTRY_FAILED, payload: string };
 
-export const createProfile = (profile: RegistryProfile): CreateProfile => ({
-  type: REGISTRY.CREATE_PROFILE,
+export const registry = (profile: RegistryProfile): Registry => ({
+  type: REGISTRY,
   payload: profile
 });
-export const request = (): Request => ({ type: REGISTRY.REQUESTED });
-export const requestSuccess = (result: string): RequestSuccess => ({
-  type: REGISTRY.REQUESTED_SUCCEEDED,
+export const registryRequest = (): RegistryRequest => ({
+  type: REGISTRY_REQUESTED
+});
+export const registrySuccess = (result: string): RegistrySuccess => ({
+  type: REGISTRY_SUCCEEDED,
   payload: result
 });
-export const requestError = (error: string): RequestError => ({
-  type: REGISTRY.REQUESTED_FAILED,
+export const registryError = (error: string): RegistryError => ({
+  type: REGISTRY_FAILED,
   payload: error
 });
 export type RegistryActions =
-  | RequestError
-  | CreateProfile
-  | Request
-  | RequestSuccess;
+  | Registry
+  | RegistryRequest
+  | RegistrySuccess
+  | RegistryError;
