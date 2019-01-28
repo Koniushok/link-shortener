@@ -9,7 +9,11 @@ import {
   authDisable,
   type Login
 } from "../actions/auth";
-import { LOGIN, LOGOUT } from "../constants/actionTypes";
+import {
+  LOGIN,
+  LOGOUT,
+  UNAUTHORIZED_ERROR_401
+} from "../constants/actionTypes";
 import { login, storeItem, removeItem, getItem } from "../api";
 
 export function* authorize(password: string, loginName: string): Saga<string> {
@@ -35,7 +39,7 @@ export default function* watchAuth(): any {
   let token = yield getItem("token");
   while (true) {
     if (token) {
-      yield take([LOGOUT]);
+      yield take([LOGOUT, UNAUTHORIZED_ERROR_401]);
       yield call(logout);
     }
     const { payload }: Login = yield take(LOGIN);
