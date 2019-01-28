@@ -1,5 +1,9 @@
 // @flow
-import { REGISTRY } from "../constants/actionTypes";
+import {
+  REGISTRY_FAILED,
+  REGISTRY_REQUESTED,
+  REGISTRY_SUCCEEDED
+} from "../constants/actionTypes";
 import { type RegistryActions } from "../actions/registry";
 
 export type State = {
@@ -14,11 +18,11 @@ const registryReducer = (
   action: RegistryActions
 ): State => {
   switch (action.type) {
-    case REGISTRY.REQUESTED:
-      return { error: "", result: "", loading: true };
-    case REGISTRY.REQUESTED_SUCCEEDED:
+    case REGISTRY_REQUESTED:
+      return { ...state, error: "", result: "", loading: true };
+    case REGISTRY_SUCCEEDED:
       return { ...state, loading: false, result: action.payload };
-    case REGISTRY.REQUESTED_FAILED:
+    case REGISTRY_FAILED:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
