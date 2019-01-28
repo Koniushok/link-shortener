@@ -82,7 +82,7 @@ class Authorization extends Component<Props, State> {
     const errors = this.validate();
     this.setState({ errors });
 
-    if (Object.values(errors).every(error => error === "")) {
+    if (Object.values(errors).every(error => !error)) {
       this.props.loginRequest(
         this.state.loginData.password,
         this.state.loginData.loginName
