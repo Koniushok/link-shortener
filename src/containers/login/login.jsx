@@ -81,11 +81,8 @@ class Authorization extends Component<Props, State> {
     e.preventDefault();
     const errors = this.validate();
     this.setState({ errors });
-    const notErrors = {
-      loginName: "",
-      password: ""
-    };
-    if (JSON.stringify(errors) === JSON.stringify(notErrors)) {
+
+    if (Object.values(errors).every(error => error === "")) {
       this.props.loginRequest(
         this.state.loginData.password,
         this.state.loginData.loginName
