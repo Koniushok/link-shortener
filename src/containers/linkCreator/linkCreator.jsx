@@ -4,18 +4,12 @@ import Tags from "../../components/tags";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Form from "../../components/form";
-
-type LinkData = {
-  link: string,
-  description: string,
-  tag: string,
-  tags: Array<string>
-};
+import { type LinkCreate } from "../../types";
 
 type State = {
-  linkData: LinkData,
-  error: {
-    link: string,
+  linkData: LinkCreate,
+  errors: {
+    url: string,
     description: string,
     tag: string
   }
@@ -23,19 +17,19 @@ type State = {
 class LinkCreator extends Component<any, State> {
   state = {
     linkData: {
-      link: "",
+      url: "",
       description: "",
       tag: "",
       tags: []
     },
-    error: {
-      link: "",
+    errors: {
+      url: "",
       description: "",
       tag: ""
     }
   };
 
-  addTag = (linkData: LinkData) => {
+  addTag = (linkData: LinkCreate) => {
     const { tag, tags } = linkData;
     if (tag[tag.length - 1] === " ") {
       const newTag = tag.replace(/\s/g, "");
@@ -71,20 +65,20 @@ class LinkCreator extends Component<any, State> {
   };
 
   render() {
-    const { linkData, error } = this.state;
+    const { linkData, errors } = this.state;
     return (
       <Form autoComplete="off">
         <Input
           label="Link"
-          error={error.link}
-          name="link"
-          value={linkData.link}
+          error={errors.url}
+          name="url"
+          value={linkData.url}
           onChange={this.handleChange}
         />
         <Input
           label="Tag"
           name="tag"
-          error={error.tag}
+          error={errors.tag}
           value={linkData.tag}
           onChange={this.handleChange}
         />
@@ -94,7 +88,7 @@ class LinkCreator extends Component<any, State> {
         <Input
           label="Description"
           name="description"
-          error={error.description}
+          error={errors.description}
           value={linkData.description}
           onChange={this.handleChange}
         />
