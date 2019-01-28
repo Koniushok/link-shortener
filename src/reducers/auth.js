@@ -18,7 +18,7 @@ const initialState: State = {
   loading: false
 };
 
-const userReducer = (
+const authReducer = (
   state: State = initialState,
   action: AuthActions
 ): State => {
@@ -40,4 +40,4 @@ const userReducer = (
   }
 };
 
-export default userReducer;
+export default authReducer;
