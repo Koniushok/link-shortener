@@ -96,9 +96,9 @@ class Authorization extends Component<Props, State> {
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
     this.setState(prevState => {
-      const { loginData } = prevState;
+      const loginData = { ...prevState.loginData };
       loginData[input.name] = input.value;
-      return { loginData: { ...loginData } };
+      return { loginData };
     });
   };
 
