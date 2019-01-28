@@ -2,24 +2,24 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import {
-  request,
-  requestError,
-  requestSuccess,
-  type CreateProfile
+  registryRequest,
+  registrySuccess,
+  registryError,
+  type Registry
 } from "../actions/registry";
 import { REGISTRY } from "../constants/actionTypes";
 import { createProfile } from "../api";
 
-export function* register(action: CreateProfile): Saga<void> {
+export function* register(action: Registry): Saga<void> {
   try {
-    yield put(request());
+    yield put(registryRequest());
     const result = yield call(createProfile, action.payload);
-    yield put(requestSuccess(result));
+    yield put(registrySuccess(result));
   } catch (error) {
-    yield put(requestError(error.message));
+    yield put(registryError(error.message));
   }
 }
 
 export default function* watchCreateProfile(): any {
-  yield takeLatest(REGISTRY.CREATE_PROFILE, register);
+  yield takeLatest(REGISTRY, register);
 }
