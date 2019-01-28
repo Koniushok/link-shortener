@@ -6,3 +6,10 @@ export type Link = {
   tags: Array<string>,
   description: string
 };
+
+export type LinkCreate = {
+  url: string,
+  description: string,
+  tag: string,
+  tags: Array<string>
+};
