@@ -1,8 +1,7 @@
 // @flow
 import { connect } from "react-redux";
-import { createProfile } from "../../actions/registry";
+import { registry as registryAction } from "../../actions/registry";
 import Registration from "./registration";
-import { type RegistryProfile } from "../../types";
 
 const mapStateToProps = ({ registry }) => ({
   result: registry.result,
@@ -10,9 +9,9 @@ const mapStateToProps = ({ registry }) => ({
   loading: registry.loading
 });
 
-const mapDispatchToProps = dispatch => ({
-  createProfile: (profile: RegistryProfile) => dispatch(createProfile(profile))
-});
+const mapDispatchToProps = {
+  createProfile: registryAction
+};
 
 export default connect(
   mapStateToProps,
