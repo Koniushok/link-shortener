@@ -1,19 +1,16 @@
 // @flow
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { login } from "../../actions/user";
+import { login } from "../../actions/auth";
 import Login from "./login";
 
-const mapStateToProps = ({ user }) => ({
-  error: user.error,
-  loading: user.loading,
-  auth: user.auth
+const mapStateToProps = ({ auth }) => ({
+  error: auth.error,
+  loading: auth.loading,
+  auth: auth.status
 });
 
-const mapDispatchToProps = dispatch => ({
-  loginRequest: (password: string, loginName: string) =>
-    dispatch(login(password, loginName))
-});
+const mapDispatchToProps = { loginRequest: login };
 
 export default withRouter(
   connect(
