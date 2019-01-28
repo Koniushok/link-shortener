@@ -24,7 +24,7 @@ const userReducer = (
 ): State => {
   switch (action.type) {
     case AUTH_REQUESTED:
-      return { status: false, error: "", loading: true };
+      return { ...state, status: false, error: "", loading: true };
     case AUTH_SUCCEEDED:
       return { ...state, status: true, loading: false };
     case AUTH_FAILED:
