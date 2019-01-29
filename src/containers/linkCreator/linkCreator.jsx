@@ -7,8 +7,9 @@ import Form from "../../components/form";
 import { type LinkCreate } from "../../types";
 import Alert from "../../components/alert";
 
+type LinkData = LinkCreate & { tag: string };
 type State = {
-  linkData: LinkCreate,
+  linkData: LinkData,
   errors: {
     url: string,
     description: string,
@@ -35,14 +36,14 @@ class LinkCreator extends Component<Props, State> {
     }
   };
 
-  addTag = (linkData: LinkCreate) => {
+  addTag = (linkData: LinkData) => {
     const { tag, tags } = linkData;
     if (tag[tag.length - 1] === " ") {
       const newTag = tag.replace(/\s/g, "");
       if (tags.indexOf(newTag) === -1) {
         tags.push(newTag);
       }
-      return Object.assign(linkData, { tags, tag: " " });
+      return { ...linkData, tags, tag: " " };
     }
     return linkData;
   };

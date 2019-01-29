@@ -10,6 +10,5 @@ export type Link = {
 export type LinkCreate = {
   url: string,
   description: string,
-  tag: string,
   tags: Array<string>
 };
