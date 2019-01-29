@@ -1,10 +1,11 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Tags from "../../components/tags";
 import Input from "../../components/input";
 import Button from "../../components/button";
 import Form from "../../components/form";
 import { type LinkCreate } from "../../types";
+import Alert from "../../components/alert";
 
 type State = {
   linkData: LinkCreate,
@@ -14,7 +15,12 @@ type State = {
     tag: string
   }
 };
-class LinkCreator extends Component<any, State> {
+type Props = {
+  result: string,
+  error: string,
+  loading: boolean
+};
+class LinkCreator extends Component<Props, State> {
   state = {
     linkData: {
       url: "",
@@ -66,34 +72,41 @@ class LinkCreator extends Component<any, State> {
 
   render() {
     const { linkData, errors } = this.state;
+    const { result, error, loading } = this.props;
     return (
-      <Form autoComplete="off">
-        <Input
-          label="Link"
-          error={errors.url}
-          name="url"
-          value={linkData.url}
-          onChange={this.handleChange}
-        />
-        <Input
-          label="Tag"
-          name="tag"
-          error={errors.tag}
-          value={linkData.tag}
-          onChange={this.handleChange}
-        />
-        {!!linkData.tags.length && (
-          <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
-        )}
-        <Input
-          label="Description"
-          name="description"
-          error={errors.description}
-          value={linkData.description}
-          onChange={this.handleChange}
-        />
-        <Button alignRight>Shorten</Button>
-      </Form>
+      <Fragment>
+        {error && <Alert type="error">{error}</Alert>}
+        {result && <Alert type="success">{result}</Alert>}
+        <Form autoComplete="off">
+          <Input
+            label="Link"
+            error={errors.url}
+            name="url"
+            value={linkData.url}
+            onChange={this.handleChange}
+          />
+          <Input
+            label="Tag"
+            name="tag"
+            error={errors.tag}
+            value={linkData.tag}
+            onChange={this.handleChange}
+          />
+          {!!linkData.tags.length && (
+            <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
+          )}
+          <Input
+            label="Description"
+            name="description"
+            error={errors.description}
+            value={linkData.description}
+            onChange={this.handleChange}
+          />
+          <Button alignRight disabled={loading}>
+            Shorten
+          </Button>
+        </Form>
+      </Fragment>
     );
   }
 }
