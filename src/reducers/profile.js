@@ -1,6 +1,6 @@
 // @flow
 import { SAVE_PROFILE, CLEAR_PROFILE } from "../constants/actionTypes";
-import { type ProfileActions } from "../actions/user";
+import { type ProfileActions } from "../actions/profile";
 import { type Profile } from "../types";
 
 export type State = ?Profile;

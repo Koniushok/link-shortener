@@ -1,7 +1,7 @@
 // @flow
 import { put, call, take } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
-import { clearProfile } from "../actions/user";
+import { clearProfile } from "../actions/profile";
 import {
   authRequest,
   authSuccess,

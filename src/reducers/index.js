@@ -2,7 +2,7 @@
 import { combineReducers, type CombinedReducer } from "redux";
 import type { Actions } from "../actions";
 import linksReducers, { type State as LinksState } from "./links";
-import profileReducers, { type State as ProfileState } from "./user";
+import profileReducers, { type State as ProfileState } from "./profile";
 import authReducers, { type State as AuthState } from "./auth";
 
 export type State = {
