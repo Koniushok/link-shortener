@@ -1,7 +1,7 @@
 // @flow
 import { put, call, take } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
-import { clearUser } from "../actions/user";
+import { clearProfile } from "../actions/user";
 import {
   authRequest,
   authSuccess,
@@ -30,7 +30,7 @@ export function* authorize(password: string, loginName: string): Saga<string> {
 }
 
 export function* logout(): Saga<void> {
-  yield put(clearUser());
+  yield put(clearProfile());
   yield put(authDisable());
   yield call(removeItem, "token");
 }

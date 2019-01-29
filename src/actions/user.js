@@ -1,13 +1,13 @@
 // @flow
-import { CLEAR_USER, SAVE_USER } from "../constants/actionTypes";
+import { CLEAR_PROFILE, SAVE_PROFILE } from "../constants/actionTypes";
 import { type Profile } from "../types";
 
-export type ClearUser = { type: typeof CLEAR_USER };
-export type SaveUser = { type: typeof SAVE_USER, payload: Profile };
-export const clearUser = (): ClearUser => ({ type: CLEAR_USER });
-export const saveUser = (profile: Profile): SaveUser => ({
-  type: SAVE_USER,
+export type ClearProfile = { type: typeof CLEAR_PROFILE };
+export type SaveProfile = { type: typeof SAVE_PROFILE, payload: Profile };
+export const clearProfile = (): ClearProfile => ({ type: CLEAR_PROFILE });
+export const saveProfile = (profile: Profile): SaveProfile => ({
+  type: SAVE_PROFILE,
   payload: profile
 });
 
-export type UserActions = ClearUser | SaveUser;
+export type ProfileActions = ClearProfile | SaveProfile;

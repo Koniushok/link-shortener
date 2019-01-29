@@ -15,8 +15,8 @@ export const LINKS: LinksType = {
   REQUESTED_FAILED: "LINKS_REQUESTED_FAILED"
 };
 
-export const CLEAR_USER: "CLEAR_USER" = "CLEAR_USER";
-export const SAVE_USER: "SAVE_USER" = "SAVE_USER";
+export const CLEAR_PROFILE: "CLEAR_PROFILE" = "CLEAR_PROFILE";
+export const SAVE_PROFILE: "SAVE_PROFILE" = "SAVE_PROFILE";
 
 export const LOGIN: "LOGIN" = "LOGIN";
 export const LOGOUT: "LOGOUT" = "LOGOUT";

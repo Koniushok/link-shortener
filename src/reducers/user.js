@@ -1,23 +1,23 @@
 // @flow
-import { SAVE_USER, CLEAR_USER } from "../constants/actionTypes";
-import { type UserActions } from "../actions/user";
+import { SAVE_PROFILE, CLEAR_PROFILE } from "../constants/actionTypes";
+import { type ProfileActions } from "../actions/user";
 import { type Profile } from "../types";
 
 export type State = ?Profile;
 const initialState: State = null;
 
-const userReducer = (
+const profileReducer = (
   state: State = initialState,
-  action: UserActions
+  action: ProfileActions
 ): State => {
   switch (action.type) {
-    case SAVE_USER:
+    case SAVE_PROFILE:
       return action.payload;
-    case CLEAR_USER:
+    case CLEAR_PROFILE:
       return null;
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default profileReducer;
