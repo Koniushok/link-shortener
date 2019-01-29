@@ -5,9 +5,9 @@ import {
   FETCH_LINK_REQUESTED,
   FETCH_LINK_SUCCEEDED
 } from "../constants/actionTypes";
-import { Link } from "../types";
+import { type Link } from "../types";
 
-type FetchLink = { type: typeof FETCH_LINK };
+export type FetchLink = { type: typeof FETCH_LINK, payload: string };
 type FetchLinkRequest = { type: typeof FETCH_LINK_REQUESTED };
 type FetchLinkSuccess = {
   type: typeof FETCH_LINK_SUCCEEDED,
@@ -15,7 +15,10 @@ type FetchLinkSuccess = {
 };
 type FetchLinkError = { type: typeof FETCH_LINK_FAILED, payload: string };
 
-export const fetchLink = (): FetchLink => ({ type: FETCH_LINK });
+export const fetchLink = (id: string): FetchLink => ({
+  type: FETCH_LINK,
+  payload: id
+});
 export const fetchLinkRequest = (): FetchLinkRequest => ({
   type: FETCH_LINK_REQUESTED
 });

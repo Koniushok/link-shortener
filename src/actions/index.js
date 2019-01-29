@@ -1,5 +1,5 @@
 // @flow
 import { type LinksActions } from "./links";
-import { type LinkAction } from "./link";
+import { type LinkActions } from "./link";
 
-export type Actions = LinksActions | LinkAction;
+export type Actions = LinksActions | LinkActions;
