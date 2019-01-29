@@ -4,15 +4,16 @@ import type { Saga } from "redux-saga";
 import {
   fetchLinkError,
   fetchLinkRequest,
-  fetchLinkSuccess
+  fetchLinkSuccess,
+  type FetchLink
 } from "../actions/link";
 import { FETCH_LINK } from "../constants/actionTypes";
 import { getLink } from "../api";
 
-export function* fetchLink(): Saga<void> {
+export function* fetchLink(action: FetchLink): Saga<void> {
   try {
     yield put(fetchLinkRequest());
-    const link = yield call(getLink);
+    const link = yield call(getLink, action.payload);
     yield put(fetchLinkSuccess(link));
   } catch (error) {
     yield put(fetchLinkError(error.message));
