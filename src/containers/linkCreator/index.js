@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createLink } from "../../actions/linkCreator";
 import linkCreator from "./linkCreator";
 
-const mapStateToProps = ({ linkCreatorState }) => ({
+const mapStateToProps = ({ linkCreator: linkCreatorState }) => ({
   result: linkCreatorState.result,
   error: linkCreatorState.error,
   loading: linkCreatorState.loading

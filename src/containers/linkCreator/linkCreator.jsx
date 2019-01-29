@@ -20,7 +20,8 @@ type State = {
 type Props = {
   result: string,
   error: string,
-  loading: boolean
+  loading: boolean,
+  createLink: (link: LinkCreate) => void
 };
 class LinkCreator extends Component<Props, State> {
   state = {
@@ -38,17 +39,15 @@ class LinkCreator extends Component<Props, State> {
   };
 
   schema = {
-    loginName: Joi.string()
-      .required()
-      .min(6)
-      .label("LoginName"),
     url: Joi.string()
-      .url()
+      .uri({ scheme: ["http", "https"] })
       .label("Link"),
     description: Joi.string()
       .required()
       .label("Description"),
-    tag: Joi.string().label("Tag"),
+    tag: Joi.string()
+      .allow("")
+      .label("Tag"),
     tags: Joi.array()
   };
 
@@ -68,6 +67,17 @@ class LinkCreator extends Component<Props, State> {
       errors[item.path[0]] = item.message;
     });
     return errors;
+  };
+
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const errors = this.validate();
+    this.setState({ errors });
+    if (Object.values(errors).every(error => !error)) {
+      const link = { ...this.state.linkData };
+      delete link.tag;
+      this.props.createLink(link);
+    }
   };
 
   addTag = (linkData: LinkData) => {
@@ -112,7 +122,7 @@ class LinkCreator extends Component<Props, State> {
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
         {result && <Alert type="success">{result}</Alert>}
-        <Form autoComplete="off">
+        <Form autoComplete="off" onSubmit={this.handleSubmit}>
           <Input
             label="Link"
             error={errors.url}
