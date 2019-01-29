@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, Fragment } from "react";
+import Joi from "joi-browser";
 import Tags from "../../components/tags";
 import Input from "../../components/input";
 import Button from "../../components/button";
@@ -34,6 +35,39 @@ class LinkCreator extends Component<Props, State> {
       description: "",
       tag: ""
     }
+  };
+
+  schema = {
+    loginName: Joi.string()
+      .required()
+      .min(6)
+      .label("LoginName"),
+    url: Joi.string()
+      .url()
+      .label("Link"),
+    description: Joi.string()
+      .required()
+      .label("Description"),
+    tag: Joi.string().label("Tag"),
+    tags: Joi.array()
+  };
+
+  validate = () => {
+    const errors = {
+      url: "",
+      description: "",
+      tag: ""
+    };
+    const { error } = Joi.validate(this.state.linkData, this.schema, {
+      abortEarly: false
+    });
+    if (!error) {
+      return errors;
+    }
+    error.details.forEach(item => {
+      errors[item.path[0]] = item.message;
+    });
+    return errors;
   };
 
   addTag = (linkData: LinkData) => {
