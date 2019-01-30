@@ -1,5 +1,6 @@
 // @flow
 export type Link = {
+  id: string,
   url: string,
   shortLink: string,
   passage: number,
