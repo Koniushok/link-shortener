@@ -1,5 +1,5 @@
 // @flow
-import { put, call, take } from "redux-saga/effects";
+import { put, call, all, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import { clearProfile } from "../actions/profile";
 import {
@@ -16,16 +16,18 @@ import {
 } from "../constants/actionTypes";
 import { login, storeItem, removeItem, getItem } from "../api";
 
-export function* authorize(password: string, loginName: string): Saga<string> {
+export function* authorize(action: Login): Saga<void> {
   try {
     yield put(authRequest());
-    const token: string = yield call(login, password, loginName);
+    const token: string = yield call(
+      login,
+      action.payload.password,
+      action.payload.loginName
+    );
     yield call(storeItem, "token", token);
     yield put(authSuccess());
-    return token;
   } catch (error) {
     yield put(authError(error.message));
-    return "";
   }
 }
 
@@ -36,13 +38,13 @@ export function* logout(): Saga<void> {
 }
 
 export default function* watchAuth(): any {
-  let token = yield getItem("token");
-  while (true) {
-    if (token) {
-      yield take([LOGOUT, UNAUTHORIZED_ERROR_401]);
-      yield call(logout);
-    }
-    const { payload }: Login = yield take(LOGIN);
-    token = yield call(authorize, payload.password, payload.loginName);
+  const token = yield getItem("token");
+  if (token) {
+    yield put(authSuccess());
   }
+
+  yield all([
+    takeLatest(LOGIN, authorize),
+    takeLatest([LOGOUT, UNAUTHORIZED_ERROR_401], logout)
+  ]);
 }
