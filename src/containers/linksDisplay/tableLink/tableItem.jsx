@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import styled from "styled-components";
+import { withRouter, type RouterHistory, type Match } from "react-router-dom";
 import { Delete } from "styled-icons/material/Delete";
 import { Edit } from "styled-icons/fa-solid/Edit";
 import { type Link } from "../../../types";
@@ -49,6 +50,8 @@ const ButtonControl = () => (
 );
 
 type Props = {
+  history: RouterHistory,
+  match: Match,
   link: Link,
   index: number
 };
@@ -70,12 +73,18 @@ class TableItem extends Component<Props, State> {
     this.setState({ hover: false });
   };
 
+  handelClick = () => {
+    const { history, match, link } = this.props;
+    history.push(`${match.path}/${link.id}`);
+  };
+
   render() {
     const { url, shortLink, passage, tags, description } = this.props.link;
     return (
       <TableRow
         onMouseEnter={this.handelMouseEnter}
         onMouseLeave={this.handelMouseLeave}
+        onClick={this.handelClick}
       >
         <th>{this.props.index}</th>
         <td>{shortLink}</td>
@@ -89,4 +98,4 @@ class TableItem extends Component<Props, State> {
   }
 }
 
-export default TableItem;
+export default withRouter(TableItem);
