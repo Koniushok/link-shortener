@@ -13,7 +13,7 @@ type FetchLinkSuccess = {
   type: typeof FETCH_LINK_SUCCEEDED,
   payload: Link
 };
-type FetchLinkError = { type: typeof FETCH_LINK_FAILED, payload: string };
+type FetchLinkError = { type: typeof FETCH_LINK_FAILED };
 
 export const fetchLink = (id: string): FetchLink => ({
   type: FETCH_LINK,
@@ -26,9 +26,8 @@ export const fetchLinkSuccess = (data: Link): FetchLinkSuccess => ({
   type: FETCH_LINK_SUCCEEDED,
   payload: data
 });
-export const fetchLinkError = (error: string): FetchLinkError => ({
-  type: FETCH_LINK_FAILED,
-  payload: error
+export const fetchLinkError = (): FetchLinkError => ({
+  type: FETCH_LINK_FAILED
 });
 
 export type LinkActions =

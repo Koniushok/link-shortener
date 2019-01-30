@@ -10,9 +10,15 @@ import { type Link } from "../types";
 export type State = {
   +data: ?Link,
   +error: string,
+  +notFound: boolean,
   +loading: boolean
 };
-const initialState: State = { data: null, error: "", loading: false };
+const initialState: State = {
+  data: null,
+  loading: false,
+  error: "",
+  notFound: false
+};
 
 const linkReducer = (
   state: State = initialState,
@@ -20,13 +26,9 @@ const linkReducer = (
 ): State => {
   switch (action.type) {
     case FETCH_LINK_REQUESTED:
-      return { ...state, data: null, error: "", loading: true };
+      return { ...state, data: null, loading: true };
     case FETCH_LINK_FAILED:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false
-      };
+      return { ...state, notFound: true, loading: false };
     case FETCH_LINK_SUCCEEDED:
       return { ...state, data: action.payload, loading: false };
     default:

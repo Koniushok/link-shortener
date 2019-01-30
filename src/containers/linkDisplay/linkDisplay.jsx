@@ -1,10 +1,12 @@
 // @flow
 import React, { Component, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import { type Link } from "../../types";
 import LinkInf from "../../components/infoLink";
 import Alert from "../../components/alert";
 
 type Props = {
+  notFound: boolean,
   linkId: string,
   link: Link,
   error: string,
@@ -18,7 +20,10 @@ class LinkDisplay extends Component<Props> {
   }
 
   render() {
-    const { error, link } = this.props;
+    const { error, link, notFound } = this.props;
+    if (notFound) {
+      return <Redirect to="/not-found" />;
+    }
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}

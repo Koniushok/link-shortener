@@ -16,7 +16,7 @@ export function* fetchLink(action: FetchLink): Saga<void> {
     const link = yield call(getLink, action.payload);
     yield put(fetchLinkSuccess(link));
   } catch (error) {
-    yield put(fetchLinkError(error.message));
+    yield put(fetchLinkError());
   }
 }
 
