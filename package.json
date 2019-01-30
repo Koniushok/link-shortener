@@ -19,6 +19,7 @@
     "email": "koniushok2000@gmail.com"
   },
   "dependencies": {
+    "joi-browser": "^13.4.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
