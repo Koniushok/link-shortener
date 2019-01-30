@@ -7,6 +7,12 @@ export type Link = {
   description: string
 };
 
+export type LinkCreate = {
+  url: string,
+  description: string,
+  tags: Array<string>
+};
+
 export type Profile = {
   loginName: string,
   name: string,
