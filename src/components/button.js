@@ -34,13 +34,18 @@ const Button = (styled.button`
   background: #6c757d;
   border: solid 3px #6c757d;
   margin: ${props => getButtonMargin(props)};
+  cursor: pointer;
   :focus {
     border: 3px solid #a9a9a9;
     outline: #a9a9a9;
   }
   :hover {
-    cursor: pointer;
     border: 3px solid #ffffff9c;
+  }
+  :disabled {
+    background: #d9d9d9;
+    border: 3px solid #ffffff9c;
+    cursor: default;
   }
 `: ComponentType<Props>);
 
