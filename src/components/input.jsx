@@ -2,6 +2,10 @@
 import React from "react";
 import styled from "styled-components";
 
+function getInputColor(error: boolean): string {
+  return error ? "#ff0000a1" : "#00d3ffa1";
+}
+
 const Input = styled.input`
   display: block;
   width: 100%;
@@ -9,12 +13,12 @@ const Input = styled.input`
   font-size: 19px;
   padding: 9px 13px;
   background-color: #fff;
-  border: 1px solid #ced4da;
+  border: 1px solid ${props => (props.error ? "#ff0000" : "#ced4da")};
   border-radius: 5px;
   :focus {
-    outline: 1px solid #00d3ffa1;
-    border: 1px solid #00d3ffa1;
-    box-shadow: 0 0 5px #00d3ffa1;
+    outline: 1px solid ${props => getInputColor(props.error)};
+    border: 1px solid ${props => getInputColor(props.error)};
+    box-shadow: 0 0 5px ${props => getInputColor(props.error)};
   }
 `;
 
@@ -47,7 +51,7 @@ const LabelError = styled.div`
 const InputLabel = ({ name, label, error = "", ...rest }: Props) => (
   <div>
     <Label htmlFor={name}>{label}</Label>
-    <Input id={name} name={name} {...rest} autocomplete="off" />
+    <Input id={name} name={name} error={!!error} {...rest} autocomplete="off" />
     {error && <LabelError>{error}</LabelError>}
   </div>
 );
