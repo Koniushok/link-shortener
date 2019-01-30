@@ -8,20 +8,23 @@ import registryReducer, { type State as RegistryState } from "./registry";
 import linkCreatorReducer, {
   type State as linkCreatorState
 } from "./linkCreator";
+import linkReducers, { type State as LinkState } from "./link";
 
 export type State = {
   links: LinksState,
   profile: ProfileState,
   auth: AuthState,
   registry: RegistryState,
-  linkCreator: linkCreatorState
+  linkCreator: linkCreatorState,
+  link: LinkState
 };
 const reducers = {
   links: linksReducers,
   profile: profileReducers,
   auth: authReducers,
   registry: registryReducer,
-  linkCreator: linkCreatorReducer
+  linkCreator: linkCreatorReducer,
+  link: linkReducers
 };
 
 const rootReducers: CombinedReducer<State, Actions> = combineReducers(reducers);

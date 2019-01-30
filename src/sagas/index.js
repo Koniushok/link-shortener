@@ -6,7 +6,14 @@ import linksSaga from "./links";
 import authSaga from "./auth";
 import registrySaga from "./registry";
 import linkCreatorSaga from "./linkCreator";
+import fetchLinkSaga from "./fetchLink";
 
 export default function* rootSaga(): Saga<void> {
-  yield all([linksSaga(), authSaga(), registrySaga(), linkCreatorSaga()]);
+  yield all([
+    linksSaga(),
+    authSaga(),
+    registrySaga(),
+    linkCreatorSaga(),
+    fetchLinkSaga()
+  ]);
 }
