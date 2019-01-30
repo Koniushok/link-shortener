@@ -24,7 +24,8 @@ const Input = styled.input`
 
 type Props = {
   type?: string,
-  handleChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void
+  value?: string | string[] | number,
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void
 } & {
   name: string,
   label: string,
@@ -48,10 +49,25 @@ const LabelError = styled.div`
   border-bottom-right-radius: 5px;
 `;
 
-const InputLabel = ({ name, label, error = "", ...rest }: Props) => (
+const InputLabel = ({
+  name,
+  label,
+  error = "",
+  type,
+  onChange,
+  value
+}: Props) => (
   <div>
     <Label htmlFor={name}>{label}</Label>
-    <Input id={name} name={name} error={!!error} {...rest} autocomplete="off" />
+    <Input
+      id={name}
+      name={name}
+      error={!!error}
+      type={type}
+      onChange={onChange}
+      value={value}
+      autocomplete="off"
+    />
     {error && <LabelError>{error}</LabelError>}
   </div>
 );
