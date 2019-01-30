@@ -12,3 +12,10 @@ export type Profile = {
   name: string,
   surname: string
 };
+
+export type RegistryProfile = {
+  loginName: string,
+  name: string,
+  surname: string,
+  password: string
+};
