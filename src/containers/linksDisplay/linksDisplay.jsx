@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import TableLink from "./tableLink";
 import TableList from "./tableList";
+import LinkModal from "./linkModal";
 import Alert from "../../components/alert";
 import ControlPanel, {
   NavLink,
@@ -26,7 +27,8 @@ type Props = {
   typeLoad: "my" | "all"
 };
 type State = {
-  typeDisplay: "table" | "list"
+  typeDisplay: "table" | "list",
+  selectedLinkID: string
 };
 class LinksDisplay extends Component<Props, State> {
   constructor(props: Props) {
@@ -35,7 +37,8 @@ class LinksDisplay extends Component<Props, State> {
   }
 
   state = {
-    typeDisplay: "table"
+    typeDisplay: "table",
+    selectedLinkID: ""
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -65,9 +68,17 @@ class LinksDisplay extends Component<Props, State> {
     }
   };
 
+  handelItemClick = (linkId: string) => {
+    this.setState({ selectedLinkID: linkId });
+  };
+
+  handelModalClose = () => {
+    this.setState({ selectedLinkID: "" });
+  };
+
   render() {
     const { linksList, error, loading } = this.props;
-    const { typeDisplay } = this.state;
+    const { typeDisplay, selectedLinkID } = this.state;
     return (
       <DisplayWrapper>
         {error && <Alert type="error">{error}</Alert>}
@@ -92,8 +103,24 @@ class LinksDisplay extends Component<Props, State> {
             />
           </div>
         </ControlPanel>
-        {typeDisplay === "table" && <TableLink linksList={linksList} />}
-        {typeDisplay === "list" && <TableList linksList={linksList} />}
+        {typeDisplay === "table" && (
+          <TableLink
+            linksList={linksList}
+            handelItemClick={this.handelItemClick}
+          />
+        )}
+        {typeDisplay === "list" && (
+          <TableList
+            linksList={linksList}
+            handelItemClick={this.handelItemClick}
+          />
+        )}
+        {selectedLinkID && (
+          <LinkModal
+            linkId={selectedLinkID}
+            handelClose={this.handelModalClose}
+          />
+        )}
       </DisplayWrapper>
     );
   }

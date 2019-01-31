@@ -19,10 +19,11 @@ const Table = styled.table`
 `;
 
 type Props = {
+  handelItemClick: (linkId: string) => void,
   linksList: ?Array<Link>
 };
 
-const TableLink = (props: Props) => (
+const TableLink = ({ handelItemClick, linksList }: Props) => (
   <Table>
     <thead>
       <tr>
@@ -35,9 +36,14 @@ const TableLink = (props: Props) => (
       </tr>
     </thead>
     <tbody>
-      {props.linksList &&
-        props.linksList.map((link, index) => (
-          <TableItem link={link} index={index} key={link.shortLink} />
+      {linksList &&
+        linksList.map((link, index) => (
+          <TableItem
+            link={link}
+            index={index}
+            key={link.shortLink}
+            handelItemClick={handelItemClick}
+          />
         ))}
     </tbody>
   </Table>
