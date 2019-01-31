@@ -1,10 +1,8 @@
 // @flow
 import React, { Component } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { Redirect } from "react-router-dom";
 import { Close } from "styled-icons/material/Close";
-import { type Link } from "../../types";
-import InfoLink from "../../components/infoLink";
+import LinkDisplay from "../linkDisplay";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 const ButtonClose = styled.div`
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  right: -15px;
+  top: -15px;
   width: 30px;
   height: 30px;
   margin-left: auto;
@@ -35,14 +38,16 @@ const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 const ModalContent = styled.div`
+  position: relative;
   z-index: 2;
   display: block;
   max-width: 80%;
+  padding: 0 15px;
   background: #ffffff;
   border-radius: 5px;
 `;
 type Props = {
-  link: ?Link,
+  linkId: string,
   handelClose: () => void
 };
 
@@ -55,9 +60,6 @@ class LinkModal extends Component<Props> {
   };
 
   render() {
-    if (!this.props.link) {
-      return <Redirect to="/not-found" />;
-    }
     return (
       <Modal onClick={this.handelClickModal}>
         <GlobalStyle />
@@ -65,7 +67,7 @@ class LinkModal extends Component<Props> {
           <ButtonClose onClick={this.props.handelClose}>
             <Close />
           </ButtonClose>
-          <InfoLink link={this.props.link} />
+          <LinkDisplay linkId={this.props.linkId} />
         </ModalContent>
       </Modal>
     );
