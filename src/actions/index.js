@@ -5,6 +5,7 @@ import { type AuthActions } from "./auth";
 import { type RegistryActions } from "./registry";
 import { type LinkCreatorActions } from "./linkCreator";
 import { type LinkActions } from "./link";
+import { type EditLinkActions } from "./editLink";
 
 export type Actions =
   | LinksActions
@@ -12,4 +13,5 @@ export type Actions =
   | AuthActions
   | RegistryActions
   | LinkCreatorActions
-  | LinkActions;
+  | LinkActions
+  | EditLinkActions;
