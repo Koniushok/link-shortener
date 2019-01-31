@@ -19,6 +19,9 @@ const TagWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: #d6d6d6ab;
+  span {
+    margin-top: -4px;
+  }
 `;
 const ButtonDelete = styled(XCircle)`
   margin-left: 8px;

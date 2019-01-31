@@ -1,6 +1,7 @@
 // @flow
 export type Link = {
   id: string,
+  title: string,
   url: string,
   shortLink: string,
   passage: number,
@@ -9,6 +10,7 @@ export type Link = {
 };
 
 export type LinkCreate = {
+  title: string,
   url: string,
   description: string,
   tags: Array<string>

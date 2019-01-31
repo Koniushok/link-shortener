@@ -25,6 +25,7 @@ type LinkData = LinkCreate & { tag: string };
 type State = {
   linkData: LinkData,
   errors: {
+    title: string,
     url: string,
     description: string,
     tag: string
@@ -42,9 +43,11 @@ class LinkCreator extends Component<Props, State> {
       url: "",
       description: "",
       tag: "",
+      title: "",
       tags: []
     },
     errors: {
+      title: "",
       url: "",
       description: "",
       tag: ""
@@ -52,6 +55,9 @@ class LinkCreator extends Component<Props, State> {
   };
 
   schema = {
+    title: Joi.string()
+      .required()
+      .label("Title"),
     url: Joi.string()
       .uri({ scheme: ["http", "https"] })
       .label("Link"),
@@ -66,6 +72,7 @@ class LinkCreator extends Component<Props, State> {
 
   validate = () => {
     const errors = {
+      title: "",
       url: "",
       description: "",
       tag: ""
@@ -138,6 +145,13 @@ class LinkCreator extends Component<Props, State> {
         <FormWrapper>
           <h1>Create link</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>
+            <Input
+              label="Title"
+              error={errors.title}
+              name="title"
+              value={linkData.title}
+              onChange={this.handleChange}
+            />
             <Input
               label="Link"
               error={errors.url}
