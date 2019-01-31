@@ -9,6 +9,7 @@ import linkCreatorReducer, {
   type State as linkCreatorState
 } from "./linkCreator";
 import linkReducers, { type State as LinkState } from "./link";
+import editLinkReducers, { type State as EditLinkState } from "./editLink";
 
 export type State = {
   links: LinksState,
@@ -16,7 +17,8 @@ export type State = {
   auth: AuthState,
   registry: RegistryState,
   linkCreator: linkCreatorState,
-  link: LinkState
+  link: LinkState,
+  editLink: EditLinkState
 };
 const reducers = {
   links: linksReducers,
@@ -24,7 +26,8 @@ const reducers = {
   auth: authReducers,
   registry: registryReducer,
   linkCreator: linkCreatorReducer,
-  link: linkReducers
+  link: linkReducers,
+  editLink: editLinkReducers
 };
 
 const rootReducers: CombinedReducer<State, Actions> = combineReducers(reducers);
