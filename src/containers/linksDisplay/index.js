@@ -10,10 +10,7 @@ const mapStateToProps = ({ links }: State) => ({
   loading: links.loading
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadAllLinks: () => dispatch(linksLoadAll()),
-  loadMyLinks: () => dispatch(linksLoadMy())
-});
+const mapDispatchToProps = { linksLoadAll, linksLoadMy };
 
 export default connect(
   mapStateToProps,
