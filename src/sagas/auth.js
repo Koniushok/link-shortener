@@ -8,11 +8,7 @@ import {
   authDisable,
   type Login
 } from "../actions/auth";
-import {
-  LOGIN,
-  LOGOUT,
-  UNAUTHORIZED_ERROR_401
-} from "../constants/actionTypes";
+import { LOGIN, LOGOUT } from "../constants/actionTypes";
 import { login, storeItem, removeItem, getItem } from "../api";
 
 export function* authorize(action: Login): Saga<void> {
@@ -41,8 +37,5 @@ export default function* watchAuth(): any {
     yield put(authSuccess());
   }
 
-  yield all([
-    takeLatest(LOGIN, authorize),
-    takeLatest([LOGOUT, UNAUTHORIZED_ERROR_401], logout)
-  ]);
+  yield all([takeLatest(LOGIN, authorize), takeLatest(LOGOUT, logout)]);
 }
