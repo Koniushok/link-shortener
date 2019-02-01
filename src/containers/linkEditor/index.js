@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { editLinkRequested } from "../../actions/editLink";
 import { fetchLink } from "../../actions/link";
 import LinkEditor from "./linkEditor";
+import { type State } from "../../reducers";
 
-const mapStateToProps = ({ editLink, link }) => ({
+const mapStateToProps = ({ editLink, link }: State) => ({
   result: editLink.result,
   editError: editLink.error,
   editLoading: editLink.loading,
