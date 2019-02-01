@@ -1,33 +1,17 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 // @flow
 import React, { Fragment } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
-import { MAIN_YELLOW } from '../../constants/color';
-
-const linkStyle = css`
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 20px;
-  margin: 5px;
-  color: white;
-  border-radius: 3px;
-  padding: 8px 5px;
-  background: #9696962e;
-  display: block;
-  font-weight: bold;
-  &.selected {
-    color: ${MAIN_YELLOW};
-  }
-  :hover {
-    background: '#eebd0';
-    color: ${MAIN_YELLOW};
-  }
-`;
+import linkStyle from './linkStyle';
+import { MAIN_YELLOW } from '../../../constants/color';
 
 const NavLink = styled(Link).attrs({
   activeClassName: 'selected',
 })`
+  &.selected {
+    color: ${MAIN_YELLOW};
+  }
   ${linkStyle}
 `;
 
@@ -44,7 +28,7 @@ export const HeaderWrapper = styled.header`
   justify-content: flex-end;
 `;
 
-const auth = false;
+const auth = true;
 
 const Header = () => (
   <HeaderWrapper>
@@ -53,6 +37,7 @@ const Header = () => (
     </NavLink>
     {auth ? (
       <Fragment>
+        <NavLink to="/links">Links</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/login">Sing In</NavLink>
       </Fragment>
