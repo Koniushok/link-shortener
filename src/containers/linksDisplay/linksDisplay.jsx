@@ -3,8 +3,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import TableLink from "./tableLink";
 import TableList from "./tableList";
-import LinkModal from "./linkModal";
 import Alert from "../../components/alert";
+import Modal from "../../components/modal";
+import LinkDisplay from "../linkDisplay";
+import LinkEditor from "../linkEditor";
 import ControlPanel, {
   NavLink,
   ResetIndicator,
@@ -28,7 +30,8 @@ type Props = {
 };
 type State = {
   typeDisplay: "table" | "list",
-  selectedLinkID: string
+  selectedLinkID: string,
+  editLinkID: string
 };
 class LinksDisplay extends Component<Props, State> {
   constructor(props: Props) {
@@ -38,7 +41,8 @@ class LinksDisplay extends Component<Props, State> {
 
   state = {
     typeDisplay: "table",
-    selectedLinkID: ""
+    selectedLinkID: "",
+    editLinkID: ""
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -78,7 +82,7 @@ class LinksDisplay extends Component<Props, State> {
 
   render() {
     const { linksList, error, loading } = this.props;
-    const { typeDisplay, selectedLinkID } = this.state;
+    const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
       <DisplayWrapper>
         {error && <Alert type="error">{error}</Alert>}
@@ -116,10 +120,14 @@ class LinksDisplay extends Component<Props, State> {
           />
         )}
         {selectedLinkID && (
-          <LinkModal
-            linkId={selectedLinkID}
-            handelClose={this.handelModalClose}
-          />
+          <Modal handelClose={this.handelModalClose}>
+            <LinkDisplay linkId={selectedLinkID} />
+          </Modal>
+        )}
+        {editLinkID && (
+          <Modal handelClose={this.handelModalClose}>
+            <LinkEditor linkId={selectedLinkID} />
+          </Modal>
         )}
       </DisplayWrapper>
     );
