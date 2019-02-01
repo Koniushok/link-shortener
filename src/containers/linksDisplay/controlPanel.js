@@ -1,13 +1,13 @@
 // @flow
-import React, { type ComponentType } from "react";
-import styled, { keyframes, css } from "styled-components";
-import { Update } from "styled-icons/material/Update";
-import { LoaderAlt } from "styled-icons/boxicons-regular/LoaderAlt";
-import { Table } from "styled-icons/icomoon/Table";
-import { List } from "styled-icons/boxicons-regular/List";
-import { NavLink as RouterLink } from "react-router-dom";
-import { MAIN_YELLOW } from "../../constants/color";
-import displayType, { type DisplayType } from "../../constants/display";
+import React, { type ComponentType } from 'react';
+import styled, { keyframes, css } from 'styled-components';
+import { Update } from 'styled-icons/material/Update';
+import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
+import { Table } from 'styled-icons/icomoon/Table';
+import { List } from 'styled-icons/boxicons-regular/List';
+import { NavLink as RouterLink } from 'react-router-dom';
+import { MAIN_YELLOW } from '../../constants/color';
+import displayType, { type DisplayType } from '../../constants/display';
 
 const ControlPanelWrapper = styled.div`
   display: flex;
@@ -38,8 +38,8 @@ const ResetButton = styled(Update)`
 
 const typeButton = css`
   background: #e1e1e1;
-  box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 60px rgba(0, 0, 0, 0), 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px 1px rgba(0, 0, 0, 0.5), inset 0 0 0 60px rgba(0, 0, 0, 0),
+    0 1px rgba(255, 255, 255, 0.08);
   color: #000000;
   padding: 0 5px;
   cursor: pointer;
@@ -67,7 +67,7 @@ const ListTypeButton: ComponentType<{ enabled: boolean }> = styled(List)`
 `;
 
 const NavLink = styled(RouterLink).attrs({
-  activeClassName: "selected"
+  activeClassName: 'selected',
 })`
   &.selected {
     border-bottom: solid 3px ${MAIN_YELLOW};
@@ -90,14 +90,14 @@ type Props = {
   typeDisplayTable: () => void,
   typeDisplayList: () => void,
   typeDisplay: DisplayType,
-  loading: boolean
+  loading: boolean,
 };
 const ControlPanel = ({
   HandlerLoadLinks,
   typeDisplayTable,
   typeDisplayList,
   typeDisplay,
-  loading
+  loading,
 }: Props) => (
   <ControlPanelWrapper>
     <nav>
@@ -105,19 +105,9 @@ const ControlPanel = ({
       <NavLink to="/links/all">All links</NavLink>
     </nav>
     <div>
-      {loading ? (
-        <ResetIndicator />
-      ) : (
-        <ResetButton onClick={HandlerLoadLinks} />
-      )}
-      <TableTypeButton
-        onClick={typeDisplayTable}
-        enabled={typeDisplay === displayType.TABLE}
-      />
-      <ListTypeButton
-        onClick={typeDisplayList}
-        enabled={typeDisplay === displayType.LIST}
-      />
+      {loading ? <ResetIndicator /> : <ResetButton onClick={HandlerLoadLinks} />}
+      <TableTypeButton onClick={typeDisplayTable} enabled={typeDisplay === displayType.TABLE} />
+      <ListTypeButton onClick={typeDisplayList} enabled={typeDisplay === displayType.LIST} />
     </div>
   </ControlPanelWrapper>
 );

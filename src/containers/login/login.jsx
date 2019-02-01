@@ -1,12 +1,12 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { Redirect, type Location } from "react-router-dom";
-import Joi from "joi-browser";
-import Input from "../../components/input";
-import Button from "../../components/button";
-import Form from "../../components/form";
-import Alert from "../../components/alert";
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import { Redirect, type Location } from 'react-router-dom';
+import Joi from 'joi-browser';
+import Input from '../../components/input';
+import Button from '../../components/button';
+import Form from '../../components/form';
+import Alert from '../../components/alert';
 
 const LoginWrapper = styled.section`
   flex: auto;
@@ -22,56 +22,56 @@ const LoginWrapper = styled.section`
 type State = {
   loginData: {
     loginName: string,
-    password: string
+    password: string,
   },
   errors: {
     loginName: string,
-    password: string
-  }
+    password: string,
+  },
 };
 type Props = {
   error: string,
   loading: boolean,
   auth: boolean,
   location: Location,
-  loginRequest: (password: string, loginName: string) => void
+  loginRequest: (password: string, loginName: string) => void,
 };
 class Authorization extends Component<Props, State> {
   state = {
     loginData: {
-      loginName: "",
-      password: ""
+      loginName: '',
+      password: '',
     },
     errors: {
-      loginName: "",
-      password: ""
-    }
+      loginName: '',
+      password: '',
+    },
   };
 
   schema = {
     loginName: Joi.string()
       .required()
       .min(6)
-      .label("Login"),
+      .label('Login'),
     password: Joi.string()
       .required()
       .min(8)
-      .label("Password")
+      .label('Password'),
   };
 
   validate = (): { loginName: string, password: string } => {
     const errors = {
-      loginName: "",
-      password: ""
+      loginName: '',
+      password: '',
     };
     const { error } = Joi.validate(this.state.loginData, this.schema, {
-      abortEarly: false
+      abortEarly: false,
     });
     if (!error) {
       return errors;
     }
 
-    error.details.forEach(item => {
+    error.details.forEach((item) => {
       errors[item.path[0]] = item.message;
     });
     return errors;
@@ -83,16 +83,13 @@ class Authorization extends Component<Props, State> {
     this.setState({ errors });
 
     if (Object.values(errors).every(error => !error)) {
-      this.props.loginRequest(
-        this.state.loginData.password,
-        this.state.loginData.loginName
-      );
+      this.props.loginRequest(this.state.loginData.password, this.state.loginData.loginName);
     }
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const loginData = { ...prevState.loginData };
       loginData[input.name] = input.value;
       return { loginData };
@@ -101,11 +98,11 @@ class Authorization extends Component<Props, State> {
 
   render() {
     const { loginData, errors } = this.state;
-    const { error, loading, auth, location } = this.props;
+    const {
+      error, loading, auth, location,
+    } = this.props;
     if (auth) {
-      return (
-        <Redirect to={location.state ? location.state.from.pathname : "/"} />
-      );
+      return <Redirect to={location.state ? location.state.from.pathname : '/'} />;
     }
     return (
       <Fragment>
@@ -129,6 +126,7 @@ class Authorization extends Component<Props, State> {
               onChange={this.handleChange}
             />
             <Button alignRight disabled={loading}>
+
               Log in
             </Button>
           </Form>

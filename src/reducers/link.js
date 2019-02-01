@@ -2,28 +2,25 @@
 import {
   FETCH_LINK_FAILED,
   FETCH_LINK_REQUESTED,
-  FETCH_LINK_SUCCEEDED
-} from "../constants/actionTypes";
-import { type LinkActions } from "../actions/link";
-import { type Link } from "../types";
+  FETCH_LINK_SUCCEEDED,
+} from '../constants/actionTypes';
+import { type LinkActions } from '../actions/link';
+import { type Link } from '../types';
 
 export type State = {
   +data: ?Link,
   +error: string,
   +notFound: boolean,
-  +loading: boolean
+  +loading: boolean,
 };
 const initialState: State = {
   data: null,
   loading: false,
-  error: "",
-  notFound: false
+  error: '',
+  notFound: false,
 };
 
-const linkReducer = (
-  state: State = initialState,
-  action: LinkActions
-): State => {
+const linkReducer = (state: State = initialState, action: LinkActions): State => {
   switch (action.type) {
     case FETCH_LINK_REQUESTED:
       return { ...state, data: null, loading: true };

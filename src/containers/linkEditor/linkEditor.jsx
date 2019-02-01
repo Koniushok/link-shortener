@@ -1,9 +1,9 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { type LinkCreate, type Link } from "../../types";
-import Alert from "../../components/alert";
-import LinkForm from "../../components/linkForm";
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import { type LinkCreate, type Link } from '../../types';
+import Alert from '../../components/alert';
+import LinkForm from '../../components/linkForm';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -24,7 +24,7 @@ type Props = {
   editError: string,
   editLoading: boolean,
   editLinkRequested: (link: Link) => void,
-  fetchLink: (id: string) => void
+  fetchLink: (id: string) => void,
 };
 
 class LinkEditor extends Component<Props> {
@@ -39,7 +39,9 @@ class LinkEditor extends Component<Props> {
   };
 
   render() {
-    const { result, fetchError, editLoading, link, editError } = this.props;
+    const {
+      result, fetchError, editLoading, link, editError,
+    } = this.props;
     const error = fetchError || editError;
     return (
       <Fragment>

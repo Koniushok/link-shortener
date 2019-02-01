@@ -3,38 +3,34 @@ import {
   REGISTRY,
   REGISTRY_FAILED,
   REGISTRY_REQUESTED,
-  REGISTRY_SUCCEEDED
-} from "../constants/actionTypes";
-import { type RegistryProfile } from "../types";
+  REGISTRY_SUCCEEDED,
+} from '../constants/actionTypes';
+import { type RegistryProfile } from '../types';
 
 export type Registry = {
   type: typeof REGISTRY,
-  payload: RegistryProfile
+  payload: RegistryProfile,
 };
 type RegistryRequest = { type: typeof REGISTRY_REQUESTED };
 type RegistrySuccess = {
   type: typeof REGISTRY_SUCCEEDED,
-  payload: string
+  payload: string,
 };
 type RegistryError = { type: typeof REGISTRY_FAILED, payload: string };
 
 export const registry = (profile: RegistryProfile): Registry => ({
   type: REGISTRY,
-  payload: profile
+  payload: profile,
 });
 export const registryRequest = (): RegistryRequest => ({
-  type: REGISTRY_REQUESTED
+  type: REGISTRY_REQUESTED,
 });
 export const registrySuccess = (result: string): RegistrySuccess => ({
   type: REGISTRY_SUCCEEDED,
-  payload: result
+  payload: result,
 });
 export const registryError = (error: string): RegistryError => ({
   type: REGISTRY_FAILED,
-  payload: error
+  payload: error,
 });
-export type RegistryActions =
-  | Registry
-  | RegistryRequest
-  | RegistrySuccess
-  | RegistryError;
+export type RegistryActions = Registry | RegistryRequest | RegistrySuccess | RegistryError;

@@ -1,7 +1,7 @@
 // @flow
-import React from "react";
-import { Route } from "react-router-dom";
-import type { RouteProps } from "react-router-dom";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import type { RouteProps } from 'react-router-dom';
 
 const auth = false;
 

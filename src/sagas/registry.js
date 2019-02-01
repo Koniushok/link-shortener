@@ -1,14 +1,14 @@
 // @flow
-import { put, call, takeLatest } from "redux-saga/effects";
-import type { Saga } from "redux-saga";
+import { put, call, takeLatest } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
 import {
   registryRequest,
   registrySuccess,
   registryError,
-  type Registry
-} from "../actions/registry";
-import { REGISTRY } from "../constants/actionTypes";
-import { createProfile } from "../api";
+  type Registry,
+} from '../actions/registry';
+import { REGISTRY } from '../constants/actionTypes';
+import { createProfile } from '../api';
 
 export function* register(action: Registry): Saga<void> {
   try {

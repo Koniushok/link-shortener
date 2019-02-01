@@ -1,2 +1,2 @@
 // @flow
-export const MAIN_YELLOW = "#ffd707";
+export const MAIN_YELLOW = '#ffd707';

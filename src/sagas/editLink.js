@@ -1,13 +1,9 @@
 // @flow
-import { put, call, takeLatest } from "redux-saga/effects";
-import type { Saga } from "redux-saga";
-import {
-  editLinkSucceeded,
-  editLinkFailed,
-  type EditLinkRequested
-} from "../actions/editLink";
-import { EDIT_LINK_REQUESTED } from "../constants/actionTypes";
-import { editLink } from "../api";
+import { put, call, takeLatest } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
+import { editLinkSucceeded, editLinkFailed, type EditLinkRequested } from '../actions/editLink';
+import { EDIT_LINK_REQUESTED } from '../constants/actionTypes';
+import { editLink } from '../api';
 
 export function* changeLink(action: EditLinkRequested): Saga<void> {
   try {

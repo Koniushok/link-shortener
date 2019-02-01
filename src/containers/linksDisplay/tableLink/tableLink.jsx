@@ -1,8 +1,8 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
-import TableItem from "./tableItem";
-import { type Link } from "../../../types";
+import React from 'react';
+import styled from 'styled-components';
+import TableItem from './tableItem';
+import { type Link } from '../../../types';
 
 const Table = styled.table`
   position: relative;
@@ -20,7 +20,7 @@ const Table = styled.table`
 
 type Props = {
   handelItemClick: (linkId: string) => void,
-  linksList: ?Array<Link>
+  linksList: ?Array<Link>,
 };
 
 const TableLink = ({ handelItemClick, linksList }: Props) => (
@@ -36,8 +36,8 @@ const TableLink = ({ handelItemClick, linksList }: Props) => (
       </tr>
     </thead>
     <tbody>
-      {linksList &&
-        linksList.map((link, index) => (
+      {linksList
+        && linksList.map((link, index) => (
           <TableItem
             link={link}
             index={index}
