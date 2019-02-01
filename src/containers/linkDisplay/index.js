@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import { fetchLinkRequest } from "../../actions/link";
+import { fetchLinkRequest } from "../../actions/fetchLink";
 import LinkDisplay from "./linkDisplay";
 import { type State } from "../../reducers";
 

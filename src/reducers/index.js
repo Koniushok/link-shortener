@@ -7,7 +7,7 @@ import registryReducer, { type State as RegistryState } from "./registry";
 import linkCreatorReducer, {
   type State as linkCreatorState
 } from "./linkCreator";
-import linkReducers, { type State as LinkState } from "./link";
+import linkReducers, { type State as LinkState } from "./fetchLink";
 import editLinkReducers, { type State as EditLinkState } from "./editLink";
 
 export type State = {

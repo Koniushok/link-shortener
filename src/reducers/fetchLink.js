@@ -4,7 +4,7 @@ import {
   FETCH_LINK_REQUESTED,
   FETCH_LINK_SUCCEEDED
 } from "../constants/actionTypes";
-import { type LinkActions } from "../actions/link";
+import { type LinkActions } from "../actions/fetchLink";
 import { type Link } from "../types";
 
 export type State = $ReadOnly<{

@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 import { editLinkRequested } from "../../actions/editLink";
-import { fetchLinkRequest } from "../../actions/link";
+import { fetchLinkRequest } from "../../actions/fetchLink";
 import LinkEditor from "./linkEditor";
 import { type State } from "../../reducers";
 

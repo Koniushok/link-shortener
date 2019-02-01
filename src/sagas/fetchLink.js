@@ -5,7 +5,7 @@ import {
   fetchLinkError,
   fetchLinkSuccess,
   type FetchLinkRequest
-} from "../actions/link";
+} from "../actions/fetchLink";
 import { FETCH_LINK_REQUESTED } from "../constants/actionTypes";
 import { getLink } from "../api";
 
