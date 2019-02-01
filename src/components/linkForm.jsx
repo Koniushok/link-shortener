@@ -18,6 +18,7 @@ type State = {
   }
 };
 type Props = {
+  buttonLabel: string,
   linkData?: Link,
   onSubmit: (linkData: LinkCreate) => void,
   loading: boolean
@@ -150,7 +151,7 @@ class LinkForm extends Component<Props, State> {
 
   render() {
     const { linkData, errors } = this.state;
-    const { loading } = this.props;
+    const { loading, buttonLabel } = this.props;
     return (
       <Fragment>
         <Form autoComplete="off" onSubmit={this.handleSubmit}>
@@ -186,7 +187,7 @@ class LinkForm extends Component<Props, State> {
             onChange={this.handleChange}
           />
           <Button alignRight disabled={loading}>
-            Shorten
+            {buttonLabel}
           </Button>
         </Form>
       </Fragment>

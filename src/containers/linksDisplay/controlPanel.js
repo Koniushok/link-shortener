@@ -1,5 +1,5 @@
 // @flow
-import { type ComponentType } from "react";
+import React, { type ComponentType } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { Update } from "styled-icons/material/Update";
 import { LoaderAlt } from "styled-icons/boxicons-regular/LoaderAlt";
@@ -7,8 +7,9 @@ import { Table } from "styled-icons/icomoon/Table";
 import { List } from "styled-icons/boxicons-regular/List";
 import { NavLink as RouterLink } from "react-router-dom";
 import { MAIN_YELLOW } from "../../constants/color";
+import displayType, { type DisplayType } from "../../constants/display";
 
-const ControlPanel = styled.div`
+const ControlPanelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px 10px;
@@ -22,13 +23,13 @@ const buttonSize = css`
   width: 30px;
   height: 30px;
 `;
-export const ResetIndicator = styled(LoaderAlt)`
+const ResetIndicator = styled(LoaderAlt)`
   display: inline-block;
   ${buttonSize}
   animation: ${rotate} 2s linear infinite;
   margin-right: 10px;
 `;
-export const ResetButton = styled(Update)`
+const ResetButton = styled(Update)`
   display: inline-block;
   ${buttonSize}
   cursor: pointer;
@@ -53,21 +54,19 @@ const EnabledTypeButton = css`
   color: black;
 `;
 
-export const TableTypeButton: ComponentType<{ enabled: boolean }> = styled(
-  Table
-)`
+const TableTypeButton: ComponentType<{ enabled: boolean }> = styled(Table)`
   ${buttonSize}
   ${typeButton}
   ${props => props.enabled && EnabledTypeButton}
 `;
 
-export const ListTypeButton: ComponentType<{ enabled: boolean }> = styled(List)`
+const ListTypeButton: ComponentType<{ enabled: boolean }> = styled(List)`
   ${buttonSize}
   ${typeButton}
   ${props => props.enabled && EnabledTypeButton}
 `;
 
-export const NavLink = styled(RouterLink).attrs({
+const NavLink = styled(RouterLink).attrs({
   activeClassName: "selected"
 })`
   &.selected {
@@ -85,5 +84,42 @@ export const NavLink = styled(RouterLink).attrs({
     color: gray;
   }
 `;
+
+type Props = {
+  HandlerLoadLinks: () => void,
+  typeDisplayTable: () => void,
+  typeDisplayList: () => void,
+  typeDisplay: DisplayType,
+  loading: boolean
+};
+const ControlPanel = ({
+  HandlerLoadLinks,
+  typeDisplayTable,
+  typeDisplayList,
+  typeDisplay,
+  loading
+}: Props) => (
+  <ControlPanelWrapper>
+    <nav>
+      <NavLink to="/links/my">My links</NavLink>
+      <NavLink to="/links/all">All links</NavLink>
+    </nav>
+    <div>
+      {loading ? (
+        <ResetIndicator />
+      ) : (
+        <ResetButton onClick={HandlerLoadLinks} />
+      )}
+      <TableTypeButton
+        onClick={typeDisplayTable}
+        enabled={typeDisplay === displayType.TABLE}
+      />
+      <ListTypeButton
+        onClick={typeDisplayList}
+        enabled={typeDisplay === displayType.LIST}
+      />
+    </div>
+  </ControlPanelWrapper>
+);
 
 export default ControlPanel;

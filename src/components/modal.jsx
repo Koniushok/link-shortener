@@ -1,8 +1,7 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, type Node } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Close } from "styled-icons/material/Close";
-import LinkDisplay from "../linkDisplay";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -47,7 +46,7 @@ const ModalContent = styled.div`
   border-radius: 5px;
 `;
 type Props = {
-  linkId: string,
+  children?: Node,
   handelClose: () => void
 };
 
@@ -67,7 +66,7 @@ class LinkModal extends Component<Props> {
           <ButtonClose onClick={this.props.handelClose}>
             <Close />
           </ButtonClose>
-          <LinkDisplay linkId={this.props.linkId} />
+          {this.props.children}
         </ModalContent>
       </Modal>
     );
