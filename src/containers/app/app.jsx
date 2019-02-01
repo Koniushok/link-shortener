@@ -1,13 +1,13 @@
 // @flow
-import React from "react";
-import { hot } from "react-hot-loader/root";
-import { Switch, Route, Redirect } from "react-router-dom";
-import styled from "styled-components";
-import Home from "../home";
-import Authorization from "../authorization";
-import Registration from "../registration";
-import NotFound from "./notFound";
-import Header from "./header";
+import React from 'react';
+import { hot } from 'react-hot-loader/root';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+import Home from '../home';
+import Authorization from '../authorization';
+import Registration from '../registration';
+import NotFound from './notFound';
+import Header from './header';
 
 const Footer = styled.footer`
   background: #24292e;
@@ -24,7 +24,7 @@ const Main = styled.main`
 
 const AppWrapper = styled.div`
   display: flex;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;

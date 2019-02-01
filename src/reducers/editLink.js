@@ -21,7 +21,10 @@ const editLinkReducer = (state: State = initialState, action: EditLinkActions): 
   switch (action.type) {
     case EDIT_LINK_REQUESTED:
       return {
-        ...state, error: '', loading: true, result: '',
+        ...state,
+        error: '',
+        loading: true,
+        result: '',
       };
     case EDIT_LINK_SUCCEEDED:
       return { ...state, loading: false, result: action.payload };

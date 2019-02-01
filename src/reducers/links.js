@@ -18,7 +18,10 @@ const linksReducer = (state: State = initialState, action: LinksActions): State 
   switch (action.type) {
     case LINKS_LOAD_REQUESTED:
       return {
-        ...state, data: null, error: '', loading: true,
+        ...state,
+        data: null,
+        error: '',
+        loading: true,
       };
     case LINKS_LOAD_FAILED:
       return {

@@ -17,7 +17,10 @@ const linkCreatorReducer = (state: State = initialState, action: LinkCreatorActi
   switch (action.type) {
     case CREATE_LINK_REQUESTED:
       return {
-        ...state, result: '', error: '', loading: true,
+        ...state,
+        result: '',
+        error: '',
+        loading: true,
       };
     case CREATE_LINK_FAILED:
       return {

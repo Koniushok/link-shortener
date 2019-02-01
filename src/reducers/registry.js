@@ -13,7 +13,10 @@ const registryReducer = (state: State = initialState, action: RegistryActions): 
   switch (action.type) {
     case REGISTRY_REQUESTED:
       return {
-        ...state, error: '', result: '', loading: true,
+        ...state,
+        error: '',
+        result: '',
+        loading: true,
       };
     case REGISTRY_SUCCEEDED:
       return { ...state, loading: false, result: action.payload };

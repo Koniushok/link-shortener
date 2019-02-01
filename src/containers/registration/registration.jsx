@@ -144,7 +144,6 @@ class Registration extends Component<Props, State> {
               onChange={this.handleChange}
             />
             <Button alignRight disabled={loading}>
-
               Sign up
             </Button>
           </Form>

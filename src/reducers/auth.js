@@ -22,7 +22,10 @@ const authReducer = (state: State = initialState, action: AuthActions): State =>
   switch (action.type) {
     case AUTH_REQUESTED:
       return {
-        ...state, status: false, error: '', loading: true,
+        ...state,
+        status: false,
+        error: '',
+        loading: true,
       };
     case AUTH_SUCCEEDED:
       return { ...state, status: true, loading: false };

@@ -6,25 +6,25 @@ export type Link = {
   shortLink: string,
   passage: number,
   tags: Array<string>,
-  description: string
+  description: string,
 };
 
 export type LinkCreate = {
   title: string,
   url: string,
   description: string,
-  tags: Array<string>
+  tags: Array<string>,
 };
 
 export type Profile = {
   loginName: string,
   name: string,
-  surname: string
+  surname: string,
 };
 
 export type RegistryProfile = {
   loginName: string,
   name: string,
   surname: string,
-  password: string
+  password: string,
 };

@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React from 'react';
 
 const Home = () => <p>Home</p>;
 

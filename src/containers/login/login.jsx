@@ -126,7 +126,6 @@ class Authorization extends Component<Props, State> {
               onChange={this.handleChange}
             />
             <Button alignRight disabled={loading}>
-
               Log in
             </Button>
           </Form>

@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 // @flow
-import React, { Fragment } from "react";
-import styled, { css } from "styled-components";
-import { NavLink as Link } from "react-router-dom";
-import { MAIN_YELLOW } from "../../constants/color";
+import React, { Fragment } from 'react';
+import styled, { css } from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
+import { MAIN_YELLOW } from '../../constants/color';
 
 const linkStyle = css`
   cursor: pointer;
@@ -20,13 +20,13 @@ const linkStyle = css`
     color: ${MAIN_YELLOW};
   }
   :hover {
-    background: "#eebd0";
+    background: '#eebd0';
     color: ${MAIN_YELLOW};
   }
 `;
 
 const NavLink = styled(Link).attrs({
-  activeClassName: "selected"
+  activeClassName: 'selected',
 })`
   ${linkStyle}
 `;
