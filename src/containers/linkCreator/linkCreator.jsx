@@ -37,7 +37,11 @@ class LinkCreator extends Component<Props> {
         {result && <Alert type="success">{result}</Alert>}
         <FormWrapper>
           <h1>Create link</h1>
-          <LinkForm loading={loading} onSubmit={this.handleSubmit} />
+          <LinkForm
+            loading={loading}
+            onSubmit={this.handleSubmit}
+            buttonLabel="Create"
+          />
         </FormWrapper>
       </Fragment>
     );

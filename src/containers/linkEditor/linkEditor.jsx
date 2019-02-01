@@ -12,8 +12,7 @@ const FormWrapper = styled.section`
   justify-content: center;
   align-items: center;
   form {
-    width: 100%;
-    max-width: 400px;
+    width: 60vw;
   }
 `;
 
@@ -53,6 +52,7 @@ class LinkEditor extends Component<Props> {
               loading={editLoading}
               onSubmit={this.handleSubmit}
               linkData={link}
+              buttonLabel="Save"
             />
           )}
         </FormWrapper>
