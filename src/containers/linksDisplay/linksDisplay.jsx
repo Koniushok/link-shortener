@@ -3,18 +3,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import TableLink from "./tableLink";
 import TableList from "./tableList";
+import ControlPanel from "./controlPanel";
 import Alert from "../../components/alert";
 import Modal from "../../components/modal";
 import LinkDisplay from "../linkDisplay";
 import LinkEditor from "../linkEditor";
-import ControlPanel, {
-  NavLink,
-  ResetIndicator,
-  ResetButton,
-  TableTypeButton,
-  ListTypeButton
-} from "./controlPanel";
 import { type Link } from "../../types";
+import displayType, { type DisplayType } from "../../constants/display";
 
 const DisplayWrapper = styled.div`
   width: 100%;
@@ -29,7 +24,7 @@ type Props = {
   typeLoad: "my" | "all"
 };
 type State = {
-  typeDisplay: "table" | "list",
+  typeDisplay: DisplayType,
   selectedLinkID: string,
   editLinkID: string
 };
@@ -40,7 +35,7 @@ class LinksDisplay extends Component<Props, State> {
   }
 
   state = {
-    typeDisplay: "table",
+    typeDisplay: displayType.TABLE,
     selectedLinkID: "",
     editLinkID: ""
   };
@@ -52,11 +47,11 @@ class LinksDisplay extends Component<Props, State> {
   }
 
   typeDisplayTable = () => {
-    this.setState({ typeDisplay: "table" });
+    this.setState({ typeDisplay: displayType.TABLE });
   };
 
   typeDisplayList = () => {
-    this.setState({ typeDisplay: "list" });
+    this.setState({ typeDisplay: displayType.LIST });
   };
 
   loadLinks = () => {
@@ -86,34 +81,20 @@ class LinksDisplay extends Component<Props, State> {
     return (
       <DisplayWrapper>
         {error && <Alert type="error">{error}</Alert>}
-        <ControlPanel>
-          <nav>
-            <NavLink to="/links/my">My links</NavLink>
-            <NavLink to="/links/all">All links</NavLink>
-          </nav>
-          <div>
-            {loading ? (
-              <ResetIndicator />
-            ) : (
-              <ResetButton onClick={this.loadLinks} />
-            )}
-            <TableTypeButton
-              onClick={this.typeDisplayTable}
-              enabled={typeDisplay === "table"}
-            />
-            <ListTypeButton
-              onClick={this.typeDisplayList}
-              enabled={typeDisplay === "list"}
-            />
-          </div>
-        </ControlPanel>
-        {typeDisplay === "table" && (
+        <ControlPanel
+          HandlerLoadLinks={this.loadLinks}
+          typeDisplayTable={this.typeDisplayTable}
+          typeDisplayList={this.typeDisplayList}
+          typeDisplay={typeDisplay}
+          loading={loading}
+        />
+        {typeDisplay === displayType.TABLE && (
           <TableLink
             linksList={linksList}
             handelItemClick={this.handelItemClick}
           />
         )}
-        {typeDisplay === "list" && (
+        {typeDisplay === displayType.LIST && (
           <TableList
             linksList={linksList}
             handelItemClick={this.handelItemClick}
