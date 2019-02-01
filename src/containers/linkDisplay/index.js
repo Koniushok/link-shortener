@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import { fetchLink } from "../../actions/link";
+import { fetchLinkRequest } from "../../actions/link";
 import LinkDisplay from "./linkDisplay";
 import { type State } from "../../reducers";
 
@@ -10,7 +10,7 @@ const mapStateToProps = ({ link }: State) => ({
   loading: link.loading
 });
 
-const mapDispatchToProps = { fetchLink };
+const mapDispatchToProps = { fetchLink: fetchLinkRequest };
 
 export default connect(
   mapStateToProps,

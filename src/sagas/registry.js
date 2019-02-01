@@ -2,17 +2,15 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import {
-  registryRequest,
   registrySuccess,
   registryError,
-  type Registry
+  type RegistryRequest
 } from "../actions/registry";
-import { REGISTRY } from "../constants/actionTypes";
+import { REGISTRY_REQUESTED } from "../constants/actionTypes";
 import { createProfile } from "../api";
 
-export function* register(action: Registry): Saga<void> {
+export function* register(action: RegistryRequest): Saga<void> {
   try {
-    yield put(registryRequest());
     const result = yield call(createProfile, action.payload);
     yield put(registrySuccess(result));
   } catch (error) {
@@ -21,5 +19,5 @@ export function* register(action: Registry): Saga<void> {
 }
 
 export default function* watchCreateProfile(): any {
-  yield takeLatest(REGISTRY, register);
+  yield takeLatest(REGISTRY_REQUESTED, register);
 }

@@ -3,16 +3,14 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import {
   fetchLinkError,
-  fetchLinkRequest,
   fetchLinkSuccess,
-  type FetchLink
+  type FetchLinkRequest
 } from "../actions/link";
-import { FETCH_LINK } from "../constants/actionTypes";
+import { FETCH_LINK_REQUESTED } from "../constants/actionTypes";
 import { getLink } from "../api";
 
-export function* fetchLink(action: FetchLink): Saga<void> {
+export function* fetchLink(action: FetchLinkRequest): Saga<void> {
   try {
-    yield put(fetchLinkRequest());
     const link = yield call(getLink, action.payload);
     yield put(fetchLinkSuccess(link));
   } catch (error) {
@@ -21,5 +19,5 @@ export function* fetchLink(action: FetchLink): Saga<void> {
 }
 
 export default function* watchFetchLink(): any {
-  yield takeLatest(FETCH_LINK, fetchLink);
+  yield takeLatest(FETCH_LINK_REQUESTED, fetchLink);
 }

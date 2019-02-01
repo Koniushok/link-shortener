@@ -1,8 +1,8 @@
 // @flow
 import {
+  LOGIN,
   AUTH_DISABLE,
   AUTH_FAILED,
-  AUTH_REQUESTED,
   AUTH_SUCCEEDED
 } from "../constants/actionTypes";
 import { type AuthActions } from "../actions/auth";
@@ -23,7 +23,7 @@ const authReducer = (
   action: AuthActions
 ): State => {
   switch (action.type) {
-    case AUTH_REQUESTED:
+    case LOGIN:
       return { ...state, status: false, error: "", loading: true };
     case AUTH_SUCCEEDED:
       return { ...state, status: true, loading: false };

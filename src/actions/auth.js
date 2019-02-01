@@ -4,7 +4,6 @@ import {
   LOGIN,
   AUTH_DISABLE,
   AUTH_FAILED,
-  AUTH_REQUESTED,
   AUTH_SUCCEEDED
 } from "../constants/actionTypes";
 
@@ -14,7 +13,6 @@ export type Login = {
 };
 export type Logout = { type: typeof LOGOUT };
 export type AuthDisable = { type: typeof AUTH_DISABLE };
-export type AuthRequest = { type: typeof AUTH_REQUESTED };
 export type AuthSuccess = {
   type: typeof AUTH_SUCCEEDED
 };
@@ -28,7 +26,6 @@ export const login = (password: string, loginName: string): Login => ({
 });
 export const logout = (): Logout => ({ type: LOGOUT });
 export const authDisable = (): AuthDisable => ({ type: AUTH_DISABLE });
-export const authRequest = (): AuthRequest => ({ type: AUTH_REQUESTED });
 export const authSuccess = (): AuthSuccess => ({
   type: AUTH_SUCCEEDED
 });
@@ -41,6 +38,5 @@ export type AuthActions =
   | Login
   | Logout
   | AuthDisable
-  | AuthRequest
   | AuthSuccess
   | AuthError;

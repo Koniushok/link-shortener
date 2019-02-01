@@ -2,7 +2,6 @@
 import { put, call, all, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import {
-  authRequest,
   authSuccess,
   authError,
   authDisable,
@@ -13,7 +12,6 @@ import { login, storeItem, removeItem, getItem } from "../api";
 
 export function* authorize(action: Login): Saga<void> {
   try {
-    yield put(authRequest());
     const token: string = yield call(
       login,
       action.payload.password,

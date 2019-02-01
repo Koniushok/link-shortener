@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 import { editLinkRequested } from "../../actions/editLink";
-import { fetchLink } from "../../actions/link";
+import { fetchLinkRequest } from "../../actions/link";
 import LinkEditor from "./linkEditor";
 import { type State } from "../../reducers";
 
@@ -13,7 +13,7 @@ const mapStateToProps = ({ editLink, link }: State) => ({
   fetchError: link.error
 });
 
-const mapDispatchToProps = { editLinkRequested, fetchLink };
+const mapDispatchToProps = { editLinkRequested, fetchLink: fetchLinkRequest };
 
 export default connect(
   mapStateToProps,

@@ -3,16 +3,14 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import type { Saga } from "redux-saga";
 import {
   createLinkFailed,
-  createLinkRequested,
   createLinkSucceeded,
-  type CreateLink
+  type CreateLinkRequested
 } from "../actions/linkCreator";
-import { CREATE_LINK } from "../constants/actionTypes";
+import { CREATE_LINK_REQUESTED } from "../constants/actionTypes";
 import { createLink } from "../api";
 
-export function* create(action: CreateLink): Saga<void> {
+export function* create(action: CreateLinkRequested): Saga<void> {
   try {
-    yield put(createLinkRequested());
     const result = yield call(createLink, action.payload);
     yield put(createLinkSucceeded(result));
   } catch (error) {
@@ -21,5 +19,5 @@ export function* create(action: CreateLink): Saga<void> {
 }
 
 export default function* watchCreateLink(): any {
-  yield takeLatest(CREATE_LINK, create);
+  yield takeLatest(CREATE_LINK_REQUESTED, create);
 }
