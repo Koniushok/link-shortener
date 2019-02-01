@@ -46,25 +46,33 @@ class LinkForm extends Component<Props, State> {
       delete link.shortLink;
       delete link.id;
       delete link.passage;
-      this.setState({ linkData: link });
+      this.state = {
+        linkData: link,
+        errors: {
+          title: "",
+          url: "",
+          description: "",
+          tag: ""
+        }
+      };
+    } else {
+      this.state = {
+        linkData: {
+          url: "",
+          description: "",
+          tag: "",
+          title: "",
+          tags: []
+        },
+        errors: {
+          title: "",
+          url: "",
+          description: "",
+          tag: ""
+        }
+      };
     }
   }
-
-  state = {
-    linkData: {
-      url: "",
-      description: "",
-      tag: "",
-      title: "",
-      tags: []
-    },
-    errors: {
-      title: "",
-      url: "",
-      description: "",
-      tag: ""
-    }
-  };
 
   validate = () => {
     const errors = {
