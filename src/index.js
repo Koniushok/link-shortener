@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 // @flow
 import React from 'react';
 import { Provider } from 'react-redux';
