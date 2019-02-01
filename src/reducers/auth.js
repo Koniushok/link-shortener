@@ -7,11 +7,11 @@ import {
 } from "../constants/actionTypes";
 import { type AuthActions } from "../actions/auth";
 
-export type State = {
+export type State = $ReadOnly<{
   status: boolean,
   error: string,
   loading: boolean
-};
+}>;
 const initialState: State = {
   status: false,
   error: "",

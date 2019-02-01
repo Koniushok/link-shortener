@@ -6,11 +6,11 @@ import {
 } from "../constants/actionTypes";
 import { type LinkCreatorActions } from "../actions/linkCreator";
 
-export type State = {
-  +result: string,
-  +error: string,
-  +loading: boolean
-};
+export type State = $ReadOnly<{
+  result: string,
+  error: string,
+  loading: boolean
+}>;
 const initialState: State = { result: "", error: "", loading: false };
 
 const linkCreatorReducer = (

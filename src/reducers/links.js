@@ -7,11 +7,11 @@ import {
 import { type LinksActions } from "../actions/links";
 import { type Link } from "../types";
 
-export type State = {
-  +data: ?Array<Link>,
-  +error: string,
-  +loading: boolean
-};
+export type State = $ReadOnly<{
+  data: ?Array<Link>,
+  error: string,
+  loading: boolean
+}>;
 const initialState: State = { data: null, error: "", loading: false };
 
 const linksReducer = (

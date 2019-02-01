@@ -6,11 +6,11 @@ import {
 } from "../constants/actionTypes";
 import { type RegistryActions } from "../actions/registry";
 
-export type State = {
-  +error: string,
-  +loading: boolean,
-  +result: string
-};
+export type State = $ReadOnly<{
+  error: string,
+  loading: boolean,
+  result: string
+}>;
 const initialState: State = { error: "", result: "", loading: false };
 
 const registryReducer = (
