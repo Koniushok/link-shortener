@@ -19,8 +19,8 @@ type Props = {
   error: string,
   linksList: ?Array<Link>,
   loading: boolean,
-  loadAllLinks: () => void,
-  loadMyLinks: () => void,
+  linksLoadAll: () => void,
+  linksLoadMy: () => void,
   typeLoad: 'my' | 'all',
 };
 type State = {
@@ -57,10 +57,10 @@ class LinksDisplay extends Component<Props, State> {
   loadLinks = () => {
     switch (this.props.typeLoad) {
       case 'all':
-        this.props.loadAllLinks();
+        this.props.linksLoadAll();
         break;
       case 'my':
-        this.props.loadMyLinks();
+        this.props.linksLoadMy();
         break;
       default:
         break;

@@ -1,9 +1,10 @@
 // @flow
 import { connect } from 'react-redux';
-import { registry as registryAction } from '../../actions/registry';
+import { registryRequest as registryAction } from '../../actions/registry';
 import Registration from './registration';
+import { type State } from '../../reducers';
 
-const mapStateToProps = ({ registry }) => ({
+const mapStateToProps = ({ registry }: State) => ({
   result: registry.result,
   error: registry.error,
   loading: registry.loading,

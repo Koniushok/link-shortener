@@ -1,17 +1,17 @@
 // @flow
 import {
+  LOGIN,
   AUTH_DISABLE,
   AUTH_FAILED,
-  AUTH_REQUESTED,
   AUTH_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type AuthActions } from '../actions/auth';
 
-export type State = {
+export type State = $ReadOnly<{
   status: boolean,
   error: string,
   loading: boolean,
-};
+}>;
 const initialState: State = {
   status: false,
   error: '',
@@ -20,7 +20,7 @@ const initialState: State = {
 
 const authReducer = (state: State = initialState, action: AuthActions): State => {
   switch (action.type) {
-    case AUTH_REQUESTED:
+    case LOGIN:
       return {
         ...state,
         status: false,
