@@ -35,7 +35,6 @@ class LinkEditor extends Component<Props> {
 
   handleSubmit = (link: LinkCreate) => {
     this.props.editLinkRequested({ ...this.props.link, ...link });
-    console.log({ ...this.props.link, ...link });
   };
 
   render() {

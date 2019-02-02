@@ -42,7 +42,6 @@ const Button = styled(Close)`
     cursor: pointer;
   }
 `;
-
 type Props = {
   children: string,
   type: AlertType,
@@ -54,5 +53,9 @@ const Alert = ({ children, type, handlerClose }: Props) => (
     {handlerClose && <Button onClick={handlerClose} />}
   </AlertWrapper>
 );
+
+Alert.defaultProps = {
+  handlerClose: undefined,
+};
 
 export default Alert;

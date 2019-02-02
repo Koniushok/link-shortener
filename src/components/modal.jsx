@@ -51,6 +51,10 @@ type Props = {
 };
 
 class LinkModal extends Component<Props> {
+  static defaultProps = {
+    children: null,
+  };
+
   handelClickModal = (e: SyntheticEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (e.target === e.currentTarget) {

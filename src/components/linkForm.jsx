@@ -40,6 +40,10 @@ class LinkForm extends Component<Props, State> {
     tags: Joi.array(),
   };
 
+  static defaultProps = {
+    linkData: undefined,
+  };
+
   constructor(props: Props) {
     super(props);
     if (this.props.linkData) {

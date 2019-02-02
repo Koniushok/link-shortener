@@ -26,7 +26,6 @@ type Props = {
 class LinkCreator extends Component<Props> {
   handleSubmit = (link: LinkCreate) => {
     this.props.createLink(link);
-    console.log(link);
   };
 
   render() {
