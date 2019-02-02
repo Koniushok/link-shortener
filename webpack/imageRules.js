@@ -5,21 +5,21 @@ module.exports = () => ({
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "images/[name].[ext]"
-            }
+              name: 'images/[name].[ext]',
+            },
           },
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               webp: {
-                quality: 75
-              }
-            }
-          }
-        ]
-      }
-    ]
-  }
+                quality: 75,
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 });

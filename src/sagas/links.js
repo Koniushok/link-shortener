@@ -1,14 +1,14 @@
 // @flow
-import { put, call, takeLatest } from "redux-saga/effects";
-import type { Saga } from "redux-saga";
+import { put, call, takeLatest } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
 import {
   linksLoadError,
   linksLoadRequest,
   linksLoadSuccess,
-  type LinksActions
-} from "../actions/links";
-import { LINKS_LOAD_ALL, LINKS_LOAD_MY } from "../constants/actionTypes";
-import { getAllLinks, getMyLinks } from "../api";
+  type LinksActions,
+} from '../actions/links';
+import { LINKS_LOAD_ALL, LINKS_LOAD_MY } from '../constants/actionTypes';
+import { getAllLinks, getMyLinks } from '../api';
 
 export function* linksLoad(action: LinksActions): Saga<void> {
   try {

@@ -1,28 +1,28 @@
 // @flow
-import React, { type ComponentType } from "react";
-import { Close } from "styled-icons/material/Close";
-import styled from "styled-components";
+import React, { type ComponentType } from 'react';
+import { Close } from 'styled-icons/material/Close';
+import styled from 'styled-components';
 
-type AlertType = "error" | "success";
+type AlertType = 'error' | 'success';
 
 function getBackground(type: AlertType): string {
   switch (type) {
-    case "error":
-      return "#f8d7da";
-    case "success":
-      return "#d4edda";
+    case 'error':
+      return '#f8d7da';
+    case 'success':
+      return '#d4edda';
     default:
-      return "#fff";
+      return '#fff';
   }
 }
 function getFontColor(type: AlertType): string {
   switch (type) {
-    case "error":
-      return "#721c24";
-    case "success":
-      return "#155724";
+    case 'error':
+      return '#721c24';
+    case 'success':
+      return '#155724';
     default:
-      return "#ccc";
+      return '#ccc';
   }
 }
 const AlertWrapper: ComponentType<{ type: AlertType }> = styled.div`
@@ -42,11 +42,10 @@ const Button = styled(Close)`
     cursor: pointer;
   }
 `;
-
 type Props = {
   children: string,
   type: AlertType,
-  handlerClose?: () => {}
+  handlerClose?: () => {},
 };
 const Alert = ({ children, type, handlerClose }: Props) => (
   <AlertWrapper type={type}>
@@ -54,5 +53,9 @@ const Alert = ({ children, type, handlerClose }: Props) => (
     {handlerClose && <Button onClick={handlerClose} />}
   </AlertWrapper>
 );
+
+Alert.defaultProps = {
+  handlerClose: undefined,
+};
 
 export default Alert;

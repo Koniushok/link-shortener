@@ -1,9 +1,9 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 function getInputColor(error: boolean): string {
-  return error ? "#ff0000a1" : "#00d3ffa1";
+  return error ? '#ff0000a1' : '#00d3ffa1';
 }
 
 const Input = styled.input`
@@ -13,7 +13,7 @@ const Input = styled.input`
   font-size: 19px;
   padding: 9px 13px;
   background-color: #fff;
-  border: 1px solid ${props => (props.error ? "#ff0000" : "#ced4da")};
+  border: 1px solid ${props => (props.error ? '#ff0000' : '#ced4da')};
   border-radius: 5px;
   :focus {
     outline: 1px solid ${props => getInputColor(props.error)};
@@ -25,11 +25,11 @@ const Input = styled.input`
 type Props = {
   type?: string,
   value?: string | string[] | number,
-  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void
+  onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
 } & {
   name: string,
   label: string,
-  error?: string
+  error?: string,
 };
 
 const Label = styled.label`
@@ -50,12 +50,7 @@ const LabelError = styled.div`
 `;
 
 const InputLabel = ({
-  name,
-  label,
-  error = "",
-  type,
-  onChange,
-  value
+  name, label, error = '', type, onChange, value,
 }: Props) => (
   <div>
     <Label htmlFor={name}>{label}</Label>

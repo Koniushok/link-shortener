@@ -1,11 +1,11 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import Joi from "joi-browser";
-import Tags from "./tags";
-import Input from "./input";
-import Button from "./button";
-import Form from "./form";
-import { type LinkCreate, type Link } from "../types";
+import React, { Component, Fragment } from 'react';
+import Joi from 'joi-browser';
+import Tags from './tags';
+import Input from './input';
+import Button from './button';
+import Form from './form';
+import { type LinkCreate, type Link } from '../types';
 
 type LinkData = LinkCreate & { tag: string };
 type State = {
@@ -14,81 +14,85 @@ type State = {
     title: string,
     url: string,
     description: string,
-    tag: string
-  }
+    tag: string,
+  },
 };
 type Props = {
   buttonLabel: string,
   linkData?: Link,
   onSubmit: (linkData: LinkCreate) => void,
-  loading: boolean
+  loading: boolean,
 };
 class LinkForm extends Component<Props, State> {
   schema = {
     title: Joi.string()
       .required()
-      .label("Title"),
+      .label('Title'),
     url: Joi.string()
-      .uri({ scheme: ["http", "https"] })
-      .label("Link"),
+      .uri({ scheme: ['http', 'https'] })
+      .label('Link'),
     description: Joi.string()
       .required()
-      .label("Description"),
+      .label('Description'),
     tag: Joi.string()
-      .allow("")
-      .label("Tag"),
-    tags: Joi.array()
+      .allow('')
+      .label('Tag'),
+    tags: Joi.array(),
+  };
+
+  static defaultProps = {
+    linkData: undefined,
   };
 
   constructor(props: Props) {
     super(props);
     if (this.props.linkData) {
-      const link = { ...this.props.linkData, tag: "" };
+      const link = { ...this.props.linkData, tag: '' };
       delete link.shortLink;
       delete link.id;
       delete link.passage;
       this.state = {
         linkData: link,
         errors: {
-          title: "",
-          url: "",
-          description: "",
-          tag: ""
-        }
+          title: '',
+          url: '',
+          description: '',
+          tag: '',
+        },
       };
     } else {
       this.state = {
         linkData: {
-          url: "",
-          description: "",
-          tag: "",
-          title: "",
-          tags: []
+          url: '',
+          description: '',
+          tag: '',
+          title: '',
+          tags: [],
         },
         errors: {
-          title: "",
-          url: "",
-          description: "",
-          tag: ""
-        }
+          title: '',
+          url: '',
+          description: '',
+          tag: '',
+        },
       };
     }
   }
 
   validate = () => {
     const errors = {
-      title: "",
-      url: "",
-      description: "",
-      tag: ""
+      title: '',
+      url: '',
+      description: '',
+      tag: '',
     };
     const { error } = Joi.validate(this.state.linkData, this.schema, {
-      abortEarly: false
+      abortEarly: false,
     });
     if (!error) {
       return errors;
     }
-    error.details.forEach(item => {
+    error.details.forEach((item) => {
       errors[item.path[0]] = item.message;
     });
     return errors;
@@ -105,18 +109,18 @@ class LinkForm extends Component<Props, State> {
 
   addTag = (linkData: LinkData) => {
     const { tag, tags } = linkData;
-    if (tag[tag.length - 1] === " ") {
-      const newTag = tag.replace(/\s/g, "");
+    if (tag[tag.length - 1] === ' ') {
+      const newTag = tag.replace(/\s/g, '');
       if (tags.indexOf(newTag) === -1) {
         tags.push(newTag);
       }
-      return { ...linkData, tags, tag: " " };
+      return { ...linkData, tags, tag: ' ' };
     }
     return linkData;
   };
 
   deleteTag = (tag: string) => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const linkData = { ...prevState.linkData };
       const index = linkData.tags.indexOf(tag);
       if (index !== -1) {
@@ -128,10 +132,10 @@ class LinkForm extends Component<Props, State> {
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let linkData = { ...prevState.linkData };
       linkData[input.name] = input.value;
-      if (input.name === "tag") {
+      if (input.name === 'tag') {
         linkData = this.addTag(linkData);
       }
       return { linkData };
@@ -176,9 +180,7 @@ class LinkForm extends Component<Props, State> {
             value={linkData.tag}
             onChange={this.handleChange}
           />
-          {!!linkData.tags.length && (
-            <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />
-          )}
+          {!!linkData.tags.length && <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />}
           <Input
             label="Description"
             name="description"

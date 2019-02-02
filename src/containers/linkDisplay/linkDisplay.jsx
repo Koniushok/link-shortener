@@ -1,14 +1,14 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import { type Link } from "../../types";
-import LinkInf from "../../components/infoLink";
-import Alert from "../../components/alert";
+import React, { Component, Fragment } from 'react';
+import { type Link } from '../../types';
+import LinkInf from '../../components/infoLink';
+import Alert from '../../components/alert';
 
 type Props = {
   linkId: string,
   link: Link,
   error: string,
-  fetchLink: (id: string) => void
+  fetchLink: (id: string) => void,
 };
 
 class LinkDisplay extends Component<Props> {

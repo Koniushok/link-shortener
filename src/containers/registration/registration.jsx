@@ -1,12 +1,12 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import Joi from "joi-browser";
-import Input from "../../components/input";
-import Button from "../../components/button";
-import Form from "../../components/form";
-import Alert from "../../components/alert";
-import { type RegistryProfile } from "../../types";
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import Joi from 'joi-browser';
+import Input from '../../components/input';
+import Button from '../../components/button';
+import Form from '../../components/form';
+import Alert from '../../components/alert';
+import { type RegistryProfile } from '../../types';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -22,65 +22,65 @@ type UserErrors = {
   loginName: string,
   name: string,
   surname: string,
-  password: string
+  password: string,
 };
 type State = {
   userData: RegistryProfile,
-  errors: UserErrors
+  errors: UserErrors,
 };
 type Props = {
   result: string,
   error: string,
   loading: boolean,
-  createProfile: (profile: RegistryProfile) => void
+  createProfile: (profile: RegistryProfile) => void,
 };
 class Registration extends Component<Props, State> {
   state = {
     userData: {
-      loginName: "",
-      name: "",
-      surname: "",
-      password: ""
+      loginName: '',
+      name: '',
+      surname: '',
+      password: '',
     },
     errors: {
-      loginName: "",
-      name: "",
-      surname: "",
-      password: ""
-    }
+      loginName: '',
+      name: '',
+      surname: '',
+      password: '',
+    },
   };
 
   schema = {
     loginName: Joi.string()
       .required()
       .min(6)
-      .label("LoginName"),
+      .label('LoginName'),
     name: Joi.string()
       .required()
-      .label("Name"),
+      .label('Name'),
     surname: Joi.string()
       .required()
-      .label("Surname"),
+      .label('Surname'),
     password: Joi.string()
       .required()
       .min(8)
-      .label("Password")
+      .label('Password'),
   };
 
   validate = (): UserErrors => {
     const errors = {
-      loginName: "",
-      name: "",
-      surname: "",
-      password: ""
+      loginName: '',
+      name: '',
+      surname: '',
+      password: '',
     };
     const { error } = Joi.validate(this.state.userData, this.schema, {
-      abortEarly: false
+      abortEarly: false,
     });
     if (!error) {
       return errors;
     }
-    error.details.forEach(item => {
+    error.details.forEach((item) => {
       errors[item.path[0]] = item.message;
     });
     return errors;
@@ -97,7 +97,7 @@ class Registration extends Component<Props, State> {
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const { currentTarget: input } = e;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const userData = { ...prevState.userData };
       userData[input.name] = input.value;
       return { userData };

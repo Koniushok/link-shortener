@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./tableLink";
+export { default } from './tableLink';

@@ -1,20 +1,15 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier", "plugin:flowtype/recommended"],
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
   "rules": {
-    "prettier/prettier": "error",
-    "strict": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "linebreak-style": 0,
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "react/destructuring-assignment": [
-      0,
-      "always",
-      { "ignoreClassFields": true }
-    ]
+    "react/prop-types": 0,
+    "react/destructuring-assignment": 0,
+    "import/no-extraneous-dependencies": 0
   },
   "globals": {
+    "localStorage": true,
+    "window": true,
     "document": false
   },
-  "plugins": ["prettier", "import", "jsx-a11y", "react"]
+  "plugins": ["import", "jsx-a11y", "react", "flowtype"]
 }

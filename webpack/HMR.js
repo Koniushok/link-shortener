@@ -1,8 +1,8 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 
 module.exports = () => ({
   devServer: {
-    hot: true
+    hot: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 });

@@ -1,7 +1,7 @@
 // @flow
-import React, { PureComponent } from "react";
-import styled from "styled-components";
-import { XCircle } from "styled-icons/boxicons-regular/XCircle";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+import { XCircle } from 'styled-icons/boxicons-regular/XCircle';
 
 const TagsContainer = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const ButtonDelete = styled(XCircle)`
 
 type Props = {
   tag: string,
-  handleDelete: ?(tag: string) => void
+  handleDelete: ?(tag: string) => void,
 };
 
 export class Tag extends PureComponent<Props> {
@@ -62,7 +62,7 @@ export class Tag extends PureComponent<Props> {
 }
 type TagsProps = {
   tagList: Array<string>,
-  handleDelete: ?(tag: string) => void
+  handleDelete: ?(tag: string) => void,
 };
 
 const Tags = ({ tagList, handleDelete }: TagsProps) => (

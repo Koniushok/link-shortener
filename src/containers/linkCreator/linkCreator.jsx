@@ -1,9 +1,9 @@
 // @flow
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { type LinkCreate } from "../../types";
-import Alert from "../../components/alert";
-import LinkForm from "../../components/linkForm";
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import { type LinkCreate } from '../../types';
+import Alert from '../../components/alert';
+import LinkForm from '../../components/linkForm';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -21,12 +21,11 @@ type Props = {
   result: string,
   error: string,
   loading: boolean,
-  createLink: (link: LinkCreate) => void
+  createLink: (link: LinkCreate) => void,
 };
 class LinkCreator extends Component<Props> {
   handleSubmit = (link: LinkCreate) => {
     this.props.createLink(link);
-    console.log(link);
   };
 
   render() {
@@ -37,11 +36,7 @@ class LinkCreator extends Component<Props> {
         {result && <Alert type="success">{result}</Alert>}
         <FormWrapper>
           <h1>Create link</h1>
-          <LinkForm
-            loading={loading}
-            onSubmit={this.handleSubmit}
-            buttonLabel="Create"
-          />
+          <LinkForm loading={loading} onSubmit={this.handleSubmit} buttonLabel="Create" />
         </FormWrapper>
       </Fragment>
     );

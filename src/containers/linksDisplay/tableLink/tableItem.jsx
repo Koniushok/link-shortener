@@ -1,9 +1,9 @@
 // @flow
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Delete } from "styled-icons/material/Delete";
-import { Edit } from "styled-icons/fa-solid/Edit";
-import { type Link } from "../../../types";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Delete } from 'styled-icons/material/Delete';
+import { Edit } from 'styled-icons/fa-solid/Edit';
+import { type Link } from '../../../types';
 
 const TableRow = styled.tr`
   & td {
@@ -18,8 +18,8 @@ const TableRow = styled.tr`
 
   :hover {
     cursor: pointer;
-    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
-      0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+      0 1px 3px 1px rgba(60, 64, 67, 0.15);
   }
 `;
 
@@ -51,16 +51,16 @@ const ButtonControl = () => (
 type Props = {
   handelItemClick: (linkId: string) => void,
   link: Link,
-  index: number
+  index: number,
 };
 
 type State = {
-  hover: boolean
+  hover: boolean,
 };
 
 class TableItem extends Component<Props, State> {
   state = {
-    hover: false
+    hover: false,
   };
 
   handelMouseEnter = () => {
@@ -76,7 +76,9 @@ class TableItem extends Component<Props, State> {
   };
 
   render() {
-    const { url, shortLink, passage, tags, description } = this.props.link;
+    const {
+      url, shortLink, passage, tags, description,
+    } = this.props.link;
     return (
       <TableRow
         onMouseEnter={this.handelMouseEnter}

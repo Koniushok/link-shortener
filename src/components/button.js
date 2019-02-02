@@ -1,27 +1,23 @@
 // @flow
-import { type ComponentType } from "react";
-import styled from "styled-components";
+import { type ComponentType } from 'react';
+import styled from 'styled-components';
 
 type Props = {
   alignRight?: boolean,
   alignLeft?: boolean,
-  alignCenter?: boolean
+  alignCenter?: boolean,
 };
 
-function getButtonMargin({
-  alignRight,
-  alignLeft,
-  alignCenter
-}: Props): string {
+function getButtonMargin({ alignRight, alignLeft, alignCenter }: Props): string {
   switch (true) {
     case alignRight:
-      return "0 0 0 auto";
+      return '0 0 0 auto';
     case alignLeft:
-      return "0 auto 0 0";
+      return '0 auto 0 0';
     case alignCenter:
-      return "0 auto";
+      return '0 auto';
     default:
-      return "0";
+      return '0';
   }
 }
 const Button = (styled.button`

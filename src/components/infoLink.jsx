@@ -1,11 +1,11 @@
 // @flow
-import React from "react";
-import styled from "styled-components";
-import { ChartBar } from "styled-icons/fa-regular/ChartBar";
-import { Delete } from "styled-icons/material/Delete";
-import { Edit } from "styled-icons/fa-solid/Edit";
-import Tags from "./tags";
-import { type Link } from "../types";
+import React from 'react';
+import styled from 'styled-components';
+import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
+import { Delete } from 'styled-icons/material/Delete';
+import { Edit } from 'styled-icons/fa-solid/Edit';
+import Tags from './tags';
+import { type Link } from '../types';
 
 const LinkWrapper = styled.div`
   word-break: break-all;

@@ -1,14 +1,14 @@
 // @flow
-import { put, call, takeLatest } from "redux-saga/effects";
-import type { Saga } from "redux-saga";
+import { put, call, takeLatest } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
 import {
   fetchLinkError,
   fetchLinkRequest,
   fetchLinkSuccess,
-  type FetchLink
-} from "../actions/link";
-import { FETCH_LINK } from "../constants/actionTypes";
-import { getLink } from "../api";
+  type FetchLink,
+} from '../actions/link';
+import { FETCH_LINK } from '../constants/actionTypes';
+import { getLink } from '../api';
 
 export function* fetchLink(action: FetchLink): Saga<void> {
   try {

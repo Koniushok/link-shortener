@@ -1,7 +1,7 @@
 // @flow
-import React, { Component, type Node } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import { Close } from "styled-icons/material/Close";
+import React, { Component, type Node } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Close } from 'styled-icons/material/Close';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -47,10 +47,14 @@ const ModalContent = styled.div`
 `;
 type Props = {
   children?: Node,
-  handelClose: () => void
+  handelClose: () => void,
 };
 
 class LinkModal extends Component<Props> {
+  static defaultProps = {
+    children: null,
+  };
+
   handelClickModal = (e: SyntheticEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (e.target === e.currentTarget) {

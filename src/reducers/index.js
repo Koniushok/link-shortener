@@ -1,15 +1,13 @@
 // @flow
-import { combineReducers, type CombinedReducer } from "redux";
-import type { Actions } from "../actions";
-import linksReducers, { type State as LinksState } from "./links";
-import profileReducers, { type State as ProfileState } from "./profile";
-import authReducers, { type State as AuthState } from "./auth";
-import registryReducer, { type State as RegistryState } from "./registry";
-import linkCreatorReducer, {
-  type State as linkCreatorState
-} from "./linkCreator";
-import linkReducers, { type State as LinkState } from "./link";
-import editLinkReducers, { type State as EditLinkState } from "./editLink";
+import { combineReducers, type CombinedReducer } from 'redux';
+import type { Actions } from '../actions';
+import linksReducers, { type State as LinksState } from './links';
+import profileReducers, { type State as ProfileState } from './profile';
+import authReducers, { type State as AuthState } from './auth';
+import registryReducer, { type State as RegistryState } from './registry';
+import linkCreatorReducer, { type State as linkCreatorState } from './linkCreator';
+import linkReducers, { type State as LinkState } from './link';
+import editLinkReducers, { type State as EditLinkState } from './editLink';
 
 export type State = {
   links: LinksState,
@@ -18,7 +16,7 @@ export type State = {
   registry: RegistryState,
   linkCreator: linkCreatorState,
   link: LinkState,
-  editLink: EditLinkState
+  editLink: EditLinkState,
 };
 const reducers = {
   links: linksReducers,
@@ -27,7 +25,7 @@ const reducers = {
   registry: registryReducer,
   linkCreator: linkCreatorReducer,
   link: linkReducers,
-  editLink: editLinkReducers
+  editLink: editLinkReducers,
 };
 
 const rootReducers: CombinedReducer<State, Actions> = combineReducers(reducers);
