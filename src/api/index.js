@@ -1,5 +1,6 @@
 // @flow
 import linksList from './fakeLinkList';
+import { setCookie, deleteCookie, getCookie } from './cookie';
 
 export const getAllLinks = async () => {
   await new Promise(resolve => setTimeout(resolve, 150));
@@ -26,11 +27,14 @@ export const getLink = async (id: string) => {
   return linksList[0];
 };
 
-export const storeItem = async (key: string, value: string) => {
-  localStorage.setItem(key, value);
-};
-export const removeItem = async (key: string) => {
-  localStorage.removeItem(key);
+export const storeToken = async (token: string) => {
+  setCookie('token', token);
 };
 
-export const getItem = async (key: string) => localStorage.getItem(key);
+export const removeToken = async () => {
+  deleteCookie('token');
+};
+
+export const getToken = async () => {
+  getCookie('token');
+};
