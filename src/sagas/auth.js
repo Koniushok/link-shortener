@@ -8,7 +8,7 @@ import {
 } from '../actions/auth';
 import { LOGIN, LOGOUT } from '../constants/actionTypes';
 import {
-  login, storeToken, removeToken, getToken,
+  login, storeToken, removeToken, checkToken,
 } from '../api';
 
 export function* authorize(action: Login): Saga<void> {
@@ -27,7 +27,7 @@ export function* logout(): Saga<void> {
 }
 
 export default function* watchAuth(): any {
-  if (yield getToken()) {
+  if (yield checkToken()) {
     yield put(authSuccess());
   }
 
