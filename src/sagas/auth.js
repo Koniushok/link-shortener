@@ -8,13 +8,13 @@ import {
 } from '../actions/auth';
 import { LOGIN, LOGOUT } from '../constants/actionTypes';
 import {
-  login, storeToken, removeToken, checkToken,
+  login, storeItem, removeItem, getItem,
 } from '../api';
 
 export function* authorize(action: Login): Saga<void> {
   try {
     const token: string = yield call(login, action.payload.password, action.payload.loginName);
-    yield call(storeToken, token);
+    yield call(storeItem, 'token', token);
     yield put(authSuccess());
   } catch (error) {
     yield put(authError(error.message));
@@ -23,11 +23,12 @@ export function* authorize(action: Login): Saga<void> {
 
 export function* logout(): Saga<void> {
   yield put(authDisable());
-  yield call(removeToken);
+  yield call(removeItem, 'token');
 }
 
 export default function* watchAuth(): any {
-  if (yield checkToken()) {
+  const token = yield getItem('token');
+  if (token) {
     yield put(authSuccess());
   }
 

@@ -19,7 +19,6 @@
     "email": "koniushok2000@gmail.com"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "joi-browser": "^13.4.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
