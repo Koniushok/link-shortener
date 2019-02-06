@@ -5,7 +5,7 @@ import Tags from './tags';
 import Input from './input';
 import Button from './button';
 import Form from './form';
-import { type LinkCreate, type Link } from '../types';
+import { type LinkCreate } from '../types';
 
 type LinkData = LinkCreate & { tag: string };
 type State = {
@@ -19,7 +19,7 @@ type State = {
 };
 type Props = {
   buttonLabel: string,
-  linkData?: Link,
+  linkData?: LinkCreate,
   onSubmit: (linkData: LinkCreate) => void,
   loading: boolean,
 };
@@ -46,37 +46,23 @@ class LinkForm extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    if (this.props.linkData) {
-      const link = { ...this.props.linkData, tag: '' };
-      delete link.shortLink;
-      delete link.id;
-      delete link.passage;
-      this.state = {
-        linkData: link,
-        errors: {
-          title: '',
-          url: '',
-          description: '',
-          tag: '',
-        },
-      };
-    } else {
-      this.state = {
-        linkData: {
+    this.state = {
+      linkData: this.props.linkData
+        ? { ...this.props.linkData, tag: '' }
+        : {
           url: '',
           description: '',
           tag: '',
           title: '',
           tags: [],
         },
-        errors: {
-          title: '',
-          url: '',
-          description: '',
-          tag: '',
-        },
-      };
-    }
+      errors: {
+        title: '',
+        url: '',
+        description: '',
+        tag: '',
+      },
+    };
   }
 
   validate = () => {
@@ -96,15 +82,6 @@ class LinkForm extends Component<Props, State> {
       errors[item.path[0]] = item.message;
     });
     return errors;
-  };
-
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const errors = this.validate();
-    this.setState({ errors });
-    if (Object.values(errors).every(error => !error)) {
-      this.props.onSubmit(this.state.linkData);
-    }
   };
 
   addTag = (linkData: LinkData) => {

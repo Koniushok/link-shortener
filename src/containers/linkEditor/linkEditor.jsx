@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { type LinkCreate, type Link } from '../../types';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
+import { editLinkRequested } from '../../actions/editLink';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -23,7 +24,7 @@ type Props = {
   fetchError: string,
   editError: string,
   editLoading: boolean,
-  editLinkRequested: (link: Link) => void,
+  editLinkRequested: typeof editLinkRequested,
   fetchLink: (id: string) => void,
 };
 
@@ -34,7 +35,9 @@ class LinkEditor extends Component<Props> {
   }
 
   handleSubmit = (link: LinkCreate) => {
-    this.props.editLinkRequested({ ...this.props.link, ...link });
+    if (this.props.link) {
+      this.props.editLinkRequested(this.props.link.id, link);
+    }
   };
 
   render() {
@@ -52,7 +55,12 @@ class LinkEditor extends Component<Props> {
             <LinkForm
               loading={editLoading}
               onSubmit={this.handleSubmit}
-              linkData={link}
+              linkData={{
+                title: link.title,
+                url: link.url,
+                description: link.description,
+                tags: link.tags,
+              }}
               buttonLabel="Save"
             />
           )}
