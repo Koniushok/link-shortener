@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { logout as logoutActions } from '../../actions/auth';
+import ProtectedRoute from '../../components/protectedRoute';
 import Home from '../home';
 import Login from '../login';
 import Registration from '../registration';
@@ -32,28 +33,45 @@ const AppWrapper = styled.div`
   min-height: 100vh;
 `;
 
-const App = () => (
+type Props = {
+  logout: typeof logoutActions,
+  auth: boolean,
+};
+const App = ({ logout, auth }: Props) => (
   <AppWrapper>
-    <Header />
+    <Header handleLogout={logout} auth={auth} />
     <Switch>
       <Route path="/not-found" component={NotFound} />
       <Main>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <ProtectedRoute auth={auth} path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
-          <Route
+          <ProtectedRoute
+            auth={auth}
             path="/link/edit/:id"
             render={({ match }) => <LinkEditor linkId={match.params.id} />}
           />
-          <Route path="/links/my" exact render={() => <LinksDisplay typeLoad="my" />} />
-          <Route path="/links/all" exact render={() => <LinksDisplay typeLoad="all" />} />
-          <Route
+          <ProtectedRoute
+            auth={auth}
+            path="/links/my"
+            exact
+            render={() => <LinksDisplay typeLoad="my" />}
+          />
+          <ProtectedRoute
+            auth={auth}
+            path="/links/all"
+            exact
+            render={() => <LinksDisplay typeLoad="all" />}
+          />
+          <ProtectedRoute
+            auth={auth}
             path="/links/my/:id"
             exact
             render={({ match }) => <LinkDisplay typeLink="my" linkId={match.params.id} />}
           />
-          <Route
+          <ProtectedRoute
+            auth={auth}
             path="/links/all/:id"
             exact
             render={({ match }) => <LinkDisplay typeLink="all" linkId={match.params.id} />}
@@ -63,9 +81,8 @@ const App = () => (
         </Switch>
       </Main>
     </Switch>
-
     <Footer />
   </AppWrapper>
 );
 
-export default hot(App);
+export default App;

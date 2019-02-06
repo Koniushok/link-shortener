@@ -4,9 +4,12 @@ import { Route, Redirect } from 'react-router-dom';
 import type { Node } from 'react';
 import type { RouteProps, ContextRouter } from 'react-router-dom';
 
-const auth = false;
-
-const ProtectedRoute = ({ component: Component, render, ...rest }: RouteProps) => (
+const ProtectedRoute = ({
+  auth,
+  component: Component,
+  render,
+  ...rest
+}: RouteProps & { auth: boolean }) => (
   <Route
     {...rest}
     render={(props: ContextRouter): Node => {
