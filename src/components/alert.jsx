@@ -26,7 +26,11 @@ function getFontColor(type: AlertType): string {
   }
 }
 const AlertWrapper: ComponentType<{ type: AlertType }> = styled.div`
-  position: relative;
+  position: absolute;
+  left: 0;
+  box-sizing: border-box;
+  z-index: -1;
+  width: 100%;
   padding: 5px 10px;
   background: ${props => getBackground(props.type)};
   color: ${props => getFontColor(props.type)};
