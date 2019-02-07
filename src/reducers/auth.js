@@ -33,7 +33,7 @@ const authReducer = (state: State = initialState, action: AuthActions): State =>
         error: action.payload,
       };
     case AUTH_DISABLE:
-      return { ...state, status: false };
+      return { ...state, token: '' };
     default:
       return state;
   }
