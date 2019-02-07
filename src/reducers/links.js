@@ -4,6 +4,7 @@ import {
   LINKS_LOAD_REQUESTED,
   LINKS_LOAD_SUCCEEDED,
   EDIT_LINK_SUCCEEDED,
+  DELETE_LINK_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type Actions } from '../actions';
 import { type Link } from '../types';
@@ -37,6 +38,11 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
       const links = state.data
         ? state.data.map(link => (link.id === editLink.id ? editLink : link))
         : state.data;
+      return { ...state, data: links };
+    }
+    case DELETE_LINK_SUCCEEDED: {
+      const deletedLink = action.payload;
+      const links = state.data ? state.data.filter(link => link.id !== deletedLink.id) : state.data;
       return { ...state, data: links };
     }
     default:
