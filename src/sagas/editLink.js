@@ -7,10 +7,14 @@ import { editLink } from '../api';
 
 export function* changeLink(action: EditLinkRequested): Saga<void> {
   try {
-    const result = yield call(editLink, action.payload.linkID, action.payload.link);
-    yield put(editLinkSucceeded(result));
+    const response = yield call(editLink, action.payload.linkID, action.payload.link);
+    yield put(editLinkSucceeded(response));
   } catch (error) {
-    yield put(editLinkFailed(error.message));
+    if (error.response) {
+      yield put(editLinkFailed(error.response.data));
+    } else {
+      yield put(editLinkFailed(error.message));
+    }
   }
 }
 

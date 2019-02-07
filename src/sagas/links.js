@@ -21,7 +21,11 @@ export function* linksLoad(action: LinksActions): Saga<void> {
     }
     yield put(linksLoadSuccess(data));
   } catch (error) {
-    yield put(linksLoadError(error.message));
+    if (error.response) {
+      yield put(linksLoadError(error.response.data));
+    } else {
+      yield put(linksLoadError(error.message));
+    }
   }
 }
 

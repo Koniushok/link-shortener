@@ -15,9 +15,13 @@ export function* authorize(action: Login): Saga<void> {
   try {
     const token: string = yield call(login, action.payload.password, action.payload.loginName);
     yield call(storeToken, token);
-    yield put(authSuccess());
+    yield put(authSuccess(token));
   } catch (error) {
-    yield put(authError(error.message));
+    if (error.response) {
+      yield put(authError(error.response.data));
+    } else {
+      yield put(authError(error.message));
+    }
   }
 }
 
@@ -27,8 +31,9 @@ export function* logout(): Saga<void> {
 }
 
 export default function* watchAuth(): any {
-  if (yield checkToken()) {
-    yield put(authSuccess());
+  const token = yield checkToken();
+  if (token) {
+    yield put(authSuccess(token));
   }
 
   yield all([takeLatest(LOGIN, authorize), takeLatest(LOGOUT, logout)]);
