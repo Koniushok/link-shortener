@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { logout as logoutActions } from '../../actions/auth';
 import ProtectedRoute from '../../components/protectedRoute';
-import Home from '../home';
+import LinkCreator from '../linkCreator';
 import Login from '../login';
 import Registration from '../registration';
 import NotFound from './notFound';
@@ -44,7 +44,7 @@ const App = ({ logout, auth }: Props) => (
       <Route path="/not-found" component={NotFound} />
       <Main>
         <Switch>
-          <ProtectedRoute auth={auth} path="/" exact component={Home} />
+          <ProtectedRoute auth={auth} path="/" exact component={LinkCreator} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
           <ProtectedRoute
