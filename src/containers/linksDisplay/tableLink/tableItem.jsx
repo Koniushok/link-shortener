@@ -76,7 +76,7 @@ class TableItem extends Component<Props, State> {
 
   render() {
     const {
-      url, shortLink, passage, tags, description,
+      url, shortLink, passage, tags, description, title,
     } = this.props.link;
     return (
       <TableRow
@@ -85,6 +85,7 @@ class TableItem extends Component<Props, State> {
         onClick={this.handelClick}
       >
         <th>{this.props.index}</th>
+        <td>{title}</td>
         <td>{shortLink}</td>
         <td>{url}</td>
         <td>{description}</td>

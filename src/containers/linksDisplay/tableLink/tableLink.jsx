@@ -29,6 +29,7 @@ const TableLink = ({ handelItemClick, handelEditClick, linksList }: Props) => (
     <thead>
       <tr>
         <th>#</th>
+        <th>Title</th>
         <th>ShortLink</th>
         <th>url</th>
         <th>Description</th>
