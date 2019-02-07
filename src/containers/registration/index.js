@@ -5,7 +5,7 @@ import Registration from './registration';
 import { type State } from '../../reducers';
 
 const mapStateToProps = ({ registry }: State) => ({
-  result: registry.result,
+  result: !!registry.profile,
   error: registry.error,
   loading: registry.loading,
 });

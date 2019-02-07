@@ -6,7 +6,7 @@ import App from './app';
 import { type State } from '../../reducers';
 
 const mapStateToProps = ({ auth }: State) => ({
-  auth: !!auth.status,
+  auth: !!auth.token,
 });
 
 const mapDispatchToProps = { logout };

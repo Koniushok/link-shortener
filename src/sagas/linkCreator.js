@@ -11,10 +11,14 @@ import { createLink } from '../api';
 
 export function* create(action: CreateLinkRequested): Saga<void> {
   try {
-    const result = yield call(createLink, action.payload);
-    yield put(createLinkSucceeded(result));
+    const response = yield call(createLink, action.payload);
+    yield put(createLinkSucceeded(response));
   } catch (error) {
-    yield put(createLinkFailed(error.message));
+    if (error.response) {
+      yield put(createLinkFailed(error.response.data));
+    } else {
+      yield put(createLinkFailed(error.message));
+    }
   }
 }
 

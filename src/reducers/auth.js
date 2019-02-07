@@ -1,19 +1,16 @@
 // @flow
 import {
-  LOGIN,
-  AUTH_DISABLE,
-  AUTH_FAILED,
-  AUTH_SUCCEEDED,
+  LOGIN, AUTH_DISABLE, AUTH_FAILED, AUTH_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type AuthActions } from '../actions/auth';
 
 export type State = $ReadOnly<{
-  status: boolean,
+  token: string,
   error: string,
   loading: boolean,
 }>;
 const initialState: State = {
-  status: false,
+  token: '',
   error: '',
   loading: false,
 };
@@ -23,12 +20,12 @@ const authReducer = (state: State = initialState, action: AuthActions): State =>
     case LOGIN:
       return {
         ...state,
-        status: false,
+        token: '',
         error: '',
         loading: true,
       };
     case AUTH_SUCCEEDED:
-      return { ...state, status: true, loading: false };
+      return { ...state, token: action.payload, loading: false };
     case AUTH_FAILED:
       return {
         ...state,
@@ -36,7 +33,7 @@ const authReducer = (state: State = initialState, action: AuthActions): State =>
         error: action.payload,
       };
     case AUTH_DISABLE:
-      return { ...state, status: false };
+      return { ...state, token: '' };
     default:
       return state;
   }

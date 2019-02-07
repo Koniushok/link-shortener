@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { Redirect, type Location } from 'react-router-dom';
 import Joi from 'joi-browser';
+import { login as loginAction } from '../../actions/auth';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
@@ -34,9 +35,9 @@ type Props = {
   loading: boolean,
   auth: boolean,
   location: Location,
-  loginRequest: (password: string, loginName: string) => void,
+  loginRequest: typeof loginAction;
 };
-class Authorization extends Component<Props, State> {
+class Login extends Component<Props, State> {
   state = {
     loginData: {
       loginName: '',
@@ -135,4 +136,4 @@ class Authorization extends Component<Props, State> {
   }
 }
 
-export default Authorization;
+export default Login;

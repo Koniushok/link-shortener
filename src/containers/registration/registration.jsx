@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import Joi from 'joi-browser';
+import { registryRequest } from '../../actions/registry';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
@@ -32,7 +33,7 @@ type Props = {
   result: string,
   error: string,
   loading: boolean,
-  createProfile: (profile: RegistryProfile) => void,
+  createProfile: typeof registryRequest,
 };
 class Registration extends Component<Props, State> {
   state = {
@@ -110,7 +111,7 @@ class Registration extends Component<Props, State> {
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
-        {result && <Alert type="success">{result}</Alert>}
+        {result && <Alert type="success">Successful registration</Alert>}
         <FormWrapper>
           <h1>SING UP</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>

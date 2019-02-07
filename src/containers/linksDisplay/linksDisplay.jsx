@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { linksLoadAll, linksLoadMy } from '../../actions/links';
 import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
@@ -19,8 +20,8 @@ type Props = {
   error: string,
   linksList: ?Array<Link>,
   loading: boolean,
-  linksLoadAll: () => void,
-  linksLoadMy: () => void,
+  linksLoadAll: typeof linksLoadAll,
+  linksLoadMy: typeof linksLoadMy,
   typeLoad: 'my' | 'all',
 };
 type State = {

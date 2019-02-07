@@ -20,21 +20,23 @@ const TagWrapper = styled.div`
   align-items: center;
   background: #d6d6d6ab;
   span {
+    word-break: break-all;
     margin-top: -4px;
   }
 `;
-const ButtonDelete = styled(XCircle)`
+const ButtonDelete = styled.div`
   margin-left: 8px;
   border-radius: 50%;
   color: #00000057;
   display: inline-flex;
-  justify-content: center;
-  align-items: center;
   width: 20px;
   height: 20px;
   cursor: pointer;
   &:hover {
     color: black;
+  }
+  svg {
+    width: 30px;
   }
 `;
 
@@ -55,7 +57,11 @@ export class Tag extends PureComponent<Props> {
     return (
       <TagWrapper>
         <span>{tag}</span>
-        {this.props.handleDelete && <ButtonDelete onClick={this.handleClick} />}
+        {this.props.handleDelete && (
+          <ButtonDelete>
+            {this.props.handleDelete && <XCircle onClick={this.handleClick} />}
+          </ButtonDelete>
+        )}
       </TagWrapper>
     );
   }
