@@ -1,9 +1,13 @@
 // @flow
-const display = {
+export const displayType = {
   TABLE: 'TABLE',
   LIST: 'LIST',
 };
 
-export type DisplayType = $Keys<typeof display>;
+export const typeLinksLoad = {
+  ALL: 'TABLE',
+  MY: 'MY',
+};
 
-export default display;
+export type DisplayType = $Keys<typeof displayType>;
+export type TypeLinksLoad = $Keys<typeof typeLinksLoad>;

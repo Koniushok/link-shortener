@@ -2,6 +2,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { typeLinksLoad } from '../../constants/display';
 import { logout as logoutActions } from '../../actions/auth';
 import ProtectedRoute from '../../components/protectedRoute';
 import LinkCreator from '../linkCreator';
@@ -56,13 +57,13 @@ const App = ({ logout, auth }: Props) => (
             auth={auth}
             path="/links/my"
             exact
-            render={() => <LinksDisplay typeLoad="my" />}
+            render={() => <LinksDisplay typeLoad={typeLinksLoad.MY} />}
           />
           <ProtectedRoute
             auth={auth}
             path="/links/all"
             exact
-            render={() => <LinksDisplay typeLoad="all" />}
+            render={() => <LinksDisplay typeLoad={typeLinksLoad.ALL} />}
           />
           <ProtectedRoute
             auth={auth}

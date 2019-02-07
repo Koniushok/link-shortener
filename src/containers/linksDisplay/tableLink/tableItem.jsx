@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Delete } from 'styled-icons/material/Delete';
 import { Edit } from 'styled-icons/fa-solid/Edit';
 import { type Link } from '../../../types';
+import { typeLinksLoad, type TypeLinksLoad } from '../../../constants/display';
 
 const TableRow = styled.tr`
   & td {
@@ -45,6 +46,7 @@ type Props = {
   handelItemClick: (linkId: string) => void,
   handelEditClick: (linkId: string) => void,
   handelDeleteClick: (linkId: string) => void,
+  typeLoad: TypeLinksLoad,
   link: Link,
   index: number,
 };
@@ -97,7 +99,7 @@ class TableItem extends Component<Props, State> {
         <td>{description}</td>
         <td>{passage}</td>
         <td>{tags.length}</td>
-        {this.state.hover && (
+        {this.state.hover && this.props.typeLoad === typeLinksLoad.MY && (
           <ControlWrapper>
             <Delete onClick={this.handelDeleteClick} />
             <Edit onClick={this.handelEditClick} />

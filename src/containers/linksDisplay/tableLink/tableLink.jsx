@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TableItem from './tableItem';
 import { type Link } from '../../../types';
+import { type TypeLinksLoad } from '../../../constants/display';
 
 const Table = styled.table`
   position: relative;
@@ -22,11 +23,16 @@ type Props = {
   handelItemClick: (linkId: string) => void,
   handelEditClick: (linkId: string) => void,
   handelDeleteClick: (linkId: string) => void,
+  typeLoad: TypeLinksLoad,
   linksList: ?Array<Link>,
 };
 
 const TableLink = ({
-  handelItemClick, handelEditClick, linksList, handelDeleteClick,
+  handelItemClick,
+  handelEditClick,
+  linksList,
+  handelDeleteClick,
+  typeLoad,
 }: Props) => (
   <Table>
     <thead>
@@ -50,6 +56,7 @@ const TableLink = ({
             handelDeleteClick={handelDeleteClick}
             handelItemClick={handelItemClick}
             handelEditClick={handelEditClick}
+            typeLoad={typeLoad}
           />
         ))}
     </tbody>

@@ -7,12 +7,12 @@ import { Table } from 'styled-icons/icomoon/Table';
 import { List } from 'styled-icons/boxicons-regular/List';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { MAIN_YELLOW } from '../../constants/color';
-import displayType, { type DisplayType } from '../../constants/display';
+import { displayType, type DisplayType } from '../../constants/display';
 
 const ControlPanelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 30px 10px;
 `;
 
 const rotate = keyframes`

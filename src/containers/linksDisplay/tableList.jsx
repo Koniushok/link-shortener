@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import InfoLink from '../../components/infoLink';
 import { type Link } from '../../types';
+import { typeLinksLoad, type TypeLinksLoad } from '../../constants/display';
 
 const LinkWrapper = styled.div`
   margin: 10px 15px;
@@ -12,12 +13,31 @@ const LinkWrapper = styled.div`
     0 1px 3px 1px rgba(60, 64, 67, 0.15);
 `;
 
-const TableList = ({ linksList }: { linksList: ?Array<Link> }) => (
+type Props = {
+  handelEditClick: (linkId: string) => void,
+  handelDeleteClick: (linkId: string) => void,
+  typeLoad: TypeLinksLoad,
+  linksList: ?Array<Link>,
+};
+const TableList = ({
+  linksList,
+  handelEditClick,
+  handelDeleteClick,
+  typeLoad,
+}: Props) => (
   <div>
     {linksList
       && linksList.map(link => (
         <LinkWrapper key={link.shortLink}>
-          <InfoLink link={link} />
+          {typeLoad === typeLinksLoad.MY ? (
+            <InfoLink
+              link={link}
+              handelEditClick={handelEditClick}
+              handelDeleteClick={handelDeleteClick}
+            />
+          ) : (
+            <InfoLink link={link} />
+          )}
         </LinkWrapper>
       ))}
   </div>

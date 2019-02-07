@@ -11,7 +11,9 @@ import Modal from '../../components/modal';
 import LinkDisplay from '../linkDisplay';
 import LinkEditor from '../linkEditor';
 import { type Link } from '../../types';
-import displayType, { type DisplayType } from '../../constants/display';
+import {
+  displayType, typeLinksLoad, type TypeLinksLoad, type DisplayType,
+} from '../../constants/display';
 
 const DisplayWrapper = styled.div`
   width: 100%;
@@ -25,7 +27,7 @@ type Props = {
   linksLoadMy: typeof linksLoadMy,
   deleteLink: typeof deleteLinkRequested,
   deletedLink: Link,
-  typeLoad: 'my' | 'all',
+  typeLoad: TypeLinksLoad,
 };
 type State = {
   typeDisplay: DisplayType,
@@ -60,10 +62,10 @@ class LinksDisplay extends Component<Props, State> {
 
   loadLinks = () => {
     switch (this.props.typeLoad) {
-      case 'all':
+      case typeLinksLoad.ALL:
         this.props.linksLoadAll();
         break;
-      case 'my':
+      case typeLinksLoad.MY:
         this.props.linksLoadMy();
         break;
       default:
@@ -89,7 +91,7 @@ class LinksDisplay extends Component<Props, State> {
 
   render() {
     const {
-      linksList, error, loading, deletedLink,
+      linksList, error, loading, deletedLink, typeLoad,
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
@@ -111,9 +113,17 @@ class LinksDisplay extends Component<Props, State> {
             handelItemClick={this.handelItemClick}
             handelEditClick={this.handelEditClick}
             handelDeleteClick={this.handelDeleteClick}
+            typeLoad={typeLoad}
           />
         )}
-        {typeDisplay === displayType.LIST && <TableList linksList={linksList} />}
+        {typeDisplay === displayType.LIST && (
+          <TableList
+            linksList={linksList}
+            handelEditClick={this.handelEditClick}
+            handelDeleteClick={this.handelDeleteClick}
+            typeLoad={typeLoad}
+          />
+        )}
         {selectedLinkID && (
           <Modal handelClose={this.handelModalClose}>
             <LinkDisplay linkId={selectedLinkID} />

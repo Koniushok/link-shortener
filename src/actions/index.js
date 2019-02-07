@@ -5,6 +5,7 @@ import { type RegistryActions } from './registry';
 import { type LinkCreatorActions } from './linkCreator';
 import { type LinkActions } from './fetchLink';
 import { type EditLinkActions } from './editLink';
+import { type DeleteLinkActions } from './deleteLink';
 
 export type Actions =
   | LinksActions
@@ -12,4 +13,5 @@ export type Actions =
   | RegistryActions
   | LinkCreatorActions
   | LinkActions
-  | EditLinkActions;
+  | EditLinkActions
+  | DeleteLinkActions;

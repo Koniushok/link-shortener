@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
 import { Delete } from 'styled-icons/material/Delete';
@@ -68,33 +68,57 @@ const ControlButton = styled.div`
     }
   }
 `;
-const InfoLink = ({ link }: { link: Link }) => (
-  <LinkWrapper>
-    <Title>
-      {link.title}
-      <ControlButton>
-        <Delete />
-        <Edit />
-      </ControlButton>
-    </Title>
-    <LongLink rel="noreferrer noopener" target="_blank" href={link.url}>
-      {link.url}
-    </LongLink>
-    <Description>
-      <h4>Description:</h4>
-      <p>{link.description}</p>
-    </Description>
-    <Tags tagList={link.tags} handleDelete={null} />
-    <ShortLink>
-      <a rel="noreferrer noopener" target="_blank" href={link.shortLink}>
-        {link.shortLink}
-      </a>
-      <Passage>
-        <p>{link.passage}</p>
-        <ChartBar />
-      </Passage>
-    </ShortLink>
-  </LinkWrapper>
-);
+
+type Props = {
+  handelEditClick?: (linkId: string) => void,
+  handelDeleteClick?: (linkId: string) => void,
+  link: Link,
+};
+class InfoLink extends Component<Props> {
+  static defaultProps = {
+    handelEditClick: undefined,
+    handelDeleteClick: undefined,
+  };
+
+  handelEditClick = () => {
+    if (this.props.handelEditClick) this.props.handelEditClick(this.props.link.id);
+  };
+
+  handelDeleteClick = () => {
+    if (this.props.handelDeleteClick) this.props.handelDeleteClick(this.props.link.id);
+  };
+
+  render() {
+    const { link } = this.props;
+    return (
+      <LinkWrapper>
+        <Title>
+          {link.title}
+          <ControlButton>
+            {this.props.handelDeleteClick && <Delete onClick={this.handelDeleteClick} />}
+            {this.props.handelEditClick && <Edit onClick={this.handelEditClick} />}
+          </ControlButton>
+        </Title>
+        <LongLink rel="noreferrer noopener" target="_blank" href={link.url}>
+          {link.url}
+        </LongLink>
+        <Description>
+          <h4>Description:</h4>
+          <p>{link.description}</p>
+        </Description>
+        <Tags tagList={link.tags} handleDelete={null} />
+        <ShortLink>
+          <a rel="noreferrer noopener" target="_blank" href={link.shortLink}>
+            {link.shortLink}
+          </a>
+          <Passage>
+            <p>{link.passage}</p>
+            <ChartBar />
+          </Passage>
+        </ShortLink>
+      </LinkWrapper>
+    );
+  }
+}
 
 export default InfoLink;
