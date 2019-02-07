@@ -44,6 +44,7 @@ const ControlWrapper = styled.td`
 type Props = {
   handelItemClick: (linkId: string) => void,
   handelEditClick: (linkId: string) => void,
+  handelDeleteClick: (linkId: string) => void,
   link: Link,
   index: number,
 };
@@ -74,6 +75,11 @@ class TableItem extends Component<Props, State> {
     this.props.handelEditClick(this.props.link.id);
   };
 
+  handelDeleteClick = (e: SyntheticEvent<HTMLElement>) => {
+    e.stopPropagation();
+    this.props.handelDeleteClick(this.props.link.id);
+  };
+
   render() {
     const {
       url, shortLink, passage, tags, description, title,
@@ -93,7 +99,7 @@ class TableItem extends Component<Props, State> {
         <td>{tags.length}</td>
         {this.state.hover && (
           <ControlWrapper>
-            <Delete />
+            <Delete onClick={this.handelDeleteClick} />
             <Edit onClick={this.handelEditClick} />
           </ControlWrapper>
         )}

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { linksLoadAll, linksLoadMy } from '../../actions/links';
+import { deleteLinkRequested } from '../../actions/deleteLink';
 import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
@@ -22,6 +23,8 @@ type Props = {
   loading: boolean,
   linksLoadAll: typeof linksLoadAll,
   linksLoadMy: typeof linksLoadMy,
+  deleteLink: typeof deleteLinkRequested,
+  deletedLink: Link,
   typeLoad: 'my' | 'all',
 };
 type State = {
@@ -76,15 +79,24 @@ class LinksDisplay extends Component<Props, State> {
     this.setState({ editLinkID: linkId });
   };
 
+  handelDeleteClick = (linkId: string) => {
+    this.props.deleteLink(linkId);
+  };
+
   handelModalClose = () => {
     this.setState({ selectedLinkID: '', editLinkID: '' });
   };
 
   render() {
-    const { linksList, error, loading } = this.props;
+    const {
+      linksList, error, loading, deletedLink,
+    } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
       <DisplayWrapper>
+        {deletedLink && (
+          <Alert type="success">{`Link ${deletedLink.id} successfully deleted`}</Alert>
+        )}
         {error && <Alert type="error">{error}</Alert>}
         <ControlPanel
           HandlerLoadLinks={this.loadLinks}
@@ -98,11 +110,10 @@ class LinksDisplay extends Component<Props, State> {
             linksList={linksList}
             handelItemClick={this.handelItemClick}
             handelEditClick={this.handelEditClick}
+            handelDeleteClick={this.handelDeleteClick}
           />
         )}
-        {typeDisplay === displayType.LIST && (
-          <TableList linksList={linksList} handelItemClick={this.handelItemClick} />
-        )}
+        {typeDisplay === displayType.LIST && <TableList linksList={linksList} />}
         {selectedLinkID && (
           <Modal handelClose={this.handelModalClose}>
             <LinkDisplay linkId={selectedLinkID} />
