@@ -4,7 +4,7 @@ import {
   EDIT_LINK_REQUESTED,
   EDIT_LINK_SUCCEEDED,
 } from '../constants/actionTypes';
-import { type LinkCreate } from '../types';
+import { type LinkCreate, type Link } from '../types';
 
 export type EditLinkRequested = {
   type: typeof EDIT_LINK_REQUESTED,
@@ -12,7 +12,7 @@ export type EditLinkRequested = {
 };
 type EditLinkSucceeded = {
   type: typeof EDIT_LINK_SUCCEEDED,
-  payload: string,
+  payload: Link,
 };
 type EditLinkFailed = { type: typeof EDIT_LINK_FAILED, payload: string };
 
@@ -20,9 +20,9 @@ export const editLinkRequested = (linkID: string, link: LinkCreate): EditLinkReq
   type: EDIT_LINK_REQUESTED,
   payload: { linkID, link },
 });
-export const editLinkSucceeded = (result: string): EditLinkSucceeded => ({
+export const editLinkSucceeded = (link: Link): EditLinkSucceeded => ({
   type: EDIT_LINK_SUCCEEDED,
-  payload: result,
+  payload: link,
 });
 export const editLinkFailed = (error: string): EditLinkFailed => ({
   type: EDIT_LINK_FAILED,
