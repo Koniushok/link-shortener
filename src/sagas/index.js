@@ -8,6 +8,7 @@ import registrySaga from './registry';
 import linkCreatorSaga from './linkCreator';
 import fetchLinkSaga from './fetchLink';
 import editLinkSaga from './editLink';
+import deleteLinkSaga from './deleteLink';
 
 export default function* rootSaga(): Saga<void> {
   yield all([
@@ -17,5 +18,6 @@ export default function* rootSaga(): Saga<void> {
     linkCreatorSaga(),
     fetchLinkSaga(),
     editLinkSaga(),
+    deleteLinkSaga(),
   ]);
 }
