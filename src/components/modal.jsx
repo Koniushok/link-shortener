@@ -56,7 +56,6 @@ class LinkModal extends Component<Props> {
   };
 
   handelClickModal = (e: SyntheticEvent<HTMLDivElement>) => {
-    e.preventDefault();
     if (e.target === e.currentTarget) {
       this.props.handelClose();
     }

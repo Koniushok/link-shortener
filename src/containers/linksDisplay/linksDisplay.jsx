@@ -72,8 +72,12 @@ class LinksDisplay extends Component<Props, State> {
     this.setState({ selectedLinkID: linkId });
   };
 
+  handelEditClick = (linkId: string) => {
+    this.setState({ editLinkID: linkId });
+  };
+
   handelModalClose = () => {
-    this.setState({ selectedLinkID: '' });
+    this.setState({ selectedLinkID: '', editLinkID: '' });
   };
 
   render() {
@@ -90,7 +94,11 @@ class LinksDisplay extends Component<Props, State> {
           loading={loading}
         />
         {typeDisplay === displayType.TABLE && (
-          <TableLink linksList={linksList} handelItemClick={this.handelItemClick} />
+          <TableLink
+            linksList={linksList}
+            handelItemClick={this.handelItemClick}
+            handelEditClick={this.handelEditClick}
+          />
         )}
         {typeDisplay === displayType.LIST && (
           <TableList linksList={linksList} handelItemClick={this.handelItemClick} />
@@ -102,7 +110,7 @@ class LinksDisplay extends Component<Props, State> {
         )}
         {editLinkID && (
           <Modal handelClose={this.handelModalClose}>
-            <LinkEditor linkId={selectedLinkID} />
+            <LinkEditor linkId={editLinkID} />
           </Modal>
         )}
       </DisplayWrapper>

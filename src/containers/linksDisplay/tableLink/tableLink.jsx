@@ -20,10 +20,11 @@ const Table = styled.table`
 
 type Props = {
   handelItemClick: (linkId: string) => void,
+  handelEditClick: (linkId: string) => void,
   linksList: ?Array<Link>,
 };
 
-const TableLink = ({ handelItemClick, linksList }: Props) => (
+const TableLink = ({ handelItemClick, handelEditClick, linksList }: Props) => (
   <Table>
     <thead>
       <tr>
@@ -43,6 +44,7 @@ const TableLink = ({ handelItemClick, linksList }: Props) => (
             index={index}
             key={link.shortLink}
             handelItemClick={handelItemClick}
+            handelEditClick={handelEditClick}
           />
         ))}
     </tbody>

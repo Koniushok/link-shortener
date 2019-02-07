@@ -41,15 +41,9 @@ const ControlWrapper = styled.td`
   }
 `;
 
-const ButtonControl = () => (
-  <ControlWrapper>
-    <Delete />
-    <Edit />
-  </ControlWrapper>
-);
-
 type Props = {
   handelItemClick: (linkId: string) => void,
+  handelEditClick: (linkId: string) => void,
   link: Link,
   index: number,
 };
@@ -75,6 +69,11 @@ class TableItem extends Component<Props, State> {
     this.props.handelItemClick(this.props.link.id);
   };
 
+  handelEditClick = (e: SyntheticEvent<HTMLElement>) => {
+    e.stopPropagation();
+    this.props.handelEditClick(this.props.link.id);
+  };
+
   render() {
     const {
       url, shortLink, passage, tags, description,
@@ -91,7 +90,12 @@ class TableItem extends Component<Props, State> {
         <td>{description}</td>
         <td>{passage}</td>
         <td>{tags.length}</td>
-        {this.state.hover && <ButtonControl />}
+        {this.state.hover && (
+          <ControlWrapper>
+            <Delete />
+            <Edit onClick={this.handelEditClick} />
+          </ControlWrapper>
+        )}
       </TableRow>
     );
   }
