@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import Joi from 'joi-browser';
+import { registryRequest } from '../../actions/registry';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
@@ -32,7 +33,7 @@ type Props = {
   result: string,
   error: string,
   loading: boolean,
-  createProfile: (profile: RegistryProfile) => void,
+  createProfile: typeof registryRequest,
 };
 class Registration extends Component<Props, State> {
   state = {

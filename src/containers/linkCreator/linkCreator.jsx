@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { type LinkCreate } from '../../types';
+import { createLinkRequested } from '../../actions/linkCreator';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
 
@@ -21,7 +22,7 @@ type Props = {
   result: string,
   error: string,
   loading: boolean,
-  createLink: (link: LinkCreate) => void,
+  createLink: typeof createLinkRequested,
 };
 class LinkCreator extends Component<Props> {
   handleSubmit = (link: LinkCreate) => {

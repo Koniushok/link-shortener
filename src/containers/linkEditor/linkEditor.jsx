@@ -5,6 +5,7 @@ import { type LinkCreate, type Link } from '../../types';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
 import { editLinkRequested } from '../../actions/editLink';
+import { fetchLinkRequest } from '../../actions/fetchLink';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -25,7 +26,7 @@ type Props = {
   editError: string,
   editLoading: boolean,
   editLinkRequested: typeof editLinkRequested,
-  fetchLink: (id: string) => void,
+  fetchLink: typeof fetchLinkRequest,
 };
 
 class LinkEditor extends Component<Props> {

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component, Fragment } from 'react';
 import { type Link } from '../../types';
+import { fetchLinkRequest } from '../../actions/fetchLink';
 import LinkInf from '../../components/infoLink';
 import Alert from '../../components/alert';
 
@@ -8,7 +9,7 @@ type Props = {
   linkId: string,
   link: Link,
   error: string,
-  fetchLink: (id: string) => void,
+  fetchLink: typeof fetchLinkRequest,
 };
 
 class LinkDisplay extends Component<Props> {
