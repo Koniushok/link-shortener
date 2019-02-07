@@ -5,20 +5,21 @@ import {
   CREATE_LINK_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type LinkCreatorActions } from '../actions/linkCreator';
+import { type Link } from '../types';
 
 export type State = $ReadOnly<{
-  result: string,
+  link: ?Link,
   error: string,
   loading: boolean,
 }>;
-const initialState: State = { result: '', error: '', loading: false };
+const initialState: State = { error: '', link: null, loading: false };
 
 const linkCreatorReducer = (state: State = initialState, action: LinkCreatorActions): State => {
   switch (action.type) {
     case CREATE_LINK_REQUESTED:
       return {
         ...state,
-        result: '',
+        link: null,
         error: '',
         loading: true,
       };
@@ -29,7 +30,7 @@ const linkCreatorReducer = (state: State = initialState, action: LinkCreatorActi
         loading: false,
       };
     case CREATE_LINK_SUCCEEDED:
-      return { ...state, result: action.payload, loading: false };
+      return { ...state, link: action.payload, loading: false };
     default:
       return state;
   }

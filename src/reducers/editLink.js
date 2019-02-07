@@ -5,16 +5,17 @@ import {
   EDIT_LINK_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type EditLinkActions } from '../actions/editLink';
+import { type Link } from '../types';
 
 export type State = $ReadOnly<{
   error: string,
   loading: boolean,
-  result: string,
+  link: ?Link,
 }>;
 const initialState: State = {
   error: '',
   loading: false,
-  result: '',
+  link: null,
 };
 
 const editLinkReducer = (state: State = initialState, action: EditLinkActions): State => {
@@ -24,10 +25,10 @@ const editLinkReducer = (state: State = initialState, action: EditLinkActions): 
         ...state,
         error: '',
         loading: true,
-        result: '',
+        link: null,
       };
     case EDIT_LINK_SUCCEEDED:
-      return { ...state, loading: false, result: action.payload };
+      return { ...state, loading: false, link: action.payload };
     case EDIT_LINK_FAILED:
       return { ...state, loading: false, error: action.payload };
     default:

@@ -1,13 +1,14 @@
 // @flow
 import { REGISTRY_FAILED, REGISTRY_REQUESTED, REGISTRY_SUCCEEDED } from '../constants/actionTypes';
 import { type RegistryActions } from '../actions/registry';
+import { type Profile } from '../types';
 
 export type State = $ReadOnly<{
   error: string,
   loading: boolean,
-  result: string,
+  profile: ?Profile,
 }>;
-const initialState: State = { error: '', result: '', loading: false };
+const initialState: State = { error: '', profile: null, loading: false };
 
 const registryReducer = (state: State = initialState, action: RegistryActions): State => {
   switch (action.type) {
@@ -15,11 +16,11 @@ const registryReducer = (state: State = initialState, action: RegistryActions): 
       return {
         ...state,
         error: '',
-        result: '',
+        profile: null,
         loading: true,
       };
     case REGISTRY_SUCCEEDED:
-      return { ...state, loading: false, result: action.payload };
+      return { ...state, loading: false, profile: action.payload };
     case REGISTRY_FAILED:
       return { ...state, loading: false, error: action.payload };
     default:
