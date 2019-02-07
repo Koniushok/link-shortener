@@ -17,6 +17,7 @@ export type LinkCreate = {
 };
 
 export type Profile = {
+  id: string,
   loginName: string,
   name: string,
   surname: string,

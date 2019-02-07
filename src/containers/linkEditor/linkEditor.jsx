@@ -48,7 +48,7 @@ class LinkEditor extends Component<Props> {
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
-        {result && <Alert type="success">{result}</Alert>}
+        {result && <Alert type="success">Link successfully changed</Alert>}
         <FormWrapper>
           <h1>Edit link</h1>
           {link && (

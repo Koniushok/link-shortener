@@ -8,7 +8,7 @@ import { type State } from '../../reducers';
 const mapStateToProps = ({ auth }: State) => ({
   error: auth.error,
   loading: auth.loading,
-  auth: auth.status,
+  auth: !!auth.token,
 });
 
 const mapDispatchToProps = { loginRequest: login };

@@ -110,7 +110,7 @@ class Registration extends Component<Props, State> {
     return (
       <Fragment>
         {error && <Alert type="error">{error}</Alert>}
-        {result && <Alert type="success">{result}</Alert>}
+        {result && <Alert type="success">Successful registration</Alert>}
         <FormWrapper>
           <h1>SING UP</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>
