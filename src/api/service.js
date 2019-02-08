@@ -1,8 +1,8 @@
 // @flow
 import axios from 'axios';
+import cookies from 'js-cookie';
 import { logout } from '../actions/auth';
 import store from '../store';
-import { setCookie, deleteCookie, getCookie } from './cookie';
 
 axios.interceptors.response.use(null, (error) => {
   if (error.response && error.response.status === 401) {
@@ -12,17 +12,17 @@ axios.interceptors.response.use(null, (error) => {
 });
 
 export const storeToken = async (token: string) => {
-  setCookie('token', token);
+  cookies.set('token', token, { expires: 31 });
   axios.defaults.headers.common.token = token;
 };
 
 export const removeToken = async () => {
-  deleteCookie('token');
+  cookies.remove('token');
   delete axios.defaults.headers.common.token;
 };
 
 export const checkToken = async () => {
-  const token = getCookie('token');
+  const token = cookies.get('token');
   if (token) {
     axios.defaults.headers.common.token = token;
     return true;
