@@ -18,7 +18,7 @@ import {
 } from '../../constants/display';
 
 const DisplayWrapper = styled.div`
-  width: 100%;
+  padding: 0 40px;
 `;
 
 type Props = {
@@ -99,7 +99,7 @@ class LinksDisplay extends Component<Props, State> {
     return (
       <DisplayWrapper>
         {deletedLink && (
-          <Alert type="success">{`Link ${deletedLink.id} successfully deleted`}</Alert>
+          <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
         )}
         {error && <Alert type="error">{error}</Alert>}
         <ControlPanel
