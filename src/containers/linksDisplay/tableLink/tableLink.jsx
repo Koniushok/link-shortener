@@ -8,6 +8,7 @@ import { type TypeLinksLoad } from '../../../constants/display';
 const TableWrapper = styled.div`
   overflow: auto;
   padding-bottom: 5px;
+  border: 1px solid #dfe2e5;
 `;
 
 const Table = styled.table`
@@ -19,6 +20,7 @@ const Table = styled.table`
     padding: 0.75rem;
   }
   & thead {
+    background: #f1f8ff;
     text-align: inherit;
     border-bottom: 2px solid #dee2e6;
   }

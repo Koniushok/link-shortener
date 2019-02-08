@@ -12,7 +12,10 @@ import { displayType, type DisplayType } from '../../constants/display';
 const ControlPanelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 30px 10px;
+  padding: 15px 10%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e1e4e8;
+  background-color: #fafbfc;
 `;
 
 const rotate = keyframes`
