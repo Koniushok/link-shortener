@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { type Link } from '../../types';
 import { fetchLinkRequest } from '../../actions/fetchLink';
 import LinkInf from '../../components/infoLink';
@@ -7,6 +8,9 @@ import Alert from '../../components/alert';
 import Loader from '../../components/loader';
 import Modal from '../../components/modal';
 
+const DisplayWrapper = styled.section`
+  width: 70vw;
+`;
 type Props = {
   handelClose: () => void,
   linkId: string,
@@ -28,9 +32,18 @@ class LinkDisplay extends Component<Props> {
     } = this.props;
     return (
       <Modal handelClose={handelClose} loading={loading}>
-        {loading && <Loader />}
-        {error && <Alert type="error">{error}</Alert>}
-        {link && <LinkInf link={link} />}
+        {loading ? (
+          <Loader />
+        ) : (
+          <DisplayWrapper>
+            {error && (
+              <Alert type="error" absolute={false}>
+                {error}
+              </Alert>
+            )}
+            {link && <LinkInf link={link} />}
+          </DisplayWrapper>
+        )}
       </Modal>
     );
   }
