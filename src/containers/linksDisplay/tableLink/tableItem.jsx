@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
+import { Tags } from 'styled-icons/fa-solid/Tags';
 import { Delete } from 'styled-icons/material/Delete';
 import { Edit } from 'styled-icons/fa-solid/Edit';
 import { type Link } from '../../../types';
@@ -14,6 +16,11 @@ const TableRow = styled.tr`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    svg {
+      color: #7b7b7b;
+      width: 16px;
+      margin-right: 5px;
+    }
   }
   border-top: 1px solid #dee2e6;
 
@@ -31,13 +38,13 @@ const ControlWrapper = styled.td`
   && {
     padding: 6px 0px;
   }
-  & svg {
-    color: #727373;
+  && svg {
+    color: black;
     width: 30px;
     height: 30px;
     margin-left: 5px;
     :hover {
-      color: black;
+      color: #727373;
     }
   }
 `;
@@ -97,8 +104,14 @@ class TableItem extends Component<Props, State> {
         <td>{shortLink}</td>
         <td>{url}</td>
         <td>{description}</td>
-        <td>{passage}</td>
-        <td>{tags.length}</td>
+        <td>
+          <ChartBar />
+          {passage}
+        </td>
+        <td>
+          <Tags />
+          {tags.length}
+        </td>
         {this.state.hover && this.props.typeLoad === typeLinksLoad.MY && (
           <ControlWrapper>
             <Delete onClick={this.handelDeleteClick} />

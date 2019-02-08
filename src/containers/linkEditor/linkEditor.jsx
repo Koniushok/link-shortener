@@ -1,15 +1,18 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import Modal from '../../components/modal';
 import { type LinkCreate, type Link } from '../../types';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
 import { editLinkRequested } from '../../actions/editLink';
 import { fetchLinkRequest } from '../../actions/fetchLink';
+import Loader from '../../components/loader';
 
 const FormWrapper = styled.section`
   flex: auto;
   display: flex;
+  padding-top: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -19,11 +22,13 @@ const FormWrapper = styled.section`
 `;
 
 type Props = {
+  handelClose: () => void,
   linkId: string,
   link: ?Link,
   result: string,
   fetchError: string,
   editError: string,
+  fetchLoading: boolean,
   editLoading: boolean,
   editLinkRequested: typeof editLinkRequested,
   fetchLink: typeof fetchLinkRequest,
@@ -43,15 +48,21 @@ class LinkEditor extends Component<Props> {
 
   render() {
     const {
-      result, fetchError, editLoading, link, editError,
+      result,
+      fetchError,
+      editLoading,
+      link,
+      editError,
+      handelClose,
+      fetchLoading,
     } = this.props;
     const error = fetchError || editError;
     return (
-      <Fragment>
+      <Modal handelClose={handelClose} loading={fetchLoading}>
         {error && <Alert type="error">{error}</Alert>}
         {result && <Alert type="success">Link successfully changed</Alert>}
         <FormWrapper>
-          <h1>Edit link</h1>
+          {fetchLoading ? <Loader /> : <h1>Edit link</h1>}
           {link && (
             <LinkForm
               loading={editLoading}
@@ -66,7 +77,7 @@ class LinkEditor extends Component<Props> {
             />
           )}
         </FormWrapper>
-      </Fragment>
+      </Modal>
     );
   }
 }

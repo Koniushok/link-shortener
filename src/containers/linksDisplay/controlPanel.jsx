@@ -1,7 +1,7 @@
 // @flow
 import React, { type ComponentType } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { Update } from 'styled-icons/material/Update';
+import { Reset } from 'styled-icons/boxicons-regular/Reset';
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 import { Table } from 'styled-icons/icomoon/Table';
 import { List } from 'styled-icons/boxicons-regular/List';
@@ -12,7 +12,9 @@ import { displayType, type DisplayType } from '../../constants/display';
 const ControlPanelWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 30px 10px;
+  padding: 15px 10% 0 10%;
+  border-bottom: 1px solid #e1e4e8;
+  background-color: #fafbfc;
 `;
 
 const rotate = keyframes`
@@ -29,7 +31,7 @@ const ResetIndicator = styled(LoaderAlt)`
   animation: ${rotate} 2s linear infinite;
   margin-right: 10px;
 `;
-const ResetButton = styled(Update)`
+const ResetButton = styled(Reset)`
   display: inline-block;
   ${buttonSize}
   cursor: pointer;
@@ -70,14 +72,14 @@ const NavLink = styled(RouterLink).attrs({
   activeClassName: 'selected',
 })`
   &.selected {
-    border-bottom: solid 3px ${MAIN_YELLOW};
+    border-bottom: solid 4px ${MAIN_YELLOW};
   }
   cursor: pointer;
   text-decoration: none;
   font-size: 20px;
-  padding-bottom: 2px;
   color: black;
-  margin: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
   font-weight: 500;
   display: inline-block;
   :hover {

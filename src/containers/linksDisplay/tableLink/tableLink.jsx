@@ -5,6 +5,12 @@ import TableItem from './tableItem';
 import { type Link } from '../../../types';
 import { type TypeLinksLoad } from '../../../constants/display';
 
+const TableWrapper = styled.div`
+  overflow: auto;
+  padding-bottom: 5px;
+  border: 1px solid #dfe2e5;
+`;
+
 const Table = styled.table`
   position: relative;
   width: 100%;
@@ -14,6 +20,7 @@ const Table = styled.table`
     padding: 0.75rem;
   }
   & thead {
+    background: #f1f8ff;
     text-align: inherit;
     border-bottom: 2px solid #dee2e6;
   }
@@ -34,33 +41,35 @@ const TableLink = ({
   handelDeleteClick,
   typeLoad,
 }: Props) => (
-  <Table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>ShortLink</th>
-        <th>url</th>
-        <th>Description</th>
-        <th>Passage</th>
-        <th>Tags</th>
-      </tr>
-    </thead>
-    <tbody>
-      {linksList
-        && linksList.map((link, index) => (
-          <TableItem
-            link={link}
-            index={index}
-            key={link.shortLink}
-            handelDeleteClick={handelDeleteClick}
-            handelItemClick={handelItemClick}
-            handelEditClick={handelEditClick}
-            typeLoad={typeLoad}
-          />
-        ))}
-    </tbody>
-  </Table>
+  <TableWrapper>
+    <Table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>ShortLink</th>
+          <th>url</th>
+          <th>Description</th>
+          <th>Passage</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        {linksList
+          && linksList.map((link, index) => (
+            <TableItem
+              link={link}
+              index={index}
+              key={link.shortLink}
+              handelDeleteClick={handelDeleteClick}
+              handelItemClick={handelItemClick}
+              handelEditClick={handelEditClick}
+              typeLoad={typeLoad}
+            />
+          ))}
+      </tbody>
+    </Table>
+  </TableWrapper>
 );
 
 export default TableLink;

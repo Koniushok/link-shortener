@@ -7,16 +7,19 @@ import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
 import Alert from '../../components/alert';
-import Modal from '../../components/modal';
 import LinkDisplay from '../linkDisplay';
 import LinkEditor from '../linkEditor';
 import { type Link } from '../../types';
 import {
-  displayType, typeLinksLoad, type TypeLinksLoad, type DisplayType,
+  displayType,
+  typeLinksLoad,
+  type TypeLinksLoad,
+  type DisplayType,
 } from '../../constants/display';
 
 const DisplayWrapper = styled.div`
-  width: 100%;
+  padding: 0 10%;
+  margin-top: 35px;
 `;
 
 type Props = {
@@ -95,11 +98,7 @@ class LinksDisplay extends Component<Props, State> {
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
-      <DisplayWrapper>
-        {deletedLink && (
-          <Alert type="success">{`Link ${deletedLink.id} successfully deleted`}</Alert>
-        )}
-        {error && <Alert type="error">{error}</Alert>}
+      <div>
         <ControlPanel
           HandlerLoadLinks={this.loadLinks}
           typeDisplayTable={this.typeDisplayTable}
@@ -107,34 +106,34 @@ class LinksDisplay extends Component<Props, State> {
           typeDisplay={typeDisplay}
           loading={loading}
         />
-        {typeDisplay === displayType.TABLE && (
-          <TableLink
-            linksList={linksList}
-            handelItemClick={this.handelItemClick}
-            handelEditClick={this.handelEditClick}
-            handelDeleteClick={this.handelDeleteClick}
-            typeLoad={typeLoad}
-          />
+        {deletedLink && (
+          <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
         )}
-        {typeDisplay === displayType.LIST && (
-          <TableList
-            linksList={linksList}
-            handelEditClick={this.handelEditClick}
-            handelDeleteClick={this.handelDeleteClick}
-            typeLoad={typeLoad}
-          />
-        )}
-        {selectedLinkID && (
-          <Modal handelClose={this.handelModalClose}>
-            <LinkDisplay linkId={selectedLinkID} />
-          </Modal>
-        )}
-        {editLinkID && (
-          <Modal handelClose={this.handelModalClose}>
-            <LinkEditor linkId={editLinkID} />
-          </Modal>
-        )}
-      </DisplayWrapper>
+        {error && <Alert type="error">{error}</Alert>}
+        <DisplayWrapper>
+          {typeDisplay === displayType.TABLE && (
+            <TableLink
+              linksList={linksList}
+              handelItemClick={this.handelItemClick}
+              handelEditClick={this.handelEditClick}
+              handelDeleteClick={this.handelDeleteClick}
+              typeLoad={typeLoad}
+            />
+          )}
+          {typeDisplay === displayType.LIST && (
+            <TableList
+              linksList={linksList}
+              handelEditClick={this.handelEditClick}
+              handelDeleteClick={this.handelDeleteClick}
+              typeLoad={typeLoad}
+            />
+          )}
+          {selectedLinkID && (
+            <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
+          )}
+          {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
+        </DisplayWrapper>
+      </div>
     );
   }
 }

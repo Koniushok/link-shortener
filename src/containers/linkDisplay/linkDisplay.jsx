@@ -1,13 +1,21 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import styled from 'styled-components';
 import { type Link } from '../../types';
 import { fetchLinkRequest } from '../../actions/fetchLink';
 import LinkInf from '../../components/infoLink';
 import Alert from '../../components/alert';
+import Loader from '../../components/loader';
+import Modal from '../../components/modal';
 
+const DisplayWrapper = styled.section`
+  width: 70vw;
+`;
 type Props = {
+  handelClose: () => void,
   linkId: string,
   link: Link,
+  loading: boolean,
   error: string,
   fetchLink: typeof fetchLinkRequest,
 };
@@ -19,12 +27,24 @@ class LinkDisplay extends Component<Props> {
   }
 
   render() {
-    const { error, link } = this.props;
+    const {
+      error, link, loading, handelClose,
+    } = this.props;
     return (
-      <Fragment>
-        {error && <Alert type="error">{error}</Alert>}
-        {link && <LinkInf link={link} />}
-      </Fragment>
+      <Modal handelClose={handelClose} loading={loading}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <DisplayWrapper>
+            {error && (
+              <Alert type="error" absolute={false}>
+                {error}
+              </Alert>
+            )}
+            {link && <LinkInf link={link} />}
+          </DisplayWrapper>
+        )}
+      </Modal>
     );
   }
 }

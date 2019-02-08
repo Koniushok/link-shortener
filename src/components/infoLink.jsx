@@ -47,8 +47,7 @@ const Passage = styled.div`
   display: flex;
   color: #979797;
   p {
-    font-size: 18px;
-    padding-top: 5px;
+    font-size: 24px;
     margin: 0 5px;
   }
   svg {
@@ -112,8 +111,8 @@ class InfoLink extends Component<Props> {
             {link.shortLink}
           </a>
           <Passage>
-            <p>{link.passage}</p>
             <ChartBar />
+            <p>{link.passage}</p>
           </Passage>
         </ShortLink>
       </LinkWrapper>

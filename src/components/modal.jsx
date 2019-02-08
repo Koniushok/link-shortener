@@ -48,11 +48,13 @@ const ModalContent = styled.div`
 type Props = {
   children?: Node,
   handelClose: () => void,
+  loading?: boolean,
 };
 
 class LinkModal extends Component<Props> {
   static defaultProps = {
     children: null,
+    loading: false,
   };
 
   handelClickModal = (e: SyntheticEvent<HTMLDivElement>) => {
@@ -65,12 +67,16 @@ class LinkModal extends Component<Props> {
     return (
       <Modal onClick={this.handelClickModal}>
         <GlobalStyle />
-        <ModalContent>
-          <ButtonClose onClick={this.props.handelClose}>
-            <Close />
-          </ButtonClose>
-          {this.props.children}
-        </ModalContent>
+        {this.props.loading ? (
+          this.props.children
+        ) : (
+          <ModalContent>
+            <ButtonClose onClick={this.props.handelClose}>
+              <Close />
+            </ButtonClose>
+            {this.props.children}
+          </ModalContent>
+        )}
       </Modal>
     );
   }

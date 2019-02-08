@@ -25,11 +25,12 @@ function getFontColor(type: AlertType): string {
       return '#ccc';
   }
 }
-const AlertWrapper: ComponentType<{ type: AlertType }> = styled.div`
-  position: absolute;
+const AlertWrapper: ComponentType<{ type: AlertType, absolute?: boolean }> = styled.div`
+  ${props => props.absolute
+    && `position: absolute;
   left: 0;
+  z-index: -1; `}
   box-sizing: border-box;
-  z-index: -1;
   width: 100%;
   padding: 5px 10px;
   background: ${props => getBackground(props.type)};
@@ -48,11 +49,14 @@ const Button = styled(Close)`
 `;
 type Props = {
   children: string,
+  absolute?: boolean,
   type: AlertType,
   handlerClose?: () => {},
 };
-const Alert = ({ children, type, handlerClose }: Props) => (
-  <AlertWrapper type={type}>
+const Alert = ({
+  children, type, handlerClose, absolute,
+}: Props) => (
+  <AlertWrapper type={type} absolute={absolute}>
     {children}
     {handlerClose && <Button onClick={handlerClose} />}
   </AlertWrapper>
@@ -60,6 +64,7 @@ const Alert = ({ children, type, handlerClose }: Props) => (
 
 Alert.defaultProps = {
   handlerClose: undefined,
+  absolute: true,
 };
 
 export default Alert;
