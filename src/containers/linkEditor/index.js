@@ -7,6 +7,7 @@ import { type State } from '../../reducers';
 
 const mapStateToProps = ({ editLink, fetchLink }: State) => ({
   result: !!editLink.link,
+  fetchLoading: fetchLink.loading,
   editError: editLink.error,
   editLoading: editLink.loading,
   link: fetchLink.data,

@@ -7,12 +7,14 @@ import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
 import Alert from '../../components/alert';
-import Modal from '../../components/modal';
 import LinkDisplay from '../linkDisplay';
 import LinkEditor from '../linkEditor';
 import { type Link } from '../../types';
 import {
-  displayType, typeLinksLoad, type TypeLinksLoad, type DisplayType,
+  displayType,
+  typeLinksLoad,
+  type TypeLinksLoad,
+  type DisplayType,
 } from '../../constants/display';
 
 const DisplayWrapper = styled.div`
@@ -125,15 +127,9 @@ class LinksDisplay extends Component<Props, State> {
           />
         )}
         {selectedLinkID && (
-          <Modal handelClose={this.handelModalClose}>
-            <LinkDisplay linkId={selectedLinkID} />
-          </Modal>
+          <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
         )}
-        {editLinkID && (
-          <Modal handelClose={this.handelModalClose}>
-            <LinkEditor linkId={editLinkID} />
-          </Modal>
-        )}
+        {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
       </DisplayWrapper>
     );
   }
