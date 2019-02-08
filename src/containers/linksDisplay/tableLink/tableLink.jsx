@@ -5,6 +5,11 @@ import TableItem from './tableItem';
 import { type Link } from '../../../types';
 import { type TypeLinksLoad } from '../../../constants/display';
 
+const TableWrapper = styled.div`
+  overflow: auto;
+  padding-bottom: 5px;
+`;
+
 const Table = styled.table`
   position: relative;
   width: 100%;
@@ -34,33 +39,35 @@ const TableLink = ({
   handelDeleteClick,
   typeLoad,
 }: Props) => (
-  <Table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>ShortLink</th>
-        <th>url</th>
-        <th>Description</th>
-        <th>Passage</th>
-        <th>Tags</th>
-      </tr>
-    </thead>
-    <tbody>
-      {linksList
-        && linksList.map((link, index) => (
-          <TableItem
-            link={link}
-            index={index}
-            key={link.shortLink}
-            handelDeleteClick={handelDeleteClick}
-            handelItemClick={handelItemClick}
-            handelEditClick={handelEditClick}
-            typeLoad={typeLoad}
-          />
-        ))}
-    </tbody>
-  </Table>
+  <TableWrapper>
+    <Table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>ShortLink</th>
+          <th>url</th>
+          <th>Description</th>
+          <th>Passage</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        {linksList
+          && linksList.map((link, index) => (
+            <TableItem
+              link={link}
+              index={index}
+              key={link.shortLink}
+              handelDeleteClick={handelDeleteClick}
+              handelItemClick={handelItemClick}
+              handelEditClick={handelEditClick}
+              typeLoad={typeLoad}
+            />
+          ))}
+      </tbody>
+    </Table>
+  </TableWrapper>
 );
 
 export default TableLink;
