@@ -39,12 +39,12 @@ const ControlWrapper = styled.td`
     padding: 6px 0px;
   }
   && svg {
-    color: #727373;
+    color: black;
     width: 30px;
     height: 30px;
     margin-left: 5px;
     :hover {
-      color: black;
+      color: #727373;
     }
   }
 `;

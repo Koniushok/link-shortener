@@ -19,6 +19,7 @@ import {
 
 const DisplayWrapper = styled.div`
   padding: 0 10%;
+  margin-top: 35px;
 `;
 
 type Props = {
@@ -98,10 +99,6 @@ class LinksDisplay extends Component<Props, State> {
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
       <div>
-        {deletedLink && (
-          <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
-        )}
-        {error && <Alert type="error">{error}</Alert>}
         <ControlPanel
           HandlerLoadLinks={this.loadLinks}
           typeDisplayTable={this.typeDisplayTable}
@@ -109,6 +106,10 @@ class LinksDisplay extends Component<Props, State> {
           typeDisplay={typeDisplay}
           loading={loading}
         />
+        {deletedLink && (
+          <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
+        )}
+        {error && <Alert type="error">{error}</Alert>}
         <DisplayWrapper>
           {typeDisplay === displayType.TABLE && (
             <TableLink
