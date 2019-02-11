@@ -3,6 +3,7 @@ import {
   CREATE_LINK_REQUESTED,
   CREATE_LINK_SUCCEEDED,
   CREATE_LINK_FAILED,
+  CREATE_LINK_RESET,
 } from '../constants/actionTypes';
 import { type LinkCreate, type Link } from '../types';
 
@@ -18,6 +19,9 @@ type CreateLinkFailed = {
   type: typeof CREATE_LINK_FAILED,
   payload: string,
 };
+type CreateLinkReset = {
+  type: typeof CREATE_LINK_RESET,
+};
 
 export const createLinkRequested = (link: LinkCreate): CreateLinkRequested => ({
   type: CREATE_LINK_REQUESTED,
@@ -31,5 +35,12 @@ export const createLinkFailed = (error: string): CreateLinkFailed => ({
   type: CREATE_LINK_FAILED,
   payload: error,
 });
+export const createLinkReset = (): CreateLinkReset => ({
+  type: CREATE_LINK_RESET,
+});
 
-export type LinkCreatorActions = CreateLinkRequested | CreateLinkSucceeded | CreateLinkFailed;
+export type LinkCreatorActions =
+  | CreateLinkRequested
+  | CreateLinkSucceeded
+  | CreateLinkFailed
+  | CreateLinkReset;

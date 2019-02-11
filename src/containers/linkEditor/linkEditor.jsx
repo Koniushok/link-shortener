@@ -5,8 +5,8 @@ import Modal from '../../components/modal';
 import { type LinkCreate, type Link } from '../../types';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
-import { editLinkRequested } from '../../actions/editLink';
-import { fetchLinkRequest } from '../../actions/fetchLink';
+import { editLinkRequested, editLinkReset } from '../../actions/editLink';
+import { fetchLinkRequest, fetchLinkReset } from '../../actions/fetchLink';
 import Loader from '../../components/loader';
 
 const FormWrapper = styled.section`
@@ -30,6 +30,8 @@ type Props = {
   editError: string,
   fetchLoading: boolean,
   editLoading: boolean,
+  editLinkReset: typeof editLinkReset,
+  fetchLinkReset: typeof fetchLinkReset,
   editLinkRequested: typeof editLinkRequested,
   fetchLink: typeof fetchLinkRequest,
 };
@@ -38,6 +40,11 @@ class LinkEditor extends Component<Props> {
   constructor(props: Props) {
     super(props);
     this.props.fetchLink(this.props.linkId);
+  }
+
+  componentWillUnmount() {
+    this.props.fetchLinkReset();
+    this.props.editLinkReset();
   }
 
   handleSubmit = (link: LinkCreate) => {

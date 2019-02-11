@@ -1,6 +1,11 @@
 // @flow
 import {
-  LOGOUT, LOGIN, AUTH_DISABLE, AUTH_FAILED, AUTH_SUCCEEDED,
+  LOGOUT,
+  LOGIN,
+  AUTH_DISABLE,
+  AUTH_FAILED,
+  AUTH_SUCCEEDED,
+  AUTH_RESET_ERROR,
 } from '../constants/actionTypes';
 
 export type Login = {
@@ -17,6 +22,7 @@ export type AuthError = {
   type: typeof AUTH_FAILED,
   payload: string,
 };
+export type AuthResetError = { type: typeof AUTH_RESET_ERROR };
 export const login = (password: string, loginName: string): Login => ({
   type: LOGIN,
   payload: { password, loginName },
@@ -31,5 +37,5 @@ export const authError = (error: string): AuthError => ({
   type: AUTH_FAILED,
   payload: error,
 });
-
-export type AuthActions = Login | Logout | AuthDisable | AuthSuccess | AuthError;
+export const authResetError = (): AuthResetError => ({ type: AUTH_RESET_ERROR });
+export type AuthActions = Login | Logout | AuthDisable | AuthSuccess | AuthError | AuthResetError;

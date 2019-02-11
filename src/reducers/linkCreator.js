@@ -3,6 +3,7 @@ import {
   CREATE_LINK_REQUESTED,
   CREATE_LINK_FAILED,
   CREATE_LINK_SUCCEEDED,
+  CREATE_LINK_RESET,
 } from '../constants/actionTypes';
 import { type LinkCreatorActions } from '../actions/linkCreator';
 import { type Link } from '../types';
@@ -31,6 +32,8 @@ const linkCreatorReducer = (state: State = initialState, action: LinkCreatorActi
       };
     case CREATE_LINK_SUCCEEDED:
       return { ...state, link: action.payload, loading: false };
+    case CREATE_LINK_RESET:
+      return initialState;
     default:
       return state;
   }

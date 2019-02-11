@@ -1,6 +1,10 @@
 // @flow
 import {
-  LOGIN, AUTH_DISABLE, AUTH_FAILED, AUTH_SUCCEEDED,
+  LOGIN,
+  AUTH_DISABLE,
+  AUTH_FAILED,
+  AUTH_SUCCEEDED,
+  AUTH_RESET_ERROR,
 } from '../constants/actionTypes';
 import { type AuthActions } from '../actions/auth';
 
@@ -34,6 +38,8 @@ const authReducer = (state: State = initialState, action: AuthActions): State =>
       };
     case AUTH_DISABLE:
       return { ...state, token: '' };
+    case AUTH_RESET_ERROR:
+      return { ...state, error: '' };
     default:
       return state;
   }

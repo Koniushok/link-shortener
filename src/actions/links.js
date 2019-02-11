@@ -5,6 +5,7 @@ import {
   LINKS_LOAD_FAILED,
   LINKS_LOAD_MY,
   LINKS_LOAD_REQUESTED,
+  LINKS_LOAD_RESET,
 } from '../constants/actionTypes';
 import { type Link } from '../types';
 
@@ -16,6 +17,7 @@ type LinksLoadSuccess = {
   payload: Array<Link>,
 };
 type LinksLoadError = { type: typeof LINKS_LOAD_FAILED, payload: string };
+type LinksLoadReset = { type: typeof LINKS_LOAD_RESET };
 
 export const linksLoadMy = (): LinksLoadMy => ({ type: LINKS_LOAD_MY });
 export const linksLoadAll = (): LinksLoadAll => ({ type: LINKS_LOAD_ALL });
@@ -30,10 +32,14 @@ export const linksLoadError = (error: string): LinksLoadError => ({
   type: LINKS_LOAD_FAILED,
   payload: error,
 });
+export const linksLoadReset = (): LinksLoadReset => ({
+  type: LINKS_LOAD_RESET,
+});
 
 export type LinksActions =
   | LinksLoadMy
   | LinksLoadAll
   | LinksLoadRequest
   | LinksLoadSuccess
-  | LinksLoadError;
+  | LinksLoadError
+  | LinksLoadReset;

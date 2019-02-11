@@ -3,6 +3,7 @@ import {
   EDIT_LINK_FAILED,
   EDIT_LINK_REQUESTED,
   EDIT_LINK_SUCCEEDED,
+  EDIT_LINK_RESET,
 } from '../constants/actionTypes';
 import { type EditLinkActions } from '../actions/editLink';
 import { type Link } from '../types';
@@ -31,6 +32,8 @@ const editLinkReducer = (state: State = initialState, action: EditLinkActions): 
       return { ...state, loading: false, link: action.payload };
     case EDIT_LINK_FAILED:
       return { ...state, loading: false, error: action.payload };
+    case EDIT_LINK_RESET:
+      return initialState;
     default:
       return state;
   }

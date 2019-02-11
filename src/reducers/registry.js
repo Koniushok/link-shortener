@@ -1,5 +1,10 @@
 // @flow
-import { REGISTRY_FAILED, REGISTRY_REQUESTED, REGISTRY_SUCCEEDED } from '../constants/actionTypes';
+import {
+  REGISTRY_FAILED,
+  REGISTRY_REQUESTED,
+  REGISTRY_SUCCEEDED,
+  REGISTRY_RESET,
+} from '../constants/actionTypes';
 import { type RegistryActions } from '../actions/registry';
 import { type Profile } from '../types';
 
@@ -23,6 +28,8 @@ const registryReducer = (state: State = initialState, action: RegistryActions): 
       return { ...state, loading: false, profile: action.payload };
     case REGISTRY_FAILED:
       return { ...state, loading: false, error: action.payload };
+    case REGISTRY_RESET:
+      return initialState;
     default:
       return state;
   }
