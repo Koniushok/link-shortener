@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { linksLoadAll, linksLoadMy } from '../../actions/links';
-import { deleteLinkRequested } from '../../actions/deleteLink';
+import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
+import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
@@ -26,6 +26,8 @@ type Props = {
   error: string,
   linksList: ?Array<Link>,
   loading: boolean,
+  linksLoadReset: typeof linksLoadReset,
+  deleteLinkReset: typeof deleteLinkReset,
   linksLoadAll: typeof linksLoadAll,
   linksLoadMy: typeof linksLoadMy,
   deleteLink: typeof deleteLinkRequested,
@@ -53,6 +55,11 @@ class LinksDisplay extends Component<Props, State> {
     if (prevProps.typeLoad !== this.props.typeLoad) {
       this.loadLinks();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.linksLoadReset();
+    this.props.deleteLinkReset();
   }
 
   typeDisplayTable = () => {

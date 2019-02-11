@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { login } from '../../actions/auth';
+import { login, authResetError } from '../../actions/auth';
 import Login from './login';
 import { type State } from '../../reducers';
 
@@ -11,7 +11,7 @@ const mapStateToProps = ({ auth }: State) => ({
   auth: !!auth.token,
 });
 
-const mapDispatchToProps = { loginRequest: login };
+const mapDispatchToProps = { loginRequest: login, authResetError };
 
 export default withRouter(
   connect(

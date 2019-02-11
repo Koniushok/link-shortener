@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { Redirect, type Location } from 'react-router-dom';
 import Joi from 'joi-browser';
-import { login as loginAction } from '../../actions/auth';
+import { login as loginAction, authResetError } from '../../actions/auth';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
@@ -31,6 +31,7 @@ type Props = {
   loading: boolean,
   auth: boolean,
   location: Location,
+  authResetError: typeof authResetError,
   loginRequest: typeof loginAction,
 };
 type LoginData = {
@@ -56,6 +57,10 @@ class Login extends Component<Props, State> {
       .min(8)
       .label('Password'),
   };
+
+  componentWillUnmount() {
+    this.props.authResetError();
+  }
 
   validate = (loginData: LoginData) => {
     const errors = {
