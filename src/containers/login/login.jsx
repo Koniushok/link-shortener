@@ -21,10 +21,6 @@ const LoginWrapper = styled.section`
 `;
 
 type State = {
-  loginData: {
-    loginName: string,
-    password: string,
-  },
   errors: {
     loginName: string,
     password: string,
@@ -35,14 +31,15 @@ type Props = {
   loading: boolean,
   auth: boolean,
   location: Location,
-  loginRequest: typeof loginAction;
+  loginRequest: typeof loginAction,
 };
+type LoginData = {
+  loginName: string,
+  password: string,
+};
+
 class Login extends Component<Props, State> {
   state = {
-    loginData: {
-      loginName: '',
-      password: '',
-    },
     errors: {
       loginName: '',
       password: '',
@@ -60,14 +57,15 @@ class Login extends Component<Props, State> {
       .label('Password'),
   };
 
-  validate = (): { loginName: string, password: string } => {
+  validate = (loginData: LoginData) => {
     const errors = {
       loginName: '',
       password: '',
     };
-    const { error } = Joi.validate(this.state.loginData, this.schema, {
+    const { error } = Joi.validate(loginData, this.schema, {
       abortEarly: false,
     });
+
     if (!error) {
       return errors;
     }
@@ -78,27 +76,23 @@ class Login extends Component<Props, State> {
     return errors;
   };
 
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  handleSubmit = (
+    e: {
+      target: { loginName: HTMLInputElement, password: HTMLInputElement },
+    } & SyntheticEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
-    const errors = this.validate();
+    const { loginName, password } = e.target;
+    const loginData: LoginData = { loginName: loginName.value, password: password.value };
+    const errors = this.validate(loginData);
     this.setState({ errors });
-
     if (Object.values(errors).every(error => !error)) {
-      this.props.loginRequest(this.state.loginData.password, this.state.loginData.loginName);
+      this.props.loginRequest(loginData.password, loginData.loginName);
     }
   };
 
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { currentTarget: input } = e;
-    this.setState((prevState) => {
-      const loginData = { ...prevState.loginData };
-      loginData[input.name] = input.value;
-      return { loginData };
-    });
-  };
-
   render() {
-    const { loginData, errors } = this.state;
+    const { errors } = this.state;
     const {
       error, loading, auth, location,
     } = this.props;
@@ -111,21 +105,8 @@ class Login extends Component<Props, State> {
         <LoginWrapper>
           <h1>SIGN IN</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>
-            <Input
-              label="Login"
-              error={errors.loginName}
-              name="loginName"
-              value={loginData.loginName}
-              onChange={this.handleChange}
-            />
-            <Input
-              type="password"
-              label="Password"
-              name="password"
-              error={errors.password}
-              value={loginData.password}
-              onChange={this.handleChange}
-            />
+            <Input label="Login" error={errors.loginName} name="loginName" />
+            <Input type="password" label="Password" name="password" error={errors.password} />
             <Button alignRight disabled={loading}>
               Log in
             </Button>

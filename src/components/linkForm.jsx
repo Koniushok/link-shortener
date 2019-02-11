@@ -1,5 +1,7 @@
 // @flow
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import { AddCircleOutline } from 'styled-icons/material/AddCircleOutline';
 import Joi from 'joi-browser';
 import Tags from './tags';
 import Input from './input';
@@ -7,15 +9,32 @@ import Button from './button';
 import Form from './form';
 import { type LinkCreate } from '../types';
 
-type LinkData = LinkCreate & { tag: string };
+const ButtonAddTag = styled(AddCircleOutline)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: white;
+  position: absolute;
+  right: 2px;
+  top: 32px;
+`;
+const TagInputWrapper = styled.div`
+  position: relative;
+`;
 type State = {
-  linkData: LinkData,
+  tag: string,
+  tags: Array<string>,
   errors: {
     title: string,
     url: string,
     description: string,
     tag: string,
   },
+};
+type FormTarget = {
+  title: HTMLInputElement,
+  url: HTMLInputElement,
+  description: HTMLInputElement,
 };
 type Props = {
   buttonLabel: string,
@@ -34,45 +53,31 @@ class LinkForm extends Component<Props, State> {
     description: Joi.string()
       .required()
       .label('Description'),
-    tag: Joi.string()
-      .allow('')
-      .label('Tag'),
-    tags: Joi.array(),
   };
 
   static defaultProps = {
     linkData: undefined,
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      linkData: this.props.linkData
-        ? { ...this.props.linkData, tag: '' }
-        : {
-          url: '',
-          description: '',
-          tag: '',
-          title: '',
-          tags: [],
-        },
-      errors: {
-        title: '',
-        url: '',
-        description: '',
-        tag: '',
-      },
-    };
-  }
-
-  validate = () => {
-    const errors = {
+  state = {
+    tag: '',
+    tags: [],
+    errors: {
       title: '',
       url: '',
       description: '',
       tag: '',
+    },
+  };
+
+  validate = (linkData: $Diff<LinkCreate, { tags: Array<string> }>) => {
+    const errors = {
+      title: '',
+      url: '',
+      description: '',
+      tag: this.state.errors.tag,
     };
-    const { error } = Joi.validate(this.state.linkData, this.schema, {
+    const { error } = Joi.validate(linkData, this.schema, {
       abortEarly: false,
     });
     if (!error) {
@@ -84,55 +89,63 @@ class LinkForm extends Component<Props, State> {
     return errors;
   };
 
-  addTag = (linkData: LinkData) => {
-    const { tag, tags } = linkData;
-    if (tag[tag.length - 1] === ' ') {
-      const newTag = tag.replace(/\s/g, '');
-      if (tags.indexOf(newTag) === -1) {
-        tags.push(newTag);
+  addTag = () => {
+    this.setState((prevState) => {
+      const tags = [...prevState.tags];
+      if (tags.indexOf(prevState.tag) === -1) {
+        tags.push(prevState.tag.trim());
       }
-      return { ...linkData, tags, tag: ' ' };
-    }
-    return linkData;
+      return { tags, tag: '' };
+    });
   };
 
   deleteTag = (tag: string) => {
     this.setState((prevState) => {
-      const linkData = { ...prevState.linkData };
-      const index = linkData.tags.indexOf(tag);
+      const tags = [...prevState.tags];
+      const index = tags.indexOf(tag);
       if (index !== -1) {
-        linkData.tags.splice(index, 1);
+        tags.splice(index, 1);
       }
-      return { linkData };
+      return { tags };
     });
   };
 
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { currentTarget: input } = e;
+  handleChangeTag = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    const tag = e.currentTarget.value;
+    this.setState({ tag: tag.trim() });
     this.setState((prevState) => {
-      let linkData = { ...prevState.linkData };
-      linkData[input.name] = input.value;
-      if (input.name === 'tag') {
-        linkData = this.addTag(linkData);
+      const errors = { ...prevState.errors };
+      errors.tag = '';
+      if (tag.length > 40) {
+        errors.tag = 'The max character length is 40';
       }
-      return { linkData };
+      return { errors };
     });
   };
 
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  handleSubmit = (
+    e: {
+      target: FormTarget,
+    } & SyntheticEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
-    const errors = this.validate();
+    const { title, url, description } = e.target;
+    const linkData: $Diff<LinkCreate, { tags: Array<string> }> = {
+      title: title.value,
+      url: url.value,
+      description: description.value,
+    };
+    const errors = this.validate(linkData);
     this.setState({ errors });
     if (Object.values(errors).every(error => !error)) {
-      const link = { ...this.state.linkData };
-      delete link.tag;
+      const link = { ...linkData, tags: this.state.tags };
       this.props.onSubmit(link);
     }
   };
 
   render() {
-    const { linkData, errors } = this.state;
-    const { loading, buttonLabel } = this.props;
+    const { errors, tag, tags } = this.state;
+    const { loading, buttonLabel, linkData } = this.props;
     return (
       <Fragment>
         <Form autoComplete="off" onSubmit={this.handleSubmit}>
@@ -140,30 +153,30 @@ class LinkForm extends Component<Props, State> {
             label="Title"
             error={errors.title}
             name="title"
-            value={linkData.title}
-            onChange={this.handleChange}
+            defaultValue={linkData && linkData.title}
           />
           <Input
             label="Link"
             error={errors.url}
             name="url"
-            value={linkData.url}
-            onChange={this.handleChange}
+            defaultValue={linkData && linkData.url}
           />
-          <Input
-            label="Tag"
-            name="tag"
-            error={errors.tag}
-            value={linkData.tag}
-            onChange={this.handleChange}
-          />
-          {!!linkData.tags.length && <Tags tagList={linkData.tags} handleDelete={this.deleteTag} />}
+          <TagInputWrapper>
+            <Input
+              label="Tag"
+              name="tag"
+              error={errors.tag}
+              value={tag}
+              onChange={this.handleChangeTag}
+            />
+            {!errors.tag && tag && <ButtonAddTag onClick={this.addTag} />}
+          </TagInputWrapper>
+          {!!tags.length && <Tags tagList={tags} handleDelete={this.deleteTag} />}
           <Input
             label="Description"
             name="description"
             error={errors.description}
-            value={linkData.description}
-            onChange={this.handleChange}
+            defaultValue={linkData && linkData.description}
           />
           <Button alignRight disabled={loading}>
             {buttonLabel}
