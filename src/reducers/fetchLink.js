@@ -3,6 +3,7 @@ import {
   FETCH_LINK_FAILED,
   FETCH_LINK_REQUESTED,
   FETCH_LINK_SUCCEEDED,
+  FETCH_LINK_RESET,
 } from '../constants/actionTypes';
 import { type LinkActions } from '../actions/fetchLink';
 import { type Link } from '../types';
@@ -26,6 +27,8 @@ const linkReducer = (state: State = initialState, action: LinkActions): State =>
       return { ...state, error: action.payload, loading: false };
     case FETCH_LINK_SUCCEEDED:
       return { ...state, data: action.payload, loading: false };
+    case FETCH_LINK_RESET:
+      return initialState;
     default:
       return state;
   }

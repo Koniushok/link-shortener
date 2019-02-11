@@ -5,6 +5,7 @@ import {
   LINKS_LOAD_SUCCEEDED,
   EDIT_LINK_SUCCEEDED,
   DELETE_LINK_SUCCEEDED,
+  CREATE_LINK_RESET,
 } from '../constants/actionTypes';
 import { type Actions } from '../actions';
 import { type Link } from '../types';
@@ -45,6 +46,8 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
       const links = state.data ? state.data.filter(link => link.id !== deletedLink.id) : state.data;
       return { ...state, data: links };
     }
+    case CREATE_LINK_RESET:
+      return initialState;
     default:
       return state;
   }

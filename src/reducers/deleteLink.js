@@ -3,6 +3,7 @@ import {
   DELETE_LINK_FAILED,
   DELETE_LINK_REQUESTED,
   DELETE_LINK_SUCCEEDED,
+  DELETE_LINK_RESET,
 } from '../constants/actionTypes';
 import { type DeleteLinkActions } from '../actions/deleteLink';
 import { type Link } from '../types';
@@ -26,6 +27,9 @@ const deleteLinkReducer = (state: State = initialState, action: DeleteLinkAction
       return { ...state, error: action.payload, loading: false };
     case DELETE_LINK_SUCCEEDED:
       return { ...state, deletedLink: action.payload, loading: false };
+    case DELETE_LINK_RESET: {
+      return initialState;
+    }
     default:
       return state;
   }
