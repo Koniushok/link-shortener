@@ -19,6 +19,12 @@ const FormWrapper = styled.section`
     max-width: 300px;
   }
 `;
+type FormTarget = {
+  loginName: HTMLInputElement,
+  name: HTMLInputElement,
+  surname: HTMLInputElement,
+  password: HTMLInputElement,
+};
 type UserErrors = {
   loginName: string,
   name: string,
@@ -26,7 +32,6 @@ type UserErrors = {
   password: string,
 };
 type State = {
-  userData: RegistryProfile,
   errors: UserErrors,
 };
 type Props = {
@@ -37,12 +42,6 @@ type Props = {
 };
 class Registration extends Component<Props, State> {
   state = {
-    userData: {
-      loginName: '',
-      name: '',
-      surname: '',
-      password: '',
-    },
     errors: {
       loginName: '',
       name: '',
@@ -68,14 +67,14 @@ class Registration extends Component<Props, State> {
       .label('Password'),
   };
 
-  validate = (): UserErrors => {
+  validate = (userData: RegistryProfile): UserErrors => {
     const errors = {
       loginName: '',
       name: '',
       surname: '',
       password: '',
     };
-    const { error } = Joi.validate(this.state.userData, this.schema, {
+    const { error } = Joi.validate(userData, this.schema, {
       abortEarly: false,
     });
     if (!error) {
@@ -87,26 +86,30 @@ class Registration extends Component<Props, State> {
     return errors;
   };
 
-  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+  handleSubmit = (
+    e: {
+      target: FormTarget,
+    } & SyntheticEvent<HTMLFormElement>,
+  ) => {
     e.preventDefault();
-    const errors = this.validate();
+    const {
+      loginName, name, surname, password,
+    } = e.target;
+    const userData: RegistryProfile = {
+      loginName: loginName.value,
+      name: name.value,
+      surname: surname.value,
+      password: password.value,
+    };
+    const errors = this.validate(userData);
     this.setState({ errors });
     if (Object.values(errors).every(error => !error)) {
-      this.props.createProfile(this.state.userData);
+      this.props.createProfile(userData);
     }
   };
 
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const { currentTarget: input } = e;
-    this.setState((prevState) => {
-      const userData = { ...prevState.userData };
-      userData[input.name] = input.value;
-      return { userData };
-    });
-  };
-
   render() {
-    const { userData, errors } = this.state;
+    const { errors } = this.state;
     const { result, error, loading } = this.props;
     return (
       <Fragment>
@@ -115,35 +118,10 @@ class Registration extends Component<Props, State> {
         <FormWrapper>
           <h1>SING UP</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>
-            <Input
-              label="Login"
-              error={errors.loginName}
-              name="loginName"
-              value={userData.loginName}
-              onChange={this.handleChange}
-            />
-            <Input
-              label="Name"
-              name="name"
-              error={errors.name}
-              value={userData.name}
-              onChange={this.handleChange}
-            />
-            <Input
-              label="Surname"
-              name="surname"
-              error={errors.surname}
-              value={userData.surname}
-              onChange={this.handleChange}
-            />
-            <Input
-              type="password"
-              label="Password"
-              name="password"
-              error={errors.password}
-              value={userData.password}
-              onChange={this.handleChange}
-            />
+            <Input label="Login" error={errors.loginName} name="loginName" />
+            <Input label="Name" name="name" error={errors.name} />
+            <Input label="Surname" name="surname" error={errors.surname} />
+            <Input type="password" label="Password" name="password" error={errors.password} />
             <Button alignRight disabled={loading}>
               Sign up
             </Button>
