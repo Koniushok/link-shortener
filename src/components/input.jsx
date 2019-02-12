@@ -26,6 +26,7 @@ type Props = {
   type?: string,
   value?: string | string[] | number,
   onChange?: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  defaultValue?: string,
 } & {
   name: string,
   label: string,
@@ -50,7 +51,7 @@ const LabelError = styled.div`
 `;
 
 const InputLabel = ({
-  name, label, error = '', type, onChange, value,
+  name, label, error = '', type, onChange, value, defaultValue,
 }: Props) => (
   <div>
     <Label htmlFor={name}>{label}</Label>
@@ -62,6 +63,7 @@ const InputLabel = ({
       onChange={onChange}
       value={value}
       autocomplete="off"
+      defaultValue={defaultValue}
     />
     {error && <LabelError>{error}</LabelError>}
   </div>
