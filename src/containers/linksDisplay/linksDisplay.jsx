@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import queryString from 'query-string';
+import { type Location } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -18,8 +20,11 @@ import {
 } from '../../constants/display';
 
 const DisplayWrapper = styled.div`
-  padding: 0 10%;
-  margin-top: 35px;
+  width: 980px;
+  margin: 35px auto 0 auto;
+  @media (max-width: 1000px) {
+    width: 98%;
+  }
 `;
 
 type Props = {
@@ -33,6 +38,7 @@ type Props = {
   deleteLink: typeof deleteLinkRequested,
   deletedLink: Link,
   typeLoad: TypeLinksLoad,
+  location: Location,
 };
 type State = {
   typeDisplay: DisplayType,
@@ -52,7 +58,10 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props) {
-    if (prevProps.typeLoad !== this.props.typeLoad) {
+    if (
+      prevProps.typeLoad !== this.props.typeLoad
+      || prevProps.location.search !== this.props.location.search
+    ) {
       this.loadLinks();
     }
   }
@@ -71,12 +80,13 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   loadLinks = () => {
+    const { tag } = queryString.parse(this.props.location.search);
     switch (this.props.typeLoad) {
       case typeLinksLoad.ALL:
-        this.props.linksLoadAll();
+        this.props.linksLoadAll(tag ? String(tag) : undefined);
         break;
       case typeLinksLoad.MY:
-        this.props.linksLoadMy();
+        this.props.linksLoadMy(tag ? String(tag) : undefined);
         break;
       default:
         break;
@@ -107,7 +117,7 @@ class LinksDisplay extends Component<Props, State> {
     return (
       <div>
         <ControlPanel
-          HandlerLoadLinks={this.loadLinks}
+          handlerLoadLinks={this.loadLinks}
           typeDisplayTable={this.typeDisplayTable}
           typeDisplayList={this.typeDisplayList}
           typeDisplay={typeDisplay}

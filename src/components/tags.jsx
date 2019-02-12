@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { XCircle } from 'styled-icons/boxicons-regular/XCircle';
 
 const TagsContainer = styled.div`
@@ -19,7 +20,9 @@ const TagWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: #d6d6d6ab;
-  span {
+  a {
+    color: black;
+    text-decoration: none;
     word-break: break-all;
     margin-top: -4px;
   }
@@ -46,7 +49,8 @@ type Props = {
 };
 
 export class Tag extends PureComponent<Props> {
-  handleClick = () => {
+  handleDeleteClick = (e: SyntheticEvent<HTMLElement>) => {
+    e.stopPropagation();
     if (this.props.handleDelete) {
       this.props.handleDelete(this.props.tag);
     }
@@ -56,16 +60,17 @@ export class Tag extends PureComponent<Props> {
     const { tag } = this.props;
     return (
       <TagWrapper>
-        <span>{tag}</span>
+        <Link to={`/links/all?tag=${this.props.tag}`}>{tag}</Link>
         {this.props.handleDelete && (
           <ButtonDelete>
-            {this.props.handleDelete && <XCircle onClick={this.handleClick} />}
+            {this.props.handleDelete && <XCircle onClick={this.handleDeleteClick} />}
           </ButtonDelete>
         )}
       </TagWrapper>
     );
   }
 }
+
 type TagsProps = {
   tagList: Array<string>,
   handleDelete: ?(tag: string) => void,

@@ -13,11 +13,17 @@ import { getAllLinks, getMyLinks } from '../api';
 export function* linksLoad(action: LinksActions): Saga<void> {
   try {
     yield put(linksLoadRequest());
-    let data;
-    if (action.type === LINKS_LOAD_ALL) {
-      data = yield call(getAllLinks);
-    } else {
-      data = yield call(getMyLinks);
+    let data = null;
+    switch (action.type) {
+      case LINKS_LOAD_ALL:
+        data = yield call(getAllLinks, action.payload);
+        break;
+      case LINKS_LOAD_MY:
+        data = yield call(getMyLinks, action.payload);
+        break;
+      default:
+        data = yield call(getAllLinks);
+        break;
     }
     yield put(linksLoadSuccess(data));
   } catch (error) {
