@@ -11,8 +11,6 @@ import Registration from '../registration';
 import NotFound from './notFound';
 import Header from './header';
 import LinksDisplay from '../linksDisplay';
-import LinkDisplay from '../linkDisplay';
-import LinkEditor from '../linkEditor';
 
 const Footer = styled.footer`
   background: #24292e;
@@ -50,32 +48,15 @@ const App = ({ logout, auth }: Props) => (
           <Route path="/signup" component={Registration} />
           <ProtectedRoute
             auth={auth}
-            path="/link/edit/:id"
-            render={({ match }) => <LinkEditor linkId={match.params.id} />}
-          />
-          <ProtectedRoute
-            auth={auth}
             path="/links/my"
             exact
-            render={() => <LinksDisplay typeLoad={typeLinksLoad.MY} />}
+            render={props => <LinksDisplay typeLoad={typeLinksLoad.MY} {...props} />}
           />
           <ProtectedRoute
             auth={auth}
             path="/links/all"
             exact
-            render={() => <LinksDisplay typeLoad={typeLinksLoad.ALL} />}
-          />
-          <ProtectedRoute
-            auth={auth}
-            path="/links/my/:id"
-            exact
-            render={({ match }) => <LinkDisplay typeLink="my" linkId={match.params.id} />}
-          />
-          <ProtectedRoute
-            auth={auth}
-            path="/links/all/:id"
-            exact
-            render={({ match }) => <LinkDisplay typeLink="all" linkId={match.params.id} />}
+            render={props => <LinksDisplay typeLoad={typeLinksLoad.ALL} {...props} />}
           />
           <Redirect from="/links" exact to="/links/my" />
           <Redirect to="/not-found" />
