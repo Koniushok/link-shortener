@@ -41,11 +41,7 @@ class LinkDisplay extends Component<Props> {
           <Loader />
         ) : (
           <DisplayWrapper>
-            {error && (
-              <Alert type="error" absolute={false}>
-                {error}
-              </Alert>
-            )}
+            {error && <Alert type="error">{error}</Alert>}
             {link && <LinkInf link={link} />}
           </DisplayWrapper>
         )}

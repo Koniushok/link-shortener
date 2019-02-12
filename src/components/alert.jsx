@@ -64,7 +64,7 @@ const Alert = ({
 
 Alert.defaultProps = {
   handlerClose: undefined,
-  absolute: true,
+  absolute: false,
 };
 
 export default Alert;

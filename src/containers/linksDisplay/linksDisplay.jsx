@@ -124,9 +124,9 @@ class LinksDisplay extends Component<Props, State> {
           loading={loading}
         />
         {deletedLink && (
-          <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
+          <Alert type="success" absolute>{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
         )}
-        {error && <Alert type="error">{error}</Alert>}
+        {error && <Alert type="error" absolute>{error}</Alert>}
         <DisplayWrapper>
           {typeDisplay === displayType.TABLE && (
             <TableLink

@@ -107,7 +107,7 @@ class Login extends Component<Props, State> {
     }
     return (
       <Fragment>
-        {error && <Alert type="error">{error}</Alert>}
+        {error && <Alert type="error" absolute>{error}</Alert>}
         <LoginWrapper>
           <h1>SIGN IN</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>

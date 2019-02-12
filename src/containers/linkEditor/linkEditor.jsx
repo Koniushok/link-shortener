@@ -69,7 +69,8 @@ class LinkEditor extends Component<Props> {
         {error && <Alert type="error">{error}</Alert>}
         {result && <Alert type="success">Link successfully changed</Alert>}
         <FormWrapper>
-          {fetchLoading ? <Loader /> : <h1>Edit link</h1>}
+          {fetchLoading && <Loader />}
+          {!fetchLoading && !error && <h1>Edit link</h1>}
           {link && (
             <LinkForm
               loading={editLoading}
