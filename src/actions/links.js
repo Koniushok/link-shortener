@@ -9,8 +9,8 @@ import {
 } from '../constants/actionTypes';
 import { type Link } from '../types';
 
-type LinksLoadMy = { type: typeof LINKS_LOAD_MY };
-type LinksLoadAll = { type: typeof LINKS_LOAD_ALL };
+type LinksLoadMy = { type: typeof LINKS_LOAD_MY, payload?: string };
+type LinksLoadAll = { type: typeof LINKS_LOAD_ALL, payload?: string };
 type LinksLoadRequest = { type: typeof LINKS_LOAD_REQUESTED };
 type LinksLoadSuccess = {
   type: typeof LINKS_LOAD_SUCCEEDED,
@@ -19,8 +19,14 @@ type LinksLoadSuccess = {
 type LinksLoadError = { type: typeof LINKS_LOAD_FAILED, payload: string };
 type LinksLoadReset = { type: typeof LINKS_LOAD_RESET };
 
-export const linksLoadMy = (): LinksLoadMy => ({ type: LINKS_LOAD_MY });
-export const linksLoadAll = (): LinksLoadAll => ({ type: LINKS_LOAD_ALL });
+export const linksLoadMy = (tag?: string): LinksLoadMy => ({
+  type: LINKS_LOAD_MY,
+  payload: tag,
+});
+export const linksLoadAll = (tag?: string): LinksLoadAll => ({
+  type: LINKS_LOAD_ALL,
+  payload: tag,
+});
 export const linksLoadRequest = (): LinksLoadRequest => ({
   type: LINKS_LOAD_REQUESTED,
 });
