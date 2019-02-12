@@ -39,6 +39,7 @@ type FormTarget = {
 type Props = {
   buttonLabel: string,
   linkData?: LinkCreate,
+  tags?: Array<string>,
   onSubmit: (linkData: LinkCreate) => void,
   loading: boolean,
 };
@@ -57,11 +58,12 @@ class LinkForm extends Component<Props, State> {
 
   static defaultProps = {
     linkData: undefined,
+    tags: undefined,
   };
 
   state = {
     tag: '',
-    tags: [],
+    tags: this.props.tags || [],
     errors: {
       title: '',
       url: '',
