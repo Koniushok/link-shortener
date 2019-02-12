@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import { type Location, type RouterHistory } from 'react-router-dom';
+import { type Location } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -20,8 +20,11 @@ import {
 } from '../../constants/display';
 
 const DisplayWrapper = styled.div`
-  padding: 0 10%;
-  margin-top: 35px;
+  width: 980px;
+  margin: 35px auto 0 auto;
+  @media (max-width: 1000px) {
+    width: 98%;
+  }
 `;
 
 type Props = {
@@ -36,7 +39,6 @@ type Props = {
   deletedLink: Link,
   typeLoad: TypeLinksLoad,
   location: Location,
-  history: RouterHistory,
 };
 type State = {
   typeDisplay: DisplayType,
@@ -107,27 +109,19 @@ class LinksDisplay extends Component<Props, State> {
     this.setState({ selectedLinkID: '', editLinkID: '' });
   };
 
-  handelDeleteTag = () => {
-    this.props.history.push(this.props.location.pathname);
-  };
-
   render() {
     const {
       linksList, error, loading, deletedLink, typeLoad,
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
-    const { tag } = queryString.parse(this.props.location.search);
     return (
       <div>
         <ControlPanel
-          HandlerLoadLinks={this.loadLinks}
+          handlerLoadLinks={this.loadLinks}
           typeDisplayTable={this.typeDisplayTable}
           typeDisplayList={this.typeDisplayList}
           typeDisplay={typeDisplay}
           loading={loading}
-          handelDeleteTag={this.handelDeleteTag}
-          locationSearch={this.props.location.search}
-          tag={tag ? String(tag) : ''}
         />
         {deletedLink && (
           <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>

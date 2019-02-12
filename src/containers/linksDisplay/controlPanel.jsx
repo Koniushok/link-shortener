@@ -1,35 +1,53 @@
 // @flow
-import React, { type ComponentType } from 'react';
+import React, { Component, type ComponentType } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import queryString from 'query-string';
 import { Reset } from 'styled-icons/boxicons-regular/Reset';
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 import { Table } from 'styled-icons/icomoon/Table';
 import { List } from 'styled-icons/boxicons-regular/List';
 import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
-import { NavLink as RouterLink } from 'react-router-dom';
+import {
+  NavLink as RouterLink,
+  withRouter,
+  type Location,
+  type RouterHistory,
+  type Match,
+} from 'react-router-dom';
 import { MAIN_YELLOW } from '../../constants/color';
 import { displayType, type DisplayType } from '../../constants/display';
 import { Tag } from '../../components/tags';
 
 const ControlPanelWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 10% 0 10%;
+  padding-top: 15px;
   border-bottom: 1px solid #e1e4e8;
   background-color: #fafbfc;
+  & > section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 980px;
+    margin: 0 auto;
+    @media (max-width: 1000px) {
+      width: 98%;
+    }
+  }
 `;
 
 const InfPanel = styled.div`
   display: inline-flex;
-  height: 100%;
+  margin: auto auto auto 0;
   align-items: center;
   & > svg {
-    width: 25px;
+    width: 20px;
     margin-left: 20px;
   }
   span {
-    font-size: 25px;
+    font-size: 20px;
     margin-right: 20px;
+  }
+  div {
+    padding: 1px 2px 1px 7px;
   }
 `;
 
@@ -104,53 +122,62 @@ const NavLink = styled(RouterLink).attrs({
 `;
 
 type Props = {
-  HandlerLoadLinks: () => void,
+  handlerLoadLinks: () => void,
   typeDisplayTable: () => void,
   typeDisplayList: () => void,
-  handelDeleteTag: () => void,
   typeDisplay: DisplayType,
   loading: boolean,
-  locationSearch: string,
-  tag: string,
+  location: Location,
+  history: RouterHistory,
 };
-const ControlPanel = ({
-  HandlerLoadLinks,
-  typeDisplayTable,
-  typeDisplayList,
-  handelDeleteTag,
-  typeDisplay,
-  loading,
-  locationSearch,
-  tag,
-}: Props) => (
-  <ControlPanelWrapper>
-    <nav>
-      <NavLink
-        to={`/links/my${locationSearch}`}
-        isActive={(match, location) => location.pathname === '/links/my'}
-      >
-        My links
-      </NavLink>
-      <NavLink
-        to={`/links/all${locationSearch}`}
-        isActive={(match, location) => location.pathname === '/links/all'}
-      >
-        All links
-      </NavLink>
+class ControlPanel extends Component<Props> {
+  handelDeleteTag = () => {
+    this.props.history.push(this.props.location.pathname);
+  };
 
-      <InfPanel>
-        <ChartBar />
-        <span>0</span>
-        {tag && <Tag tag={tag} handleDelete={handelDeleteTag} />}
-      </InfPanel>
-    </nav>
+  checkActiveMyLink = (match: Match, location: Location) => location.pathname === '/links/my';
 
-    <div>
-      {loading ? <ResetIndicator /> : <ResetButton onClick={HandlerLoadLinks} />}
-      <TableTypeButton onClick={typeDisplayTable} enabled={typeDisplay === displayType.TABLE} />
-      <ListTypeButton onClick={typeDisplayList} enabled={typeDisplay === displayType.LIST} />
-    </div>
-  </ControlPanelWrapper>
-);
+  checkActiveAllLink = (match: Match, location: Location) => location.pathname === '/links/all';
 
-export default ControlPanel;
+  render() {
+    const {
+      handlerLoadLinks,
+      typeDisplayTable,
+      typeDisplayList,
+      typeDisplay,
+      loading,
+      location,
+    } = this.props;
+    const { tag } = queryString.parse(this.props.location.search);
+    return (
+      <ControlPanelWrapper>
+        <section>
+          <nav>
+            <NavLink to={`/links/my${location.search}`} isActive={this.checkActiveMyLink}>
+              My links
+            </NavLink>
+            <NavLink to={`/links/all${location.search}`} isActive={this.checkActiveAllLink}>
+              All links
+            </NavLink>
+          </nav>
+          <InfPanel>
+            <ChartBar />
+            <span>0</span>
+            {tag && <Tag tag={String(tag)} handleDelete={this.handelDeleteTag} />}
+          </InfPanel>
+
+          <div>
+            {loading ? <ResetIndicator /> : <ResetButton onClick={handlerLoadLinks} />}
+            <TableTypeButton
+              onClick={typeDisplayTable}
+              enabled={typeDisplay === displayType.TABLE}
+            />
+            <ListTypeButton onClick={typeDisplayList} enabled={typeDisplay === displayType.LIST} />
+          </div>
+        </section>
+      </ControlPanelWrapper>
+    );
+  }
+}
+
+export default withRouter(ControlPanel);
