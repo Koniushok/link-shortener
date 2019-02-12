@@ -25,7 +25,7 @@ type Props = {
   handelClose: () => void,
   linkId: string,
   link: ?Link,
-  result: string,
+  result: boolean,
   fetchError: string,
   editError: string,
   fetchLoading: boolean,
@@ -80,6 +80,7 @@ class LinkEditor extends Component<Props> {
                 description: link.description,
                 tags: link.tags,
               }}
+              tags={link.tags}
               buttonLabel="Save"
             />
           )}

@@ -19,7 +19,7 @@ const FormWrapper = styled.section`
 `;
 
 type Props = {
-  result: string,
+  result: boolean,
   error: string,
   loading: boolean,
   createLinkReset: typeof createLinkReset,

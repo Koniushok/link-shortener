@@ -35,7 +35,7 @@ type State = {
   errors: UserErrors,
 };
 type Props = {
-  result: string,
+  result: boolean,
   error: string,
   loading: boolean,
   registryReset: typeof registryReset,
