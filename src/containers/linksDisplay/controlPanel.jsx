@@ -5,9 +5,11 @@ import { Reset } from 'styled-icons/boxicons-regular/Reset';
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 import { Table } from 'styled-icons/icomoon/Table';
 import { List } from 'styled-icons/boxicons-regular/List';
+import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { MAIN_YELLOW } from '../../constants/color';
 import { displayType, type DisplayType } from '../../constants/display';
+import { Tag } from '../../components/tags';
 
 const ControlPanelWrapper = styled.div`
   display: flex;
@@ -15,6 +17,20 @@ const ControlPanelWrapper = styled.div`
   padding: 15px 10% 0 10%;
   border-bottom: 1px solid #e1e4e8;
   background-color: #fafbfc;
+`;
+
+const InfPanel = styled.div`
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  & > svg {
+    width: 25px;
+    margin-left: 20px;
+  }
+  span {
+    font-size: 25px;
+    margin-right: 20px;
+  }
 `;
 
 const rotate = keyframes`
@@ -91,21 +107,44 @@ type Props = {
   HandlerLoadLinks: () => void,
   typeDisplayTable: () => void,
   typeDisplayList: () => void,
+  handelDeleteTag: () => void,
   typeDisplay: DisplayType,
   loading: boolean,
+  locationSearch: string,
+  tag: string,
 };
 const ControlPanel = ({
   HandlerLoadLinks,
   typeDisplayTable,
   typeDisplayList,
+  handelDeleteTag,
   typeDisplay,
   loading,
+  locationSearch,
+  tag,
 }: Props) => (
   <ControlPanelWrapper>
     <nav>
-      <NavLink to="/links/my">My links</NavLink>
-      <NavLink to="/links/all">All links</NavLink>
+      <NavLink
+        to={`/links/my${locationSearch}`}
+        isActive={(match, location) => location.pathname === '/links/my'}
+      >
+        My links
+      </NavLink>
+      <NavLink
+        to={`/links/all${locationSearch}`}
+        isActive={(match, location) => location.pathname === '/links/all'}
+      >
+        All links
+      </NavLink>
+
+      <InfPanel>
+        <ChartBar />
+        <span>0</span>
+        {tag && <Tag tag={tag} handleDelete={handelDeleteTag} />}
+      </InfPanel>
     </nav>
+
     <div>
       {loading ? <ResetIndicator /> : <ResetButton onClick={HandlerLoadLinks} />}
       <TableTypeButton onClick={typeDisplayTable} enabled={typeDisplay === displayType.TABLE} />
