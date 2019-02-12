@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import queryString from 'query-string';
+import { type Location, type RouterHistory } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -33,6 +35,8 @@ type Props = {
   deleteLink: typeof deleteLinkRequested,
   deletedLink: Link,
   typeLoad: TypeLinksLoad,
+  location: Location,
+  history: RouterHistory,
 };
 type State = {
   typeDisplay: DisplayType,
@@ -52,7 +56,10 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props) {
-    if (prevProps.typeLoad !== this.props.typeLoad) {
+    if (
+      prevProps.typeLoad !== this.props.typeLoad
+      || prevProps.location.search !== this.props.location.search
+    ) {
       this.loadLinks();
     }
   }
@@ -71,12 +78,13 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   loadLinks = () => {
+    const { tag } = queryString.parse(this.props.location.search);
     switch (this.props.typeLoad) {
       case typeLinksLoad.ALL:
-        this.props.linksLoadAll();
+        this.props.linksLoadAll(tag ? String(tag) : undefined);
         break;
       case typeLinksLoad.MY:
-        this.props.linksLoadMy();
+        this.props.linksLoadMy(tag ? String(tag) : undefined);
         break;
       default:
         break;
@@ -99,11 +107,16 @@ class LinksDisplay extends Component<Props, State> {
     this.setState({ selectedLinkID: '', editLinkID: '' });
   };
 
+  handelDeleteTag = () => {
+    this.props.history.push(this.props.location.pathname);
+  };
+
   render() {
     const {
       linksList, error, loading, deletedLink, typeLoad,
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
+    const { tag } = queryString.parse(this.props.location.search);
     return (
       <div>
         <ControlPanel
@@ -112,6 +125,9 @@ class LinksDisplay extends Component<Props, State> {
           typeDisplayList={this.typeDisplayList}
           typeDisplay={typeDisplay}
           loading={loading}
+          handelDeleteTag={this.handelDeleteTag}
+          locationSearch={this.props.location.search}
+          tag={tag ? String(tag) : ''}
         />
         {deletedLink && (
           <Alert type="success">{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
