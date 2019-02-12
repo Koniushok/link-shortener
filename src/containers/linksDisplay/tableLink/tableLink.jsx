@@ -50,7 +50,7 @@ const TableLink = ({
           <th>ShortLink</th>
           <th>url</th>
           <th>Description</th>
-          <th>Passage</th>
+          <th>Clicks</th>
           <th>Tags</th>
           <th />
         </tr>

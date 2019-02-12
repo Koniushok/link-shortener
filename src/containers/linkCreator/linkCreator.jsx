@@ -9,6 +9,7 @@ import LinkForm from '../../components/linkForm';
 const FormWrapper = styled.section`
   flex: auto;
   display: flex;
+  padding: 0 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

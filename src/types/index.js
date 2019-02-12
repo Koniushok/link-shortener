@@ -4,7 +4,7 @@ export type Link = {
   title: string,
   url: string,
   shortLink: string,
-  passage: number,
+  clicks: number,
   tags: Array<string>,
   description: string,
 };

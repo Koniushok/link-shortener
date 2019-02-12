@@ -43,7 +43,7 @@ const ShortLink = styled.div`
   }
 `;
 
-const Passage = styled.div`
+const ClicksInf = styled.div`
   display: flex;
   color: #979797;
   p {
@@ -110,10 +110,10 @@ class InfoLink extends Component<Props> {
           <a rel="noreferrer noopener" target="_blank" href={link.shortLink}>
             {link.shortLink}
           </a>
-          <Passage>
+          <ClicksInf>
             <ChartBar />
-            <p>{link.passage}</p>
-          </Passage>
+            <p>{link.clicks}</p>
+          </ClicksInf>
         </ShortLink>
       </LinkWrapper>
     );
