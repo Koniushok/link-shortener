@@ -15,7 +15,8 @@ const Table = styled.table`
   position: relative;
   width: 100%;
   border-collapse: collapse;
-  & th {
+  & th,
+  td {
     text-align: left;
     padding: 0.75rem;
   }
@@ -25,7 +26,6 @@ const Table = styled.table`
     border-bottom: 2px solid #dee2e6;
   }
 `;
-
 type Props = {
   handelItemClick: (linkId: string) => void,
   handelEditClick: (linkId: string) => void,
@@ -52,6 +52,7 @@ const TableLink = ({
           <th>Description</th>
           <th>Passage</th>
           <th>Tags</th>
+          <th />
         </tr>
       </thead>
       <tbody>

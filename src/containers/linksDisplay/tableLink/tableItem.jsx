@@ -10,8 +10,6 @@ import { typeLinksLoad, type TypeLinksLoad } from '../../../constants/display';
 
 const TableRow = styled.tr`
   & td {
-    text-align: left;
-    padding: 0.75rem;
     max-width: 5em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -20,6 +18,10 @@ const TableRow = styled.tr`
       color: #7b7b7b;
       width: 16px;
       margin-right: 5px;
+    }
+    &:last-child {
+      max-width: 3em;
+      padding: 0;
     }
   }
   border-top: 1px solid #dee2e6;
@@ -31,20 +33,15 @@ const TableRow = styled.tr`
   }
 `;
 
-const ControlWrapper = styled.td`
-  display: inline-flex;
-  position: absolute;
-  right: 0px;
-  && {
-    padding: 6px 0px;
-  }
+const ControlWrapper = styled.div`
+  display: flex;
   && svg {
-    color: black;
+    color: #727373;
     width: 30px;
+    margin-right: 0;
     height: 30px;
-    margin-left: 5px;
     :hover {
-      color: #727373;
+      color: black;
     }
   }
 `;
@@ -63,18 +60,6 @@ type State = {
 };
 
 class TableItem extends Component<Props, State> {
-  state = {
-    hover: false,
-  };
-
-  handelMouseEnter = () => {
-    this.setState({ hover: true });
-  };
-
-  handelMouseLeave = () => {
-    this.setState({ hover: false });
-  };
-
   handelClick = () => {
     this.props.handelItemClick(this.props.link.id);
   };
@@ -95,8 +80,6 @@ class TableItem extends Component<Props, State> {
     } = this.props.link;
     return (
       <TableRow
-        onMouseEnter={this.handelMouseEnter}
-        onMouseLeave={this.handelMouseLeave}
         onClick={this.handelClick}
       >
         <th>{this.props.index}</th>
@@ -112,12 +95,14 @@ class TableItem extends Component<Props, State> {
           <Tags />
           {tags.length}
         </td>
-        {this.state.hover && this.props.typeLoad === typeLinksLoad.MY && (
-          <ControlWrapper>
-            <Delete onClick={this.handelDeleteClick} />
-            <Edit onClick={this.handelEditClick} />
-          </ControlWrapper>
-        )}
+        <td>
+          {this.props.typeLoad === typeLinksLoad.MY && (
+            <ControlWrapper>
+              <Delete onClick={this.handelDeleteClick} />
+              <Edit onClick={this.handelEditClick} />
+            </ControlWrapper>
+          )}
+        </td>
       </TableRow>
     );
   }
