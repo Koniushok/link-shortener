@@ -52,13 +52,12 @@ const App = ({ logout, auth }: Props) => (
             exact
             render={props => <LinksDisplay typeLoad={typeLinksLoad.MY} {...props} />}
           />
-          <ProtectedRoute
-            auth={auth}
+          <Route
             path="/links/all"
             exact
             render={props => <LinksDisplay typeLoad={typeLinksLoad.ALL} {...props} />}
           />
-          <Redirect from="/links" exact to="/links/my" />
+          <Redirect from="/links" exact to="/links/all" />
           <Redirect to="/not-found" />
         </Switch>
       </Main>

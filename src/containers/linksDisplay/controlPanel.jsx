@@ -129,6 +129,7 @@ type Props = {
   loading: boolean,
   location: Location,
   history: RouterHistory,
+  auth: boolean,
 };
 class ControlPanel extends Component<Props> {
   handelDeleteTag = () => {
@@ -147,15 +148,18 @@ class ControlPanel extends Component<Props> {
       typeDisplay,
       loading,
       location,
+      auth,
     } = this.props;
     const { tag } = queryString.parse(this.props.location.search);
     return (
       <ControlPanelWrapper>
         <section>
           <nav>
-            <NavLink to={`/links/my${location.search}`} isActive={this.checkActiveMyLink}>
-              My links
-            </NavLink>
+            {auth && (
+              <NavLink to={`/links/my${location.search}`} isActive={this.checkActiveMyLink}>
+                My links
+              </NavLink>
+            )}
             <NavLink to={`/links/all${location.search}`} isActive={this.checkActiveAllLink}>
               All links
             </NavLink>

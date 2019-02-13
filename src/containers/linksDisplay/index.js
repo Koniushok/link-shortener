@@ -5,11 +5,12 @@ import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import LinksDisplay from './linksDisplay';
 import { type State } from '../../reducers';
 
-const mapStateToProps = ({ links, deleteLink }: State) => ({
+const mapStateToProps = ({ links, deleteLink, auth }: State) => ({
   linksList: links.data,
   error: links.error || deleteLink.error,
   loading: links.loading,
   deletedLink: deleteLink.deletedLink,
+  auth: !!auth.token,
 });
 
 const mapDispatchToProps = {

@@ -60,6 +60,7 @@ const Header = ({ auth, handleLogout }: Props) => (
       </Fragment>
     ) : (
       <Fragment>
+        <NavLink to="/links">Links</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/login">Sign In</NavLink>
       </Fragment>
