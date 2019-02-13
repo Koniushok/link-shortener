@@ -40,7 +40,6 @@ const ModalContent = styled.div`
   position: relative;
   z-index: 2;
   display: block;
-  max-width: 80%;
   padding: 0 15px;
   background: #ffffff;
   border-radius: 5px;

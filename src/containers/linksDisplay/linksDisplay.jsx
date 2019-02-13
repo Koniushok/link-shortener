@@ -19,7 +19,7 @@ import {
   type DisplayType,
 } from '../../constants/display';
 
-const DisplayWrapper = styled.div`
+const DisplayWrapper = styled.section`
   width: 980px;
   margin: 35px auto 0 auto;
   @media (max-width: 1000px) {
@@ -47,16 +47,18 @@ type State = {
   editLinkID: string,
 };
 class LinksDisplay extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.loadLinks();
-  }
-
   state = {
     typeDisplay: displayType.TABLE,
     selectedLinkID: '',
     editLinkID: '',
   };
+
+  componentWillMount() {
+    if (window.innerWidth < 600) {
+      this.setState({ typeDisplay: displayType.LIST });
+    }
+    this.loadLinks();
+  }
 
   componentDidUpdate(prevProps: Props) {
     if (
@@ -116,7 +118,7 @@ class LinksDisplay extends Component<Props, State> {
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
-      <div>
+      <section>
         <ControlPanel
           handlerLoadLinks={this.loadLinks}
           typeDisplayTable={this.typeDisplayTable}
@@ -158,7 +160,7 @@ class LinksDisplay extends Component<Props, State> {
           )}
           {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
         </DisplayWrapper>
-      </div>
+      </section>
     );
   }
 }

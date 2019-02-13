@@ -17,7 +17,10 @@ const FormWrapper = styled.section`
   justify-content: center;
   align-items: center;
   form {
-    width: 60vw;
+    width: 600px;
+    @media (max-width: 660px) {
+      width: 85vw;
+    }
   }
 `;
 

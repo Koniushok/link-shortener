@@ -2,11 +2,10 @@
 import React, { Component, type ComponentType } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import queryString from 'query-string';
-import { Reset } from 'styled-icons/boxicons-regular/Reset';
+import { Revision } from 'styled-icons/boxicons-regular/Revision';
 import { LoaderAlt } from 'styled-icons/boxicons-regular/LoaderAlt';
 import { Table } from 'styled-icons/icomoon/Table';
 import { List } from 'styled-icons/boxicons-regular/List';
-import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
 import {
   NavLink as RouterLink,
   withRouter,
@@ -18,14 +17,11 @@ import { MAIN_YELLOW } from '../../constants/color';
 import { displayType, type DisplayType } from '../../constants/display';
 import { Tag } from '../../components/tags';
 
-const ControlPanelWrapper = styled.div`
+const ControlPanelWrapper = styled.section`
   padding-top: 15px;
   border-bottom: 1px solid #e1e4e8;
   background-color: #fafbfc;
   & > section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     width: 980px;
     margin: 0 auto;
     @media (max-width: 1000px) {
@@ -35,22 +31,25 @@ const ControlPanelWrapper = styled.div`
 `;
 
 const InfPanel = styled.div`
-  display: inline-flex;
-  margin: auto auto auto 0;
-  align-items: center;
-  & > svg {
-    width: 20px;
-    margin-left: 20px;
-  }
-  span {
-    font-size: 20px;
-    margin-right: 20px;
-  }
-  div {
-    padding: 1px 2px 1px 7px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  & > div {
+    display: flex;
   }
 `;
 
+const Title = styled.div`
+  flex-wrap: wrap;
+  div {
+    height: 20px;
+    padding: 1px 2px 1px 7px;
+    margin: auto 0 4px 0;
+  }
+  h1 {
+    margin: 0 10px 0 0;
+  }
+`;
 const rotate = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -65,7 +64,7 @@ const ResetIndicator = styled(LoaderAlt)`
   animation: ${rotate} 2s linear infinite;
   margin-right: 10px;
 `;
-const ResetButton = styled(Reset)`
+const ResetButton = styled(Revision)`
   display: inline-block;
   ${buttonSize}
   cursor: pointer;
@@ -106,15 +105,16 @@ const NavLink = styled(RouterLink).attrs({
   activeClassName: 'selected',
 })`
   &.selected {
-    border-bottom: solid 4px ${MAIN_YELLOW};
+    border-top: solid 3px ${MAIN_YELLOW};
+    background-color: #fff;
   }
+  border-radius: 4px 4px 0 0;
   cursor: pointer;
   text-decoration: none;
   font-size: 20px;
   color: black;
-  padding: 5px 10px;
-  margin-right: 10px;
-  font-weight: 500;
+  margin-bottom: -0.5px;
+  padding: 7px 15px 8px;
   display: inline-block;
   :hover {
     color: gray;
@@ -154,6 +154,23 @@ class ControlPanel extends Component<Props> {
     return (
       <ControlPanelWrapper>
         <section>
+          <InfPanel>
+            <Title>
+              <h1>Link list</h1>
+              {tag && <Tag tag={String(tag)} handleDelete={this.handelDeleteTag} />}
+            </Title>
+            <div>
+              {loading ? <ResetIndicator /> : <ResetButton onClick={handlerLoadLinks} />}
+              <TableTypeButton
+                onClick={typeDisplayTable}
+                enabled={typeDisplay === displayType.TABLE}
+              />
+              <ListTypeButton
+                onClick={typeDisplayList}
+                enabled={typeDisplay === displayType.LIST}
+              />
+            </div>
+          </InfPanel>
           <nav>
             {auth && (
               <NavLink to={`/links/my${location.search}`} isActive={this.checkActiveMyLink}>
@@ -164,20 +181,6 @@ class ControlPanel extends Component<Props> {
               All links
             </NavLink>
           </nav>
-          <InfPanel>
-            <ChartBar />
-            <span>0</span>
-            {tag && <Tag tag={String(tag)} handleDelete={this.handelDeleteTag} />}
-          </InfPanel>
-
-          <div>
-            {loading ? <ResetIndicator /> : <ResetButton onClick={handlerLoadLinks} />}
-            <TableTypeButton
-              onClick={typeDisplayTable}
-              enabled={typeDisplay === displayType.TABLE}
-            />
-            <ListTypeButton onClick={typeDisplayList} enabled={typeDisplay === displayType.LIST} />
-          </div>
         </section>
       </ControlPanelWrapper>
     );
