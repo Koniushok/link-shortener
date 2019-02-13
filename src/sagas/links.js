@@ -5,10 +5,12 @@ import {
   linksLoadError,
   linksLoadRequest,
   linksLoadSuccess,
+  fetchLinksClicksSucceeded,
+  type FetchLinksClicksRequested,
   type LinksActions,
 } from '../actions/links';
 import { LINKS_LOAD_ALL, LINKS_LOAD_MY } from '../constants/actionTypes';
-import { getAllLinks, getMyLinks } from '../api';
+import { getAllLinks, getMyLinks, getLinksClicks } from '../api';
 
 export function* linksLoad(action: LinksActions): Saga<void> {
   try {
@@ -33,6 +35,10 @@ export function* linksLoad(action: LinksActions): Saga<void> {
       yield put(linksLoadError(error.message));
     }
   }
+}
+export function* FetchLinksClicks(action: FetchLinksClicksRequested): Saga<void> {
+  const clicks = yield call(getLinksClicks, action.payload);
+  yield put(fetchLinksClicksSucceeded(clicks));
 }
 
 export default function* watchLinksLoad(): any {

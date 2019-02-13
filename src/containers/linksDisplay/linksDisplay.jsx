@@ -39,6 +39,7 @@ type Props = {
   deletedLink: Link,
   typeLoad: TypeLinksLoad,
   location: Location,
+  clicks: number,
 };
 type State = {
   typeDisplay: DisplayType,
@@ -111,7 +112,7 @@ class LinksDisplay extends Component<Props, State> {
 
   render() {
     const {
-      linksList, error, loading, deletedLink, typeLoad,
+      linksList, error, loading, deletedLink, typeLoad, clicks,
     } = this.props;
     const { typeDisplay, selectedLinkID, editLinkID } = this.state;
     return (
@@ -124,9 +125,17 @@ class LinksDisplay extends Component<Props, State> {
           loading={loading}
         />
         {deletedLink && (
-          <Alert type="success" absolute>{`Link ${deletedLink.shortLink} successfully deleted`}</Alert>
+          <Alert type="success" absolute>
+            {`Link ${
+              deletedLink.shortLink
+            } successfully deleted`}
+          </Alert>
         )}
-        {error && <Alert type="error" absolute>{error}</Alert>}
+        {error && (
+          <Alert type="error" absolute>
+            {error}
+          </Alert>
+        )}
         <DisplayWrapper>
           {typeDisplay === displayType.TABLE && (
             <TableLink
@@ -135,6 +144,7 @@ class LinksDisplay extends Component<Props, State> {
               handelEditClick={this.handelEditClick}
               handelDeleteClick={this.handelDeleteClick}
               typeLoad={typeLoad}
+              clicks={clicks}
             />
           )}
           {typeDisplay === displayType.LIST && (

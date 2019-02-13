@@ -6,6 +6,7 @@ import {
   EDIT_LINK_SUCCEEDED,
   DELETE_LINK_SUCCEEDED,
   CREATE_LINK_RESET,
+  FETCH_LINKS_CLICKS_SUCCEEDED,
 } from '../constants/actionTypes';
 import { type Actions } from '../actions';
 import { type Link } from '../types';
@@ -13,9 +14,15 @@ import { type Link } from '../types';
 export type State = $ReadOnly<{
   data: ?Array<Link>,
   error: string,
+  clicks: number,
   loading: boolean,
 }>;
-const initialState: State = { data: null, error: '', loading: false };
+const initialState: State = {
+  data: null,
+  error: '',
+  loading: false,
+  clicks: 0,
+};
 
 const linksReducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
@@ -48,6 +55,8 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
     }
     case CREATE_LINK_RESET:
       return initialState;
+    case FETCH_LINKS_CLICKS_SUCCEEDED:
+      return { ...state, clicks: action.payload };
     default:
       return state;
   }

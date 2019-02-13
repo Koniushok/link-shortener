@@ -10,6 +10,7 @@ const mapStateToProps = ({ links, deleteLink }: State) => ({
   error: links.error || deleteLink.error,
   loading: links.loading,
   deletedLink: deleteLink.deletedLink,
+  clicks: links.clicks,
 });
 
 const mapDispatchToProps = {

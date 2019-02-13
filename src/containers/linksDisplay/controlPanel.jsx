@@ -129,6 +129,7 @@ type Props = {
   loading: boolean,
   location: Location,
   history: RouterHistory,
+  clicks: number,
 };
 class ControlPanel extends Component<Props> {
   handelDeleteTag = () => {
@@ -147,6 +148,7 @@ class ControlPanel extends Component<Props> {
       typeDisplay,
       loading,
       location,
+      clicks,
     } = this.props;
     const { tag } = queryString.parse(this.props.location.search);
     return (
@@ -162,7 +164,7 @@ class ControlPanel extends Component<Props> {
           </nav>
           <InfPanel>
             <ChartBar />
-            <span>0</span>
+            <span>{clicks}</span>
             {tag && <Tag tag={String(tag)} handleDelete={this.handelDeleteTag} />}
           </InfPanel>
 
