@@ -7,7 +7,6 @@
         "polyfill": false,
         "regenerator": true
       }
-    ],
-    "react-hot-loader/babel"
+    ]
   ]
 }
