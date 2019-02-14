@@ -89,14 +89,14 @@ class Profile extends Component<Props> {
                 </tr>
                 <tr>
                   <td>
-                    <ChartBar />
+                    <ExternalLink />
                   </td>
                   <th>Link Count</th>
                   <td>{profileData.linkCount}</td>
                 </tr>
                 <tr>
                   <td>
-                    <ExternalLink />
+                    <ChartBar />
                   </td>
                   <th>Total clinks</th>
                   <td>{profileData.totalClinks}</td>
