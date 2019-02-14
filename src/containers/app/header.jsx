@@ -55,6 +55,7 @@ const Header = ({ auth, handleLogout }: Props) => (
         <NavLink to="/" exact>
           Home
         </NavLink>
+        <NavLink to="/profile">Profile</NavLink>
         <NavLink to="/links">Links</NavLink>
         <ButtonLink onClick={handleLogout}>Logout</ButtonLink>
       </Fragment>
