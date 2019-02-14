@@ -17,13 +17,14 @@ const Table = styled.table`
   font-size: 18px;
   text-align: left;
   td {
-    display:inline-block;
+    display: inline-block;
     padding: 0.75rem;
   }
   th {
-    display:inline-block;
+    display: inline-block;
     padding: 0.75rem 0.5rem 0.75rem 0;
     white-space: nowrap;
+    width: 90px;
   }
   svg {
     width: 20px;
@@ -73,30 +74,30 @@ class Profile extends Component<Props> {
             <Table>
               <tbody>
                 <tr>
-                  <th>
+                  <td>
                     <Users />
-                  </th>
+                  </td>
                   <th>Name</th>
                   <td>{profileData.name}</td>
                 </tr>
                 <tr>
-                  <th>
+                  <td>
                     <UserTie />
-                  </th>
+                  </td>
                   <th>Surname</th>
                   <td>{profileData.surname}</td>
                 </tr>
                 <tr>
-                  <th>
+                  <td>
                     <ChartBar />
-                  </th>
+                  </td>
                   <th>Link Count</th>
                   <td>{profileData.linkCount}</td>
                 </tr>
                 <tr>
-                  <th>
+                  <td>
                     <ExternalLink />
-                  </th>
+                  </td>
                   <th>Total clinks</th>
                   <td>{profileData.totalClinks}</td>
                 </tr>
