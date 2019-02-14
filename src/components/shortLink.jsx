@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { URL_REDIRECT } from '../constants/api';
 
 const Button = styled.button`
   padding: 1px 13px;
@@ -40,10 +41,10 @@ const Link = styled.a`
 
 const ShortLink = ({ link }: { link: string }) => (
   <div>
-    <Link rel="noreferrer noopener" target="_blank" href={`http://localhost:8080/${link}`}>
-      {`http://localhost:8080/${link}`}
+    <Link rel="noreferrer noopener" target="_blank" href={`${URL_REDIRECT}/${link}`}>
+      {`${URL_REDIRECT}/${link}`}
     </Link>
-    <CopyToClipboard text={`http://localhost:8080/${link}`}>
+    <CopyToClipboard text={`${URL_REDIRECT}/${link}`}>
       <Button>copy</Button>
     </CopyToClipboard>
   </div>
