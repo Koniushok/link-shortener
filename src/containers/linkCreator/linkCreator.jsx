@@ -1,10 +1,11 @@
 // @flow
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { type LinkCreate } from '../../types';
+import { type LinkCreate, type Link } from '../../types';
 import { createLinkRequested, createLinkReset } from '../../actions/linkCreator';
 import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
+import ShortLink from '../../components/shortLink';
 
 const FormWrapper = styled.section`
   flex: auto;
@@ -20,7 +21,7 @@ const FormWrapper = styled.section`
 `;
 
 type Props = {
-  result: boolean,
+  newLink: ?Link,
   error: string,
   loading: boolean,
   createLinkReset: typeof createLinkReset,
@@ -36,13 +37,22 @@ class LinkCreator extends Component<Props> {
   };
 
   render() {
-    const { result, error, loading } = this.props;
+    const { newLink, error, loading } = this.props;
     return (
       <Fragment>
-        {error && <Alert type="error" absolute>{error}</Alert>}
-        {result && <Alert type="success" absolute>Link successfully created</Alert>}
+        {error && (
+          <Alert type="error" absolute>
+            {error}
+          </Alert>
+        )}
+        {newLink && (
+          <Alert type="success" absolute>
+            Link successfully created
+          </Alert>
+        )}
         <FormWrapper>
           <h1>Create link</h1>
+          {newLink && <ShortLink link={newLink.shortLink} />}
           <LinkForm loading={loading} onSubmit={this.handleSubmit} buttonLabel="Create" />
         </FormWrapper>
       </Fragment>

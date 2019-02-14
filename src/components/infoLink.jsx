@@ -6,6 +6,7 @@ import { Delete } from 'styled-icons/material/Delete';
 import { Edit } from 'styled-icons/fa-solid/Edit';
 import Tags from './tags';
 import { type Link } from '../types';
+import ShortLink from './shortLink';
 
 const LinkWrapper = styled.div`
   word-break: break-all;
@@ -33,14 +34,10 @@ const Description = styled.div`
     margin: 0;
   }
 `;
-const ShortLink = styled.div`
+const BottomPanel = styled.div`
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
-  a {
-    text-decoration: none;
-    color: #ff901b;
-  }
 `;
 
 const ClicksInf = styled.div`
@@ -106,15 +103,13 @@ class InfoLink extends Component<Props> {
           <p>{link.description}</p>
         </Description>
         <Tags tagList={link.tags} handleDelete={null} />
-        <ShortLink>
-          <a rel="noreferrer noopener" target="_blank" href={link.shortLink}>
-            {link.shortLink}
-          </a>
+        <BottomPanel>
+          <ShortLink link={link.shortLink} />
           <ClicksInf>
             <ChartBar />
             <p>{link.clicks}</p>
           </ClicksInf>
-        </ShortLink>
+        </BottomPanel>
       </LinkWrapper>
     );
   }
