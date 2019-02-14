@@ -11,6 +11,7 @@ import Registration from '../registration';
 import NotFound from './notFound';
 import Header from './header';
 import LinksDisplay from '../linksDisplay';
+import Profile from '../profile';
 
 const Footer = styled.footer`
   background: #24292e;
@@ -44,6 +45,7 @@ const App = ({ logout, auth }: Props) => (
       <Main>
         <Switch>
           <ProtectedRoute auth={auth} path="/" exact component={LinkCreator} />
+          <ProtectedRoute auth={auth} path="/profile" exact component={Profile} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
           <ProtectedRoute
