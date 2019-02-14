@@ -84,7 +84,6 @@ class LinkEditor extends Component<Props> {
                 description: link.description,
                 tags: link.tags,
               }}
-              tags={link.tags}
               buttonLabel="Save"
             />
           )}

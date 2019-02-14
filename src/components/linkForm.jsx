@@ -39,7 +39,6 @@ type FormTarget = {
 type Props = {
   buttonLabel: string,
   linkData?: LinkCreate,
-  tags?: Array<string>,
   onSubmit: (linkData: LinkCreate) => void,
   loading: boolean,
 };
@@ -58,12 +57,11 @@ class LinkForm extends Component<Props, State> {
 
   static defaultProps = {
     linkData: undefined,
-    tags: undefined,
   };
 
   state = {
     tag: '',
-    tags: this.props.tags || [],
+    tags: this.props.linkData ? this.props.linkData.tags : [],
     errors: {
       title: '',
       url: '',
@@ -142,6 +140,12 @@ class LinkForm extends Component<Props, State> {
     if (Object.values(errors).every(error => !error)) {
       const link = { ...linkData, tags: this.state.tags };
       this.props.onSubmit(link);
+      if (!this.props.linkData) {
+        title.value = '';
+        url.value = '';
+        description.value = '';
+        this.setState({ tags: [], tag: '' });
+      }
     }
   };
 
