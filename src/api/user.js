@@ -12,3 +12,8 @@ export const createProfile = async (profile: RegistryProfile) => {
   const response = await axios.post(`${API_END_POINT}/user`, { ...profile });
   return response.data;
 };
+
+export const getMyProfile = async () => {
+  const response = await axios.get(`${API_END_POINT}/user/me`);
+  return response.data;
+};

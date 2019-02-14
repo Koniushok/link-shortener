@@ -6,6 +6,7 @@ import { type LinkCreatorActions } from './linkCreator';
 import { type LinkActions } from './fetchLink';
 import { type EditLinkActions } from './editLink';
 import { type DeleteLinkActions } from './deleteLink';
+import { type FetchProfileActions } from './fetchProfile';
 
 export type Actions =
   | LinksActions
@@ -14,4 +15,5 @@ export type Actions =
   | LinkCreatorActions
   | LinkActions
   | EditLinkActions
-  | DeleteLinkActions;
+  | DeleteLinkActions
+  | FetchProfileActions;
