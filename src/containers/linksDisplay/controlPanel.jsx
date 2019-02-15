@@ -117,7 +117,7 @@ const NavLink = styled(RouterLink).attrs({
   padding: 7px 15px 8px;
   display: inline-block;
   :hover {
-    color: red;
+    color: #898989;
   }
 `;
 
