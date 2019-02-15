@@ -182,10 +182,6 @@ class LinksDisplay extends Component<Props, State> {
               typeLoad={typeLoad}
             />
           )}
-          {selectedLinkID && (
-            <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
-          )}
-          {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
           <Pagination
             itemsCount={linkCount}
             pageLimit={pageLimit}
@@ -193,6 +189,10 @@ class LinksDisplay extends Component<Props, State> {
             onPageChange={this.onPageChange}
             currentPage={currentPage}
           />
+          {selectedLinkID && (
+            <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
+          )}
+          {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
         </DisplayWrapper>
       </section>
     );
