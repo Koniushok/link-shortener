@@ -117,7 +117,7 @@ const NavLink = styled(RouterLink).attrs({
   padding: 7px 15px 8px;
   display: inline-block;
   :hover {
-    color: gray;
+    color: red;
   }
 `;
 
@@ -150,7 +150,10 @@ class ControlPanel extends Component<Props> {
       location,
       auth,
     } = this.props;
-    const { tag } = queryString.parse(this.props.location.search);
+    const parsed = queryString.parse(location.search);
+    const { tag } = parsed;
+    parsed.page = '1';
+    const search = queryString.stringify({ ...parsed });
     return (
       <ControlPanelWrapper>
         <section>
@@ -173,11 +176,11 @@ class ControlPanel extends Component<Props> {
           </InfPanel>
           <nav>
             {auth && (
-              <NavLink to={`/links/my${location.search}`} isActive={this.checkActiveMyLink}>
+              <NavLink to={`/links/my?${search}`} isActive={this.checkActiveMyLink}>
                 My links
               </NavLink>
             )}
-            <NavLink to={`/links/all${location.search}`} isActive={this.checkActiveAllLink}>
+            <NavLink to={`/links/all?${search}`} isActive={this.checkActiveAllLink}>
               All links
             </NavLink>
           </nav>

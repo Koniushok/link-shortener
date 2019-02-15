@@ -9,6 +9,7 @@ const TableWrapper = styled.div`
   overflow: auto;
   padding-bottom: 5px;
   border: 1px solid #dfe2e5;
+  margin-bottom: 60px;
 `;
 
 const Table = styled.table`
@@ -32,6 +33,7 @@ type Props = {
   handelDeleteClick: (linkId: string) => void,
   typeLoad: TypeLinksLoad,
   linksList: ?Array<Link>,
+  startIndex: number,
 };
 
 const TableLink = ({
@@ -40,6 +42,7 @@ const TableLink = ({
   linksList,
   handelDeleteClick,
   typeLoad,
+  startIndex,
 }: Props) => (
   <TableWrapper>
     <Table>
@@ -60,7 +63,7 @@ const TableLink = ({
           && linksList.map((link, index) => (
             <TableItem
               link={link}
-              index={index}
+              index={index + startIndex}
               key={link.shortLink}
               handelDeleteClick={handelDeleteClick}
               handelItemClick={handelItemClick}

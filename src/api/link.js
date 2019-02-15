@@ -1,26 +1,19 @@
 // @flow
 import axios from 'axios';
+import queryString from 'query-string';
 import { type LinkCreate } from '../types';
 import { API_END_POINT } from '../constants/api';
 
-export const getAllLinks = async (tag?: string) => {
-  let url = '';
-  if (tag) {
-    url = `${API_END_POINT}/link?tag=${tag}`;
-  } else {
-    url = `${API_END_POINT}/link`;
-  }
+export const getAllLinks = async (search: string) => {
+  const { page, items, tag } = queryString.parse(search);
+  const url = `${API_END_POINT}/link?${queryString.stringify({ page, items, tag })}`;
   const response = await axios.get(url);
   return response.data;
 };
 
-export const getMyLinks = async (tag?: string) => {
-  let url = '';
-  if (tag) {
-    url = `${API_END_POINT}/link/my?tag=${tag}`;
-  } else {
-    url = `${API_END_POINT}/link/my`;
-  }
+export const getMyLinks = async (search: string) => {
+  const { page, items, tag } = queryString.parse(search);
+  const url = `${API_END_POINT}/link/my?${queryString.stringify({ page, items, tag })}`;
   const response = await axios.get(url);
   return response.data;
 };

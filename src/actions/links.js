@@ -9,30 +9,30 @@ import {
 } from '../constants/actionTypes';
 import { type Link } from '../types';
 
-type LinksLoadMy = { type: typeof LINKS_LOAD_MY, payload?: string };
-type LinksLoadAll = { type: typeof LINKS_LOAD_ALL, payload?: string };
+type LinksLoadMy = { type: typeof LINKS_LOAD_MY, payload: string };
+type LinksLoadAll = { type: typeof LINKS_LOAD_ALL, payload: string };
 type LinksLoadRequest = { type: typeof LINKS_LOAD_REQUESTED };
 type LinksLoadSuccess = {
   type: typeof LINKS_LOAD_SUCCEEDED,
-  payload: Array<Link>,
+  payload: { links: Array<Link>, lickCount: number },
 };
 type LinksLoadError = { type: typeof LINKS_LOAD_FAILED, payload: string };
 type LinksLoadReset = { type: typeof LINKS_LOAD_RESET };
 
-export const linksLoadMy = (tag?: string): LinksLoadMy => ({
+export const linksLoadMy = (search: string): LinksLoadMy => ({
   type: LINKS_LOAD_MY,
-  payload: tag,
+  payload: search,
 });
-export const linksLoadAll = (tag?: string): LinksLoadAll => ({
+export const linksLoadAll = (search: string): LinksLoadAll => ({
   type: LINKS_LOAD_ALL,
-  payload: tag,
+  payload: search,
 });
 export const linksLoadRequest = (): LinksLoadRequest => ({
   type: LINKS_LOAD_REQUESTED,
 });
-export const linksLoadSuccess = (data: Array<Link>): LinksLoadSuccess => ({
+export const linksLoadSuccess = (links: Array<Link>, lickCount: number): LinksLoadSuccess => ({
   type: LINKS_LOAD_SUCCEEDED,
-  payload: data,
+  payload: { links, lickCount },
 });
 export const linksLoadError = (error: string): LinksLoadError => ({
   type: LINKS_LOAD_FAILED,

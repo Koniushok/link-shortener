@@ -14,8 +14,14 @@ export type State = $ReadOnly<{
   data: ?Array<Link>,
   error: string,
   loading: boolean,
+  linkCount: number,
 }>;
-const initialState: State = { data: null, error: '', loading: false };
+const initialState: State = {
+  data: null,
+  error: '',
+  loading: false,
+  linkCount: 0,
+};
 
 const linksReducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
@@ -33,7 +39,12 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
         loading: false,
       };
     case LINKS_LOAD_SUCCEEDED:
-      return { ...state, data: action.payload, loading: false };
+      return {
+        ...state,
+        data: action.payload.links,
+        loading: false,
+        linkCount: action.payload.lickCount,
+      };
     case EDIT_LINK_SUCCEEDED: {
       const editLink = action.payload;
       const links = state.data

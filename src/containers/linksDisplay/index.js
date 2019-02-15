@@ -7,6 +7,7 @@ import { type State } from '../../reducers';
 
 const mapStateToProps = ({ links, deleteLink, auth }: State) => ({
   linksList: links.data,
+  linkCount: links.linkCount,
   error: links.error || deleteLink.error,
   loading: links.loading,
   deletedLink: deleteLink.deletedLink,
