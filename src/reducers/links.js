@@ -28,7 +28,6 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
     case LINKS_LOAD_REQUESTED:
       return {
         ...state,
-        data: null,
         error: '',
         loading: true,
       };

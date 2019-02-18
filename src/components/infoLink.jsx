@@ -9,7 +9,9 @@ import { type Link } from '../types';
 import ShortLink from './shortLink';
 
 const LinkWrapper = styled.div`
-  word-break: break-all;
+  a {
+    word-break: break-all;
+  }
 `;
 
 const Title = styled.h3`
@@ -44,7 +46,7 @@ const ClicksInf = styled.div`
   display: flex;
   color: #979797;
   p {
-    font-size: 24px;
+    font-size: 22px;
     margin: 0 5px;
   }
   svg {

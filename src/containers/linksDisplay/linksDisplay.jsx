@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import { type Location, type RouterHistory } from 'react-router-dom';
+import { type Location, type RouterHistory, Redirect } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -60,7 +60,7 @@ class LinksDisplay extends Component<Props, State> {
     currentPage: 1,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (window.innerWidth < 600) {
       this.setState({ typeDisplay: displayType.LIST });
     }
@@ -68,9 +68,13 @@ class LinksDisplay extends Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const parsed = queryString.parse(nextProps.location.search);
-    const currentPage = Number(parsed.page) || 1;
+    const nextParsed = queryString.parse(nextProps.location.search);
+    const parsed = queryString.parse(this.props.location.search);
+    const currentPage = Number(nextParsed.page) || 1;
     this.setState({ currentPage });
+    if (parsed.tag !== nextParsed.tag) {
+      this.setState({ selectedLinkID: '', editLinkID: '' });
+    }
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -96,20 +100,19 @@ class LinksDisplay extends Component<Props, State> {
   };
 
   loadLinks = () => {
-    const parsed = queryString.parse(this.props.location.search);
-    parsed.page = parsed.page || '1';
-    parsed.items = parsed.items || String(itemLimit);
-    const search = queryString.stringify({ ...parsed });
-    this.props.history.push(`${this.props.location.pathname}?${search}`);
-    switch (this.props.typeLoad) {
-      case typeLinksLoad.ALL:
-        this.props.linksLoadAll(search);
-        break;
-      case typeLinksLoad.MY:
-        this.props.linksLoadMy(search);
-        break;
-      default:
-        break;
+    const { search } = this.props.location;
+    const parsed = queryString.parse(search);
+    if (parsed.page && parsed.items) {
+      switch (this.props.typeLoad) {
+        case typeLinksLoad.ALL:
+          this.props.linksLoadAll(search);
+          break;
+        case typeLinksLoad.MY:
+          this.props.linksLoadMy(search);
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -143,6 +146,13 @@ class LinksDisplay extends Component<Props, State> {
     const {
       typeDisplay, selectedLinkID, editLinkID, currentPage,
     } = this.state;
+    const parsed = queryString.parse(this.props.location.search);
+    if (!parsed.page || !parsed.items) {
+      parsed.page = parsed.page || '1';
+      parsed.items = parsed.items || String(itemLimit);
+      const search = queryString.stringify({ ...parsed });
+      return <Redirect to={`${this.props.location.pathname}?${search}`} />;
+    }
     return (
       <section>
         <ControlPanel
@@ -163,37 +173,40 @@ class LinksDisplay extends Component<Props, State> {
             {error}
           </Alert>
         )}
-        <DisplayWrapper>
-          {typeDisplay === displayType.TABLE && (
-            <TableLink
-              linksList={linksList}
-              handelItemClick={this.handelItemClick}
-              handelEditClick={this.handelEditClick}
-              handelDeleteClick={this.handelDeleteClick}
-              typeLoad={typeLoad}
-              startIndex={(currentPage - 1) * itemLimit + 1}
+
+        {linksList && (
+          <DisplayWrapper>
+            {typeDisplay === displayType.TABLE && (
+              <TableLink
+                linksList={linksList}
+                handelItemClick={this.handelItemClick}
+                handelEditClick={this.handelEditClick}
+                handelDeleteClick={this.handelDeleteClick}
+                typeLoad={typeLoad}
+                startIndex={(currentPage - 1) * itemLimit + 1}
+              />
+            )}
+            {typeDisplay === displayType.LIST && (
+              <TableList
+                linksList={linksList}
+                handelEditClick={this.handelEditClick}
+                handelDeleteClick={this.handelDeleteClick}
+                typeLoad={typeLoad}
+              />
+            )}
+            <Pagination
+              itemsCount={linkCount}
+              pageLimit={pageLimit}
+              itemLimit={itemLimit}
+              onPageChange={this.onPageChange}
+              currentPage={currentPage}
             />
-          )}
-          {typeDisplay === displayType.LIST && (
-            <TableList
-              linksList={linksList}
-              handelEditClick={this.handelEditClick}
-              handelDeleteClick={this.handelDeleteClick}
-              typeLoad={typeLoad}
-            />
-          )}
-          <Pagination
-            itemsCount={linkCount}
-            pageLimit={pageLimit}
-            itemLimit={itemLimit}
-            onPageChange={this.onPageChange}
-            currentPage={currentPage}
-          />
-          {selectedLinkID && (
-            <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
-          )}
-          {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
-        </DisplayWrapper>
+          </DisplayWrapper>
+        )}
+        {selectedLinkID && (
+          <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
+        )}
+        {editLinkID && <LinkEditor linkId={editLinkID} handelClose={this.handelModalClose} />}
       </section>
     );
   }
