@@ -1,12 +1,8 @@
 {
-  "presets": ["env", "react", "stage-0", "flow"],
+  "presets": ["@babel/env", "@babel/react"],
   "plugins": [
-    [
-      "transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-flow-strip-types",
   ]
 }
