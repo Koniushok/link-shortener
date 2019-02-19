@@ -1,8 +1,10 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import { type Location, type RouterHistory, Redirect } from 'react-router-dom';
+import {
+  type Location, type RouterHistory, Redirect, Link as NavLink,
+} from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -27,6 +29,33 @@ const DisplayWrapper = styled.section`
   margin: 35px auto 0 auto;
   @media (max-width: 1000px) {
     width: 98%;
+  }
+  a {
+    border-radius: 5px;
+    width: 100px;
+    margin: 0 0 5px auto;
+    display: block;
+    background: #6c757d;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 5px 0;
+    :hover {
+      background: #405153;
+    }
+  }
+`;
+const CreateBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  span {
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 40px;
+  }
+  a {
+    margin: 0;
   }
 `;
 
@@ -173,36 +202,43 @@ class LinksDisplay extends Component<Props, State> {
             {error}
           </Alert>
         )}
-
-        {linksList && (
-          <DisplayWrapper>
-            {typeDisplay === displayType.TABLE && (
-              <TableLink
-                linksList={linksList}
-                handelItemClick={this.handelItemClick}
-                handelEditClick={this.handelEditClick}
-                handelDeleteClick={this.handelDeleteClick}
-                typeLoad={typeLoad}
-                startIndex={(currentPage - 1) * itemLimit + 1}
+        <DisplayWrapper>
+          {linksList && !!linksList.length ? (
+            <Fragment>
+              <NavLink to="/create">Create</NavLink>
+              {typeDisplay === displayType.TABLE && (
+                <TableLink
+                  linksList={linksList}
+                  handelItemClick={this.handelItemClick}
+                  handelEditClick={this.handelEditClick}
+                  handelDeleteClick={this.handelDeleteClick}
+                  typeLoad={typeLoad}
+                  startIndex={(currentPage - 1) * itemLimit + 1}
+                />
+              )}
+              {typeDisplay === displayType.LIST && (
+                <TableList
+                  linksList={linksList}
+                  handelEditClick={this.handelEditClick}
+                  handelDeleteClick={this.handelDeleteClick}
+                  typeLoad={typeLoad}
+                />
+              )}
+              <Pagination
+                itemsCount={linkCount}
+                pageLimit={pageLimit}
+                itemLimit={itemLimit}
+                onPageChange={this.onPageChange}
+                currentPage={currentPage}
               />
-            )}
-            {typeDisplay === displayType.LIST && (
-              <TableList
-                linksList={linksList}
-                handelEditClick={this.handelEditClick}
-                handelDeleteClick={this.handelDeleteClick}
-                typeLoad={typeLoad}
-              />
-            )}
-            <Pagination
-              itemsCount={linkCount}
-              pageLimit={pageLimit}
-              itemLimit={itemLimit}
-              onPageChange={this.onPageChange}
-              currentPage={currentPage}
-            />
-          </DisplayWrapper>
-        )}
+            </Fragment>
+          ) : (
+            <CreateBlock>
+              <span>The list is empty</span>
+              <NavLink to="/create">Create</NavLink>
+            </CreateBlock>
+          )}
+        </DisplayWrapper>
         {selectedLinkID && (
           <LinkDisplay linkId={selectedLinkID} handelClose={this.handelModalClose} />
         )}

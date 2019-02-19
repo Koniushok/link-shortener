@@ -45,6 +45,12 @@ class LinkEditor extends Component<Props> {
     this.props.fetchLink(this.props.linkId);
   }
 
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.result) {
+      this.props.handelClose();
+    }
+  }
+
   componentWillUnmount() {
     this.props.fetchLinkReset();
     this.props.editLinkReset();
@@ -58,19 +64,12 @@ class LinkEditor extends Component<Props> {
 
   render() {
     const {
-      result,
-      fetchError,
-      editLoading,
-      link,
-      editError,
-      handelClose,
-      fetchLoading,
+      fetchError, editLoading, link, editError, handelClose, fetchLoading,
     } = this.props;
     const error = fetchError || editError;
     return (
       <Modal handelClose={handelClose} loading={fetchLoading}>
         {error && <Alert type="error">{error}</Alert>}
-        {result && <Alert type="success">Link successfully changed</Alert>}
         <FormWrapper>
           {fetchLoading && <Loader />}
           {!fetchLoading && !error && <h1>Edit link</h1>}
