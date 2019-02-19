@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import {
-  type Location, type RouterHistory, Redirect, Link as NavLink,
+  type Location, type RouterHistory, Redirect, Link as RouteNavLink,
 } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
 import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
@@ -30,20 +30,20 @@ const DisplayWrapper = styled.section`
   @media (max-width: 1000px) {
     width: 98%;
   }
-  a {
-    border-radius: 5px;
-    width: 100px;
-    margin: 0 0 5px auto;
-    display: block;
-    background: #6c757d;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    padding: 5px 0;
-    :hover {
-      background: #405153;
-    }
+`;
+const NavLink = styled(RouteNavLink)`
+  border-radius: 5px;
+  width: 100px;
+  margin: 0 0 5px auto;
+  display: block;
+  background: #6c757d;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 5px 0;
+  :hover {
+    background: #405153;
   }
 `;
 const CreateBlock = styled.div`
