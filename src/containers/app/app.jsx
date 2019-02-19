@@ -1,15 +1,14 @@
 // @flow
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { typeLinksLoad } from '../../constants/display';
-import { logout as logoutActions } from '../../actions/auth';
-import ProtectedRoute from '../../components/protectedRoute';
+import Route from '../protectedRoute';
 import LinkCreator from '../linkCreator';
 import Login from '../login';
 import Registration from '../registration';
 import NotFound from './notFound';
-import Header from './header';
+import Header from '../header';
 import LinksDisplay from '../linksDisplay';
 import Profile from '../profile';
 
@@ -33,38 +32,32 @@ const AppWrapper = styled.div`
   min-height: 100vh;
 `;
 
-type Props = {
-  logout: typeof logoutActions,
-  auth: boolean,
-};
-const App = ({ logout, auth }: Props) => (
+const App = () => (
   <AppWrapper>
-    <Header handleLogout={logout} auth={auth} />
-    <Switch>
-      <Route path="/not-found" component={NotFound} />
-      <Main>
-        <Switch>
-          <ProtectedRoute auth={auth} path="/create" exact component={LinkCreator} />
-          <ProtectedRoute auth={auth} path="/profile" exact component={Profile} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Registration} />
-          <ProtectedRoute
-            auth={auth}
-            path="/links/my"
-            exact
-            render={props => <LinksDisplay typeLoad={typeLinksLoad.MY} {...props} />}
-          />
-          <Route
-            path="/links/all"
-            exact
-            render={props => <LinksDisplay typeLoad={typeLinksLoad.ALL} {...props} />}
-          />
-          <Redirect from="/links" exact to="/links/all" />
-          <Redirect from="/" exact to="/links/all" />
-          <Redirect to="/not-found" />
-        </Switch>
-      </Main>
-    </Switch>
+    <Header />
+    <Main>
+      <Switch>
+        <Route path="/not-found" component={NotFound} />
+        <Route protect path="/create" exact component={LinkCreator} />
+        <Route protect path="/profile" exact component={Profile} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Registration} />
+        <Route
+          protect
+          path="/links/my"
+          exact
+          render={props => <LinksDisplay typeLoad={typeLinksLoad.MY} {...props} />}
+        />
+        <Route
+          path="/links/all"
+          exact
+          render={props => <LinksDisplay typeLoad={typeLinksLoad.ALL} {...props} />}
+        />
+        <Redirect from="/links" exact to="/links/all" />
+        <Redirect from="/" exact to="/links/all" />
+        <Redirect to="/not-found" />
+      </Switch>
+    </Main>
     <Footer />
   </AppWrapper>
 );
