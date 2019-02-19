@@ -103,7 +103,7 @@ class Login extends Component<Props, State> {
     } = this.props;
     if (auth) {
       const { state } = location;
-      return <Redirect to={state ? state.from.pathname + state.from.search : '/'} />;
+      return <Redirect to={state ? state.from.pathname + state.from.search : '/links'} />;
     }
     return (
       <Fragment>

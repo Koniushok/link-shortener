@@ -44,7 +44,7 @@ const App = ({ logout, auth }: Props) => (
       <Route path="/not-found" component={NotFound} />
       <Main>
         <Switch>
-          <ProtectedRoute auth={auth} path="/" exact component={LinkCreator} />
+          <ProtectedRoute auth={auth} path="/create" exact component={LinkCreator} />
           <ProtectedRoute auth={auth} path="/profile" exact component={Profile} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Registration} />
@@ -60,6 +60,7 @@ const App = ({ logout, auth }: Props) => (
             render={props => <LinksDisplay typeLoad={typeLinksLoad.ALL} {...props} />}
           />
           <Redirect from="/links" exact to="/links/all" />
+          <Redirect from="/" exact to="/links/all" />
           <Redirect to="/not-found" />
         </Switch>
       </Main>

@@ -52,16 +52,15 @@ const Header = ({ auth, handleLogout }: Props) => (
   <HeaderWrapper>
     {auth ? (
       <Fragment>
-        <NavLink to="/" exact>
-          Home
+        <NavLink to="/links">Home</NavLink>
+        <NavLink to="/create" exact>
+          Create
         </NavLink>
         <NavLink to="/profile">Profile</NavLink>
-        <NavLink to="/links">Links</NavLink>
         <ButtonLink onClick={handleLogout}>Logout</ButtonLink>
       </Fragment>
     ) : (
       <Fragment>
-        <NavLink to="/links">Links</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/login">Sign In</NavLink>
       </Fragment>
