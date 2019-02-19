@@ -35,7 +35,6 @@ type State = {
   errors: UserErrors,
 };
 type Props = {
-  result: boolean,
   error: string,
   loading: boolean,
   registryReset: typeof registryReset,
@@ -115,11 +114,14 @@ class Registration extends Component<Props, State> {
 
   render() {
     const { errors } = this.state;
-    const { result, error, loading } = this.props;
+    const { error, loading } = this.props;
     return (
       <Fragment>
-        {error && <Alert type="error" absolute>{error}</Alert>}
-        {result && <Alert type="success" absolute>Successful registration</Alert>}
+        {error && (
+          <Alert type="error" absolute>
+            {error}
+          </Alert>
+        )}
         <FormWrapper>
           <h1>SING UP</h1>
           <Form autoComplete="off" onSubmit={this.handleSubmit}>

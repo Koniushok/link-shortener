@@ -6,14 +6,12 @@ import {
   REGISTRY_RESET,
 } from '../constants/actionTypes';
 import { type RegistryActions } from '../actions/registry';
-import { type Profile } from '../types';
 
 export type State = $ReadOnly<{
   error: string,
   loading: boolean,
-  profile: ?Profile,
 }>;
-const initialState: State = { error: '', profile: null, loading: false };
+const initialState: State = { error: '', loading: false };
 
 const registryReducer = (state: State = initialState, action: RegistryActions): State => {
   switch (action.type) {
@@ -25,7 +23,7 @@ const registryReducer = (state: State = initialState, action: RegistryActions): 
         loading: true,
       };
     case REGISTRY_SUCCEEDED:
-      return { ...state, loading: false, profile: action.payload };
+      return { ...state, loading: false };
     case REGISTRY_FAILED:
       return { ...state, loading: false, error: action.payload };
     case REGISTRY_RESET:
