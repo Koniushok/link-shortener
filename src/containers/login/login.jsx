@@ -1,7 +1,6 @@
 // @flow
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { Redirect, type Location } from 'react-router-dom';
 import Joi from 'joi-browser';
 import { login as loginAction, authResetError } from '../../actions/auth';
 import Input from '../../components/input';
@@ -29,8 +28,6 @@ type State = {
 type Props = {
   error: string,
   loading: boolean,
-  auth: boolean,
-  location: Location,
   authResetError: typeof authResetError,
   loginRequest: typeof loginAction,
 };
@@ -99,12 +96,8 @@ class Login extends Component<Props, State> {
   render() {
     const { errors } = this.state;
     const {
-      error, loading, auth, location,
+      error, loading,
     } = this.props;
-    if (auth) {
-      const { state } = location;
-      return <Redirect to={state ? state.from.pathname + state.from.search : '/links'} />;
-    }
     return (
       <Fragment>
         {error && <Alert type="error" absolute>{error}</Alert>}
