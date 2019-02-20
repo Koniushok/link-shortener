@@ -1,4 +1,4 @@
-// flow-typed signature: 80f79e75117aebaceba8f2d2afc5efbf
+// flow-typed signature: 45360a44815611b0dcfa31db2cd6eca4
 // flow-typed version: <<STUB>>/styled-icons_v^6.4.0/flow_v0.89.0
 
 /**
@@ -13470,6 +13470,14 @@ declare module 'styled-icons/fa-solid/Backward' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/Bacon.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Bacon' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/BalanceScale.cjs' {
   declare module.exports: any;
 }
@@ -13750,6 +13758,14 @@ declare module 'styled-icons/fa-solid/Bookmark' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/BookMedical.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/BookMedical' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/BookOpen.cjs' {
   declare module.exports: any;
 }
@@ -13811,6 +13827,14 @@ declare module 'styled-icons/fa-solid/Brain.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/Brain' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/BreadSlice.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/BreadSlice' {
   declare module.exports: any;
 }
 
@@ -14286,6 +14310,14 @@ declare module 'styled-icons/fa-solid/CheckSquare' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/Cheese.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Cheese' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Chess.cjs' {
   declare module.exports: any;
 }
@@ -14451,6 +14483,14 @@ declare module 'styled-icons/fa-solid/City.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/City' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/ClinicMedical.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/ClinicMedical' {
   declare module.exports: any;
 }
 
@@ -14678,6 +14718,14 @@ declare module 'styled-icons/fa-solid/CommentDots' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/CommentMedical.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/CommentMedical' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Comments.cjs' {
   declare module.exports: any;
 }
@@ -14835,6 +14883,14 @@ declare module 'styled-icons/fa-solid/Crown.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/Crown' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Crutch.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Crutch' {
   declare module.exports: any;
 }
 
@@ -15187,6 +15243,14 @@ declare module 'styled-icons/fa-solid/Edit.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/Edit' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Egg.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Egg' {
   declare module.exports: any;
 }
 
@@ -16174,6 +16238,14 @@ declare module 'styled-icons/fa-solid/Guitar' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/Hamburger.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Hamburger' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Hammer.cjs' {
   declare module.exports: any;
 }
@@ -16219,6 +16291,14 @@ declare module 'styled-icons/fa-solid/HandLizard.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/HandLizard' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/HandMiddleFinger.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/HandMiddleFinger' {
   declare module.exports: any;
 }
 
@@ -16331,6 +16411,14 @@ declare module 'styled-icons/fa-solid/Hanukiah.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/Hanukiah' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/HardHat.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/HardHat' {
   declare module.exports: any;
 }
 
@@ -16526,6 +16614,14 @@ declare module 'styled-icons/fa-solid/HospitalSymbol' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/Hotdog.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Hotdog' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Hotel.cjs' {
   declare module.exports: any;
 }
@@ -16595,6 +16691,14 @@ declare module 'styled-icons/fa-solid/HSquare.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/HSquare' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/IceCream.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/IceCream' {
   declare module.exports: any;
 }
 
@@ -16843,6 +16947,14 @@ declare module 'styled-icons/fa-solid/LaptopCode.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/LaptopCode' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/LaptopMedical.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/LaptopMedical' {
   declare module.exports: any;
 }
 
@@ -17590,6 +17702,14 @@ declare module 'styled-icons/fa-solid/Outdent' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/Pager.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/Pager' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/PaintBrush.cjs' {
   declare module.exports: any;
 }
@@ -17782,6 +17902,14 @@ declare module 'styled-icons/fa-solid/PeopleCarry' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/PepperHot.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/PepperHot' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Percent.cjs' {
   declare module.exports: any;
 }
@@ -17851,6 +17979,14 @@ declare module 'styled-icons/fa-solid/Pills.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/Pills' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/PizzaSlice.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/PizzaSlice' {
   declare module.exports: any;
 }
 
@@ -19710,6 +19846,22 @@ declare module 'styled-icons/fa-solid/TrashAlt' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/fa-solid/TrashRestore.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/TrashRestore' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/TrashRestoreAlt.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/TrashRestoreAlt' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/fa-solid/Tree.cjs' {
   declare module.exports: any;
 }
@@ -20003,6 +20155,14 @@ declare module 'styled-icons/fa-solid/UserNinja.cjs' {
 }
 
 declare module 'styled-icons/fa-solid/UserNinja' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/UserNurse.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/fa-solid/UserNurse' {
   declare module.exports: any;
 }
 
@@ -21430,6 +21590,14 @@ declare module 'styled-icons/feather/Italic' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/feather/Key.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/feather/Key' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/feather/Layers.cjs' {
   declare module.exports: any;
 }
@@ -21678,6 +21846,14 @@ declare module 'styled-icons/feather/MoreVertical' {
   declare module.exports: any;
 }
 
+declare module 'styled-icons/feather/MousePointer.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/feather/MousePointer' {
+  declare module.exports: any;
+}
+
 declare module 'styled-icons/feather/Move.cjs' {
   declare module.exports: any;
 }
@@ -21747,6 +21923,14 @@ declare module 'styled-icons/feather/PauseCircle.cjs' {
 }
 
 declare module 'styled-icons/feather/PauseCircle' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/feather/PenTool.cjs' {
+  declare module.exports: any;
+}
+
+declare module 'styled-icons/feather/PenTool' {
   declare module.exports: any;
 }
 
@@ -45865,6 +46049,12 @@ declare module 'styled-icons/fa-solid/Backward.cjs.js' {
 declare module 'styled-icons/fa-solid/Backward.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Backward'>;
 }
+declare module 'styled-icons/fa-solid/Bacon.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Bacon.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Bacon.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Bacon'>;
+}
 declare module 'styled-icons/fa-solid/BalanceScale.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/BalanceScale.cjs'>;
 }
@@ -46075,6 +46265,12 @@ declare module 'styled-icons/fa-solid/Bookmark.cjs.js' {
 declare module 'styled-icons/fa-solid/Bookmark.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Bookmark'>;
 }
+declare module 'styled-icons/fa-solid/BookMedical.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/BookMedical.cjs'>;
+}
+declare module 'styled-icons/fa-solid/BookMedical.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/BookMedical'>;
+}
 declare module 'styled-icons/fa-solid/BookOpen.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/BookOpen.cjs'>;
 }
@@ -46122,6 +46318,12 @@ declare module 'styled-icons/fa-solid/Brain.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/Brain.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Brain'>;
+}
+declare module 'styled-icons/fa-solid/BreadSlice.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/BreadSlice.cjs'>;
+}
+declare module 'styled-icons/fa-solid/BreadSlice.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/BreadSlice'>;
 }
 declare module 'styled-icons/fa-solid/Briefcase.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Briefcase.cjs'>;
@@ -46477,6 +46679,12 @@ declare module 'styled-icons/fa-solid/CheckSquare.cjs.js' {
 declare module 'styled-icons/fa-solid/CheckSquare.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/CheckSquare'>;
 }
+declare module 'styled-icons/fa-solid/Cheese.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Cheese.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Cheese.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Cheese'>;
+}
 declare module 'styled-icons/fa-solid/Chess.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Chess.cjs'>;
 }
@@ -46602,6 +46810,12 @@ declare module 'styled-icons/fa-solid/City.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/City.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/City'>;
+}
+declare module 'styled-icons/fa-solid/ClinicMedical.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/ClinicMedical.cjs'>;
+}
+declare module 'styled-icons/fa-solid/ClinicMedical.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/ClinicMedical'>;
 }
 declare module 'styled-icons/fa-solid/Clipboard.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Clipboard.cjs'>;
@@ -46771,6 +46985,12 @@ declare module 'styled-icons/fa-solid/CommentDots.cjs.js' {
 declare module 'styled-icons/fa-solid/CommentDots.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/CommentDots'>;
 }
+declare module 'styled-icons/fa-solid/CommentMedical.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/CommentMedical.cjs'>;
+}
+declare module 'styled-icons/fa-solid/CommentMedical.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/CommentMedical'>;
+}
 declare module 'styled-icons/fa-solid/Comments.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Comments.cjs'>;
 }
@@ -46890,6 +47110,12 @@ declare module 'styled-icons/fa-solid/Crown.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/Crown.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Crown'>;
+}
+declare module 'styled-icons/fa-solid/Crutch.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Crutch.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Crutch.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Crutch'>;
 }
 declare module 'styled-icons/fa-solid/Cube.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Cube.cjs'>;
@@ -47154,6 +47380,12 @@ declare module 'styled-icons/fa-solid/Edit.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/Edit.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Edit'>;
+}
+declare module 'styled-icons/fa-solid/Egg.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Egg.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Egg.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Egg'>;
 }
 declare module 'styled-icons/fa-solid/Eject.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Eject.cjs'>;
@@ -47893,6 +48125,12 @@ declare module 'styled-icons/fa-solid/Guitar.cjs.js' {
 declare module 'styled-icons/fa-solid/Guitar.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Guitar'>;
 }
+declare module 'styled-icons/fa-solid/Hamburger.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Hamburger.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Hamburger.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Hamburger'>;
+}
 declare module 'styled-icons/fa-solid/Hammer.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Hammer.cjs'>;
 }
@@ -47928,6 +48166,12 @@ declare module 'styled-icons/fa-solid/HandLizard.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/HandLizard.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/HandLizard'>;
+}
+declare module 'styled-icons/fa-solid/HandMiddleFinger.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/HandMiddleFinger.cjs'>;
+}
+declare module 'styled-icons/fa-solid/HandMiddleFinger.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/HandMiddleFinger'>;
 }
 declare module 'styled-icons/fa-solid/HandPaper.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/HandPaper.cjs'>;
@@ -48012,6 +48256,12 @@ declare module 'styled-icons/fa-solid/Hanukiah.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/Hanukiah.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Hanukiah'>;
+}
+declare module 'styled-icons/fa-solid/HardHat.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/HardHat.cjs'>;
+}
+declare module 'styled-icons/fa-solid/HardHat.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/HardHat'>;
 }
 declare module 'styled-icons/fa-solid/Hashtag.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Hashtag.cjs'>;
@@ -48157,6 +48407,12 @@ declare module 'styled-icons/fa-solid/HospitalSymbol.cjs.js' {
 declare module 'styled-icons/fa-solid/HospitalSymbol.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/HospitalSymbol'>;
 }
+declare module 'styled-icons/fa-solid/Hotdog.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Hotdog.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Hotdog.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Hotdog'>;
+}
 declare module 'styled-icons/fa-solid/Hotel.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Hotel.cjs'>;
 }
@@ -48210,6 +48466,12 @@ declare module 'styled-icons/fa-solid/HSquare.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/HSquare.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/HSquare'>;
+}
+declare module 'styled-icons/fa-solid/IceCream.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/IceCream.cjs'>;
+}
+declare module 'styled-icons/fa-solid/IceCream.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/IceCream'>;
 }
 declare module 'styled-icons/fa-solid/Icicles.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Icicles.cjs'>;
@@ -48396,6 +48658,12 @@ declare module 'styled-icons/fa-solid/LaptopCode.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/LaptopCode.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/LaptopCode'>;
+}
+declare module 'styled-icons/fa-solid/LaptopMedical.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/LaptopMedical.cjs'>;
+}
+declare module 'styled-icons/fa-solid/LaptopMedical.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/LaptopMedical'>;
 }
 declare module 'styled-icons/fa-solid/Laugh.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Laugh.cjs'>;
@@ -48955,6 +49223,12 @@ declare module 'styled-icons/fa-solid/Outdent.cjs.js' {
 declare module 'styled-icons/fa-solid/Outdent.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Outdent'>;
 }
+declare module 'styled-icons/fa-solid/Pager.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Pager.cjs'>;
+}
+declare module 'styled-icons/fa-solid/Pager.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/Pager'>;
+}
 declare module 'styled-icons/fa-solid/PaintBrush.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/PaintBrush.cjs'>;
 }
@@ -49099,6 +49373,12 @@ declare module 'styled-icons/fa-solid/PeopleCarry.cjs.js' {
 declare module 'styled-icons/fa-solid/PeopleCarry.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/PeopleCarry'>;
 }
+declare module 'styled-icons/fa-solid/PepperHot.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/PepperHot.cjs'>;
+}
+declare module 'styled-icons/fa-solid/PepperHot.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/PepperHot'>;
+}
 declare module 'styled-icons/fa-solid/Percent.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Percent.cjs'>;
 }
@@ -49152,6 +49432,12 @@ declare module 'styled-icons/fa-solid/Pills.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/Pills.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Pills'>;
+}
+declare module 'styled-icons/fa-solid/PizzaSlice.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/PizzaSlice.cjs'>;
+}
+declare module 'styled-icons/fa-solid/PizzaSlice.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/PizzaSlice'>;
 }
 declare module 'styled-icons/fa-solid/PlaceOfWorship.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/PlaceOfWorship.cjs'>;
@@ -50545,6 +50831,18 @@ declare module 'styled-icons/fa-solid/TrashAlt.cjs.js' {
 declare module 'styled-icons/fa-solid/TrashAlt.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/TrashAlt'>;
 }
+declare module 'styled-icons/fa-solid/TrashRestore.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/TrashRestore.cjs'>;
+}
+declare module 'styled-icons/fa-solid/TrashRestore.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/TrashRestore'>;
+}
+declare module 'styled-icons/fa-solid/TrashRestoreAlt.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/TrashRestoreAlt.cjs'>;
+}
+declare module 'styled-icons/fa-solid/TrashRestoreAlt.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/TrashRestoreAlt'>;
+}
 declare module 'styled-icons/fa-solid/Tree.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/Tree.cjs'>;
 }
@@ -50766,6 +51064,12 @@ declare module 'styled-icons/fa-solid/UserNinja.cjs.js' {
 }
 declare module 'styled-icons/fa-solid/UserNinja.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/UserNinja'>;
+}
+declare module 'styled-icons/fa-solid/UserNurse.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/UserNurse.cjs'>;
+}
+declare module 'styled-icons/fa-solid/UserNurse.js' {
+  declare module.exports: $Exports<'styled-icons/fa-solid/UserNurse'>;
 }
 declare module 'styled-icons/fa-solid/UserPlus.cjs.js' {
   declare module.exports: $Exports<'styled-icons/fa-solid/UserPlus.cjs'>;
@@ -51835,6 +52139,12 @@ declare module 'styled-icons/feather/Italic.cjs.js' {
 declare module 'styled-icons/feather/Italic.js' {
   declare module.exports: $Exports<'styled-icons/feather/Italic'>;
 }
+declare module 'styled-icons/feather/Key.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/feather/Key.cjs'>;
+}
+declare module 'styled-icons/feather/Key.js' {
+  declare module.exports: $Exports<'styled-icons/feather/Key'>;
+}
 declare module 'styled-icons/feather/Layers.cjs.js' {
   declare module.exports: $Exports<'styled-icons/feather/Layers.cjs'>;
 }
@@ -52021,6 +52331,12 @@ declare module 'styled-icons/feather/MoreVertical.cjs.js' {
 declare module 'styled-icons/feather/MoreVertical.js' {
   declare module.exports: $Exports<'styled-icons/feather/MoreVertical'>;
 }
+declare module 'styled-icons/feather/MousePointer.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/feather/MousePointer.cjs'>;
+}
+declare module 'styled-icons/feather/MousePointer.js' {
+  declare module.exports: $Exports<'styled-icons/feather/MousePointer'>;
+}
 declare module 'styled-icons/feather/Move.cjs.js' {
   declare module.exports: $Exports<'styled-icons/feather/Move.cjs'>;
 }
@@ -52074,6 +52390,12 @@ declare module 'styled-icons/feather/PauseCircle.cjs.js' {
 }
 declare module 'styled-icons/feather/PauseCircle.js' {
   declare module.exports: $Exports<'styled-icons/feather/PauseCircle'>;
+}
+declare module 'styled-icons/feather/PenTool.cjs.js' {
+  declare module.exports: $Exports<'styled-icons/feather/PenTool.cjs'>;
+}
+declare module 'styled-icons/feather/PenTool.js' {
+  declare module.exports: $Exports<'styled-icons/feather/PenTool'>;
 }
 declare module 'styled-icons/feather/Percent.cjs.js' {
   declare module.exports: $Exports<'styled-icons/feather/Percent.cjs'>;

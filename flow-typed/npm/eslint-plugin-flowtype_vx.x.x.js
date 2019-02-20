@@ -1,4 +1,4 @@
-// flow-typed signature: 44eecd7cadd9c46064b47e8e67c67e14
+// flow-typed signature: 3338e58dcbcfb198b3f0163bb47ce8b7
 // flow-typed version: <<STUB>>/eslint-plugin-flowtype_v^3.2.1/flow_v0.89.0
 
 /**
@@ -91,6 +91,10 @@ declare module 'eslint-plugin-flowtype/dist/rules/noExistentialType' {
 }
 
 declare module 'eslint-plugin-flowtype/dist/rules/noFlowFixMeComments' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/noMixed' {
   declare module.exports: any;
 }
 
@@ -320,6 +324,9 @@ declare module 'eslint-plugin-flowtype/dist/rules/noExistentialType.js' {
 }
 declare module 'eslint-plugin-flowtype/dist/rules/noFlowFixMeComments.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noFlowFixMeComments'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/noMixed.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noMixed'>;
 }
 declare module 'eslint-plugin-flowtype/dist/rules/noMutableArray.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noMutableArray'>;
