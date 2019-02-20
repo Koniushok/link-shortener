@@ -29,7 +29,7 @@ export function* logout(): Saga<void> {
 }
 
 export default function* watchAuth(): any {
-  const token = yield checkToken();
+  const token = checkToken();
   if (token) {
     yield put(authSuccess(token));
   }

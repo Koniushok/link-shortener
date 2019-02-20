@@ -25,11 +25,11 @@ export const removeToken = async () => {
   delete axios.defaults.headers.common.token;
 };
 
-export const checkToken = async () => {
+export const checkToken = () => {
   const token = cookies.get('token');
   if (token) {
     axios.defaults.headers.common.token = token;
-    return true;
+    return token;
   }
-  return false;
+  return token;
 };
