@@ -26,12 +26,8 @@ export function* linksLoad(action: LinksActions): Saga<void> {
         break;
     }
     yield put(linksLoadSuccess(response.links, response.linkCount));
-  } catch (error) {
-    if (error.response) {
-      yield put(linksLoadError(error.response.data));
-    } else {
-      yield put(linksLoadError(error.message));
-    }
+  } catch (ex) {
+    yield put(linksLoadError());
   }
 }
 

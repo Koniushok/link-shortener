@@ -6,6 +6,7 @@ import type { Saga } from 'redux-saga';
 import {
   authSuccess, authError, authDisable, type Login,
 } from '../actions/auth';
+import { noticeAdd } from '../actions/notice';
 import { LOGIN, LOGOUT } from '../constants/actionTypes';
 import {
   login, storeToken, removeToken, checkToken,
@@ -16,12 +17,9 @@ export function* authorize(action: Login): Saga<void> {
     const token: string = yield call(login, action.payload.password, action.payload.loginName);
     yield call(storeToken, token);
     yield put(authSuccess(token));
-  } catch (error) {
-    if (error.response) {
-      yield put(authError(error.response.data));
-    } else {
-      yield put(authError(error.message));
-    }
+    yield put(noticeAdd({ level: 'success', text: 'Successful login' }));
+  } catch (ex) {
+    yield put(authError());
   }
 }
 

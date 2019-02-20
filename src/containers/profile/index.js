@@ -6,7 +6,6 @@ import Profile from './profile';
 import { type State } from '../../reducers';
 
 const mapStateToProps = ({ fetchProfile }: State) => ({
-  error: fetchProfile.error,
   loading: fetchProfile.loading,
   profileData: fetchProfile.profile,
 });

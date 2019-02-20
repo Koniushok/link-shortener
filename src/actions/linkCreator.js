@@ -17,7 +17,6 @@ type CreateLinkSucceeded = {
 };
 type CreateLinkFailed = {
   type: typeof CREATE_LINK_FAILED,
-  payload: string,
 };
 type CreateLinkReset = {
   type: typeof CREATE_LINK_RESET,
@@ -31,9 +30,8 @@ export const createLinkSucceeded = (link: Link): CreateLinkSucceeded => ({
   type: CREATE_LINK_SUCCEEDED,
   payload: link,
 });
-export const createLinkFailed = (error: string): CreateLinkFailed => ({
+export const createLinkFailed = (): CreateLinkFailed => ({
   type: CREATE_LINK_FAILED,
-  payload: error,
 });
 export const createLinkReset = (): CreateLinkReset => ({
   type: CREATE_LINK_RESET,

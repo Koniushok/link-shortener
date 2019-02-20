@@ -9,6 +9,7 @@ import fetchLinkReducer, { type State as FetchLinkState } from './fetchLink';
 import editLinkReducer, { type State as EditLinkState } from './editLink';
 import deleteLinkReducer, { type State as DeleteLinkState } from './deleteLink';
 import fetchProfileReducer, { type State as FetchProfileState } from './fetchProfile';
+import noticeReducer, { type State as NoticeState } from './notice';
 
 export type State = {
   links: LinksState,
@@ -19,6 +20,7 @@ export type State = {
   editLink: EditLinkState,
   deleteLink: DeleteLinkState,
   fetchProfile: FetchProfileState,
+  notice: NoticeState,
 };
 const reducers = {
   links: linksReducers,
@@ -29,6 +31,7 @@ const reducers = {
   editLink: editLinkReducer,
   deleteLink: deleteLinkReducer,
   fetchProfile: fetchProfileReducer,
+  notice: noticeReducer,
 };
 
 const rootReducers: CombinedReducer<State, Actions> = combineReducers(reducers);

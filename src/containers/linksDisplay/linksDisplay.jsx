@@ -3,14 +3,16 @@ import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
 import {
-  type Location, type RouterHistory, Redirect, Link as RouteNavLink,
+  type Location,
+  type RouterHistory,
+  Redirect,
+  Link as RouteNavLink,
 } from 'react-router-dom';
-import { linksLoadAll, linksLoadMy, linksLoadReset } from '../../actions/links';
-import { deleteLinkRequested, deleteLinkReset } from '../../actions/deleteLink';
+import { linksLoadAll, linksLoadMy } from '../../actions/links';
+import { deleteLinkRequested } from '../../actions/deleteLink';
 import TableLink from './tableLink';
 import TableList from './tableList';
 import ControlPanel from './controlPanel';
-import Alert from '../../components/alert';
 import LinkDisplay from '../linkDisplay';
 import LinkEditor from '../linkEditor';
 import { type Link } from '../../types';
@@ -26,7 +28,7 @@ const itemLimit = 8;
 const pageLimit = 3;
 const DisplayWrapper = styled.section`
   width: 980px;
-  margin: 35px auto 0 auto;
+  margin: 20px auto 0 auto;
   @media (max-width: 1000px) {
     width: 98%;
   }
@@ -60,17 +62,13 @@ const CreateBlock = styled.div`
 `;
 
 type Props = {
-  error: string,
   linksList: ?Array<Link>,
   loading: boolean,
   history: RouterHistory,
   linkCount: number,
-  linksLoadReset: typeof linksLoadReset,
-  deleteLinkReset: typeof deleteLinkReset,
   linksLoadAll: typeof linksLoadAll,
   linksLoadMy: typeof linksLoadMy,
   deleteLink: typeof deleteLinkRequested,
-  deletedLink: Link,
   typeLoad: TypeLinksLoad,
   location: Location,
   auth: boolean,
@@ -113,11 +111,6 @@ class LinksDisplay extends Component<Props, State> {
     ) {
       this.loadLinks();
     }
-  }
-
-  componentWillUnmount() {
-    this.props.linksLoadReset();
-    this.props.deleteLinkReset();
   }
 
   typeDisplayTable = () => {
@@ -170,7 +163,7 @@ class LinksDisplay extends Component<Props, State> {
 
   render() {
     const {
-      linksList, error, loading, deletedLink, typeLoad, auth, linkCount,
+      linksList, loading, typeLoad, auth, linkCount,
     } = this.props;
     const {
       typeDisplay, selectedLinkID, editLinkID, currentPage,
@@ -192,16 +185,6 @@ class LinksDisplay extends Component<Props, State> {
           loading={loading}
           auth={auth}
         />
-        {deletedLink && (
-          <Alert type="success" absolute>
-            {`Link ${deletedLink.shortLink} successfully deleted`}
-          </Alert>
-        )}
-        {error && (
-          <Alert type="error" absolute>
-            {error}
-          </Alert>
-        )}
         <DisplayWrapper>
           {linksList && !!linksList.length ? (
             <Fragment>
