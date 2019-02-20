@@ -2,12 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import {
-  type Location,
-  type RouterHistory,
-  Redirect,
-  Link as RouteNavLink,
-} from 'react-router-dom';
+import { type Location, type RouterHistory, Link as RouteNavLink } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy } from '../../actions/links';
 import { deleteLinkRequested } from '../../actions/deleteLink';
 import TableLink from './tableLink';
@@ -113,6 +108,18 @@ class LinksDisplay extends Component<Props, State> {
     }
   }
 
+  checkQueryString = () => {
+    const parsed = queryString.parse(this.props.location.search);
+    if (!parsed.page || !parsed.items) {
+      const page = parsed.page || '1';
+      const items = parsed.items || String(itemLimit);
+      const search = queryString.stringify({ items, page, tag: parsed.tag });
+      this.props.history.replace(`${this.props.location.pathname}?${search}`);
+      return false;
+    }
+    return true;
+  };
+
   typeDisplayTable = () => {
     this.setState({ typeDisplay: displayType.TABLE });
   };
@@ -123,8 +130,7 @@ class LinksDisplay extends Component<Props, State> {
 
   loadLinks = () => {
     const { search } = this.props.location;
-    const parsed = queryString.parse(search);
-    if (parsed.page && parsed.items) {
+    if (this.checkQueryString()) {
       switch (this.props.typeLoad) {
         case typeLinksLoad.ALL:
           this.props.linksLoadAll(search);
@@ -168,13 +174,6 @@ class LinksDisplay extends Component<Props, State> {
     const {
       typeDisplay, selectedLinkID, editLinkID, currentPage,
     } = this.state;
-    const parsed = queryString.parse(this.props.location.search);
-    if (!parsed.page || !parsed.items) {
-      parsed.page = parsed.page || '1';
-      parsed.items = parsed.items || String(itemLimit);
-      const search = queryString.stringify({ ...parsed });
-      return <Redirect to={`${this.props.location.pathname}?${search}`} />;
-    }
     return (
       <section>
         <ControlPanel
