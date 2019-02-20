@@ -3,20 +3,19 @@ import {
   FETCH_LINK_FAILED,
   FETCH_LINK_REQUESTED,
   FETCH_LINK_SUCCEEDED,
-  FETCH_LINK_RESET,
 } from '../constants/actionTypes';
 import { type LinkActions } from '../actions/fetchLink';
 import { type Link } from '../types';
 
 export type State = $ReadOnly<{
+  error: boolean,
   data: ?Link,
-  error: string,
   loading: boolean,
 }>;
 const initialState: State = {
+  error: false,
   data: null,
   loading: false,
-  error: '',
 };
 
 const linkReducer = (state: State = initialState, action: LinkActions): State => {
@@ -24,11 +23,9 @@ const linkReducer = (state: State = initialState, action: LinkActions): State =>
     case FETCH_LINK_REQUESTED:
       return { ...state, data: null, loading: true };
     case FETCH_LINK_FAILED:
-      return { ...state, error: action.payload, loading: false };
+      return { ...state, loading: false, error: true };
     case FETCH_LINK_SUCCEEDED:
       return { ...state, data: action.payload, loading: false };
-    case FETCH_LINK_RESET:
-      return initialState;
     default:
       return state;
   }

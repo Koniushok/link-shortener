@@ -11,6 +11,7 @@ import NotFound from './notFound';
 import Header from '../header';
 import LinksDisplay from '../linksDisplay';
 import Profile from '../profile';
+import Notifications from '../notifications';
 
 const Footer = styled.footer`
   background: #24292e;
@@ -35,6 +36,7 @@ const AppWrapper = styled.div`
 const App = () => (
   <AppWrapper>
     <Header />
+    <Notifications />
     <Main>
       <Switch>
         <Route path="/not-found" component={NotFound} />

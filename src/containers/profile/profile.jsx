@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { AccountCircle } from 'styled-icons/material/AccountCircle';
 import { ChartBar } from 'styled-icons/fa-regular/ChartBar';
@@ -7,7 +7,6 @@ import { ExternalLink } from 'styled-icons/feather/ExternalLink';
 import { Users } from 'styled-icons/fa-solid/Users';
 import { UserTie } from 'styled-icons/fa-solid/UserTie';
 import { type Profile as ProfileData } from '../../types';
-import Alert from '../../components/alert';
 import Loader from '../../components/loader';
 import { fetchProfileRequest } from '../../actions/fetchProfile';
 
@@ -46,7 +45,6 @@ const ProfileWrapper = styled.section`
 `;
 type Props = {
   profileData: ?ProfileData,
-  error: string,
   loading: boolean,
   fetchProfileRequest: typeof fetchProfileRequest,
 };
@@ -56,56 +54,49 @@ class Profile extends Component<Props> {
   }
 
   render() {
-    const { profileData, error, loading } = this.props;
+    const { profileData, loading } = this.props;
     return (
-      <Fragment>
-        {error && (
-          <Alert type="error" absolute>
-            {error}
-          </Alert>
+      <ProfileWrapper>
+        <Title>
+          <AccountCircle />
+          {profileData && <h2>{profileData.loginName}</h2>}
+        </Title>
+        {loading && <Loader />}
+        {profileData && (
+          <Table>
+            <tbody>
+              <tr>
+                <td>
+                  <Users />
+                </td>
+                <th>Name</th>
+                <td>{profileData.name}</td>
+              </tr>
+              <tr>
+                <td>
+                  <UserTie />
+                </td>
+                <th>Surname</th>
+                <td>{profileData.surname}</td>
+              </tr>
+              <tr>
+                <td>
+                  <ExternalLink />
+                </td>
+                <th>Link Count</th>
+                <td>{profileData.linkCount}</td>
+              </tr>
+              <tr>
+                <td>
+                  <ChartBar />
+                </td>
+                <th>Total clinks</th>
+                <td>{profileData.totalClinks}</td>
+              </tr>
+            </tbody>
+          </Table>
         )}
-        <ProfileWrapper>
-          <Title>
-            <AccountCircle />
-            {profileData && <h2>{profileData.loginName}</h2>}
-          </Title>
-          {loading && <Loader />}
-          {profileData && (
-            <Table>
-              <tbody>
-                <tr>
-                  <td>
-                    <Users />
-                  </td>
-                  <th>Name</th>
-                  <td>{profileData.name}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <UserTie />
-                  </td>
-                  <th>Surname</th>
-                  <td>{profileData.surname}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <ExternalLink />
-                  </td>
-                  <th>Link Count</th>
-                  <td>{profileData.linkCount}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <ChartBar />
-                  </td>
-                  <th>Total clinks</th>
-                  <td>{profileData.totalClinks}</td>
-                </tr>
-              </tbody>
-            </Table>
-          )}
-        </ProfileWrapper>
-      </Fragment>
+      </ProfileWrapper>
     );
   }
 }

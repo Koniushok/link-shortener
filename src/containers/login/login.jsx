@@ -1,12 +1,11 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Joi from 'joi-browser';
-import { login as loginAction, authResetError } from '../../actions/auth';
+import { login as loginAction } from '../../actions/auth';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
-import Alert from '../../components/alert';
 
 const LoginWrapper = styled.section`
   flex: auto;
@@ -26,9 +25,7 @@ type State = {
   },
 };
 type Props = {
-  error: string,
   loading: boolean,
-  authResetError: typeof authResetError,
   loginRequest: typeof loginAction,
 };
 type LoginData = {
@@ -54,10 +51,6 @@ class Login extends Component<Props, State> {
       .min(8)
       .label('Password'),
   };
-
-  componentWillUnmount() {
-    this.props.authResetError();
-  }
 
   validate = (loginData: LoginData) => {
     const errors = {
@@ -94,24 +87,22 @@ class Login extends Component<Props, State> {
   };
 
   render() {
-    const { errors } = this.state;
-    const {
-      error, loading,
-    } = this.props;
     return (
-      <Fragment>
-        {error && <Alert type="error" absolute>{error}</Alert>}
-        <LoginWrapper>
-          <h1>SIGN IN</h1>
-          <Form autoComplete="off" onSubmit={this.handleSubmit}>
-            <Input label="Login" error={errors.loginName} name="loginName" />
-            <Input type="password" label="Password" name="password" error={errors.password} />
-            <Button alignRight disabled={loading}>
-              Log in
-            </Button>
-          </Form>
-        </LoginWrapper>
-      </Fragment>
+      <LoginWrapper>
+        <h1>SIGN IN</h1>
+        <Form autoComplete="off" onSubmit={this.handleSubmit}>
+          <Input label="Login" error={this.state.errors.loginName} name="loginName" />
+          <Input
+            type="password"
+            label="Password"
+            name="password"
+            error={this.state.errors.password}
+          />
+          <Button alignRight disabled={this.props.loading}>
+            Log in
+          </Button>
+        </Form>
+      </LoginWrapper>
     );
   }
 }

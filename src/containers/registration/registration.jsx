@@ -1,12 +1,11 @@
 // @flow
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Joi from 'joi-browser';
-import { registryRequest, registryReset } from '../../actions/registry';
+import { registryRequest } from '../../actions/registry';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Form from '../../components/form';
-import Alert from '../../components/alert';
 import { type RegistryProfile } from '../../types';
 
 const FormWrapper = styled.section`
@@ -35,9 +34,7 @@ type State = {
   errors: UserErrors,
 };
 type Props = {
-  error: string,
   loading: boolean,
-  registryReset: typeof registryReset,
   createProfile: typeof registryRequest,
 };
 class Registration extends Component<Props, State> {
@@ -66,10 +63,6 @@ class Registration extends Component<Props, State> {
       .min(8)
       .label('Password'),
   };
-
-  componentWillUnmount() {
-    this.props.registryReset();
-  }
 
   validate = (userData: RegistryProfile): UserErrors => {
     const errors = {
@@ -114,27 +107,19 @@ class Registration extends Component<Props, State> {
 
   render() {
     const { errors } = this.state;
-    const { error, loading } = this.props;
     return (
-      <Fragment>
-        {error && (
-          <Alert type="error" absolute>
-            {error}
-          </Alert>
-        )}
-        <FormWrapper>
-          <h1>SING UP</h1>
-          <Form autoComplete="off" onSubmit={this.handleSubmit}>
-            <Input label="Login" error={errors.loginName} name="loginName" />
-            <Input label="Name" name="name" error={errors.name} />
-            <Input label="Surname" name="surname" error={errors.surname} />
-            <Input type="password" label="Password" name="password" error={errors.password} />
-            <Button alignRight disabled={loading}>
-              Sign up
-            </Button>
-          </Form>
-        </FormWrapper>
-      </Fragment>
+      <FormWrapper>
+        <h1>SING UP</h1>
+        <Form autoComplete="off" onSubmit={this.handleSubmit}>
+          <Input label="Login" error={errors.loginName} name="loginName" />
+          <Input label="Name" name="name" error={errors.name} />
+          <Input label="Surname" name="surname" error={errors.surname} />
+          <Input type="password" label="Password" name="password" error={errors.password} />
+          <Button alignRight disabled={this.props.loading}>
+            Sign up
+          </Button>
+        </Form>
+      </FormWrapper>
     );
   }
 }

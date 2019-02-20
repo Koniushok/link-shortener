@@ -4,8 +4,10 @@ import {
   Route, Redirect, type Location, type ContextRouter, withRouter,
 } from 'react-router-dom';
 import queryString from 'query-string';
+import { type Notice } from '../../types';
 
 type Props = {
+  noticeAdd: (notice: $Diff<Notice, { id: string }>) => void,
   protect?: boolean,
   auth: boolean,
   exact?: boolean,
@@ -16,6 +18,7 @@ type Props = {
 };
 const ProtectedRoute = ({
   protect,
+  noticeAdd,
   auth,
   component: Component,
   render,
@@ -32,6 +35,10 @@ const ProtectedRoute = ({
     if (render) return <Route exact={exact} path={path} render={render} />;
     return null;
   }
+  noticeAdd({
+    level: 'warning',
+    text: 'To go to the page, login',
+  });
   return <Redirect to={`/login?from=${path}`} />;
 };
 ProtectedRoute.defaultProps = {

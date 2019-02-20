@@ -5,20 +5,17 @@ import {
   LINKS_LOAD_SUCCEEDED,
   EDIT_LINK_SUCCEEDED,
   DELETE_LINK_SUCCEEDED,
-  CREATE_LINK_RESET,
 } from '../constants/actionTypes';
 import { type Actions } from '../actions';
 import { type Link } from '../types';
 
 export type State = $ReadOnly<{
   data: ?Array<Link>,
-  error: string,
   loading: boolean,
   linkCount: number,
 }>;
 const initialState: State = {
   data: null,
-  error: '',
   loading: false,
   linkCount: 0,
 };
@@ -26,17 +23,9 @@ const initialState: State = {
 const linksReducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case LINKS_LOAD_REQUESTED:
-      return {
-        ...state,
-        error: '',
-        loading: true,
-      };
+      return { ...state, loading: true };
     case LINKS_LOAD_FAILED:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
+      return { ...state, loading: false };
     case LINKS_LOAD_SUCCEEDED:
       return {
         ...state,
@@ -56,8 +45,6 @@ const linksReducer = (state: State = initialState, action: Actions): State => {
       const links = state.data ? state.data.filter(link => link.id !== deletedLink.id) : state.data;
       return { ...state, data: links };
     }
-    case CREATE_LINK_RESET:
-      return initialState;
     default:
       return state;
   }

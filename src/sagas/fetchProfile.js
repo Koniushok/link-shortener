@@ -9,12 +9,8 @@ export function* fetchProfile(): Saga<void> {
   try {
     const profile = yield call(getMyProfile);
     yield put(fetchProfileSuccess(profile));
-  } catch (error) {
-    if (error.response) {
-      yield put(fetchProfileError(error.response.data));
-    } else {
-      yield put(fetchProfileError(error.message));
-    }
+  } catch (ex) {
+    yield put(fetchProfileError());
   }
 }
 

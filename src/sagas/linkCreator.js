@@ -7,18 +7,18 @@ import {
   type CreateLinkRequested,
 } from '../actions/linkCreator';
 import { CREATE_LINK_REQUESTED } from '../constants/actionTypes';
+import { noticeAdd } from '../actions/notice';
 import { createLink } from '../api';
 
 export function* create(action: CreateLinkRequested): Saga<void> {
   try {
     const response = yield call(createLink, action.payload);
     yield put(createLinkSucceeded(response));
-  } catch (error) {
-    if (error.response) {
-      yield put(createLinkFailed(error.response.data));
-    } else {
-      yield put(createLinkFailed(error.message));
-    }
+    yield put(
+      noticeAdd({ level: 'success', text: `Link ${response.shortLink} successfully created` }),
+    );
+  } catch (ex) {
+    yield put(createLinkFailed());
   }
 }
 

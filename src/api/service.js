@@ -2,12 +2,16 @@
 import axios from 'axios';
 import cookies from 'js-cookie';
 import { logout } from '../actions/auth';
+import { noticeAdd } from '../actions/notice';
 import store from '../store';
 
 axios.interceptors.response.use(null, (error) => {
   if (error.response && error.response.status === 401) {
     store.dispatch(logout());
   }
+  store.dispatch(
+    noticeAdd({ level: 'error', text: error.response ? error.response.data : 'Server error' }),
+  );
   return Promise.reject(error);
 });
 

@@ -30,3 +30,9 @@ export type RegistryProfile = {
   surname: string,
   password: string,
 };
+
+export type Notice = {
+  id: string,
+  level: 'error' | 'info' | 'warning' | 'success',
+  text: string,
+};

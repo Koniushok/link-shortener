@@ -6,7 +6,6 @@ import { type State } from '../../reducers';
 
 const mapStateToProps = ({ linkCreator: linkCreatorState }: State) => ({
   newLink: linkCreatorState.link,
-  error: linkCreatorState.error,
   loading: linkCreatorState.loading,
 });
 

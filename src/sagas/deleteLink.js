@@ -6,6 +6,7 @@ import {
   deleteLinkFailed,
   type DeleteLinkRequested,
 } from '../actions/deleteLink';
+import { noticeAdd } from '../actions/notice';
 import { DELETE_LINK_REQUESTED } from '../constants/actionTypes';
 import { deleteLink } from '../api';
 
@@ -13,12 +14,11 @@ export function* removeLink(action: DeleteLinkRequested): Saga<void> {
   try {
     const response = yield call(deleteLink, action.payload);
     yield put(deleteLinkSucceeded(response));
-  } catch (error) {
-    if (error.response) {
-      yield put(deleteLinkFailed(error.response.data));
-    } else {
-      yield put(deleteLinkFailed(error.message));
-    }
+    yield put(
+      noticeAdd({ level: 'success', text: `Link ${response.shortLink} successfully deleted` }),
+    );
+  } catch (ex) {
+    yield put(deleteLinkFailed());
   }
 }
 

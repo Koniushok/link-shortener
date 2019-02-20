@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Modal from '../../components/modal';
 import { type LinkCreate, type Link } from '../../types';
-import Alert from '../../components/alert';
 import LinkForm from '../../components/linkForm';
-import { editLinkRequested, editLinkReset } from '../../actions/editLink';
-import { fetchLinkRequest, fetchLinkReset } from '../../actions/fetchLink';
+import { editLinkRequested } from '../../actions/editLink';
+import { fetchLinkRequest } from '../../actions/fetchLink';
 import Loader from '../../components/loader';
 
 const FormWrapper = styled.section`
@@ -27,14 +26,11 @@ const FormWrapper = styled.section`
 type Props = {
   handelClose: () => void,
   linkId: string,
-  link: ?Link,
   result: boolean,
-  fetchError: string,
-  editError: string,
+  link: ?Link,
+  editError: boolean,
   fetchLoading: boolean,
   editLoading: boolean,
-  editLinkReset: typeof editLinkReset,
-  fetchLinkReset: typeof fetchLinkReset,
   editLinkRequested: typeof editLinkRequested,
   fetchLink: typeof fetchLinkRequest,
 };
@@ -46,14 +42,9 @@ class LinkEditor extends Component<Props> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.result) {
+    if (nextProps.result || nextProps.editError) {
       this.props.handelClose();
     }
-  }
-
-  componentWillUnmount() {
-    this.props.fetchLinkReset();
-    this.props.editLinkReset();
   }
 
   handleSubmit = (link: LinkCreate) => {
@@ -64,15 +55,13 @@ class LinkEditor extends Component<Props> {
 
   render() {
     const {
-      fetchError, editLoading, link, editError, handelClose, fetchLoading,
+      editLoading, link, handelClose, fetchLoading,
     } = this.props;
-    const error = fetchError || editError;
     return (
       <Modal handelClose={handelClose} loading={fetchLoading}>
-        {error && <Alert type="error">{error}</Alert>}
         <FormWrapper>
           {fetchLoading && <Loader />}
-          {!fetchLoading && !error && <h1>Edit link</h1>}
+          {!fetchLoading && <h1>Edit link</h1>}
           {link && (
             <LinkForm
               loading={editLoading}
