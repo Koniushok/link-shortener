@@ -24,7 +24,7 @@ class Notifications extends Component<Props> {
     return (
       <Wrapper>
         {this.props.noticeList.map(notice => (
-          <Notice key={notice.text} notice={notice} handelDelete={this.handelDelete} />
+          <Notice key={notice.id} notice={notice} handelDelete={this.handelDelete} />
         ))}
       </Wrapper>
     );
