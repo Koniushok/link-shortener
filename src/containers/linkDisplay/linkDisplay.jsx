@@ -20,13 +20,12 @@ type Props = {
 };
 
 class LinkDisplay extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
+  componentDidMount() {
     this.props.fetchLink(this.props.linkId);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.error) {
+  componentDidUpdate() {
+    if (this.props.error) {
       this.props.handelClose();
     }
   }
