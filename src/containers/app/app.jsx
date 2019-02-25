@@ -15,7 +15,7 @@ import Notifications from '../notifications';
 
 const Footer = styled.footer`
   background: #24292e;
-  min-height: 70px;
+  min-height: 50px;
 `;
 
 const Main = styled.main`

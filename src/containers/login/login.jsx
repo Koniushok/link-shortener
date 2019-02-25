@@ -13,7 +13,11 @@ const LoginWrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 0 3px;
+  box-sizing: border-box;
   form {
+    width: 100%;
     max-width: 300px;
   }
 `;

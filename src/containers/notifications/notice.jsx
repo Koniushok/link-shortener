@@ -47,11 +47,8 @@ const NoticeWrapper = styled.div`
   }
 
   @keyframes move {
-    from {
-      transform: translate(200px, 0);
-    }
-    50% {
-      transform: translate(100px, 0);
+    0% {
+      transform: translate(300px, 0);
     }
     100% {
       transform: translate(0, 0);
