@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
+import { Sort } from 'styled-icons/material/Sort';
 import { type Location, type RouterHistory, Link as RouteNavLink } from 'react-router-dom';
 import { linksLoadAll, linksLoadMy } from '../../actions/links';
 import { deleteLinkRequested } from '../../actions/deleteLink';
@@ -30,17 +31,39 @@ const DisplayWrapper = styled.section`
 `;
 const NavLink = styled(RouteNavLink)`
   border-radius: 5px;
-  width: 100px;
-  margin: 0 0 5px auto;
   display: block;
   background: #6c757d;
   text-align: center;
   text-decoration: none;
   color: white;
   font-weight: 600;
-  padding: 5px 0;
+  padding: 1px 21px;
+  font-size: 19px;
+  height: 26px;
   :hover {
     background: #405153;
+  }
+`;
+const ListPanel = styled.div`
+  margin: 0 0 5px auto;
+  display: flex;
+  justify-content: flex-end;
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+  select {
+    margin-right: 10px;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    :focus {
+      outline: none;
+    }
+  }
+  select option {
+    background: #e8e8e8;
   }
 `;
 const CreateBlock = styled.div`
@@ -50,9 +73,6 @@ const CreateBlock = styled.div`
     font-size: 23px;
     font-weight: bold;
     margin-right: 40px;
-  }
-  a {
-    margin: 0;
   }
 `;
 
@@ -72,14 +92,12 @@ type State = {
   typeDisplay: DisplayType,
   selectedLinkID: string,
   editLinkID: string,
-  currentPage: number,
 };
 class LinksDisplay extends Component<Props, State> {
   state = {
     typeDisplay: displayType.TABLE,
     selectedLinkID: '',
     editLinkID: '',
-    currentPage: 1,
   };
 
   componentDidMount() {
@@ -92,8 +110,6 @@ class LinksDisplay extends Component<Props, State> {
   componentWillReceiveProps(nextProps: Props) {
     const nextParsed = queryString.parse(nextProps.location.search);
     const parsed = queryString.parse(this.props.location.search);
-    const currentPage = Number(nextParsed.page) || 1;
-    this.setState({ currentPage });
     if (parsed.tag !== nextParsed.tag) {
       this.setState({ selectedLinkID: '', editLinkID: '' });
     }
@@ -113,7 +129,12 @@ class LinksDisplay extends Component<Props, State> {
     if (!parsed.page || !parsed.items) {
       const page = parsed.page || '1';
       const items = parsed.items || String(itemLimit);
-      const search = queryString.stringify({ items, page, tag: parsed.tag });
+      const search = queryString.stringify({
+        items,
+        page,
+        tag: parsed.tag,
+        sort: parsed.sort,
+      });
       this.props.history.replace(`${this.props.location.pathname}?${search}`);
       return false;
     }
@@ -144,6 +165,17 @@ class LinksDisplay extends Component<Props, State> {
     }
   };
 
+  handelSelectChange = (e: SyntheticEvent<HTMLSelectElement>) => {
+    const parsed = queryString.parse(this.props.location.search);
+    const search = queryString.stringify({ ...parsed, sort: e.currentTarget.value });
+    this.props.history.push(`${this.props.location.pathname}?${search}`);
+  };
+
+  getSelectValue = () => {
+    const { sort } = queryString.parse(this.props.location.search);
+    return String(sort);
+  };
+
   handelItemClick = (linkId: string) => {
     this.setState({ selectedLinkID: linkId });
   };
@@ -164,16 +196,16 @@ class LinksDisplay extends Component<Props, State> {
     const parsed: any = queryString.parse(this.props.location.search);
     parsed.page = String(page);
     this.props.history.push(`${this.props.location.pathname}?${queryString.stringify(parsed)}`);
-    this.setState({ currentPage: page });
   };
 
   render() {
     const {
       linksList, loading, typeLoad, auth, linkCount,
     } = this.props;
-    const {
-      typeDisplay, selectedLinkID, editLinkID, currentPage,
-    } = this.state;
+    const { typeDisplay, selectedLinkID, editLinkID } = this.state;
+    let { items, page } = queryString.parse(this.props.location.search);
+    items = Number(items) || itemLimit;
+    page = Number(page) || 1;
     return (
       <section>
         <ControlPanel
@@ -187,7 +219,18 @@ class LinksDisplay extends Component<Props, State> {
         <DisplayWrapper>
           {linksList && !!linksList.length ? (
             <Fragment>
-              <NavLink to="/create">Create</NavLink>
+              <ListPanel>
+                <Sort />
+                <select onChange={this.handelSelectChange} value={this.getSelectValue()}>
+                  <option>default</option>
+                  <option value="-clicks">by popularity ↓</option>
+                  <option value="clicks">by popularity ↑</option>
+                  <option value="-tag">by tags ↓</option>
+                  <option value="tag">by tags ↑</option>
+                  <option value="title">by title</option>
+                </select>
+                {auth && <NavLink to="/create">Create</NavLink>}
+              </ListPanel>
               {typeDisplay === displayType.TABLE && (
                 <TableLink
                   linksList={linksList}
@@ -195,7 +238,7 @@ class LinksDisplay extends Component<Props, State> {
                   handelEditClick={this.handelEditClick}
                   handelDeleteClick={this.handelDeleteClick}
                   typeLoad={typeLoad}
-                  startIndex={(currentPage - 1) * itemLimit + 1}
+                  startIndex={(page - 1) * items + 1}
                 />
               )}
               {typeDisplay === displayType.LIST && (
@@ -209,15 +252,15 @@ class LinksDisplay extends Component<Props, State> {
               <Pagination
                 itemsCount={linkCount}
                 pageLimit={pageLimit}
-                itemLimit={itemLimit}
+                itemLimit={items}
                 onPageChange={this.onPageChange}
-                currentPage={currentPage}
+                currentPage={page}
               />
             </Fragment>
           ) : (
             <CreateBlock>
               <span>The list is empty</span>
-              <NavLink to="/create">Create</NavLink>
+              {auth && <NavLink to="/create">Create</NavLink>}
             </CreateBlock>
           )}
         </DisplayWrapper>

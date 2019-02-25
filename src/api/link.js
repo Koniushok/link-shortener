@@ -5,15 +5,26 @@ import { type LinkCreate } from '../types';
 import { API_END_POINT } from '../constants/api';
 
 export const getAllLinks = async (search: string) => {
-  const { page, items, tag } = queryString.parse(search);
-  const url = `${API_END_POINT}/link?${queryString.stringify({ page, items, tag })}`;
+  const {
+    page, items, tag, sort,
+  } = queryString.parse(search);
+  const url = `${API_END_POINT}/link?${queryString.stringify({
+    page, items, tag, sort,
+  })}`;
   const response = await axios.get(url);
   return response.data;
 };
 
 export const getMyLinks = async (search: string) => {
-  const { page, items, tag } = queryString.parse(search);
-  const url = `${API_END_POINT}/link/my?${queryString.stringify({ page, items, tag })}`;
+  const {
+    page, items, tag, sort,
+  } = queryString.parse(search);
+  const url = `${API_END_POINT}/link/my?${queryString.stringify({
+    page,
+    items,
+    tag,
+    sort,
+  })}`;
   const response = await axios.get(url);
   return response.data;
 };
