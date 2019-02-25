@@ -6,7 +6,7 @@ function getInputColor(error: boolean): string {
   return error ? '#ff0000a1' : '#00d3ffa1';
 }
 
-const Input = styled.input`
+export const InputHtml = styled.input`
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -41,7 +41,7 @@ const Label = styled.label`
   margin-bottom: 3px;
 `;
 
-const LabelError = styled.div`
+export const LabelError = styled.div`
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
@@ -55,7 +55,7 @@ const InputLabel = ({
 }: Props) => (
   <div>
     <Label htmlFor={name}>{label}</Label>
-    <Input
+    <InputHtml
       id={name}
       name={name}
       error={!!error}
