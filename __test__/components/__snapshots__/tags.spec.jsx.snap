@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag component Tag component initial render correctly component 1`] = `
+<styled.div>
+  <Link
+    replace={false}
+    to="/links/all?tag=tag1"
+  >
+    tag1
+  </Link>
+  <styled.div>
+    <XCircle
+      onClick={[Function]}
+    />
+  </styled.div>
+</styled.div>
+`;
+
+exports[`Tags component Tags component initial render correctly component 1`] = `
+<styled.div>
+  <Tag
+    handleDelete={[Function]}
+    key="tag1"
+    tag="tag1"
+  />
+  <Tag
+    handleDelete={[Function]}
+    key="tag2"
+    tag="tag2"
+  />
+</styled.div>
+`;

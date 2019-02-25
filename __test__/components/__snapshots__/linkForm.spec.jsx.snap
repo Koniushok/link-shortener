@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkForm component LinkForm component initial render correctly component 1`] = `
+<Fragment>
+  <Form
+    autoComplete="off"
+    onSubmit={[Function]}
+  >
+    <InputLabel
+      error=""
+      label="Title"
+      name="title"
+    />
+    <InputLabel
+      error=""
+      label="Link"
+      name="url"
+    />
+    <styled.div>
+      <InputLabel
+        error=""
+        label="Tag"
+        name="tag"
+        onChange={[Function]}
+        value=""
+      />
+    </styled.div>
+    <InputLabel
+      error=""
+      label="Description"
+      name="description"
+    />
+    <styled.button
+      alignRight={true}
+      disabled={false}
+    >
+      button
+    </styled.button>
+  </Form>
+</Fragment>
+`;

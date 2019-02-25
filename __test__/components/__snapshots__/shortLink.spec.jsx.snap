@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoLink component ShortLink component initial render correctly component 1`] = `
+<div>
+  <styled.a
+    href="http://localhost:8080/testUrl"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    http://localhost:8080/testUrl
+  </styled.a>
+  <CopyToClipboard
+    text="http://localhost:8080/testUrl"
+  >
+    <styled.button>
+      copy
+    </styled.button>
+  </CopyToClipboard>
+</div>
+`;

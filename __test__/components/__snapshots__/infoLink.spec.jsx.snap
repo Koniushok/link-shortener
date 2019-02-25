@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoLink component InfoLink component initial render correctly component 1`] = `
+<styled.div>
+  <styled.h3>
+    testTitle
+    <styled.div>
+      <Delete
+        onClick={[Function]}
+      />
+      <Edit
+        onClick={[Function]}
+      />
+    </styled.div>
+  </styled.h3>
+  <styled.a
+    href="testUrl"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    testUrl
+  </styled.a>
+  <styled.div>
+    <h4>
+      Description:
+    </h4>
+    <p>
+      myTest
+    </p>
+  </styled.div>
+  <Tags
+    tagList={
+      Array [
+        "test",
+        "test2",
+      ]
+    }
+  />
+  <styled.div>
+    <ShortLink
+      link="tUrl"
+    />
+    <styled.div>
+      <ChartBar />
+      <p>
+        1
+      </p>
+    </styled.div>
+  </styled.div>
+</styled.div>
+`;

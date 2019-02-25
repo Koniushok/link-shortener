@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component Input component initial render correctly component 1`] = `
+<div>
+  <styled.label
+    htmlFor="testName"
+  >
+    testLabel
+  </styled.label>
+  <styled.input
+    autocomplete="off"
+    defaultValue="default"
+    error={true}
+    id="testName"
+    name="testName"
+    onChange={[Function]}
+    type="password"
+  />
+  <styled.div>
+    testError
+  </styled.div>
+</div>
+`;

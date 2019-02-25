@@ -1,6 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "plugin:jest/recommended"
+  ],
   "rules": {
     "react/prop-types": 0,
     "react/destructuring-assignment": 0,
@@ -9,7 +13,7 @@
   "globals": {
     "localStorage": true,
     "window": true,
-    "document": false
+    "document": true
   },
   "plugins": ["import", "jsx-a11y", "react", "flowtype"]
 }

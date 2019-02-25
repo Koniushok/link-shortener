@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button styled component Button component initial render correctly component 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  display: block;
+  padding: 9px 15px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  color: #fff;
+  background: #6c757d;
+  border: solid 3px #6c757d;
+  margin: ",
+          [Function],
+          ";
+  cursor: pointer;
+  :focus {
+    border: 3px solid #a9a9a9;
+    outline: #a9a9a9;
+  }
+  :hover {
+    border: 3px solid #ffffff9c;
+  }
+  :disabled {
+    background: #d9d9d9;
+    border: 3px solid #ffffff9c;
+    cursor: default;
+  }
+",
+        ],
+      },
+      "displayName": "styled.button",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "button",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;

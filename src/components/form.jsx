@@ -9,5 +9,5 @@ const Form = styled.form`
     margin-bottom: 20px;
   }
 `;
-
+Form.displayName = 'Form';
 export default Form;

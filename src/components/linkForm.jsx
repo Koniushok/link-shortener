@@ -9,7 +9,7 @@ import Button from './button';
 import Form from './form';
 import { type LinkCreate } from '../types';
 
-const ButtonAddTag = styled(AddCircleOutline)`
+export const ButtonAddTag = styled(AddCircleOutline)`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -111,7 +111,7 @@ class LinkForm extends Component<Props, State> {
   };
 
   handleChangeTag = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    const tag = e.currentTarget.value;
+    const tag = e.target.value;
     this.setState({ tag: tag.trim() });
     this.setState((prevState) => {
       const errors = { ...prevState.errors };
