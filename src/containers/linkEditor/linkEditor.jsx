@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Modal from '../../components/modal';
 import { type LinkCreate, type Link } from '../../types';
 import LinkForm from '../../components/linkForm';
-import { editLinkRequested } from '../../actions/editLink';
+import { editLinkRequested, editLinkReset } from '../../actions/editLink';
 import { fetchLinkRequest } from '../../actions/fetchLink';
 import Loader from '../../components/loader';
 
@@ -28,23 +28,27 @@ type Props = {
   linkId: string,
   result: boolean,
   link: ?Link,
-  editError: boolean,
+  fetchError: boolean,
   fetchLoading: boolean,
   editLoading: boolean,
+  editLinkReset: typeof editLinkReset,
   editLinkRequested: typeof editLinkRequested,
   fetchLink: typeof fetchLinkRequest,
 };
 
 class LinkEditor extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
+  componentDidMount() {
     this.props.fetchLink(this.props.linkId);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.result || nextProps.editError) {
+  componentDidUpdate() {
+    if (this.props.result || this.props.fetchError) {
       this.props.handelClose();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.editLinkReset();
   }
 
   handleSubmit = (link: LinkCreate) => {
