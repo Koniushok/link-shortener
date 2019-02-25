@@ -104,7 +104,7 @@ class InfoLink extends Component<Props> {
           <h4>Description:</h4>
           <p>{link.description}</p>
         </Description>
-        <Tags tagList={link.tags} handleDelete={null} />
+        <Tags tagList={link.tags} />
         <BottomPanel>
           <ShortLink link={link.shortLink} />
           <ClicksInf>
