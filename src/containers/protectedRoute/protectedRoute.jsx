@@ -25,11 +25,20 @@ class ProtectedRoute extends Component<Props> {
     render: undefined,
   };
 
+  componentDidMount() {
+    if (this.props.protect && !this.props.auth) {
+      this.props.noticeAdd({
+        level: 'warning',
+        text: 'Please login to go to the page',
+      });
+    }
+  }
+
   componentDidUpdate() {
     if (this.props.protect && !this.props.auth) {
       this.props.noticeAdd({
         level: 'warning',
-        text: 'To go to the page, login',
+        text: 'Please login to go to the page',
       });
     }
   }
