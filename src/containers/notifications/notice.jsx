@@ -26,6 +26,20 @@ const getBackgroundWrapper = (level: Level) => {
       return '#2ecc40';
   }
 };
+const getBackgroundProgress = (level: Level) => {
+  switch (level) {
+    case 'error':
+      return '#973232';
+    case 'info':
+      return '#04047a';
+    case 'warning':
+      return '#ffd707';
+    case 'success':
+      return '#008229';
+    default:
+      return '#2ecc40';
+  }
+};
 const NoticeWrapper = styled.div`
   width: 300px;
   min-height: 70px;
@@ -61,7 +75,12 @@ const Progress = styled.div`
   right: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(to right, #ff9993 50%, #fff 0%, #fff 50%);
+  background: linear-gradient(
+    to right,
+    ${({ level }) => getBackgroundProgress(level)} 50%,
+    #fff 0%,
+    #fff 50%
+  );
   animation: moveProgress ${lifetime / 1000}s linear;
   background-size: 200% 100%;
   @keyframes moveProgress {
@@ -174,7 +193,7 @@ class Notice extends Component<Props, State> {
         <DeleteButton>
           <Close onClick={this.handelClickDelete} />
         </DeleteButton>
-        <Progress />
+        <Progress level={level} />
       </NoticeWrapper>
     );
   }
