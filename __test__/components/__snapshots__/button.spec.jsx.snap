@@ -38,7 +38,7 @@ exports[`Button styled component Button component initial render correctly compo
 ",
         ],
       },
-      "displayName": "styled.button",
+      "displayName": "Button",
       "foldedComponentIds": Array [],
       "render": [Function],
       "styledComponentId": "sc-bdVaJa",

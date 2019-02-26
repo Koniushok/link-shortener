@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import LinkForm, { ButtonAddTag } from '../../src/components/linkForm';
-import Tags from '../../src/components/tags';
+import LinkForm from '../../src/components/linkForm';
 
 describe('LinkForm component', () => {
   const props = {
@@ -17,10 +16,10 @@ describe('LinkForm component', () => {
       expect(shallowToJson(linkForm)).toMatchSnapshot();
     });
     it('Not render <ButtonAddTag />', () => {
-      expect(linkForm.find(ButtonAddTag)).toHaveLength(0);
+      expect(linkForm.find('ButtonAddTag')).toHaveLength(0);
     });
     it('Not render <Tags />', () => {
-      expect(linkForm.find(Tags)).toHaveLength(0);
+      expect(linkForm.find('Tags')).toHaveLength(0);
     });
   });
 
@@ -29,32 +28,32 @@ describe('LinkForm component', () => {
       ...props,
       loading: true,
     };
-    const linkForm = mount(<LinkForm {...nextProps} />);
+    const linkForm = shallow(<LinkForm {...nextProps} />);
     it('button disabled', () => {
-      expect(linkForm.find('button').props().disabled).toEqual(true);
+      expect(linkForm.find('Button').props().disabled).toEqual(true);
     });
   });
 
   describe('LinkForm component is not Loading', () => {
-    const linkForm = mount(<LinkForm {...props} />);
+    const linkForm = shallow(<LinkForm {...props} />);
     it('button is not disabled', () => {
-      expect(linkForm.find('button').props().disabled).toEqual(false);
+      expect(linkForm.find('Button').props().disabled).toEqual(false);
     });
   });
 
   describe('Change input[name=tag]', () => {
-    const linkForm = mount(<LinkForm {...props} />);
-    const tagInput = linkForm.find('input[name="tag"]');
+    const linkForm = shallow(<LinkForm {...props} />);
+    const tagInput = linkForm.find('Input[name="tag"]');
     const event = { target: { value: 'testTag' } };
     tagInput.simulate('change', event);
     it('change inputTag value', () => {
       expect(linkForm.state('tag')).toEqual('testTag');
-      expect(linkForm.find('input[name="tag"]').props().value).toEqual('testTag');
+      expect(linkForm.find('Input[name="tag"]').props().value).toEqual('testTag');
     });
     it('Render <ButtonAddTag />', () => {
-      expect(linkForm.find(ButtonAddTag)).toHaveLength(1);
+      expect(linkForm.find('ButtonAddTag')).toHaveLength(1);
     });
-    it('Set error for input[name=tag] when length tag is max', () => {
+    it('Set error for Input[name=tag] when length tag is max', () => {
       tagInput.simulate('change', {
         target: { value: 'testTaggggggggggggggggggggggggggggggggggggggg' },
       });
@@ -64,10 +63,10 @@ describe('LinkForm component', () => {
 
   describe('Call addTag handler when click <ButtonAddTag />', () => {
     const linkForm = shallow(<LinkForm {...props} />);
-    const tagInput = linkForm.find('InputLabel[name="tag"]');
+    const tagInput = linkForm.find('Input[name="tag"]');
     const event = { target: { value: 'testTag' } };
     tagInput.simulate('change', event);
-    const buttonAddTag = linkForm.find('Styled(AddCircleOutline)');
+    const buttonAddTag = linkForm.find('ButtonAddTag');
     buttonAddTag.simulate('click');
     it('Change state. Add tag in tags array, tag reset', () => {
       expect(linkForm.state().tag).toEqual('');
@@ -77,7 +76,7 @@ describe('LinkForm component', () => {
       expect(linkForm.find('Tags')).toHaveLength(1);
     });
     it('Unmounting <ButtonAddTag/> component', () => {
-      expect(linkForm.find('Styled(AddCircleOutline)')).toHaveLength(0);
+      expect(linkForm.find('ButtonAddTag')).toHaveLength(0);
     });
     it('Dont add tag if tag exists', () => {
       tagInput.simulate('change', event);

@@ -6,18 +6,18 @@ exports[`LinkForm component LinkForm component initial render correctly componen
     autoComplete="off"
     onSubmit={[Function]}
   >
-    <InputLabel
+    <Input
       error=""
       label="Title"
       name="title"
     />
-    <InputLabel
+    <Input
       error=""
       label="Link"
       name="url"
     />
     <styled.div>
-      <InputLabel
+      <Input
         error=""
         label="Tag"
         name="tag"
@@ -25,17 +25,17 @@ exports[`LinkForm component LinkForm component initial render correctly componen
         value=""
       />
     </styled.div>
-    <InputLabel
+    <Input
       error=""
       label="Description"
       name="description"
     />
-    <styled.button
+    <Button
       alignRight={true}
       disabled={false}
     >
       button
-    </styled.button>
+    </Button>
   </Form>
 </Fragment>
 `;

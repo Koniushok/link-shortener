@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import 'jest-styled-components';
-import Input, { LabelError } from '../../src/components/input';
+import Input from '../../src/components/input';
 
 describe('Input component', () => {
   const props = {
@@ -21,14 +20,14 @@ describe('Input component', () => {
     });
   });
 
-  describe('Input component render <LabelError>', () => {
+  describe('Input component render <LabelError />', () => {
     it('render error', () => {
       const input = mount(<Input {...props} />);
-      expect(input.find(LabelError)).toHaveLength(1);
+      expect(input.find('LabelError')).toHaveLength(1);
     });
     it('not render error', () => {
       const input = mount(<Input name="test" label="label" />);
-      expect(input.find(LabelError)).toHaveLength(0);
+      expect(input.find('LabelError')).toHaveLength(0);
     });
   });
 });

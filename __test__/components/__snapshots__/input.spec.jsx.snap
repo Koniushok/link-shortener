@@ -16,8 +16,8 @@ exports[`Input component Input component initial render correctly component 1`] 
     onChange={[Function]}
     type="password"
   />
-  <styled.div>
+  <LabelError>
     testError
-  </styled.div>
+  </LabelError>
 </div>
 `;
