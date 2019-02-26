@@ -126,9 +126,17 @@ class LinksDisplay extends Component<Props, State> {
 
   checkQueryString = () => {
     const parsed = queryString.parse(this.props.location.search);
-    if (!parsed.page || !parsed.items) {
-      const page = parsed.page || '1';
-      const items = parsed.items || String(itemLimit);
+    let { page, items } = parsed;
+    let check = true;
+    if (!page || Number(page) < 1) {
+      page = '1';
+      check = false;
+    }
+    if (!items || Number(items) < 1) {
+      items = String(itemLimit);
+      check = false;
+    }
+    if (!check) {
       const search = queryString.stringify({
         items,
         page,
@@ -136,9 +144,10 @@ class LinksDisplay extends Component<Props, State> {
         sort: parsed.sort,
       });
       this.props.history.replace(`${this.props.location.pathname}?${search}`);
-      return false;
+      return check;
     }
-    return true;
+
+    return check;
   };
 
   typeDisplayTable = () => {
