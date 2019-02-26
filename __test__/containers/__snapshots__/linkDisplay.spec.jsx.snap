@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkDisplay container LinkDisplay container initial render correctly container 1`] = `
+<Modal
+  handelClose={[Function]}
+  loading={false}
+>
+  <styled.section>
+    <InfoLink
+      link={
+        Object {
+          "clicks": 1,
+          "description": "myTest",
+          "id": "testID",
+          "shortLink": "tUrl",
+          "tags": Array [
+            "test",
+            "test2",
+          ],
+          "title": "testTitle",
+          "url": "testUrl",
+        }
+      }
+    />
+  </styled.section>
+</Modal>
+`;
