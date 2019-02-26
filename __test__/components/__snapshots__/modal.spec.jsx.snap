@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component Modal component initial render correctly component 1`] = `
+<ModalWrapper
+  onClick={[Function]}
+>
+  <GlobalStyleComponent />
+  <ModalContent>
+    <ButtonClose
+      onClick={[Function]}
+    >
+      <Close />
+    </ButtonClose>
+  </ModalContent>
+</ModalWrapper>
+`;
