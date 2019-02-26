@@ -45,4 +45,6 @@ const Button = (styled.button`
   }
 `: ComponentType<Props>);
 
+Button.displayName = 'Button';
+
 export default Button;

@@ -6,7 +6,7 @@ function getInputColor(error: boolean): string {
   return error ? '#ff0000a1' : '#00d3ffa1';
 }
 
-export const InputHtml = styled.input`
+const InputHtml = styled.input`
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -49,6 +49,7 @@ export const LabelError = styled.div`
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 `;
+LabelError.displayName = 'LabelError';
 
 const InputLabel = ({
   name, label, error = '', type, onChange, value, defaultValue,
@@ -69,4 +70,5 @@ const InputLabel = ({
   </div>
 );
 
+InputLabel.displayName = 'Input';
 export default InputLabel;

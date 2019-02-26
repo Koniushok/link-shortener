@@ -22,8 +22,9 @@ const ButtonClose = styled.div`
     color: #b5b5b5;
   }
 `;
+ButtonClose.displayName = 'ButtonClose';
 
-const Modal = styled.div`
+const ModalWrapper = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -36,6 +37,7 @@ const Modal = styled.div`
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 `;
+ModalWrapper.displayName = 'ModalWrapper';
 const ModalContent = styled.div`
   position: relative;
   z-index: 2;
@@ -44,13 +46,14 @@ const ModalContent = styled.div`
   background: #ffffff;
   border-radius: 5px;
 `;
+ModalContent.displayName = 'ModalContent';
 type Props = {
   children?: Node,
   handelClose: () => void,
   loading?: boolean,
 };
 
-class LinkModal extends Component<Props> {
+class Modal extends Component<Props> {
   static defaultProps = {
     children: null,
     loading: false,
@@ -64,7 +67,7 @@ class LinkModal extends Component<Props> {
 
   render() {
     return (
-      <Modal onClick={this.handelClickModal}>
+      <ModalWrapper onClick={this.handelClickModal}>
         <GlobalStyle />
         {this.props.loading ? (
           this.props.children
@@ -76,9 +79,9 @@ class LinkModal extends Component<Props> {
             {this.props.children}
           </ModalContent>
         )}
-      </Modal>
+      </ModalWrapper>
     );
   }
 }
 
-export default LinkModal;
+export default Modal;

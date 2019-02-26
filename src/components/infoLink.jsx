@@ -116,5 +116,5 @@ class InfoLink extends Component<Props> {
     );
   }
 }
-
+InfoLink.displayName = 'InfoLink';
 export default InfoLink;

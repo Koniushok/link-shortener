@@ -96,4 +96,5 @@ const Loader = () => (
   </LoaderWrapper>
 );
 
+Loader.displayName = 'Loader';
 export default Loader;

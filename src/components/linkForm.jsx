@@ -18,6 +18,7 @@ export const ButtonAddTag = styled(AddCircleOutline)`
   right: 2px;
   top: 32px;
 `;
+ButtonAddTag.displayName = 'ButtonAddTag';
 const TagInputWrapper = styled.div`
   position: relative;
 `;

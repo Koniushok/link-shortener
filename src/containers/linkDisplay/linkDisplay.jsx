@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { type Link } from '../../types';
 import { fetchLinkRequest } from '../../actions/fetchLink';
-import LinkInf from '../../components/infoLink';
+import InfoLink from '../../components/infoLink';
 import Loader from '../../components/loader';
 import Modal from '../../components/modal';
 
@@ -34,7 +34,7 @@ class LinkDisplay extends Component<Props> {
     const { link, loading, handelClose } = this.props;
     return (
       <Modal handelClose={handelClose} loading={loading}>
-        {loading ? <Loader /> : <DisplayWrapper>{link && <LinkInf link={link} />}</DisplayWrapper>}
+        {loading ? <Loader /> : <DisplayWrapper>{link && <InfoLink link={link} />}</DisplayWrapper>}
       </Modal>
     );
   }

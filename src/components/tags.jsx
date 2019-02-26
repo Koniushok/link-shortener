@@ -90,5 +90,6 @@ const Tags = ({ tagList, handleDelete }: TagsProps) => (
 Tags.defaultProps = {
   handleDelete: undefined,
 };
+Tags.displayName = 'Tags';
 
 export default Tags;
