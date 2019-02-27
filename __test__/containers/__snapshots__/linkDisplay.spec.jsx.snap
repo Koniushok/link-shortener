@@ -1,27 +1,1005 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LinkDisplay container LinkDisplay container initial render correctly container 1`] = `
-<Modal
-  handelClose={[Function]}
-  loading={false}
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <styled.section>
-    <InfoLink
-      link={
+  <BrowserRouter>
+    <Router
+      history={
         Object {
-          "clicks": 1,
-          "description": "myTest",
-          "id": "testID",
-          "shortLink": "tUrl",
-          "tags": Array [
-            "test",
-            "test2",
-          ],
-          "title": "testTitle",
-          "url": "testUrl",
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
         }
       }
-    />
-  </styled.section>
-</Modal>
+    >
+      <Connect(LinkDisplay)
+        props={
+          Object {
+            "handelClose": [Function],
+            "linkId": "testID",
+          }
+        }
+      >
+        <LinkDisplay
+          error={false}
+          fetchLink={[Function]}
+          link={
+            Object {
+              "clicks": 1,
+              "description": "myTest",
+              "id": "testID",
+              "shortLink": "tUrl",
+              "tags": Array [
+                "test",
+                "test2",
+              ],
+              "title": "testTitle",
+              "url": "testUrl",
+            }
+          }
+          loading={false}
+          props={
+            Object {
+              "handelClose": [Function],
+              "linkId": "testID",
+            }
+          }
+        >
+          <Modal
+            loading={false}
+          >
+            <ModalWrapper
+              onClick={[Function]}
+            >
+              <StyledComponent
+                forwardedComponent={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "attrs": Array [],
+                    "componentStyle": ComponentStyle {
+                      "componentId": "sc-jTzLTM",
+                      "isStatic": true,
+                      "lastClassName": "dbjxxB",
+                      "rules": Array [
+                        "
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+",
+                      ],
+                    },
+                    "displayName": "ModalWrapper",
+                    "foldedComponentIds": Array [],
+                    "render": [Function],
+                    "styledComponentId": "sc-jTzLTM",
+                    "target": "div",
+                    "toString": [Function],
+                    "warnTooManyClasses": [Function],
+                    "withComponent": [Function],
+                  }
+                }
+                forwardedRef={null}
+                onClick={[Function]}
+              >
+                <div
+                  className="sc-jTzLTM dbjxxB"
+                  onClick={[Function]}
+                >
+                  <GlobalStyleComponent />
+                  <ModalContent>
+                    <StyledComponent
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-fjdhpX",
+                            "isStatic": true,
+                            "lastClassName": "calepP",
+                            "rules": Array [
+                              "
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0 15px;
+  background: #ffffff;
+  border-radius: 5px;
+",
+                            ],
+                          },
+                          "displayName": "ModalContent",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-fjdhpX",
+                          "target": "div",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={null}
+                    >
+                      <div
+                        className="sc-fjdhpX calepP"
+                      >
+                        <ButtonClose>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-VigVT",
+                                  "isStatic": true,
+                                  "lastClassName": "iCPxKA",
+                                  "rules": Array [
+                                    "
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  right: -15px;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  cursor: pointer;
+  &:hover {
+    color: #b5b5b5;
+  }
+",
+                                  ],
+                                },
+                                "displayName": "ButtonClose",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-VigVT",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <div
+                              className="sc-VigVT iCPxKA"
+                            >
+                              <Close>
+                                <StyledIconBase
+                                  iconAttrs={
+                                    Object {
+                                      "fill": "currentColor",
+                                    }
+                                  }
+                                  iconVerticalAlign="middle"
+                                  iconViewBox="0 0 24 24"
+                                >
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "StyledIconBase-sc-bdy9j4",
+                                          "isStatic": false,
+                                          "lastClassName": "cCvWXa",
+                                          "rules": Array [
+                                            "
+  display: inline-block;
+  vertical-align: ",
+                                            [Function],
+                                            ";
+  overflow: hidden;
+",
+                                          ],
+                                        },
+                                        "displayName": "StyledIconBase",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "StyledIconBase-sc-bdy9j4",
+                                        "target": Object {
+                                          "$$typeof": Symbol(react.forward_ref),
+                                          "render": [Function],
+                                        },
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                    iconAttrs={
+                                      Object {
+                                        "fill": "currentColor",
+                                      }
+                                    }
+                                    iconVerticalAlign="middle"
+                                    iconViewBox="0 0 24 24"
+                                  >
+                                    <ForwardRef
+                                      className="StyledIconBase-sc-bdy9j4 jbPeIR"
+                                      iconAttrs={
+                                        Object {
+                                          "fill": "currentColor",
+                                        }
+                                      }
+                                      iconVerticalAlign="middle"
+                                      iconViewBox="0 0 24 24"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        className="StyledIconBase-sc-bdy9j4 jbPeIR"
+                                        fill="currentColor"
+                                        focusable="false"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                          key="k0"
+                                        />
+                                      </svg>
+                                    </ForwardRef>
+                                  </StyledComponent>
+                                </StyledIconBase>
+                              </Close>
+                            </div>
+                          </StyledComponent>
+                        </ButtonClose>
+                        <styled.section>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-jzJRlG",
+                                  "isStatic": true,
+                                  "lastClassName": "eDJtwa",
+                                  "rules": Array [
+                                    "
+  width: 70vw;
+",
+                                  ],
+                                },
+                                "displayName": "styled.section",
+                                "foldedComponentIds": Array [],
+                                "render": [Function],
+                                "styledComponentId": "sc-jzJRlG",
+                                "target": "section",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <section
+                              className="sc-jzJRlG eDJtwa"
+                            >
+                              <InfoLink
+                                link={
+                                  Object {
+                                    "clicks": 1,
+                                    "description": "myTest",
+                                    "id": "testID",
+                                    "shortLink": "tUrl",
+                                    "tags": Array [
+                                      "test",
+                                      "test2",
+                                    ],
+                                    "title": "testTitle",
+                                    "url": "testUrl",
+                                  }
+                                }
+                              >
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-EHOje",
+                                          "isStatic": true,
+                                          "lastClassName": "hYMfkH",
+                                          "rules": Array [
+                                            "
+  a {
+    word-break: break-all;
+  }
+",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-EHOje",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="sc-EHOje hYMfkH"
+                                    >
+                                      <styled.h3>
+                                        <StyledComponent
+                                          forwardedComponent={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "attrs": Array [],
+                                              "componentStyle": ComponentStyle {
+                                                "componentId": "sc-bZQynM",
+                                                "isStatic": true,
+                                                "lastClassName": "huQCbU",
+                                                "rules": Array [
+                                                  "
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+",
+                                                ],
+                                              },
+                                              "displayName": "styled.h3",
+                                              "foldedComponentIds": Array [],
+                                              "render": [Function],
+                                              "styledComponentId": "sc-bZQynM",
+                                              "target": "h3",
+                                              "toString": [Function],
+                                              "warnTooManyClasses": [Function],
+                                              "withComponent": [Function],
+                                            }
+                                          }
+                                          forwardedRef={null}
+                                        >
+                                          <h3
+                                            className="sc-bZQynM huQCbU"
+                                          >
+                                            testTitle
+                                            <styled.div>
+                                              <StyledComponent
+                                                forwardedComponent={
+                                                  Object {
+                                                    "$$typeof": Symbol(react.forward_ref),
+                                                    "attrs": Array [],
+                                                    "componentStyle": ComponentStyle {
+                                                      "componentId": "sc-gZMcBi",
+                                                      "isStatic": true,
+                                                      "lastClassName": "kIjlXM",
+                                                      "rules": Array [
+                                                        "
+  display: flex;
+  color: #979797;
+  svg {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    :hover {
+      color: black;
+    }
+  }
+",
+                                                      ],
+                                                    },
+                                                    "displayName": "styled.div",
+                                                    "foldedComponentIds": Array [],
+                                                    "render": [Function],
+                                                    "styledComponentId": "sc-gZMcBi",
+                                                    "target": "div",
+                                                    "toString": [Function],
+                                                    "warnTooManyClasses": [Function],
+                                                    "withComponent": [Function],
+                                                  }
+                                                }
+                                                forwardedRef={null}
+                                              >
+                                                <div
+                                                  className="sc-gZMcBi kIjlXM"
+                                                />
+                                              </StyledComponent>
+                                            </styled.div>
+                                          </h3>
+                                        </StyledComponent>
+                                      </styled.h3>
+                                      <styled.a
+                                        href="testUrl"
+                                        rel="noreferrer noopener"
+                                        target="_blank"
+                                      >
+                                        <StyledComponent
+                                          forwardedComponent={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "attrs": Array [],
+                                              "componentStyle": ComponentStyle {
+                                                "componentId": "sc-gzVnrw",
+                                                "isStatic": true,
+                                                "lastClassName": "bQUeTS",
+                                                "rules": Array [
+                                                  "
+  color: #8f989d;
+  text-decoration: none;
+",
+                                                ],
+                                              },
+                                              "displayName": "styled.a",
+                                              "foldedComponentIds": Array [],
+                                              "render": [Function],
+                                              "styledComponentId": "sc-gzVnrw",
+                                              "target": "a",
+                                              "toString": [Function],
+                                              "warnTooManyClasses": [Function],
+                                              "withComponent": [Function],
+                                            }
+                                          }
+                                          forwardedRef={null}
+                                          href="testUrl"
+                                          rel="noreferrer noopener"
+                                          target="_blank"
+                                        >
+                                          <a
+                                            className="sc-gzVnrw bQUeTS"
+                                            href="testUrl"
+                                            rel="noreferrer noopener"
+                                            target="_blank"
+                                          >
+                                            testUrl
+                                          </a>
+                                        </StyledComponent>
+                                      </styled.a>
+                                      <styled.div>
+                                        <StyledComponent
+                                          forwardedComponent={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "attrs": Array [],
+                                              "componentStyle": ComponentStyle {
+                                                "componentId": "sc-htoDjs",
+                                                "isStatic": true,
+                                                "lastClassName": "dboPEG",
+                                                "rules": Array [
+                                                  "
+  margin-top: 8px;
+  color: black;
+  margin-bottom: 10px;
+  h4 {
+    color: #a7a7a7;
+    margin: 0;
+    font-weight: initial;
+  }
+  p {
+    margin: 0;
+  }
+",
+                                                ],
+                                              },
+                                              "displayName": "styled.div",
+                                              "foldedComponentIds": Array [],
+                                              "render": [Function],
+                                              "styledComponentId": "sc-htoDjs",
+                                              "target": "div",
+                                              "toString": [Function],
+                                              "warnTooManyClasses": [Function],
+                                              "withComponent": [Function],
+                                            }
+                                          }
+                                          forwardedRef={null}
+                                        >
+                                          <div
+                                            className="sc-htoDjs dboPEG"
+                                          >
+                                            <h4>
+                                              Description:
+                                            </h4>
+                                            <p>
+                                              myTest
+                                            </p>
+                                          </div>
+                                        </StyledComponent>
+                                      </styled.div>
+                                      <Tags
+                                        tagList={
+                                          Array [
+                                            "test",
+                                            "test2",
+                                          ]
+                                        }
+                                      >
+                                        <styled.div>
+                                          <StyledComponent
+                                            forwardedComponent={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "attrs": Array [],
+                                                "componentStyle": ComponentStyle {
+                                                  "componentId": "sc-bdVaJa",
+                                                  "isStatic": true,
+                                                  "lastClassName": "bXpHKz",
+                                                  "rules": Array [
+                                                    "
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+  & > * {
+    margin: 0 5px 5px 0;
+  }
+",
+                                                  ],
+                                                },
+                                                "displayName": "styled.div",
+                                                "foldedComponentIds": Array [],
+                                                "render": [Function],
+                                                "styledComponentId": "sc-bdVaJa",
+                                                "target": "div",
+                                                "toString": [Function],
+                                                "warnTooManyClasses": [Function],
+                                                "withComponent": [Function],
+                                              }
+                                            }
+                                            forwardedRef={null}
+                                          >
+                                            <div
+                                              className="sc-bdVaJa bXpHKz"
+                                            >
+                                              <Tag
+                                                key="test"
+                                                tag="test"
+                                              >
+                                                <styled.div>
+                                                  <StyledComponent
+                                                    forwardedComponent={
+                                                      Object {
+                                                        "$$typeof": Symbol(react.forward_ref),
+                                                        "attrs": Array [],
+                                                        "componentStyle": ComponentStyle {
+                                                          "componentId": "sc-bwzfXH",
+                                                          "isStatic": true,
+                                                          "lastClassName": "crWiSC",
+                                                          "rules": Array [
+                                                            "
+  padding: 5px 10px;
+  border-radius: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #d6d6d6ab;
+  a {
+    color: black;
+    text-decoration: none;
+    word-break: break-all;
+    margin-top: -4px;
+  }
+",
+                                                          ],
+                                                        },
+                                                        "displayName": "styled.div",
+                                                        "foldedComponentIds": Array [],
+                                                        "render": [Function],
+                                                        "styledComponentId": "sc-bwzfXH",
+                                                        "target": "div",
+                                                        "toString": [Function],
+                                                        "warnTooManyClasses": [Function],
+                                                        "withComponent": [Function],
+                                                      }
+                                                    }
+                                                    forwardedRef={null}
+                                                  >
+                                                    <div
+                                                      className="sc-bwzfXH crWiSC"
+                                                    >
+                                                      <Link
+                                                        replace={false}
+                                                        to="/links/all?tag=test"
+                                                      >
+                                                        <a
+                                                          href="/links/all?tag=test"
+                                                          onClick={[Function]}
+                                                        >
+                                                          test
+                                                        </a>
+                                                      </Link>
+                                                    </div>
+                                                  </StyledComponent>
+                                                </styled.div>
+                                              </Tag>
+                                              <Tag
+                                                key="test2"
+                                                tag="test2"
+                                              >
+                                                <styled.div>
+                                                  <StyledComponent
+                                                    forwardedComponent={
+                                                      Object {
+                                                        "$$typeof": Symbol(react.forward_ref),
+                                                        "attrs": Array [],
+                                                        "componentStyle": ComponentStyle {
+                                                          "componentId": "sc-bwzfXH",
+                                                          "isStatic": true,
+                                                          "lastClassName": "crWiSC",
+                                                          "rules": Array [
+                                                            "
+  padding: 5px 10px;
+  border-radius: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #d6d6d6ab;
+  a {
+    color: black;
+    text-decoration: none;
+    word-break: break-all;
+    margin-top: -4px;
+  }
+",
+                                                          ],
+                                                        },
+                                                        "displayName": "styled.div",
+                                                        "foldedComponentIds": Array [],
+                                                        "render": [Function],
+                                                        "styledComponentId": "sc-bwzfXH",
+                                                        "target": "div",
+                                                        "toString": [Function],
+                                                        "warnTooManyClasses": [Function],
+                                                        "withComponent": [Function],
+                                                      }
+                                                    }
+                                                    forwardedRef={null}
+                                                  >
+                                                    <div
+                                                      className="sc-bwzfXH crWiSC"
+                                                    >
+                                                      <Link
+                                                        replace={false}
+                                                        to="/links/all?tag=test2"
+                                                      >
+                                                        <a
+                                                          href="/links/all?tag=test2"
+                                                          onClick={[Function]}
+                                                        >
+                                                          test2
+                                                        </a>
+                                                      </Link>
+                                                    </div>
+                                                  </StyledComponent>
+                                                </styled.div>
+                                              </Tag>
+                                            </div>
+                                          </StyledComponent>
+                                        </styled.div>
+                                      </Tags>
+                                      <styled.div>
+                                        <StyledComponent
+                                          forwardedComponent={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "attrs": Array [],
+                                              "componentStyle": ComponentStyle {
+                                                "componentId": "sc-dnqmqq",
+                                                "isStatic": true,
+                                                "lastClassName": "ckdSWI",
+                                                "rules": Array [
+                                                  "
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+",
+                                                ],
+                                              },
+                                              "displayName": "styled.div",
+                                              "foldedComponentIds": Array [],
+                                              "render": [Function],
+                                              "styledComponentId": "sc-dnqmqq",
+                                              "target": "div",
+                                              "toString": [Function],
+                                              "warnTooManyClasses": [Function],
+                                              "withComponent": [Function],
+                                            }
+                                          }
+                                          forwardedRef={null}
+                                        >
+                                          <div
+                                            className="sc-dnqmqq ckdSWI"
+                                          >
+                                            <ShortLink
+                                              link="tUrl"
+                                            >
+                                              <div>
+                                                <styled.a
+                                                  href="http://localhost:8080/tUrl"
+                                                  rel="noreferrer noopener"
+                                                  target="_blank"
+                                                >
+                                                  <StyledComponent
+                                                    forwardedComponent={
+                                                      Object {
+                                                        "$$typeof": Symbol(react.forward_ref),
+                                                        "attrs": Array [],
+                                                        "componentStyle": ComponentStyle {
+                                                          "componentId": "sc-ifAKCX",
+                                                          "isStatic": true,
+                                                          "lastClassName": "kUPPhO",
+                                                          "rules": Array [
+                                                            "
+  color: #ee6123;
+  margin-right: 20px;
+  text-decoration: none;
+  margin-bottom: 10px;
+",
+                                                          ],
+                                                        },
+                                                        "displayName": "styled.a",
+                                                        "foldedComponentIds": Array [],
+                                                        "render": [Function],
+                                                        "styledComponentId": "sc-ifAKCX",
+                                                        "target": "a",
+                                                        "toString": [Function],
+                                                        "warnTooManyClasses": [Function],
+                                                        "withComponent": [Function],
+                                                      }
+                                                    }
+                                                    forwardedRef={null}
+                                                    href="http://localhost:8080/tUrl"
+                                                    rel="noreferrer noopener"
+                                                    target="_blank"
+                                                  >
+                                                    <a
+                                                      className="sc-ifAKCX kUPPhO"
+                                                      href="http://localhost:8080/tUrl"
+                                                      rel="noreferrer noopener"
+                                                      target="_blank"
+                                                    >
+                                                      http://localhost:8080/tUrl
+                                                    </a>
+                                                  </StyledComponent>
+                                                </styled.a>
+                                                <CopyToClipboard
+                                                  text="http://localhost:8080/tUrl"
+                                                >
+                                                  <styled.button
+                                                    onClick={[Function]}
+                                                  >
+                                                    <StyledComponent
+                                                      forwardedComponent={
+                                                        Object {
+                                                          "$$typeof": Symbol(react.forward_ref),
+                                                          "attrs": Array [],
+                                                          "componentStyle": ComponentStyle {
+                                                            "componentId": "sc-bxivhb",
+                                                            "isStatic": true,
+                                                            "lastClassName": "FHWBd",
+                                                            "rules": Array [
+                                                              "
+  padding: 1px 13px;
+  background: none;
+  font-size: 13px;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #ee6123;
+  color: #ee6123;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+    animation: effect_dylan 0.8s ease-out;
+  }
+  @keyframes effect_dylan {
+    50% {
+      transform: scale(1.5, 1.5);
+      opacity: 0;
+    }
+    99% {
+      transform: scale(0.01, 0.011);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.001, 0.001);
+      opacity: 1;
+    }
+  }
+",
+                                                            ],
+                                                          },
+                                                          "displayName": "styled.button",
+                                                          "foldedComponentIds": Array [],
+                                                          "render": [Function],
+                                                          "styledComponentId": "sc-bxivhb",
+                                                          "target": "button",
+                                                          "toString": [Function],
+                                                          "warnTooManyClasses": [Function],
+                                                          "withComponent": [Function],
+                                                        }
+                                                      }
+                                                      forwardedRef={null}
+                                                      onClick={[Function]}
+                                                    >
+                                                      <button
+                                                        className="sc-bxivhb FHWBd"
+                                                        onClick={[Function]}
+                                                      >
+                                                        copy
+                                                      </button>
+                                                    </StyledComponent>
+                                                  </styled.button>
+                                                </CopyToClipboard>
+                                              </div>
+                                            </ShortLink>
+                                            <styled.div>
+                                              <StyledComponent
+                                                forwardedComponent={
+                                                  Object {
+                                                    "$$typeof": Symbol(react.forward_ref),
+                                                    "attrs": Array [],
+                                                    "componentStyle": ComponentStyle {
+                                                      "componentId": "sc-iwsKbI",
+                                                      "isStatic": true,
+                                                      "lastClassName": "iLUUFs",
+                                                      "rules": Array [
+                                                        "
+  display: flex;
+  color: #979797;
+  p {
+    font-size: 22px;
+    margin: 0 5px;
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+",
+                                                      ],
+                                                    },
+                                                    "displayName": "styled.div",
+                                                    "foldedComponentIds": Array [],
+                                                    "render": [Function],
+                                                    "styledComponentId": "sc-iwsKbI",
+                                                    "target": "div",
+                                                    "toString": [Function],
+                                                    "warnTooManyClasses": [Function],
+                                                    "withComponent": [Function],
+                                                  }
+                                                }
+                                                forwardedRef={null}
+                                              >
+                                                <div
+                                                  className="sc-iwsKbI iLUUFs"
+                                                >
+                                                  <ChartBar>
+                                                    <StyledIconBase
+                                                      iconAttrs={
+                                                        Object {
+                                                          "fill": "currentColor",
+                                                        }
+                                                      }
+                                                      iconVerticalAlign="-.125em"
+                                                      iconViewBox="0 0 512 512"
+                                                    >
+                                                      <StyledComponent
+                                                        forwardedComponent={
+                                                          Object {
+                                                            "$$typeof": Symbol(react.forward_ref),
+                                                            "attrs": Array [],
+                                                            "componentStyle": ComponentStyle {
+                                                              "componentId": "StyledIconBase-sc-bdy9j4",
+                                                              "isStatic": false,
+                                                              "lastClassName": "cCvWXa",
+                                                              "rules": Array [
+                                                                "
+  display: inline-block;
+  vertical-align: ",
+                                                                [Function],
+                                                                ";
+  overflow: hidden;
+",
+                                                              ],
+                                                            },
+                                                            "displayName": "StyledIconBase",
+                                                            "foldedComponentIds": Array [],
+                                                            "render": [Function],
+                                                            "styledComponentId": "StyledIconBase-sc-bdy9j4",
+                                                            "target": Object {
+                                                              "$$typeof": Symbol(react.forward_ref),
+                                                              "render": [Function],
+                                                            },
+                                                            "toString": [Function],
+                                                            "warnTooManyClasses": [Function],
+                                                            "withComponent": [Function],
+                                                          }
+                                                        }
+                                                        forwardedRef={null}
+                                                        iconAttrs={
+                                                          Object {
+                                                            "fill": "currentColor",
+                                                          }
+                                                        }
+                                                        iconVerticalAlign="-.125em"
+                                                        iconViewBox="0 0 512 512"
+                                                      >
+                                                        <ForwardRef
+                                                          className="StyledIconBase-sc-bdy9j4 cCvWXa"
+                                                          iconAttrs={
+                                                            Object {
+                                                              "fill": "currentColor",
+                                                            }
+                                                          }
+                                                          iconVerticalAlign="-.125em"
+                                                          iconViewBox="0 0 512 512"
+                                                        >
+                                                          <svg
+                                                            aria-hidden="true"
+                                                            className="StyledIconBase-sc-bdy9j4 cCvWXa"
+                                                            fill="currentColor"
+                                                            focusable="false"
+                                                            viewBox="0 0 512 512"
+                                                          >
+                                                            <path
+                                                              d="M396.8 352h22.4c6.4 0 12.8-6.4 12.8-12.8V108.8c0-6.4-6.4-12.8-12.8-12.8h-22.4c-6.4 0-12.8 6.4-12.8 12.8v230.4c0 6.4 6.4 12.8 12.8 12.8zm-192 0h22.4c6.4 0 12.8-6.4 12.8-12.8V140.8c0-6.4-6.4-12.8-12.8-12.8h-22.4c-6.4 0-12.8 6.4-12.8 12.8v198.4c0 6.4 6.4 12.8 12.8 12.8zm96 0h22.4c6.4 0 12.8-6.4 12.8-12.8V204.8c0-6.4-6.4-12.8-12.8-12.8h-22.4c-6.4 0-12.8 6.4-12.8 12.8v134.4c0 6.4 6.4 12.8 12.8 12.8zM496 400H48V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v336c0 17.67 14.33 32 32 32h464c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16zm-387.2-48h22.4c6.4 0 12.8-6.4 12.8-12.8v-70.4c0-6.4-6.4-12.8-12.8-12.8h-22.4c-6.4 0-12.8 6.4-12.8 12.8v70.4c0 6.4 6.4 12.8 12.8 12.8z"
+                                                              fill="currentColor"
+                                                              key="k0"
+                                                            />
+                                                          </svg>
+                                                        </ForwardRef>
+                                                      </StyledComponent>
+                                                    </StyledIconBase>
+                                                  </ChartBar>
+                                                  <p>
+                                                    1
+                                                  </p>
+                                                </div>
+                                              </StyledComponent>
+                                            </styled.div>
+                                          </div>
+                                        </StyledComponent>
+                                      </styled.div>
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </InfoLink>
+                            </section>
+                          </StyledComponent>
+                        </styled.section>
+                      </div>
+                    </StyledComponent>
+                  </ModalContent>
+                </div>
+              </StyledComponent>
+            </ModalWrapper>
+          </Modal>
+        </LinkDisplay>
+      </Connect(LinkDisplay)>
+    </Router>
+  </BrowserRouter>
+</Provider>
 `;

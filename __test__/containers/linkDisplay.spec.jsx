@@ -1,7 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
-import LinkDisplay from '../../src/containers/linkDisplay/linkDisplay';
+import { mount } from 'enzyme';
+import { mountToJson } from 'enzyme-to-json';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { FETCH_LINK_REQUESTED } from '../../src/constants/actionTypes';
+import LinkDisplay from '../../src/containers/linkDisplay';
 
 describe('LinkDisplay container', () => {
   const link = {
@@ -13,59 +17,94 @@ describe('LinkDisplay container', () => {
     tags: ['test', 'test2'],
     description: 'myTest',
   };
-  const fetchLink = jest.fn();
-  const props = {
-    error: false,
-    handelClose: () => {},
-    linkId: 'testId',
-    link,
-    loading: false,
-    fetchLink,
+  const initialState = {
+    fetchLink: {
+      data: link,
+      loading: false,
+      error: false,
+    },
   };
-
+  const props = {
+    linkId: 'testID',
+    handelClose: () => {},
+  };
+  const mockStore = configureStore();
   describe('LinkDisplay container initial', () => {
-    const linkDisplay = shallow(<LinkDisplay {...props} />);
+    const store = mockStore(initialState);
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <LinkDisplay props={props} />
+        </BrowserRouter>
+      </Provider>,
+    );
     it('render correctly container', () => {
-      expect(shallowToJson(linkDisplay)).toMatchSnapshot();
+      expect(mountToJson(wrapper)).toMatchSnapshot();
     });
-    it('Call fetchLink method', () => {
-      expect(fetchLink).toHaveBeenCalledTimes(1);
+    it('action(type=FETCH_LINK_REQUESTED) dispatching', () => {
+      const action = store.getActions();
+      expect(action[0].type).toEqual(FETCH_LINK_REQUESTED);
     });
   });
   describe('LinkDisplay isLoading', () => {
-    const nextProps = {
-      ...props,
-      loading: true,
+    const nextInitialState = {
+      fetchLink: { loading: true, data: link },
     };
+    const store = mockStore(nextInitialState);
+    const linkDisplay = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <LinkDisplay {...props} />
+        </BrowserRouter>
+      </Provider>,
+    ).find('LinkDisplay');
     it('render <Loader />', () => {
-      const linkDisplay = shallow(<LinkDisplay {...nextProps} />);
       expect(linkDisplay.find('Loader')).toHaveLength(1);
     });
     it('not render <InfoLink />', () => {
-      const linkDisplay = shallow(<LinkDisplay {...nextProps} />);
       expect(linkDisplay.find('InfoLink')).toHaveLength(0);
     });
   });
   describe('LinkDisplay isError', () => {
-    it('call handelClose', () => {
-      const handelClose = jest.fn();
-      const nextProps = {
-        ...props,
-        handelClose,
-      };
-      const linkDisplay = shallow(<LinkDisplay {...nextProps} />);
-      linkDisplay.setProps({ error: true });
-      expect(handelClose).toHaveBeenCalledTimes(1);
-    });
-  });
-  it('not call handelClose if LinkDisplay is not error', () => {
     const handelClose = jest.fn();
+    const store = mockStore(initialState);
+    const nextInitialState = {
+      fetchLink: { loading: false, data: link, error: true },
+    };
+    const nextStore = mockStore(nextInitialState);
     const nextProps = {
       ...props,
       handelClose,
     };
-    const linkDisplay = shallow(<LinkDisplay {...nextProps} />);
-    linkDisplay.setProps();
-    expect(handelClose).toHaveBeenCalledTimes(0);
+    const wrapper = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <LinkDisplay {...nextProps} />
+        </BrowserRouter>
+      </Provider>,
+    );
+    wrapper.setProps({ store: nextStore });
+    it('call handelClose', () => {
+      expect(handelClose).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('LinkDisplay upData', () => {
+    const handelClose = jest.fn();
+    const store = mockStore(initialState);
+    const nextProps = {
+      ...props,
+      handelClose,
+    };
+    const linkDisplay = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <LinkDisplay {...nextProps} />
+        </BrowserRouter>
+      </Provider>,
+    ).find('LinkDisplay');
+    linkDisplay.instance().componentDidUpdate(linkDisplay.props(), linkDisplay.state());
+    it('not call handelClose', () => {
+      expect(handelClose).toHaveBeenCalledTimes(0);
+    });
   });
 });
