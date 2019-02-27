@@ -18,7 +18,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 const copyPlugin = new CopyWebpackPlugin([
   {
-    from: path.join(PATH.source, 'static'),
+    from: './static',
     to: path.join(PATH.build, 'static'),
   },
 ]);
