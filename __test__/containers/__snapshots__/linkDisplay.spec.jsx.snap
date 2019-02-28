@@ -37,16 +37,13 @@ exports[`LinkDisplay container LinkDisplay container initial render correctly co
       }
     >
       <Connect(LinkDisplay)
-        props={
-          Object {
-            "handelClose": [Function],
-            "linkId": "testID",
-          }
-        }
+        handelClose={[Function]}
+        linkId="testID"
       >
         <LinkDisplay
           error={false}
           fetchLink={[Function]}
+          handelClose={[Function]}
           link={
             Object {
               "clicks": 1,
@@ -61,15 +58,11 @@ exports[`LinkDisplay container LinkDisplay container initial render correctly co
               "url": "testUrl",
             }
           }
+          linkId="testID"
           loading={false}
-          props={
-            Object {
-              "handelClose": [Function],
-              "linkId": "testID",
-            }
-          }
         >
           <Modal
+            handelClose={[Function]}
             loading={false}
           >
             <ModalWrapper
@@ -154,7 +147,9 @@ exports[`LinkDisplay container LinkDisplay container initial render correctly co
                       <div
                         className="sc-fjdhpX calepP"
                       >
-                        <ButtonClose>
+                        <ButtonClose
+                          onClick={[Function]}
+                        >
                           <StyledComponent
                             forwardedComponent={
                               Object {
@@ -192,9 +187,11 @@ exports[`LinkDisplay container LinkDisplay container initial render correctly co
                               }
                             }
                             forwardedRef={null}
+                            onClick={[Function]}
                           >
                             <div
                               className="sc-VigVT iCPxKA"
+                              onClick={[Function]}
                             >
                               <Close>
                                 <StyledIconBase
