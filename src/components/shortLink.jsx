@@ -49,5 +49,5 @@ const ShortLink = ({ link }: { link: string }) => (
     </CopyToClipboard>
   </div>
 );
-
+ShortLink.displayName = 'ShortLink';
 export default ShortLink;
