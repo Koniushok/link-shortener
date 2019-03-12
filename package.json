@@ -41,8 +41,8 @@
     "test-coverage": "cross-env NODE_ENV=test jest & static-server ./coverage/lcov-report --open"
   },
   "engines": {
-    "node": "10.13.0",
-    "yarn": "1.10.1"
+    "node": "11.11.0",
+    "yarn": "1.13.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
